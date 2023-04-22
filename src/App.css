@@ -1,0 +1,50 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  margin-left: 100px;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.subtitle-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #999;
+  font-size: 14px;
+  margin-right: 20px;
+}
+
+.subtitle svg {
+  margin-right: 5px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.rating svg {
+  margin-right: 5px;
+}
