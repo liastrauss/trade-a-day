@@ -1,8 +1,17 @@
 import React from 'react';
+import App from "../App";
+import TopBar from "../Components/top bar";
+import SearchSection from "../Components/search section";
+import RestOfPage from "../Components/rest of page";
+
 
 function Home() {
     return (
-        <h1>this is the homepage</h1>
+        <div>
+            <TopBar/>
+            <SearchSection/>
+            <RestOfPage/>
+        </div>
     );
 }
 
