@@ -39,8 +39,8 @@ function EventForm () {
                             // getLabelText={getLabelText}
 
                             precision={1}
-                        //     icon={<DirectionsRunIcon fontSize="inherit" />}
-                        //     emptyIcon={<DirectionsRunIcon fontSize="inherit" />}
+                            icon={<DirectionsRunIcon fontSize="inherit" />}
+                            emptyIcon={<DirectionsRunIcon fontSize="inherit" />}
                         //     value={value}
                         //     getLabelText={getLabelText}
                         //     onChange={(event, newValue) => {
@@ -64,10 +64,10 @@ function EventForm () {
                         <Grid item xs={12} sm={6}>
                             <Autocomplete
                                 disablePortal
-                                id="combo-box-demo"
-                                // options={top100Films}
+                                id="areas-autocomplete"
+                                 options = {areas}
                                 sx={{ width: 300 }}
-                                renderInput={(params) => <TextField {...params} label="Movie" />}
+                                renderInput={(params) => <TextField {...params} label="Area" />}
                             />
                         </Grid>
 
@@ -85,6 +85,7 @@ function EventForm () {
         </div>
     )
 }
+const areas = ['North', 'South','Jerusalem Area','West bank','Center Dan'];
 export default EventForm;
 //
 // import Rating from '@material-ui/lab/Rating';

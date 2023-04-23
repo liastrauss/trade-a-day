@@ -2,11 +2,8 @@ import './App.css';
 import TopBar from './Components/top bar';
 import SearchSection from './Components/search section';
 import RestOfPage from "./Components/rest of page";
-import Home from './pages/Home';
-
 import AddEvent from "./pages/AddEvent";
 import Home from "./pages/Home";
-import CreateProfile from "./pages/CreateProfile";
 
 
 function App() {
@@ -14,7 +11,7 @@ function App() {
     <div className="App">
         <div>
             <AddEvent/>
-            <Home/>
+            {/*<Home/>*/}
             {/*<TopBar>*/}
             {/*</TopBar>*/}
             {/*<SearchSection>*/}
