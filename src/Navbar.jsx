@@ -11,6 +11,7 @@ function Navbar() {
                 <li>
                     <Link to="/AddEvent">AddEvent</Link>
                 </li>
+                <li><Link to="/popUP">PopUp</Link></li>
             </ul>
         </nav>
     );
