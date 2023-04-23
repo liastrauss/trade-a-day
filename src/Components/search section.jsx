@@ -1,10 +1,12 @@
 import React from "react";
+import { MdSearch } from 'react-icons/md';
 
 function SearchSection() {
     return (
-        <div className="search-section">
+        <div className="search-section-upper">
             <div className="search-box-container">
-                <input type="text" placeholder="Start your search" className="search-box" />
+                <input type="text" placeholder="Start your search" className="search-box"/>
+                <button className='search-button'><MdSearch/></button>
                 <button className="booked-experiences-btn">Booked Experiences</button>
             </div>
             <div className="filter-buttons-container">
