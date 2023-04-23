@@ -1,19 +1,87 @@
 import React from 'react';
-import {Checkbox, FormControlLabel, Grid, TextField, Typography} from "@mui/material";
+import {Checkbox, FormControlLabel, Grid, Rating, Switch, TextField, Typography} from "@mui/material";
+import { alpha, styled } from '@mui/material/styles';
+import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 
 function EventForm () {
     return (
         <div>
-            <TextField
-                required
-               id="standard-basic"
-               label="What do you do?"
-               variant="standard"
-            />
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                       id="standard-basic"
+                       label="What do you do?"
+                       variant="standard"
+                />
+                </Grid>
+                    <Grid item xs={12} sm={12}>
+                    <TextField
+                        required
+                        multiline
+                        minrows = {4}
+                        helperText="just a couple of words!!"
+                        id="standard-basic"
+                        label="Describe the experience"
+                        placeholder="A day out in the pasture with some cows"
+                        variant="standard"
+                    />
+                    </Grid>
+                    <Grid item xs={6} sm={6}>
+                        <Typography component="legend">Difficulty Level</Typography>
+                        Easy
+                        <Rating
+                            sx={{
+                                color: '#99d6ff', // set the color to a custom value
+                            }}
+                            name="running-rating"
+                            defaultValue={3}
+                            // getLabelText={getLabelText}
+
+                            precision={1}
+                        //     icon={<DirectionsRunIcon fontSize="inherit" />}
+                        //     emptyIcon={<DirectionsRunIcon fontSize="inherit" />}
+                        //     value={value}
+                        //     getLabelText={getLabelText}
+                        //     onChange={(event, newValue) => {
+                        //         setValue(newValue);
+                        //     }}
+                        //     onChangeActive={(event, newHover) => {
+                        //         setHover(newHover);
+                        //     }}
+                        // />
+                        // {value !== null && (
+                        //     <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+                        // )}
+                        />
+                        Hard
+                    </Grid>
+                    <Grid item xs={6} sm={6}>
+                        Accessible?
+                        <Switch />
+                        {/*<Checkbox />*/}
+                    </Grid>
+
+                {/*    this has to be here!*/}
+            </Grid>
         </div>
     )
 }
 export default EventForm;
+//
+// import Rating from '@material-ui/lab/Rating';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+//
+// function CustomRating(props) {
+//     return (
+//         <Rating
+//             IconContainerComponent={({ value, ...rest }) => {
+//                 return <FavoriteIcon color={value ? 'secondary' : 'disabled'} {...rest} />;
+//             }}
+//         />
+//     );
+// }
+//
 
 // export default function EventForm() {
 //     return (
