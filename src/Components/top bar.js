@@ -3,7 +3,7 @@ import React from "react";
 function TopBar() {
     return (
         <div className="top-bar">
-            <p>This is the top bar</p>
+            <h1>Trade A Day</h1>
         </div>
     );
 }
