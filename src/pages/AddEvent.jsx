@@ -1,8 +1,12 @@
 import React from 'react';
+import EventForm from "../Components/EventForm";
 
 function AddEvent(){
     return(
-        <h1>this is the add event page</h1>
+        <div>
+            <h1>this is the add event PAGE!!!</h1>
+            <EventForm/>
+        </div>
     );
 }
 
