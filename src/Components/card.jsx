@@ -7,8 +7,8 @@ const Card = ({ picture, title, duration, location, rating }) => {
             <img src={picture} alt={title} />
             <div className="card-info">
                 <div className="title-row">
-                    <h2 className="title">{title}</h2>
-                    <p className="rating"><MdStar /> {rating}</p>
+                    <h5 className="title">{title}</h5>
+                    <p className="rating"><MdStar />{rating}</p>
                 </div>
                 <div className="subtitle-row">
                     <p className="subtitle"><MdLocationOn /> {location}</p>

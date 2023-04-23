@@ -21,10 +21,10 @@ reportWebVitals();
 // import Layout from "./pages/Layout";
 // import AddEvent from "./pages/AddEvent";
 // import Home from "./pages/Home";
-// import PopUp from "./PopUp";
+// // import PopUp from "./PopUp";
 // import Blogs from "./pages/Blogs";
-// import Contact from "./pages/Contact";
-// import NoPage from "./pages/NoPage";
+// // import Contact from "./pages/Contact";
+// // import NoPage from "./pages/NoPage";
 //
 // export default function App() {
 //     return (

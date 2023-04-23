@@ -1,13 +1,27 @@
 import React from 'react';
 import app from "../App";
-import {Avatar, ImageList, ImageListItem, TextField, Typography} from "@mui/material";
+import {
+    Avatar,
+    IconButton,
+    ImageList,
+    ImageListItem,
+    List,
+    ListItem,
+    ListItemText,
+    TextField,
+    Typography
+} from "@mui/material";
 import * as PropTypes from "prop-types";
 import {MdAccessTime, MdLocationOn, MdStar} from "react-icons/md";
 
 ImageListItem.propTypes = {children: PropTypes.node};
 
 
-const View = ({picture1, picture2}) => {
+function CommentIcon() {
+    return null;
+}
+
+const View = ({picture1, picture2, explan}) => {
 
     return (
         <div>
@@ -27,13 +41,30 @@ const View = ({picture1, picture2}) => {
                     <img src={picture2}/>
                 </div>
             </div>
-            {/*<TextField id="filled-basic" label="Filled" variant="filled"/>*/}
-            <div>{"This div's text looks like that of a button."}</div>
+
+            <div className="host-text">{explan}</div>
+            <div className="host-text"> {"this is what you need to bring with you:"}</div>
+
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                {[1, 2, 3].map((value) => (
+                    <ListItem
+                        key={value}
+                        disableGutters
+                        secondaryAction={
+                            <IconButton aria-label="comment">
+                                <CommentIcon />
+                            </IconButton>
+                        }
+                    >
+                        <ListItemText primary={`Line item ${value}`} />
+                    </ListItem>
+                ))}
+            </List>
 
 
-
-        </div>
-    );
+</div>
+)
+    ;
 };
 
 
