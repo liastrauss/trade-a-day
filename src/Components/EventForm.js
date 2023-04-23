@@ -1,5 +1,5 @@
 import React from 'react';
-import {Checkbox, FormControlLabel, Grid, Rating, Switch, TextField, Typography} from "@mui/material";
+import {Autocomplete, Checkbox, FormControlLabel, Grid, Rating, Switch, TextField, Typography} from "@mui/material";
 import { alpha, styled } from '@mui/material/styles';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 
@@ -61,6 +61,24 @@ function EventForm () {
                         <Switch />
                         {/*<Checkbox />*/}
                     </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <Autocomplete
+                                disablePortal
+                                id="combo-box-demo"
+                                // options={top100Films}
+                                sx={{ width: 300 }}
+                                renderInput={(params) => <TextField {...params} label="Movie" />}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                required
+                                id="Address"
+                                label="Address"
+                                variant="standard"
+                            />
+                        </Grid>
 
                 {/*    this has to be here!*/}
             </Grid>

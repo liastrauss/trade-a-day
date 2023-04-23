@@ -4,6 +4,7 @@ import SearchSection from './Components/search section';
 import RestOfPage from "./Components/rest of page";
 import AddEvent from "./pages/AddEvent";
 import Home from "./pages/Home";
+import CreateProfile from "./pages/CreateProfile";
 
 
 function App() {
