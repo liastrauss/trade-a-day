@@ -1,15 +1,3 @@
-.view{
-  display: flex;
-  justify-content: flex-start;
-}
-
-.host-text{
-    display: flex;
-    justify-content: flex-start;
-    background-color: rgb(255, 228, 161);
-    margin: 10px;
-    padding: 3px 5px;
-}
 
 .card {
     display: flex;
