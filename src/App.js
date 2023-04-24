@@ -10,14 +10,8 @@ function App() {
   return (
     <div className="App">
         <div>
-            <AddEvent/>
-            {/*<Home/>*/}
-            {/*<TopBar>*/}
-            {/*</TopBar>*/}
-            {/*<SearchSection>*/}
-            {/*</SearchSection>*/}
-            {/*<RestOfPage>*/}
-            {/*</RestOfPage>*/}
+            {/*<AddEvent/>*/}
+            <Home/>
         </div>
 
 

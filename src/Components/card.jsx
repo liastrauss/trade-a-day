@@ -1,22 +1,29 @@
 import React from 'react';
-import { MdAccessTime, MdLocationOn, MdStar } from 'react-icons/md';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import {MdAccessTime, MdLocationOn, MdStar} from 'react-icons/md';
 
-const Card = ({ picture, title, duration, location, rating }) => {
+export default function EventCard({picture, hostName, title, rating, location, duration}) {
     return (
-        <div className="card">
-            <img src={picture} alt={title} />
-            <div className="card-info">
-                <div className="title-row">
-                    <h5 className="title">{title}</h5>
-                    <p className="rating"><MdStar />{rating}</p>
-                </div>
-                <div className="subtitle-row">
-                    <p className="subtitle"><MdLocationOn /> {location}</p>
-                    <p className="subtitle"><MdAccessTime /> {duration}</p>
-                </div>
-            </div>
-        </div>
+        <Card sx={{width: 250, mx: 3}}>
+            <CardMedia
+                component="img"
+                image={picture}
+                className="card-img"
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h6" component="div">
+                    {hostName}, {title}
+                </Typography>
+            </CardContent>
+            <CardActions>
+                <p className="subtitle"><MdLocationOn/>{location}</p>
+                <p className="subtitle"><MdAccessTime/>{duration}</p>
+                <p className="subtitle"><MdStar/>{rating}</p>
+            </CardActions>
+        </Card>
     );
-};
-
-export default Card;
+}
