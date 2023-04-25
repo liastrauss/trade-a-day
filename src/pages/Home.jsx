@@ -2,7 +2,8 @@ import React from 'react';
 import App from "../App";
 import TopBar from "../Components/top bar";
 import SearchSection from "../Components/search section";
-import RestOfPage from "../Components/rest of page";
+import {cardData} from "../Components/card-data";
+import AllCards from "../Components/all cards";
 
 
 function Home() {
@@ -10,7 +11,7 @@ function Home() {
         <div>
             <TopBar/>
             <SearchSection/>
-            <RestOfPage/>
+            <AllCards data={cardData}/>
         </div>
     );
 }

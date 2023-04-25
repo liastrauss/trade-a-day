@@ -1,18 +1,23 @@
 import React from "react";
 import { MdSearch } from 'react-icons/md';
+import SearchBox from "./searchBox";
 
 function SearchSection() {
     return (
-        <div className="search-section-upper">
+        <div className="search-section-container">
             <div className="search-box-container">
-                <input type="text" placeholder="Start your search" className="search-box"/>
-                <button className='search-button'><MdSearch/></button>
-                <button className="booked-experiences-btn">Booked Experiences</button>
+                <SearchBox/>
+                <button className="btn">Booked Experiences</button>
             </div>
             <div className="filter-buttons-container">
-                <button className="filter-btn">Filter 1</button>
-                <button className="filter-btn">Filter 2</button>
-                <button className="filter-btn">Filter 3</button>
+                <button className="btn">Indoors</button>
+                <button className="btn">Negev</button>
+                <button className="btn">Agriculture</button>
+                <button className="btn">Half day</button>
+                <button className="btn">Jerusalem</button>
+                <button className="btn">Full day</button>
+                <button className="btn">Office</button>
+                <button className="btn">Center district</button>
             </div>
         </div>
     );

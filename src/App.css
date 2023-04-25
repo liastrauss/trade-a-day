@@ -2,92 +2,59 @@
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 16px;
 }
 
-/*.card-img {*/
-/*    width: 250px;*/
-/*    height: 150px;*/
-/*    object-fit: fill;*/
-/*    border-radius: 5px;*/
-/*}*/
+.card{
+    margin-bottom: 32px;
+}
 
-.card-info {
-    display: flex;
-    flex-direction: column;
-    line-height: 0.8;
+.card-img {
+    width: 250px;
+    height: 150px;
+    object-fit: fill;
+    /*border-radius: 5px;*/
 }
 
 .title {
+    font-size: small;
     font-weight: bold;
-  margin-right: 80px;
-    /*margin: 0;*/
     line-height: 0;
-}
-
-.title-row {
-    display: flex;
-    line-height: 0.8;
-}
-
-.subtitle-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 10px;
+    /*background-color: darkseagreen;*/
 }
 
 .subtitle {
-    color: #999;
-    font-size: 14px;
-    margin-right: 20px;
+    color: dimgray;
+    font-size: 12px;
+    margin-right: 10px;
+    justify-content: space-evenly;
+    line-height: 0;
+    margin-top: -20px;
+    margin-bottom: -10px;
+    /*background-color: darkseagreen;*/
 }
 
-.subtitle svg {
-    margin-right: 3px;
-}
-
-.rating {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    justify-content: flex-end;
-}
-
-.rating svg {
-    margin-right: 3px;
-}
-
-.search-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 .search-box-container {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start; /* Align items to the left */
+    justify-content: space-between;
+    /*align-items: flex-start;*/
     margin-bottom: 16px;
-    margin-left: 32px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 .search-box {
   display: flex;
+    justify-content: flex-start;
   margin-left: 32px;
-}
-
-.booked-experiences-btn {
-    margin-left: 850px; /* Add some space between the button and the search box */
 }
 
 .filter-buttons-container {
     display: flex;
     align-self: flex-start;
     margin-left: 32px;
-}
-
-.filter-btn {
-    margin: 10px;
 }
 
 .top-bar {
@@ -101,7 +68,7 @@
 }
 
 
-.filter-btn {
+.btn {
     background-color: #fff;
     border: 0 solid #e2e8f0;
     border-radius: 1.5rem;
@@ -122,18 +89,13 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    margin-left: 16px;
 }
 
-.filter-btn:hover {
+.btn:hover {
     background-color: #1e293b;
     color: #fff;
 }
-
-@media (min-width: 768px) {
-    .button-81 {
-        font-size: 1.125rem;
-        padding: 1rem 2rem;
-    }
 
 
 .filter-buttons-container {
@@ -146,8 +108,3 @@
   display: flex;
   justify-content: center;
 }
-
-.rest-of-page {
-  display: flex;
-  align-items: flex-start;
-}}
