@@ -5,25 +5,31 @@ import RestOfPage from "./Components/rest of page";
 import AddEvent from "./pages/AddEvent";
 import Home from "./pages/Home";
 
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+
+
 
 function App() {
   return (
-    <div className="App">
-        <div>
-            <AddEvent/>
-            {/*<Home/>*/}
-            {/*<TopBar>*/}
-            {/*</TopBar>*/}
-            {/*<SearchSection>*/}
-            {/*</SearchSection>*/}
-            {/*<RestOfPage>*/}
-            {/*</RestOfPage>*/}
+    //   need this so we can work with dates:
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <div className="App">
+            <div>
+                <AddEvent/>
+                {/*<Home/>*/}
+                {/*<TopBar>*/}
+                {/*</TopBar>*/}
+                {/*<SearchSection>*/}
+                {/*</SearchSection>*/}
+                {/*<RestOfPage>*/}
+                {/*</RestOfPage>*/}
+            </div>
         </div>
-
-
-    </div>
+    </LocalizationProvider>
   );
 }
+
 
 export default App;
 

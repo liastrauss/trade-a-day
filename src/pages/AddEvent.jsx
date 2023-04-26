@@ -31,6 +31,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // Importing three form components that will be rendered inside the Checkout component
 import EventForm from "../Components/EventForm";
+import ItemsForm from "../Components/ItemsForm";
+import PickDates from "../Components/PickDates";
 
 
 // An array that stores the labels for the steps of the checkout process
@@ -42,9 +44,9 @@ function getStepContent(step) {
         case 0:
             return <EventForm/>;
         case 1:
-            return <EventForm />;
+            return <ItemsForm />;
         case 2:
-            return <EventForm />;
+            return <PickDates />;
         default:
             throw new Error('Unknown step');
     }
@@ -93,7 +95,7 @@ export default function Checkout() {
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                     {/* The title of the checkout page */}
                     <Typography component="h1" variant="h4" align="center">
-                        Checkout
+                        Adding Your Day
                     </Typography>
 
                     {/* The stepper component that displays the current step of the checkout process */}
@@ -107,12 +109,11 @@ export default function Checkout() {
                     {activeStep === steps.length ? (
                         <React.Fragment>
                             <Typography variant="h5" gutterBottom>
-                                Thank you for your order.
+                                Thank you for joining the Trade a Day community!
                             </Typography>
                             <Typography variant="subtitle1">
-                                Your order number is #2001539. We have emailed your order
-                                confirmation, and will send you an update when your order has
-                                shipped.
+                                 We have emailed your confirmation,
+                                and will send you an update when people sign up.
                             </Typography>
                         </React.Fragment>
                     ) : (
@@ -130,7 +131,7 @@ export default function Checkout() {
                                     onClick={handleNext}
                                     sx={{ mt: 3, ml: 1 }}
                                 >
-                                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                                    {activeStep === steps.length - 1 ? 'Add your day' : 'Next'}
                                 </Button>
                             </Box>
                         </React.Fragment>

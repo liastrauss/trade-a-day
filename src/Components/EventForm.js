@@ -14,6 +14,10 @@ import { alpha, styled } from '@mui/material/styles';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Button from "@mui/material/Button";
+import {PhotoCamera} from "@mui/icons-material";
+import * as PropTypes from "prop-types";
+
 
 
 function EventForm () {
@@ -90,7 +94,7 @@ function EventForm () {
                             />
                         </Grid>
 
-                        <Grid item xl={12} sm={6}>
+                        <Grid item sm={6}>
                             <TextField
                                 required
                                 id="Address"
@@ -99,7 +103,7 @@ function EventForm () {
                             />
                         </Grid>
 
-                        <Grid item xl={12} sm={6}>
+                        <Grid item sm={6}>
                             <TextField
                                 required
                                 id="NumOfGuests"
@@ -111,30 +115,42 @@ function EventForm () {
                                 variant="standard"
                             />
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-
-                             <List>
-                                    <ListItem
-                                        secondaryAction={
-                                            <IconButton edge="end" aria-label="delete">
-                                                <DeleteIcon />
-                                            </IconButton>
-                                        }
-                                    >
-                                        <ListItemAvatar>
-                                            <Avatar>
-                                                <FolderIcon />
-                                            </Avatar>
-                                        </ListItemAvatar>
-                                        <ListItemText
-                                            primary="Shoes"
-                                            // secondary={secondary ? 'Secondary text' : null}
-                                        />
-                                    </ListItem>
-                            </List>
-
-
+                        <Grid item sm={6}>
+                            <Button variant="contained" component="label">
+                                        Upload
+                                        <input hidden accept="image/*" multiple type="file" />
+                                    </Button>
+                                    <IconButton color="primary" aria-label="upload picture" component="label">
+                                        <input hidden accept="image/*" type="file" />
+                                        <PhotoCamera/>
+                                    </IconButton>
                         </Grid>
+
+
+                        {/*<Grid item xs={12} sm={6}>*/}
+
+                        {/*     <List>*/}
+                        {/*            <ListItem*/}
+                        {/*                secondaryAction={*/}
+                        {/*                    <IconButton edge="end" aria-label="delete">*/}
+                        {/*                        <DeleteIcon />*/}
+                        {/*                    </IconButton>*/}
+                        {/*                }*/}
+                        {/*            >*/}
+                        {/*                <ListItemAvatar>*/}
+                        {/*                    <Avatar>*/}
+                        {/*                        <FolderIcon />*/}
+                        {/*                    </Avatar>*/}
+                        {/*                </ListItemAvatar>*/}
+                        {/*                <ListItemText*/}
+                        {/*                    primary="Shoes"*/}
+                        {/*                    // secondary={secondary ? 'Secondary text' : null}*/}
+                        {/*                />*/}
+                        {/*            </ListItem>*/}
+                        {/*    </List>*/}
+
+
+                        {/*</Grid>*/}
 
 
 
