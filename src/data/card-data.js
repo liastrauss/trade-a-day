@@ -1,13 +1,5 @@
 export const cardData = [
     {
-        picture: "https://plus.unsplash.com/premium_photo-1680344513115-69da609dd882?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dG9tYXRvJTIwcGlja2luZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
-        hostName: "Alona",
-        title: "Cherry Tomato Picking",
-        duration: "5 hours",
-        location: "Alumim",
-        rating: "4.2",
-    },
-    {
         picture: "https://plus.unsplash.com/premium_photo-1679521026471-92512d24c9b9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9nJTIwdHJhaW5pbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
         hostName: "Tom",
         title: "Dog Trainer",
@@ -18,9 +10,9 @@ export const cardData = [
     {
         picture: "https://plus.unsplash.com/premium_photo-1682089616321-886d5b3d3626?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFkaW8lMjBlZGl0b3J8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
         hostName: "Michael",
-        title: "BBC Radio Editor",
+        title: "Radio Editor",
         duration: "3 hours",
-        location: "Jerusalem",
+        location: "Neve Ilan",
         rating: "4.0",
     },
     {
@@ -52,7 +44,7 @@ export const cardData = [
         hostName: "Gil",
         title: "Tour Guide",
         duration: "6.5 hours",
-        location: "Tzefat",
+        location: "Jerusalem",
         rating: "4.8",
     },
     {
@@ -70,6 +62,14 @@ export const cardData = [
         duration: "8 hours",
         location: "Ben Shemen",
         rating: "4.9",
+    },
+    {
+        picture: "https://plus.unsplash.com/premium_photo-1680344513115-69da609dd882?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dG9tYXRvJTIwcGlja2luZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
+        hostName: "Alona",
+        title: "Cherry Tomato Picking",
+        duration: "5 hours",
+        location: "Alumim",
+        rating: "4.2",
     },
     {
         picture: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8bWFya2V0aW5nJTIwbWFuYWdlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",

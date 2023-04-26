@@ -3,8 +3,10 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import {MdAccessTime, MdLocationOn, MdStar} from 'react-icons/md';
 import { useTheme } from '@mui/material/styles';
+import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
+import AccessTimeFilledRoundedIcon from '@mui/icons-material/AccessTimeFilledRounded';
+import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 
 export default function EventCard({picture, hostName, title, rating, location, duration}) {
     const theme = useTheme();
@@ -34,9 +36,9 @@ export default function EventCard({picture, hostName, title, rating, location, d
                 color: theme.palette.text.secondary,
                 fontWeight: theme.typography.fontWeightRegular
             }}>
-                <p><MdLocationOn/>{location}</p>
-                <p><MdAccessTime/>{duration}</p>
-                <p><MdStar/>{rating}</p>
+                <p><LocationOnRoundedIcon sx={{fontSize: 13}}/>{location}</p>
+                <p><AccessTimeFilledRoundedIcon sx={{fontSize: 13}}/>{duration}</p>
+                <p><StarRateRoundedIcon sx={{fontSize: 13}}/>{rating}</p>
             </CardActions>
         </Card>
     );

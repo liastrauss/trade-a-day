@@ -1,7 +1,9 @@
 import React from "react";
 import SearchBox from "./searchBox";
 import Logo from "./logo";
-import {Divider} from "@mui/material";
+import {Button, Divider} from "@mui/material";
+import AllFilters from "./allFilters";
+import {filterData} from "../data/filter-data";
 
 function SearchSection() {
     return (
@@ -9,18 +11,12 @@ function SearchSection() {
             <div className="search-box-container">
                 <Logo/>
                 <SearchBox/>
-                <button className="btn">Booked Experiences</button>
+                <Button variant="outlined">Trade your day</Button>
+                <Button variant="text">Booked experiences</Button>
             </div>
             <Divider />
             <div className="filter-buttons-container">
-                <button className="btn">Indoors</button>
-                <button className="btn">Negev</button>
-                <button className="btn">Agriculture</button>
-                <button className="btn">Half day</button>
-                <button className="btn">Jerusalem</button>
-                <button className="btn">Full day</button>
-                <button className="btn">Office</button>
-                <button className="btn">Center district</button>
+                <AllFilters data={filterData}/>
             </div>
         </div>
     );
