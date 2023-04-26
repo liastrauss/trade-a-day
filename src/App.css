@@ -11,10 +11,7 @@
 }
 
 .card-img {
-    width: 250px;
-    height: 150px;
-    object-fit: fill;
-    /*border-radius: 5px;*/
+    object-fit: cover;
 }
 
 .title {
@@ -25,7 +22,7 @@
 }
 
 .subtitle {
-    color: dimgray;
+    /*color: dimgray;*/
     font-size: 12px;
     margin-right: 10px;
     justify-content: space-evenly;
@@ -43,13 +40,10 @@
     margin-bottom: 16px;
     margin-left: 40px;
     margin-right: 40px;
+    margin-top: 16px;
+    align-items: center;
 }
 
-.search-box {
-  display: flex;
-    justify-content: flex-start;
-  margin-left: 32px;
-}
 
 .filter-buttons-container {
     display: flex;
@@ -66,7 +60,6 @@
     display: flex;
     justify-content: flex-start;
 }
-
 
 .btn {
     background-color: #fff;
@@ -97,14 +90,3 @@
     color: #fff;
 }
 
-
-.filter-buttons-container {
-  display: flex;
-  align-items: flex-start;
-}
-
-
-.top-bar {
-  display: flex;
-  justify-content: center;
-}

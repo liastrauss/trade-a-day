@@ -1,14 +1,17 @@
 import React from "react";
-import { MdSearch } from 'react-icons/md';
 import SearchBox from "./searchBox";
+import Logo from "./logo";
+import {Divider} from "@mui/material";
 
 function SearchSection() {
     return (
         <div className="search-section-container">
             <div className="search-box-container">
+                <Logo/>
                 <SearchBox/>
                 <button className="btn">Booked Experiences</button>
             </div>
+            <Divider />
             <div className="filter-buttons-container">
                 <button className="btn">Indoors</button>
                 <button className="btn">Negev</button>
