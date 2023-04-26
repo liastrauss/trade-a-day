@@ -1,40 +1,59 @@
 import React from 'react';
-import {Autocomplete, Checkbox, FormControlLabel, Grid, Rating, Switch, TextField, Typography} from "@mui/material";
+import {
+    Autocomplete, Avatar,
+    Checkbox,
+    FormControlLabel,
+    Grid, IconButton,
+    List, ListItem, ListItemAvatar, ListItemText,
+    Rating,
+    Switch,
+    TextField,
+    Typography,
+} from "@mui/material";
 import { alpha, styled } from '@mui/material/styles';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+import FolderIcon from '@mui/icons-material/Folder';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 function EventForm () {
     return (
+        <React.Fragment>
         <div>
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
+            <Typography variant="h6" gutterBottom>
+            </Typography>
+            <Grid container spacing={3}   justifyContent="space-evenly"
+            >
+                <Grid item xs={12}>
                     <TextField
                         required
                        id="standard-basic"
                        label="What do you do?"
                        variant="standard"
+                       fullWidth
                 />
                 </Grid>
-                    <Grid item xs={12} sm={12}>
+                    <Grid item xs={12}>
                     <TextField
                         required
                         multiline
-                        minrows = {4}
+                        fullWidth
+                        // minRows = {4}
                         helperText="just a couple of words!!"
-                        id="standard-basic"
+                        id="describeExperience"
                         label="Describe the experience"
                         placeholder="A day out in the pasture with some cows"
                         variant="standard"
                     />
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item sm={6} xl={12}>
                         <Typography component="legend">Difficulty Level</Typography>
                         Easy
                         <Rating
                             sx={{
                                 color: '#99d6ff', // set the color to a custom value
                             }}
-                            name="running-rating"
+                            name="difficultyLevel"
                             defaultValue={3}
                             // getLabelText={getLabelText}
 
@@ -56,22 +75,22 @@ function EventForm () {
                         />
                         Hard
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={6}>
                         Accessible?
-                        <Switch />
-                        {/*<Checkbox />*/}
+                        {/*<Switch />*/}
+                        <Checkbox />
                     </Grid>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item sm={6}>
                             <Autocomplete
                                 disablePortal
                                 id="areas-autocomplete"
                                  options = {areas}
-                                sx={{ width: 300 }}
+                                // sx={{ width: 300 }}
                                 renderInput={(params) => <TextField {...params} label="Area" />}
                             />
                         </Grid>
 
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xl={12} sm={6}>
                             <TextField
                                 required
                                 id="Address"
@@ -80,28 +99,161 @@ function EventForm () {
                             />
                         </Grid>
 
+                        <Grid item xl={12} sm={6}>
+                            <TextField
+                                required
+                                id="NumOfGuests"
+                                label="Number of Guests"
+                                type="number"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                variant="standard"
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+
+                             <List>
+                                    <ListItem
+                                        secondaryAction={
+                                            <IconButton edge="end" aria-label="delete">
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        }
+                                    >
+                                        <ListItemAvatar>
+                                            <Avatar>
+                                                <FolderIcon />
+                                            </Avatar>
+                                        </ListItemAvatar>
+                                        <ListItemText
+                                            primary="Shoes"
+                                            // secondary={secondary ? 'Secondary text' : null}
+                                        />
+                                    </ListItem>
+                            </List>
+
+
+                        </Grid>
+
+
+
+
                 {/*    this has to be here!*/}
             </Grid>
         </div>
+        </React.Fragment>
     )
 }
 const areas = ['North', 'South','Jerusalem Area','West bank','Center Dan'];
 export default EventForm;
-//
-// import Rating from '@material-ui/lab/Rating';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-//
-// function CustomRating(props) {
+
+
+
+
+// export default function EventForm() {
 //     return (
-//         <Rating
-//             IconContainerComponent={({ value, ...rest }) => {
-//                 return <FavoriteIcon color={value ? 'secondary' : 'disabled'} {...rest} />;
-//             }}
-//         />
+//         <React.Fragment>
+//             <Typography variant="h6" gutterBottom>
+//                 Shipping address
+//             </Typography>
+//             <Grid container spacing={3}>
+//                 <Grid item xs={12} sm={6}>
+//                     <TextField
+//                         required
+//                         id="firstName"
+//                         name="firstName"
+//                         label="First name"
+//                         fullWidth
+//                         autoComplete="given-name"
+//                         variant="standard"
+//                     />
+//                 </Grid>
+//                 <Grid item xs={12} sm={6}>
+//                     <TextField
+//                         required
+//                         id="lastName"
+//                         name="lastName"
+//                         label="Last name"
+//                         fullWidth
+//                         autoComplete="family-name"
+//                         variant="standard"
+//                     />
+//                 </Grid>
+//                 <Grid item xs={12}>
+//                     <TextField
+//                         required
+//                         id="address1"
+//                         name="address1"
+//                         label="Address line 1"
+//                         fullWidth
+//                         autoComplete="shipping address-line1"
+//                         variant="standard"
+//                     />
+//                 </Grid>
+//                 <Grid item xs={12}>
+//                     <TextField
+//                         id="address2"
+//                         name="address2"
+//                         label="Address line 2"
+//                         fullWidth
+//                         autoComplete="shipping address-line2"
+//                         variant="standard"
+//                     />
+//                 </Grid>
+//                 <Grid item xs={12} sm={6}>
+//                     <TextField
+//                         required
+//                         id="city"
+//                         name="city"
+//                         label="City"
+//                         fullWidth
+//                         autoComplete="shipping address-level2"
+//                         variant="standard"
+//                     />
+//                 </Grid>
+//                 <Grid item xs={12} sm={6}>
+//                     <TextField
+//                         id="state"
+//                         name="state"
+//                         label="State/Province/Region"
+//                         fullWidth
+//                         variant="standard"
+//                     />
+//                 </Grid>
+//                 <Grid item xs={12} sm={6}>
+//                     <TextField
+//                         required
+//                         id="zip"
+//                         name="zip"
+//                         label="Zip / Postal code"
+//                         fullWidth
+//                         autoComplete="shipping postal-code"
+//                         variant="standard"
+//                     />
+//                 </Grid>
+//                 <Grid item xs={12} sm={6}>
+//                     <TextField
+//                         required
+//                         id="country"
+//                         name="country"
+//                         label="Country"
+//                         fullWidth
+//                         autoComplete="shipping country"
+//                         variant="standard"
+//                     />
+//                 </Grid>
+//                 <Grid item xs={12}>
+//                     <FormControlLabel
+//                         control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
+//                         label="Use this address for payment details"
+//                     />
+//                 </Grid>
+//             </Grid>
+//         </React.Fragment>
 //     );
 // }
 //
-
 // export default function EventForm() {
 //     return (
 //         <React.Fragment>
