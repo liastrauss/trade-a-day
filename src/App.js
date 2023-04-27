@@ -44,8 +44,9 @@ function App() {
             <div className="App">
                 <ThemeProvider theme={theme}>
                     <div>
-                        <AddEvent/>
-                        {/*<Home/>*/}
+                        {/*<AddEvent/>*/}
+                        {/*<Navbar/>*/}
+                        <Home/>
                         {/*<TopBar>*/}
                         {/*</TopBar>*/}
                         {/*<SearchSection>*/}
