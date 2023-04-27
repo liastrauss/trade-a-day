@@ -1,135 +1,56 @@
-.card {
+.cards-container {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    margin-left: 50px;
-    width: 250px;
-    height: 250px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 16px;
 }
 
-.card img {
-    transform: scale(1, 1.5);
-    width: 250px;
-    height: 148px;
-    object-fit: fill;
+.card{
+    margin-bottom: 32px;
 }
 
-.card-info {
-    display: flex;
-    flex-direction: column;
-    line-height: 0.8;
+.card-img {
+    object-fit: cover;
 }
 
 .title {
+    font-size: small;
     font-weight: bold;
-  margin-right: 80px;
-    /*margin: 0;*/
-    /*line-height: 0.8px;*/
-}
-
-.title-row {
-    display: flex;
-    line-height: 0.8;
-}
-
-.subtitle-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 10px;
+    line-height: 0;
+    /*background-color: darkseagreen;*/
 }
 
 .subtitle {
-    color: #999;
-    font-size: 14px;
-    margin-right: 20px;
+    /*color: dimgray;*/
+    font-size: 12px;
+    margin-right: 10px;
+    justify-content: space-evenly;
+    line-height: 0;
+    margin-top: -20px;
+    margin-bottom: -10px;
+    /*background-color: darkseagreen;*/
 }
 
-.subtitle svg {
-    margin-right: 3px;
-}
-
-.rating {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    justify-content: flex-end;
-}
-
-.rating svg {
-    margin-right: 3px;
-}
-
-.search-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 .search-box-container {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start; /* Align items to the left */
-    margin-bottom: 16px;
-    margin-left: 32px;
-}
-
-.booked-experiences-btn {
-    margin-left: 850px; /* Add some space between the button and the search box */
-}
-
-.filter-buttons-container {
-    display: flex;
-    align-self: flex-start;
-    margin-left: 32px;
-}
-
-.filter-btn {
-    margin: 10px;
-}
-
-.top-bar {
-    display: flex;
-    justify-content: center;
-}
-
-.rest-of-page {
-    display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    /*align-items: flex-start;*/
+    margin: 16px 40px 16px 40px;
+    align-items: center;
 }
 
 
-.filter-btn {
-    background-color: #fff;
-    border: 0 solid #e2e8f0;
-    border-radius: 1.5rem;
-    box-sizing: border-box;
-    color: #0d172a;
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 0.75rem;
-    font-weight: 600;
-    line-height: 0.2;
-    padding: 1rem 1rem;
-    text-align: center;
-    text-decoration: none #0d172a solid;
-    text-decoration-thickness: auto;
-    transition: all .1s cubic-bezier(.4, 0, .2, 1);
-    box-shadow: 0 1px 2px rgba(166, 175, 195, 0.25);
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-}
+/*.filter-buttons-container {*/
+/*    display: flex;*/
+/*    align-self: flex-start;*/
+/*    margin-left: 32px;*/
+/*}*/
 
-.filter-btn:hover {
-    background-color: #1e293b;
-    color: #fff;
-}
+/*.top-bar {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
 
-@media (min-width: 768px) {
-    .button-81 {
-        font-size: 1.125rem;
-        padding: 1rem 2rem;
-    }
-}
+
