@@ -26,11 +26,6 @@ export const Albume = [
         productName: "at the field",
         productImage: picture3,
     },
-    {
-        id: 5,
-        productName: "at the field",
-        productImage: picture3,
-    }
 ];
 
 

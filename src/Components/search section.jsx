@@ -1,18 +1,33 @@
 import React from "react";
-import { MdSearch } from 'react-icons/md';
+import SearchBox from "./searchBox";
+import Logo from "./logo";
+import {Button, Divider} from "@mui/material";
+import AllFilters from "./allFilters";
+import {filterData} from "../data/filter-data";
+// for the routing to other pages
+import {useNavigate} from "react-router-dom";
+
 
 function SearchSection() {
+    let navigate = useNavigate();
     return (
-        <div className="search-section-upper">
+        <div className="search-section-container">
             <div className="search-box-container">
-                <input type="text" placeholder="Start your search" className="search-box"/>
-                <button className='search-button'><MdSearch/></button>
-                <button className="booked-experiences-btn">Booked Experiences</button>
+                <Logo/>
+                <SearchBox/>
+                <Button
+                    variant="outlined"
+                    onClick={() => {
+                        navigate("/AddEvent");
+                    }}
+                >
+                    Trade your day
+                </Button>
+                <Button variant="text">Booked experiences</Button>
             </div>
+            <Divider />
             <div className="filter-buttons-container">
-                <button className="filter-btn">Filter 1</button>
-                <button className="filter-btn">Filter 2</button>
-                <button className="filter-btn">Filter 3</button>
+                <AllFilters data={filterData}/>
             </div>
         </div>
     );
