@@ -36,6 +36,7 @@ import './App.css';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import Logo from "./Components/logo";
 
 // configuring our theme
 const theme = createTheme({
@@ -75,6 +76,7 @@ export default function App() {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <BrowserRouter>
                         {/*what appears here will be in all the pages!*/}
+                    {/*<Logo sx = {{borderRadius: 2}}/>*/}
                         <Routes>
                             <Route path="/" element={<Layout />}>
                                 <Route index element={<Home/>} />

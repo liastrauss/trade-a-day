@@ -9,7 +9,7 @@ function Logo() {
         <div className="logo">
             <img
                 src={logo} alt="Logo"
-                // this function enables to click to homepage
+                // this function should click to homepage
                 onClick={()=>
                 {
                     navigate("/");

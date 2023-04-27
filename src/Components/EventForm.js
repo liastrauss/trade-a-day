@@ -49,8 +49,26 @@ function EventForm () {
                         variant="standard"
                     />
                     </Grid>
-                    <Grid item sm={6} xl={12}>
-                        <Typography component="legend">Difficulty Level</Typography>
+                <Grid item sm={6}>
+                    <Autocomplete
+                        disablePortal
+                        id="areas-autocomplete"
+                        options = {areas}
+                        // sx={{ width: 300 }}
+                        renderInput={(params) => <TextField {...params} label="Area" />}
+                    />
+                </Grid>
+
+                <Grid item sm={6}>
+                    <TextField
+                        required
+                        id="Address"
+                        label="Address"
+                        variant="standard"
+                    />
+                </Grid>
+                <Grid item sm={6} xl={12}>
+                        <Typography component="legend" align="center">Difficulty Level</Typography>
                         Easy
                         <Rating
                             sx={{
@@ -58,6 +76,7 @@ function EventForm () {
                             }}
                             name="difficultyLevel"
                             defaultValue={3}
+                            size="large"
                             // getLabelText={getLabelText}
 
                             precision={1}
@@ -79,28 +98,10 @@ function EventForm () {
                         Hard
                     </Grid>
                     <Grid item xs={6}>
-                        Accessible?
+                        <Typography>Accessible?</Typography>
                         {/*<Switch />*/}
                         <Checkbox />
                     </Grid>
-                        <Grid item sm={6}>
-                            <Autocomplete
-                                disablePortal
-                                id="areas-autocomplete"
-                                 options = {areas}
-                                // sx={{ width: 300 }}
-                                renderInput={(params) => <TextField {...params} label="Area" />}
-                            />
-                        </Grid>
-
-                        <Grid item sm={6}>
-                            <TextField
-                                required
-                                id="Address"
-                                label="Address"
-                                variant="standard"
-                            />
-                        </Grid>
 
                         <Grid item sm={6}>
                             <TextField
