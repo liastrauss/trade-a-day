@@ -13,11 +13,12 @@ export default function EventCard({picture, hostName, title, rating, location, d
     return (
         <Card sx={{
             width: 275,
-            mx: 0.2,
             fontFamily: theme.typography.fontFamily,
-            boxShadow: 0
+            boxShadow: 0,
+            my: 2,
+            mx: 2,
         }}
-        className="card">
+        >
             <CardMedia
                 component="img"
                 image={picture}
@@ -27,14 +28,22 @@ export default function EventCard({picture, hostName, title, rating, location, d
                     height: 250
                 }}
             />
-            <CardContent className="title">
+            <CardContent sx={{
+                fontSize: 13,
+                fontWeight: theme.typography.fontWeightMedium,
+                lineHeight: 0
+            }}
+            >
                 {hostName}, {title}
             </CardContent>
             <CardActions
-                className="subtitle"
             sx={{
                 color: theme.palette.text.secondary,
-                fontWeight: theme.typography.fontWeightRegular
+                fontWeight: theme.typography.fontWeightRegular,
+                fontSize: 12,
+                justifyContent: 'space-evenly',
+                lineHeight: 0,
+                mt: -2.5,
             }}>
                 <p><LocationOnRoundedIcon sx={{fontSize: 13}}/>{location}</p>
                 <p><AccessTimeFilledRoundedIcon sx={{fontSize: 13}}/>{duration}</p>

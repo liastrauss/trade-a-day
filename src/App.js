@@ -1,10 +1,8 @@
 import './App.css';
-import AddEvent from "./pages/AddEvent";
 import Home from "./pages/Home";
-import Navbar from "./Navbar";
 import { createTheme, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 
 const theme = createTheme({
@@ -26,8 +24,8 @@ const theme = createTheme({
        fontFamily: 'Raleway',
         fontWeightLight: 400,
         fontWeightRegular: 500,
-        fontWeightMedium: 700,
-        fontWeightBold: 900,
+        fontWeightMedium: 600,
+        fontWeightBold: 700,
     },
     shape: {
         borderRadius: 4,
@@ -44,18 +42,9 @@ function App() {
             <div className="App">
                 <ThemeProvider theme={theme}>
                     <div>
-                        {/*<AddEvent/>*/}
-                        {/*<Navbar/>*/}
                         <Home/>
-                        {/*<TopBar>*/}
-                        {/*</TopBar>*/}
-                        {/*<SearchSection>*/}
-                        {/*</SearchSection>*/}
-                        {/*<RestOfPage>*/}
-                        {/*</RestOfPage>*/}
                     </div>
                 </ThemeProvider>
-
             </div>
         </LocalizationProvider>
     )
