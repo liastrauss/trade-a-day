@@ -3,12 +3,16 @@ import AddEvent from "./pages/AddEvent";
 import Home from "./pages/Home";
 import Navbar from "./Navbar";
 import { createTheme, ThemeProvider } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+
 
 const theme = createTheme({
     palette: {
         mode: 'light',
         primary: {
             main: '#009688',
+            light: '#7fcac3',
         },
         secondary: {
             main: '#D68FA3',
@@ -30,41 +34,31 @@ const theme = createTheme({
     },
 });
 
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 
 
 function App() {
-  return (
-<<<<<<< HEAD
-    //   need this so we can work with dates:
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <div className="App">
-            <div>
-                <AddEvent/>
-                {/*<Home/>*/}
-                {/*<TopBar>*/}
-                {/*</TopBar>*/}
-                {/*<SearchSection>*/}
-                {/*</SearchSection>*/}
-                {/*<RestOfPage>*/}
-                {/*</RestOfPage>*/}
-            </div>
-        </div>
-    </LocalizationProvider>
-=======
-    <div className="App">
-        <ThemeProvider theme={theme}>
-            {/*<AddEvent/>*/}
-            <Home/>
-            {/*<Navbar/>*/}
-        </ThemeProvider>
-    </div>
->>>>>>> homepage
-  );
-}
+    return (
+        //   need this so we can work with dates:
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <div className="App">
+                <ThemeProvider theme={theme}>
+                    <div>
+                        <AddEvent/>
+                        {/*<Home/>*/}
+                        {/*<TopBar>*/}
+                        {/*</TopBar>*/}
+                        {/*<SearchSection>*/}
+                        {/*</SearchSection>*/}
+                        {/*<RestOfPage>*/}
+                        {/*</RestOfPage>*/}
+                    </div>
+                </ThemeProvider>
 
+            </div>
+        </LocalizationProvider>
+    )
+}
 
 export default App;
 

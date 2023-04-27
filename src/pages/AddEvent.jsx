@@ -27,7 +27,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 
 // Importing three form components that will be rendered inside the Checkout component
 import EventForm from "../Components/EventForm";
@@ -69,33 +69,31 @@ export default function Checkout() {
 
     // The component's JSX code that gets returned
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
+        //     <CssBaseline />
+        //      The top app bar of the checkout page
+        //     <AppBar
+        //         position="absolute"
+        //         color="default"
+        //         elevation={0}
+        //         sx={{
+        //             position: 'relative',
+        //             borderBottom: (t) => `1px solid ${t.palette.divider}`,
+        //         }}
+        //     >
+        //         <Toolbar>
+        //             {/* The title of the app in the app bar */}
+        //             <Typography variant="h6" noWrap color = "primary">
+        //                 Trade a Day
+        //             </Typography>
+        //         </Toolbar>
+        //     </AppBar>
 
-            {/* The top app bar of the checkout page */}
-            <AppBar
-                position="absolute"
-                color="default"
-                elevation={0}
-                sx={{
-                    position: 'relative',
-                    borderBottom: (t) => `1px solid ${t.palette.divider}`,
-                }}
-            >
-                <Toolbar>
-                    {/* The title of the app in the app bar */}
-                    <Typography variant="h6" color="inherit" noWrap>
-                        Trade a Day
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-
-            {/* The container that holds the main content of the page */}
+             // The container that holds the main content of the page
             <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                     {/* The title of the checkout page */}
                     <Typography component="h1" variant="h4" align="center">
-                        Adding Your Day
+                        Trade Your Day
                     </Typography>
 
                     {/* The stepper component that displays the current step of the checkout process */}
@@ -138,7 +136,6 @@ export default function Checkout() {
                     )}
                 </Paper>
             </Container>
-        </ThemeProvider>
     );
 }
 

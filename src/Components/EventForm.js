@@ -10,17 +10,16 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import { alpha, styled } from '@mui/material/styles';
+// import { alpha, styled } from '@mui/material/styles';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from "@mui/material/Button";
 import {PhotoCamera} from "@mui/icons-material";
-import * as PropTypes from "prop-types";
-
-
+import { useTheme } from "@mui/material/styles";
 
 function EventForm () {
+    const theme = useTheme();
     return (
         <React.Fragment>
         <div>
@@ -55,7 +54,7 @@ function EventForm () {
                         Easy
                         <Rating
                             sx={{
-                                color: '#99d6ff', // set the color to a custom value
+                                color: theme.palette.primary.light, // set the color to value from app js
                             }}
                             name="difficultyLevel"
                             defaultValue={3}
