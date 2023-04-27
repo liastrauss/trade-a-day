@@ -9,6 +9,7 @@
     "@mdi/light-js": "^0.2.63",
     "@mdi/react": "^1.6.1",
     "@mui/icons-material": "^5.11.16",
+    "@mui/lab": "^5.0.0-alpha.128",
     "@mui/material": "^5.12.1",
     "@mui/x-date-pickers": "^6.2.1",
     "@react-buddy/ide-toolbox": "^2.3.1",

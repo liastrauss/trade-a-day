@@ -16,7 +16,7 @@ import {ComponentPreviews, useInitial} from "./dev";
 //         </DevSupport>
 //     </React.StrictMode>
 // );
-//FOR ROUTING
+//FOR ROUTING:
 //
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
@@ -33,12 +33,11 @@ import Home from "./pages/Home";
 // import NoPage from "./pages/NoPage";
 
 import './App.css';
-import Navbar from "./Navbar";
 import { createTheme, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
-
+// configuring our theme
 const theme = createTheme({
     palette: {
         mode: 'light',
@@ -72,18 +71,21 @@ const theme = createTheme({
 
 export default function App() {
     return (
-    <ThemeProvider theme={theme}>
-        <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Layout />}>
-                        <Route index element={<Home/>} />
-                        <Route path="Add Event" element={<AddEvent />} />
-                        {/*<Route path="contact" element={<Contact />} />*/}
-                        {/*<Route path="*" element={<NoPage />} />*/}
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-    </ThemeProvider>
+        <ThemeProvider theme={theme}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <BrowserRouter>
+                        {/*what appears here will be in all the pages!*/}
+                        <Routes>
+                            <Route path="/" element={<Layout />}>
+                                <Route index element={<Home/>} />
+                                <Route path="AddEvent" element={<AddEvent/>} />
+                                {/*<Route path="Home" element={<Home />} />*/}
+                                {/*<Route path="*" element={<NoPage />} />*/}
+                            </Route>
+                        </Routes>
+                </BrowserRouter>
+            </LocalizationProvider>
+        </ThemeProvider>
     );
 }
 

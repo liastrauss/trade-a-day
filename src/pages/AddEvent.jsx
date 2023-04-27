@@ -29,7 +29,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 
-// Importing three form components that will be rendered inside the Checkout component
+// Importing three form components that will be rendered inside the  component
 import EventForm from "../Components/EventForm";
 import ItemsForm from "../Components/ItemsForm";
 import PickDates from "../Components/PickDates";
@@ -52,10 +52,8 @@ function getStepContent(step) {
     }
 }
 
-// Creates a new MUI theme
-const theme = createTheme();
-// The main functional component that renders the entire checkout page
-export default function Checkout() {
+// The main functional component that renders the entire "add event" page and forms
+export default function AddEvent() {
     // A state hook that keeps track of the currently active step
     const [activeStep, setActiveStep] = React.useState(0);
     // A function that increments the activeStep state when called
