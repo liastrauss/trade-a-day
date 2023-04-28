@@ -9,6 +9,7 @@ function Logo() {
         <div className="logo">
             <img
                 src={logo} alt="Logo"
+                style={{cursor:'pointer'}}
                 // this function enables to click to homepage
                 onClick={()=>
                 {

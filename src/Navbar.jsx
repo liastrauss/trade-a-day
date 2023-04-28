@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import OverView2 from "./pages/OverView2";
 
 
 
@@ -13,6 +12,9 @@ function Navbar() {
                 </li>
                 <li>
                     <Link to="/AddEvent">Trade your day</Link>
+                </li>
+                <li>
+                    <Link to="/Messages">Chat</Link>
                 </li>
                 <li><Link to="/OverView2">OverView2</Link></li>
             </ul>

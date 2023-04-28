@@ -42,7 +42,7 @@ function EventForm () {
                         multiline
                         fullWidth
                         // minRows = {4}
-                        helperText="just a couple of words!!"
+                        helperText="Just a couple of words!!"
                         id="describeExperience"
                         label="Describe the experience"
                         placeholder="A day out in the pasture with some cows"

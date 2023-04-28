@@ -29,7 +29,7 @@ const steps = ['about the place', 'available dates'];
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return <HostInfo/>;
+            return <HostInfo/>
         case 1:
             return <PickDates />;
         default:

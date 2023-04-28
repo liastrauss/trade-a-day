@@ -38,6 +38,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import OverView from "./pages/OverView";
 import OverView2 from "./pages/OverView2";
+import MessagePage from "./pages/Messages";
 
 // configuring our theme
 const theme = createTheme({
@@ -81,7 +82,8 @@ export default function App() {
                             <Route path="/" element={<Layout />}>
                                 <Route index element={<Home/>} />
                                 <Route path="AddEvent" element={<AddEvent/>} />
-                                <Route path="OverView2" element={<OverView2/>} />
+                                <Route path="Messages" element={<MessagePage/>}/>
+                                <Route path="OverView2/id" element={<OverView2/>} />
                                 {/*<Route path="Home" element={<Home />} />*/}
                                 {/*<Route path="*" element={<NoPage />} />*/}
                             </Route>
