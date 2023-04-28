@@ -36,6 +36,7 @@ import './App.css';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import MessagePage from "./pages/Messages";
 import Logo from "./Components/logo";
 
 // configuring our theme
@@ -81,6 +82,7 @@ export default function App() {
                             <Route path="/" element={<Layout />}>
                                 <Route index element={<Home/>} />
                                 <Route path="AddEvent" element={<AddEvent/>} />
+                                <Route path="Messages" element={<MessagePage/>}/>
                                 {/*<Route path="Home" element={<Home />} />*/}
                                 {/*<Route path="*" element={<NoPage />} />*/}
                             </Route>

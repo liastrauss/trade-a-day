@@ -1,6 +1,7 @@
 import React from "react";
 import Filter from "./filter";
 import {useTheme} from "@mui/material/styles";
+import Box from "@mui/material/Box";
 
 const AllFilters = ({data}) => {
     const theme = useTheme();
@@ -11,7 +12,15 @@ const AllFilters = ({data}) => {
         }}
         />;
     });
-    return <div className = "cards-container">{filters}</div>
+    // return <div className = "cards-container">{filters}</div>
+    return <Box sx={{
+        display: 'flex',
+        // alignItems: 'flex-end',
+        // justifyContent: 'centered',
+        mt: 2
+    }}
+        >{filters}
+    </Box>
 };
 
 export default AllFilters;

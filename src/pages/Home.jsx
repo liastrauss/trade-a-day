@@ -11,9 +11,26 @@ function Home() {
     return (
         <div>
             <SearchSection/>
-            <AllCards data={cardData}/>
+            <AllCards data={cardData}
+            sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-evenly',
+                alignItems: 'flex-start',
+                alignContent: 'flex-start',
+                alignSelf: 'flex-start'
+            }}
+            />
         </div>
     );
 }
+
+/*.cards-container {*/
+/*    display: flex;*/
+/*    align-items: flex-start;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: space-evenly;*/
+/*    margin-top: 16px;*/
+/*}*/
 
 export default Home;
