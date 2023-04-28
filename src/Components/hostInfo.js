@@ -4,7 +4,6 @@ import {
     Typography,
 } from "@mui/material";
 // import { alpha, styled } from '@mui/material/styles';
-import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from "@mui/material/Button";
@@ -38,11 +37,10 @@ function HostInfo() {
     let {index}=useParams();
     console.log(index);
 
-
-    let hostt= cardData[index].hostName;
-    let about= cardData[index].about;
-    let address = cardData[index].location;
-    let bring= cardData[index].bring;
+    let hostt= cardData[index-1].hostName;
+    let about= cardData[index-1].about;
+    let address = cardData[index-1].location;
+    let bring= cardData[index-1].bring;
 
     return (
         <React.Fragment>

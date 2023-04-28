@@ -85,7 +85,7 @@ export default function App() {
                                 <Route index element={<Home/>} />
                                 <Route path="AddEvent" element={<AddEvent/>} />
                                 <Route path="Messages" element={<MessagePage/>}/>
-                                <Route path="OverView2/id" element={<OverView2/>} />
+                                <Route path="OverView2/:index" element={<OverView2/>} />
                                 {/*<Route path="Home" element={<Home />} />*/}
                                 {/*<Route path="*" element={<NoPage />} />*/}
                             </Route>

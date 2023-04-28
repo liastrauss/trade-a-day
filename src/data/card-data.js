@@ -1,3 +1,4 @@
+// TODO - add 'about','bring','id' fields to all cards
 export const cardData = [
     {
         id: 1,
@@ -13,6 +14,7 @@ export const cardData = [
 
     },
     {
+        id: 2,
         picture: "https://plus.unsplash.com/premium_photo-1682089616321-886d5b3d3626?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFkaW8lMjBlZGl0b3J8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
         hostName: "Michael",
         title: "Radio Editor",
@@ -21,6 +23,7 @@ export const cardData = [
         rating: "4.0",
     },
     {
+        id: 3,
         picture: "https://images.unsplash.com/photo-1570821806052-dfed428eb0fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzZ8fHNoZXBoZXJkfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
         hostName: "Hila",
         title: "Goat Shepherd",

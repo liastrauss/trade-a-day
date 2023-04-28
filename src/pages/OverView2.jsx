@@ -1,4 +1,13 @@
-// export default AddEvent;
+// import {useTheme} from "@mui/material/styles";
+// import {useParams} from "react-router-dom";
+// import {cardData} from "../data/card-data";
+// import React from "react";
+// import {Grid, Typography} from "@mui/material";
+// import {Mapp, StandardImageList} from "../Components/view2";
+//
+
+
+
 // GITHUB CODE
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,6 +27,7 @@ import EventForm from "../Components/EventForm";
 import ItemsForm from "../Components/ItemsForm";
 import PickDates from "../Components/PickDates";
 import HostInfo from "../Components/hostInfo";
+import Logo from "../Components/logo";
 
 
 // An array that stores the labels for the steps of the checkout process
@@ -53,9 +63,26 @@ export default function OverView2() {
 
     // The component's JSX code that gets returned
     return (
+        <div>
+        {/* The top app bar of the checkout page*/}
+        <AppBar
+            position="sticky"
+            color="transparent"
+            elevation={0}
+            sx={{
+                position: 'relative',
+                borderBottom: (t) => `1px solid ${t.palette.divider}`,
+            }}
+        >
+            <Toolbar>
+                {/* The title of the app in the app bar */}
+                {/*<Typography variant="h6" noWrap color = "primary">*/}
+                {/*    Trade a Day*/}
+                {/*</Typography>*/}
+                <Logo sx = {{}}></Logo>
+            </Toolbar>
+        </AppBar>
 
-
-        // The container that holds the main content of the page
         <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
             <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                 {/* The title of the  page */}
@@ -107,6 +134,7 @@ export default function OverView2() {
                 )}
             </Paper>
         </Container>
+        </div>
     );
 }
 
