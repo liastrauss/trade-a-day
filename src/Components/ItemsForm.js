@@ -65,6 +65,8 @@ export default function ItemsForm() {
     ]);
 
     return (
+        <div>
+        <Typography variant="h6">What should they bring?</Typography>
         <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
             {items.map((item) => {
                 const labelId = `checkbox-list-secondary-label-${item.id}`;
@@ -81,6 +83,7 @@ export default function ItemsForm() {
                             />
                         }
                         disablePadding
+                        color= "red"
                     >
                         <ListItemButton>
                             <ListItemAvatar>
@@ -98,7 +101,7 @@ export default function ItemsForm() {
                                     <TextField
                                         onChange={(e) => handleChangeText(item.id, e.target.value)}
                                         value={item.label}
-
+                                        variant = "filled"
                                         placeholder={`Item ${item.id + 1}`}
                                     />
                                 }
@@ -130,6 +133,7 @@ export default function ItemsForm() {
                 </IconButton>
             </ListItem>
         </List>
+    </div>
     );
 }
 

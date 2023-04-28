@@ -37,7 +37,7 @@ import PickDates from "../Components/PickDates";
 
 
 // An array that stores the labels for the steps of the checkout process
-const steps = ['Who are you?', 'What should they bring?', '3'];
+const steps = ['Tell us about yourself', 'Preparing for the day', 'Last info'];
 
 // A function that returns the content of a specific step, based on the index passed as argument
 function getStepContent(step) {

@@ -23,7 +23,7 @@ function EventForm () {
     return (
         <React.Fragment>
         <div>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom> Tell us about yourself
             </Typography>
             <Grid container spacing={3}   justifyContent="space-evenly"
             >
@@ -36,19 +36,7 @@ function EventForm () {
                        fullWidth
                 />
                 </Grid>
-                    <Grid item xs={12}>
-                    <TextField
-                        required
-                        multiline
-                        fullWidth
-                        // minRows = {4}
-                        helperText="Just a couple of words!!"
-                        id="describeExperience"
-                        label="Describe the experience"
-                        placeholder="A day out in the pasture with some cows"
-                        variant="standard"
-                    />
-                    </Grid>
+
                 <Grid item sm={6}>
                     <Autocomplete
                         disablePortal
@@ -68,11 +56,11 @@ function EventForm () {
                     />
                 </Grid>
                 <Grid item sm={6} xl={12}>
-                        <Typography component="legend" align="center">Difficulty Level</Typography>
+                        <Typography component="legend" align="center">Physical Effort</Typography>
                         Easy
                         <Rating
                             sx={{
-                                color: theme.palette.primary.light, // set the color to value from app js
+                                color: theme.palette.primary.main, // set the color to value from app js
                             }}
                             name="difficultyLevel"
                             defaultValue={3}
@@ -102,29 +90,21 @@ function EventForm () {
                         {/*<Switch />*/}
                         <Checkbox />
                     </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            required
+                            multiline
+                            fullWidth
+                            minRows = {4}
+                            helperText="Just a couple of words!!"
+                            id="describeExperience"
+                            label="Describe the experience"
+                            placeholder="A day out in the pasture with some cows"
+                            variant="outlined"
+                        />
+                    </Grid>
 
-                        <Grid item sm={6}>
-                            <TextField
-                                required
-                                id="NumOfGuests"
-                                label="Number of Guests"
-                                type="number"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                variant="standard"
-                            />
-                        </Grid>
-                        <Grid item sm={6}>
-                            <Button variant="contained" component="label">
-                                        Upload
-                                        <input hidden accept="image/*" multiple type="file" />
-                                    </Button>
-                                    <IconButton color="primary" aria-label="upload picture" component="label">
-                                        <input hidden accept="image/*" type="file" />
-                                        <PhotoCamera/>
-                                    </IconButton>
-                        </Grid>
+
 
 
                         {/*<Grid item xs={12} sm={6}>*/}
