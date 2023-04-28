@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-    Autocomplete, Avatar,
+    Autocomplete, Avatar, ButtonGroup,
     Checkbox,
     FormControlLabel,
     Grid, IconButton,
     List, ListItem, ListItemAvatar, ListItemText,
     Rating,
     Switch,
-    TextField,
+    TextField, ToggleButton,
     Typography,
 } from "@mui/material";
 // import { alpha, styled } from '@mui/material/styles';
@@ -17,9 +17,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Button from "@mui/material/Button";
 import {PhotoCamera} from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
+import {ToggleButtonGroup} from "@mui/lab";
 
 function EventForm () {
     const theme = useTheme();
+    const [alignment, setAlignment] = React.useState('left');
+
+    const handleChange = (event, newAlignment) => {
+        setAlignment(newAlignment);
+    };
+
     return (
         <React.Fragment>
         <div>
@@ -85,6 +92,17 @@ function EventForm () {
                         />
                         Hard
                     </Grid>
+                    <Grid item xs={6}>
+                        <ToggleButtonGroup
+                            color="primary"
+                            value={alignment}
+                            exclusive
+                            onChange={handleChange}
+                            aria-label="where"
+                        >
+                            <ToggleButton value="indoors">indoors</ToggleButton>
+                            <ToggleButton value="outdoors">outdoors</ToggleButton>
+                        </ToggleButtonGroup>                    </Grid>
                     <Grid item xs={6}>
                         <Typography>Accessible?</Typography>
                         {/*<Switch />*/}
