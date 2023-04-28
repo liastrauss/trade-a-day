@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import Logo from "./Components/logo";
+
 
 
 function Navbar() {
@@ -16,6 +16,7 @@ function Navbar() {
                 <li>
                     <Link to="/Messages">Chat</Link>
                 </li>
+                <li><Link to="/OverView2">OverView2</Link></li>
             </ul>
         </nav>
     );

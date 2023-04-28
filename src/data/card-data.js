@@ -1,11 +1,16 @@
 export const cardData = [
     {
+        id: 1,
         picture: "https://plus.unsplash.com/premium_photo-1679521026471-92512d24c9b9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9nJTIwdHJhaW5pbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
         hostName: "Tom",
         title: "Dog Trainer",
         duration: "6.5 hours",
         location: "Tel Aviv",
         rating: "5.0",
+        about:"I invite you to my orchard! There you can spend a day connecting to the earth. During the day you will pick oranges and other citrus fruits. You will travel in a tractor between the different orchards, you will taste fine fruits and above all, you will diversify your day with a little orange.",
+        bring: "1.close shoes\n   2.long shirt",
+
+
     },
     {
         picture: "https://plus.unsplash.com/premium_photo-1682089616321-886d5b3d3626?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFkaW8lMjBlZGl0b3J8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
@@ -86,6 +91,9 @@ export const cardData = [
         duration: '6 hours',
         location: 'Pardes Hanna',
         rating: '4.5',
+        about:"I invite you to my orchard! There you can spend a day connecting to the earth. During the day you will pick oranges and other citrus fruits. You will travel in a tractor between the different orchards, you will taste fine fruits and above all, you will diversify your day with a little orange.",
+        bring: "1.close shoes\n   2.long shirt",
+
     },
     {
         picture: "https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Z3JhcGhpYyUyMGRlc2lnbmVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
