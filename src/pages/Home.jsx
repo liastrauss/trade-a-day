@@ -25,12 +25,4 @@ function Home() {
     );
 }
 
-/*.cards-container {*/
-/*    display: flex;*/
-/*    align-items: flex-start;*/
-/*    flex-wrap: wrap;*/
-/*    justify-content: space-evenly;*/
-/*    margin-top: 16px;*/
-/*}*/
-
 export default Home;

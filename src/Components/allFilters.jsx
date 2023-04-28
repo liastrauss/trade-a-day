@@ -16,7 +16,7 @@ const AllFilters = ({data}) => {
     return <Box sx={{
         display: 'flex',
         // alignItems: 'flex-end',
-        // justifyContent: 'centered',
+        // justifyContent: 'center',
         mt: 2
     }}
         >{filters}
