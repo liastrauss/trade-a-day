@@ -65,21 +65,25 @@ function HostInfo() {
                         <Typography variant="subtitle2" color="primary">
                             Gallery
                         </Typography>
+
                     </Grid>
 
                     <StandardImageList/>
 
                     <Grid item xs={6}>
                         <Typography variant="subtitle2" color="primary">
-                            Adress
+                            Address
                         </Typography>
                         <Typography variant="subtitle1">
                             {address}
                         </Typography>
-
                         <Mapp/>
-                    </Grid>
 
+                    </Grid>
+                    {/*TODO play with grid here so map will be good*/}
+                    {/*<Grid item xs={6} justifyContent="flex-start" alignContent = "center">*/}
+                    {/*    <Mapp/>*/}
+                    {/*</Grid>*/}
                     <Grid item xs={6}>
 
                         <Typography variant="subtitle2" color="primary">
