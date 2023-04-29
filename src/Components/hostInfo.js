@@ -30,17 +30,17 @@ import {useParams} from "react-router-dom";
 //     })}
 
 
-
 function HostInfo() {
     const theme = useTheme();
 
-    let {index}=useParams();
+    let {index} = useParams();
     console.log(index);
 
-    let hostt= cardData[index-1].hostName;
-    let about= cardData[index-1].about;
-    let address = cardData[index-1].location;
-    let bring= cardData[index-1].bring;
+    let hostt = cardData[index - 1].hostName;
+    let about = cardData[index - 1].about;
+    let address = cardData[index - 1].location;
+    let bring = cardData[index - 1].bring;
+    let time = cardData[index - 1].duration;
 
     return (
         <React.Fragment>
@@ -50,9 +50,8 @@ function HostInfo() {
 
                 <Grid container spacing={3} justifyContent="space-evenly"
                 >
-                    {/*{Details}*/}
                     <Grid item xs={12}>
-                        <Typography variant="h5" gutterBottom>
+                        <Typography variant="h5" color="primary" gutterBottom>
                             {hostt}
                         </Typography>
                         <Typography variant="subtitle1">
@@ -61,15 +60,9 @@ function HostInfo() {
 
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <Typography variant="subtitle1" >
-                            what you need to bring:
-                            {bring}
-                        </Typography>
-                    </Grid>
 
                     <Grid item xs={12}>
-                        <Typography variant="subtitle2">
+                        <Typography variant="subtitle2" color="primary">
                             Gallery
                         </Typography>
                     </Grid>
@@ -77,12 +70,37 @@ function HostInfo() {
                     <StandardImageList/>
 
                     <Grid item xs={6}>
+                        <Typography variant="subtitle2" color="primary">
+                            Adress
+                        </Typography>
                         <Typography variant="subtitle1">
                             {address}
                         </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
+
                         <Mapp/>
+                    </Grid>
+
+                    <Grid item xs={6}>
+
+                        <Typography variant="subtitle2" color="primary">
+                                 bring with you:
+                        </Typography>
+
+                        <Typography variant="subtitle1">
+                            {bring}
+                        </Typography>
+
+                        <Typography variant="subtitle2" color="primary" my={11}>
+                        </Typography>
+
+                        <Typography variant="subtitle2" color="primary">
+                            Time activity:
+                        </Typography>
+
+                        <Typography variant="subtitle1">
+                            {time}
+                        </Typography>
+
                     </Grid>
 
                 </Grid>
