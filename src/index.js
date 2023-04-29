@@ -30,7 +30,7 @@ import AddEvent from "./pages/AddEvent";
 import Home from "./pages/Home";
 // import Blogs from "./pages/Blogs";
 // import Contact from "./pages/Contact";
-// import NoPage from "./pages/NoPage";
+import NoPage from "./pages/NoPage";
 
 import './App.css';
 import { createTheme, ThemeProvider } from '@mui/material';
@@ -87,7 +87,7 @@ export default function App() {
                                 <Route path="Messages" element={<MessagePage/>}/>
                                 <Route path="OverView2/:index" element={<OverView2/>} />
                                 {/*<Route path="Home" element={<Home />} />*/}
-                                {/*<Route path="*" element={<NoPage />} />*/}
+                                <Route path="*" element={<NoPage />} />
                             </Route>
                         </Routes>
                 </BrowserRouter>
