@@ -40,7 +40,7 @@ export function Mapp() {
     let b=[pic4]
     return (
         <Box>
-            <ImageList className="pictures" sx={{width: 500, height: 250, my: 3 }} cols={2} rowHeight={164}>
+            <ImageList className="pictures" sx={{width: 500, height: 250, my: 3 }}  cols={3} rowHeight={164}>
                 {b.map((item) => (
                     <ImageListItem key={item.img}>
                         <img
