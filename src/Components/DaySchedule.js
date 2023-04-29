@@ -11,7 +11,7 @@ function valuetext(value) {
 }
 
 
-export default function PickDates () {
+export default function DaySchedule () {
     const [value, setValue] = useState();
     const [dateRange, setDateRange] = useState([8, 17]);
     // hours for the slider:
@@ -40,6 +40,7 @@ export default function PickDates () {
 
     return (
         <div>
+            <Typography variant="h6">Schedule the Day</Typography>
             <Grid container spacing={3} justifyContent="flex-start" alignContent = "center">
                 <Grid item xs={6}>
                     <DatePicker

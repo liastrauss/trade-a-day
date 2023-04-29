@@ -33,7 +33,7 @@ import Logo from "../Components/logo"
 // Importing three form components that will be rendered inside the  component
 import EventForm from "../Components/EventForm";
 import ItemsForm from "../Components/ItemsForm";
-import PickDates from "../Components/PickDates";
+import DaySchedule from "../Components/DaySchedule";
 
 
 // An array that stores the labels for the steps of the checkout process
@@ -45,9 +45,9 @@ function getStepContent(step) {
         case 0:
             return <EventForm/>;
         case 1:
-            return <ItemsForm />;
+            return < DaySchedule/>;
         case 2:
-            return <PickDates />;
+            return <ItemsForm />;
         default:
             throw new Error('Unknown step');
     }
