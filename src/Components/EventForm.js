@@ -32,7 +32,7 @@ function EventForm () {
         <div>
             <Typography variant="h6" gutterBottom> Tell us about yourself
             </Typography>
-            <Grid container spacing={3}   justifyContent="space-evenly"
+            <Grid container spacing={3}   justifyContent="flex-start" alignContent = "center"
             >
                 <Grid item xs={12}>
                     <TextField
