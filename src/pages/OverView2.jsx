@@ -28,6 +28,7 @@ import ItemsForm from "../Components/ItemsForm";
 import PickDates from "../Components/PickDates";
 import HostInfo from "../Components/hostInfo";
 import Logo from "../Components/logo";
+import ControlledRadioButtonsGroup from "../Components/datesPicker";
 
 
 // An array that stores the labels for the steps of the checkout process
@@ -41,7 +42,7 @@ function getStepContent(step) {
         case 0:
             return <HostInfo/>
         case 1:
-            return <PickDates />;
+            return <ControlledRadioButtonsGroup/>;
         default:
             throw new Error('Unknown step');
     }
