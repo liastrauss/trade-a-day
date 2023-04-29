@@ -1,12 +1,22 @@
 import React, {useState} from 'react';
 import {DatePicker} from "@mui/x-date-pickers";
-import {Grid, IconButton, TextField} from "@mui/material";
+import {Grid, IconButton, Slider, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 import {PhotoCamera} from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 
+function valuetext(value) {
+    return `${value}°C`;
+}
+
+
 export default function PickDates () {
     const [value, setValue] = useState();
+    // const handleChange = (event, newValue) => {
+    //     setValue(newValue);
+    // };
+
+
     return (
         <div>
             <Grid container spacing={3}   justifyContent="space-evenly">
@@ -20,6 +30,13 @@ export default function PickDates () {
             />
                 </Grid>
                 <Grid item xs={6}>
+                    <Slider
+                        defaultValue={70}
+                        aria-label="Small"
+                        valueLabelDisplay="auto"
+
+                    />
+
                 </Grid>
 
                 <Grid item sm={6}>
