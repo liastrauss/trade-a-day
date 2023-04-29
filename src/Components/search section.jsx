@@ -7,10 +7,13 @@ import {filterData} from "../data/filter-data";
 // for the routing to other pages
 import {useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
+import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
+import {useTheme} from "@mui/material/styles";
 
 
 function SearchSection() {
     let navigate = useNavigate();
+    const theme = useTheme();
     return (
         <Box>
             <Box sx={{
@@ -41,10 +44,19 @@ function SearchSection() {
             {/*<div className="filter-buttons-container">*/}
             <Box sx={{
                 display: 'flex',
+                justifyContent: 'centered',
+                alignItems: 'center',
                 // alignSelf: 'centered',
                 /*    align-self: flex-start;*/
                 /*    margin-left: 32px;*/
             }}>
+                <Button variant="contained" sx={{
+                    color: theme.palette.primary.lightest,
+                    height: 40,
+                    width: 10,
+                }}>
+                    <FilterAltRoundedIcon/>
+                </Button>
                 <AllFilters data={filterData}/>
             </Box>
         </Box>

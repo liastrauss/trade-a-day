@@ -11,6 +11,7 @@ const theme = createTheme({
         primary: {
             main: '#009688',
             light: '#7fcac3',
+            lightest: '#BFE4E1',
         },
         secondary: {
             main: '#D68FA3',
@@ -18,6 +19,7 @@ const theme = createTheme({
         text: {
             primary: '#000000',
             secondary: 'rgba(0,0,0,0.59)',
+
         },
     },
     typography: {

@@ -25,7 +25,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import EventForm from "../Components/EventForm";
 import ItemsForm from "../Components/ItemsForm";
-import PickDates from "../Components/PickDates";
+// import PickDates from "../Components/PickDates";
 import HostInfo from "../Components/hostInfo";
 import Logo from "../Components/logo";
 import ControlledRadioButtonsGroup from "../Components/datesPicker";
@@ -33,7 +33,6 @@ import ControlledRadioButtonsGroup from "../Components/datesPicker";
 
 // An array that stores the labels for the steps of the checkout process
 const steps = ['about the place', 'available dates'];
-
 
 
 // A function that returns the content of a specific step, based on the index passed as argument
