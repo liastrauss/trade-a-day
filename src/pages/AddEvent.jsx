@@ -37,7 +37,7 @@ import DaySchedule from "../Components/DaySchedule";
 
 
 // An array that stores the labels for the steps of the checkout process
-const steps = ['Tell us about yourself', 'Preparing for the day', 'Last info'];
+const steps = ['Tell us about yourself', 'Schedule the Day', 'Last info'];
 
 // A function that returns the content of a specific step, based on the index passed as argument
 function getStepContent(step) {
