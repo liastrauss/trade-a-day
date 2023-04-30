@@ -15,7 +15,7 @@ function SearchSection() {
     let navigate = useNavigate();
     const theme = useTheme();
     return (
-        <Box>
+        <Box position='sticky' sx={{mt: 2}}>
             <Box sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
