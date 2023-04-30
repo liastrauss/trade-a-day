@@ -66,6 +66,7 @@ export default function AddEvent() {
         setActiveStep(activeStep - 1);
     };
 
+    const theme=useTheme()
     // The component's JSX code that gets returned
     return (
         <div>
@@ -73,11 +74,11 @@ export default function AddEvent() {
              {/* The top app bar of the checkout page*/}
             <AppBar
                 position="sticky"
-                color="transparent"
                 elevation={0}
                 sx={{
-                    position: 'relative',
+                    position: 'sticky',
                     borderBottom: (t) => `1px solid ${t.palette.divider}`,
+                    color: theme.palette.primary.light,
                 }}
             >
                  <Toolbar>
@@ -88,6 +89,8 @@ export default function AddEvent() {
                      <Logo sx = {{}}></Logo>
                  </Toolbar>
             </AppBar>
+
+
 
              {/*// The container that holds the main content of the page*/}
             <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
