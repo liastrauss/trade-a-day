@@ -26,12 +26,12 @@ import Typography from '@mui/material/Typography';
 import {createTheme, ThemeProvider, useTheme} from '@mui/material/styles';
 import EventForm from "../Components/EventForm";
 import ItemsForm from "../Components/ItemsForm";
-// import PickDates from "../Components/PickDates";
 import HostInfo from "../Components/hostInfo";
 import Logo from "../Components/logo";
 import ControlledRadioButtonsGroup from "../Components/datesPicker";
 import {Divider} from "@mui/material";
 import DatesPicker from "../Components/datesPicker";
+import {Grid} from "@mui/material"
 
 
 // An array that stores the labels for the steps of the checkout process
@@ -66,31 +66,40 @@ export default function OverView2() {
                 </Toolbar>
             </AppBar>
 
-            <Container component="main" maxWidth="md" sx={{mb: 2}}>
+            <Container component="main" maxWidth="md">
+
+                <Grid
+                    container
+                    direction="row"
+                    justifyContent="space-around"
+                    alignItems="center"
+                    spacing = {5}
+                >
 
                 {/* The title of the  page */}
 
+                    <Grid item xs={12}>
+                        <HostInfo/>
+                    </Grid>
 
-                <HostInfo></HostInfo>
 
 
-
-                {/*<ControlledRadioButtonsGroup></ControlledRadioButtonsGroup>*/}
-                <DatesPicker/>
-
+                        {/*<ControlledRadioButtonsGroup></ControlledRadioButtonsGroup>*/}
+                    <Grid item xs={12}>
+                        <DatesPicker/>
+                    </Grid>
+                </Grid>
                 <React.Fragment>
 
-                    <Button
-                        variant="outlined"
-                        onClick={() => {
-                            navigate("/");
-                        }}
+                    {/*<Button*/}
+                    {/*    variant="outlined"*/}
+                    {/*    onClick={() => {*/}
+                    {/*        navigate("/");*/}
+                    {/*    }}*/}
 
-                        sx={{display: "flex", justifyContent: 'flex end'}}
-                    > Book
-                    </Button>
-
-
+                    {/*    sx={{display: "flex", justifyContent: 'flex end'}}*/}
+                    {/*> Book*/}
+                    {/*</Button>*/}
                 </React.Fragment>
             </Container>
         </div>

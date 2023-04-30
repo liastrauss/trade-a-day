@@ -20,6 +20,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
+import shadows from '@mui/system'
 
 
 export function ControlledRadioButtonsGroup() {
@@ -31,9 +32,8 @@ export function ControlledRadioButtonsGroup() {
 
     return (
         <FormControl>
-            <Grid container sx={{alignContent: 'center', my: 5, mb: 2}}>
-                <Grid item xs={6}>
-
+            <Grid container sx={{alignContent: 'center', }} spacing = {3}>
+                <Grid item>
                     <FormLabel id="demo-controlled-radio-buttons-group"></FormLabel>
                     <Typography variant="subtitle2" color="primary">
                         Available Dates
@@ -52,7 +52,7 @@ export function ControlledRadioButtonsGroup() {
                     </RadioGroup>
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item>
                     <Box sx={{minWidth: 120}}>
                         <FormControl fullWidth>
                             <Typography variant="subtitle2" color="primary">
@@ -93,19 +93,19 @@ const tiers = [
             'Help center access',
             'Priority email support',
         ],
-        buttonText: 'Get started',
+        buttonText: 'Book',
         buttonVariant: 'contained',
     },
 ];
 
 
-export default function DatesPicker() {
+function DatesPicker() {
     return (
         <React.Fragment>
             <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
             <CssBaseline />
-            <Container maxWidth="md" component="main">
-                <Grid container spacing={5} alignItems="flex-end">
+            <Container maxWidth="lg" component="main">
+                <Grid container spacing={3} alignItems="flex-end">
                     {tiers.map((tier) => (
                         // Enterprise card is full width at sm breakpoint
                         <Grid
@@ -118,7 +118,7 @@ export default function DatesPicker() {
                             <Card>
                                 <CardHeader
                                     title={tier.title}
-                                    subheader={tier.subheader}
+                                    // subheader={tier.subheader}
                                     titleTypographyProps={{ align: 'center' }}
                                     // action={tier.title === 'Pro' ? <StarIcon /> : null}
                                     subheaderTypographyProps={{
@@ -133,7 +133,6 @@ export default function DatesPicker() {
                                 />
                                 <CardContent>
                                     {/*/!*price:*!/*/}
-
                                     {/*<Box*/}
                                     {/*    sx={{*/}
                                     {/*        display: 'flex',*/}
@@ -149,8 +148,7 @@ export default function DatesPicker() {
                                     {/*    /!*    /mo*!/*/}
                                     {/*    /!*</Typography>*!/*/}
                                     {/*</Box>*/}
-                                    <ul>
-                                            <ControlledRadioButtonsGroup/>
+                                    <ControlledRadioButtonsGroup/>
                                         {/*{tier.description.map((line) => (*/}
                                         {/*    <Typography*/}
                                         {/*        component="li"*/}
@@ -161,7 +159,6 @@ export default function DatesPicker() {
                                         {/*        {line}*/}
                                         {/*    </Typography>*/}
                                         {/*))}*/}
-                                    </ul>
                                 </CardContent>
                                 <CardActions>
                                     <Button fullWidth variant={tier.buttonVariant}>
@@ -178,3 +175,4 @@ export default function DatesPicker() {
 }
 
 
+export default DatesPicker;
