@@ -23,7 +23,7 @@ import Container from '@mui/material/Container';
 import shadows from '@mui/system'
 
 
-export function ControlledRadioButtonsGroup() {
+export  function ControlledRadioButtonsGroup() {
     const [value, setValue] = React.useState('1.6.23');
 
     const handleChange = (event) => {
@@ -99,13 +99,16 @@ const tiers = [
 ];
 
 
-function DatesPicker() {
+export default function DatesPicker() {
     return (
         <React.Fragment>
             <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
             <CssBaseline />
             <Container maxWidth="lg" component="main">
-                <Grid container spacing={3} alignItems="flex-end">
+                <Grid container spacing={3}   direction="column"
+                      justifyContent="center"
+                      alignItems="flex-end"
+                >
                     {tiers.map((tier) => (
                         // Enterprise card is full width at sm breakpoint
                         <Grid
@@ -175,4 +178,4 @@ function DatesPicker() {
 }
 
 
-export default DatesPicker;
+// export default DatesPicker;
