@@ -87,7 +87,7 @@ function HostInfo() {
                     <Grid item xs={6}>
 
                         <Typography variant="subtitle2" color="primary">
-                                 bring with you:
+                                 What to bring:
                         </Typography>
 
                         <Typography variant="subtitle1">
@@ -98,7 +98,7 @@ function HostInfo() {
                         </Typography>
 
                         <Typography variant="subtitle2" color="primary">
-                            Time activity:
+                            Duration:
                         </Typography>
 
                         <Typography variant="subtitle1">

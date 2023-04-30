@@ -1,7 +1,7 @@
 import React from "react";
-import {Button, Tab, Tabs, Box} from "@mui/material";
-import { flexbox } from '@mui/system';
+import {Button, Tab, Tabs, Box, tabsClasses} from "@mui/material";
 import {useTheme} from "@mui/material/styles";
+import {tabClasses} from "@mui/material";
 
 
 export default function Filter({ filter }) {
@@ -25,28 +25,34 @@ export default function Filter({ filter }) {
             display: 'flex',
         }}>
             <Button variant="text"
-            sx={{
-                borderRadius: 5,
-                ml: 3
-            }}>
+                    sx={{
+                        borderRadius: 5,
+                        ml: 3
+                    }}>
                 {filter}
             </Button>
         </Box>
+    )
+}
 
-        // <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
-        // <Box>
-        //     <Tabs
-        //         value={value}
-        //         onChange={handleChange}
-        //         variant="scrollable"
-        //         scrollButtons="auto"
-        //         aria-label="scrollable auto tabs example"
-        //         centered
-        //     >
-        //         <Tab label={filter} />
-        //     </Tabs>
-        // </Box>
-    );
-};
-
-
+            // <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
+            // <Box sx={{flexGrow: 1,
+            //     maxWidth: { xs: 320, sm: 480 },
+            //     bgcolor: 'background.paper',}}>
+            //     <Tabs
+            //         value={value}
+            //         onChange={handleChange}
+            //         variant="scrollable"
+            //         scrollButtons
+            //         aria-label="visible arrows tabs example"
+            //         sx={{
+            //             [`& .${tabsClasses.scrollButtons}`]: {
+            //                 '&.Mui-disabled': { opacity: 0.3 },
+            //             },
+            //         }}
+            //     >
+            //         <Tab label={filter}/>
+            //     </Tabs>
+            // </Box>
+//         );
+// }
