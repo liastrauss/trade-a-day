@@ -41,6 +41,9 @@ function SearchSection() {
             {/*<div className="filter-buttons-container">*/}
             <Box sx={{
                 display: 'flex',
+                // alignSelf: 'centered',
+                /*    align-self: flex-start;*/
+                /*    margin-left: 32px;*/
             }}>
                 <AllFilters data={filterData}/>
             </Box>
