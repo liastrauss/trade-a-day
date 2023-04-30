@@ -32,6 +32,7 @@ import {DialogActions, DialogContent, DialogTitle, Divider, Dialog} from "@mui/m
 import {Grid} from "@mui/material"
 import CardContent from "@mui/material/CardContent";
 import {useState} from "react";
+import Topbar from "../Components/Topbar";
 
 
 // An array that stores the labels for the steps of the checkout process
@@ -136,23 +137,24 @@ export default function OverView2() {
     return (
         <div>
             {/* The top app bar of the checkout page*/}
-            <AppBar
-                position="sticky"
-                color= "background"
-                elevation={0}
-                sx={{
-                    borderBottom: (t) => `1px solid ${t.palette.divider}`,
-                    mt: 2
-                }}
-            >
-                <Toolbar>
-                    {/* The title of the app in the app bar */}
-                    {/*<Typography variant="h6" noWrap color = "primary">*/}
-                    {/*    Trade a Day*/}
-                    {/*</Typography>*/}
-                    <Logo sx={{}}></Logo>
-                </Toolbar>
-            </AppBar>
+            <Topbar AddDay/>
+            {/*<AppBar*/}
+            {/*    position="sticky"*/}
+            {/*    color= "background"*/}
+            {/*    elevation={0}*/}
+            {/*    sx={{*/}
+            {/*        borderBottom: (t) => `1px solid ${t.palette.divider}`,*/}
+            {/*        mt: 2*/}
+            {/*    }}*/}
+            {/*>*/}
+            {/*    <Toolbar>*/}
+            {/*        /!* The title of the app in the app bar *!/*/}
+            {/*        /!*<Typography variant="h6" noWrap color = "primary">*!/*/}
+            {/*        /!*    Trade a Day*!/*/}
+            {/*        /!*</Typography>*!/*/}
+            {/*        <Logo sx={{}}></Logo>*/}
+            {/*    </Toolbar>*/}
+            {/*</AppBar>*/}
 
             <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
 

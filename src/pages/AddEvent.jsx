@@ -34,6 +34,10 @@ import Logo from "../Components/logo"
 import EventForm from "../Components/EventForm";
 import ItemsForm from "../Components/ItemsForm";
 import DaySchedule from "../Components/DaySchedule";
+import SearchSection from "../Components/search section";
+import SearchBox from "../Components/searchBox";
+import {Avatar, Divider} from "@mui/material";
+import Topbar from "../Components/Topbar";
 
 
 // An array that stores the labels for the steps of the checkout process
@@ -72,24 +76,24 @@ export default function AddEvent() {
         <div>
              {/*<CssBaseline />*/}
              {/* The top app bar of the checkout page*/}
-            <AppBar
-                position="sticky"
-                elevation={0}
-                sx={{
-                    position: 'sticky',
-                    borderBottom: (t) => `1px solid ${t.palette.divider}`,
-                    color: theme.palette.primary.light,
-                }}
-            >
-                 <Toolbar>
-                     {/* The title of the app in the app bar */}
-                     {/*<Typography variant="h6" noWrap color = "primary">*/}
-                     {/*    Trade a Day*/}
-                     {/*</Typography>*/}
-                     <Logo sx = {{}}></Logo>
-                 </Toolbar>
-            </AppBar>
-
+            {/*<AppBar*/}
+            {/*    position="sticky"*/}
+            {/*    elevation={0}*/}
+            {/*    sx={{*/}
+            {/*        position: 'sticky',*/}
+            {/*        borderBottom: (t) => `1px solid ${t.palette.divider}`,*/}
+            {/*        color: theme.palette.primary.light,*/}
+            {/*    }}*/}
+            {/*>*/}
+            {/*     <Toolbar>*/}
+            {/*         /!* The title of the app in the app bar *!/*/}
+            {/*         /!*<Typography variant="h6" noWrap color = "primary">*!/*/}
+            {/*         /!*    Trade a Day*!/*/}
+            {/*         /!*</Typography>*!/*/}
+            {/*         <Logo sx = {{}}></Logo>*/}
+            {/*     </Toolbar>*/}
+            {/*</AppBar>*/}
+            <Topbar/>
 
 
              {/*// The container that holds the main content of the page*/}
