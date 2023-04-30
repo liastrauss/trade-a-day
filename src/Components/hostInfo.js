@@ -70,21 +70,22 @@ function HostInfo() {
 
                     <StandardImageList/>
 
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                         <Typography variant="subtitle2" color="primary">
                             Address
                         </Typography>
                         <Typography variant="subtitle1">
                             {address}
                         </Typography>
-                        <Mapp/>
+                            {/*<Mapp/>*/}
+
 
                     </Grid>
                     {/*TODO play with grid here so map will be good*/}
                     {/*<Grid item xs={6} justifyContent="flex-start" alignContent = "center">*/}
                     {/*    <Mapp/>*/}
                     {/*</Grid>*/}
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
 
                         <Typography variant="subtitle2" color="primary">
                                  What to bring:
@@ -94,8 +95,9 @@ function HostInfo() {
                             {bring}
                         </Typography>
 
-                        <Typography variant="subtitle2" color="primary" my={11}>
-                        </Typography>
+                    </Grid>
+
+                    <Grid item xs={4}>
 
                         <Typography variant="subtitle2" color="primary">
                             Duration:
