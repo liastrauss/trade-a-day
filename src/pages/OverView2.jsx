@@ -31,6 +31,7 @@ import HostInfo from "../Components/hostInfo";
 import Logo from "../Components/logo";
 import ControlledRadioButtonsGroup from "../Components/datesPicker";
 import {Divider} from "@mui/material";
+import DatesPicker from "../Components/datesPicker";
 
 
 // An array that stores the labels for the steps of the checkout process
@@ -74,8 +75,8 @@ export default function OverView2() {
 
 
 
-                <ControlledRadioButtonsGroup></ControlledRadioButtonsGroup>
-
+                {/*<ControlledRadioButtonsGroup></ControlledRadioButtonsGroup>*/}
+                <DatesPicker/>
 
                 <React.Fragment>
 
