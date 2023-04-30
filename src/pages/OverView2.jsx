@@ -138,11 +138,11 @@ export default function OverView2() {
             {/* The top app bar of the checkout page*/}
             <AppBar
                 position="sticky"
-                color="transparent"
+                color= "background"
                 elevation={0}
                 sx={{
-                    position: 'relative',
                     borderBottom: (t) => `1px solid ${t.palette.divider}`,
+                    mt: 2
                 }}
             >
                 <Toolbar>

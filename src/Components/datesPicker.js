@@ -104,7 +104,8 @@ export default function DatesPicker() {
         <React.Fragment>
             <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
             <CssBaseline />
-            <Container maxWidth="lg" component="main">
+            <Container maxWidth="lg" component="main"
+            >
                 <Grid container spacing={3}   direction="column"
                       justifyContent="center"
                       alignItems="flex-end"
@@ -117,8 +118,10 @@ export default function DatesPicker() {
                             xs={12}
                             sm={tier.title === 'Enterprise' ? 12 : 6}
                             md={4}
+
                         >
-                            <Card>
+                            <Card
+                            >
                                 <CardHeader
                                     title={tier.title}
                                     // subheader={tier.subheader}
