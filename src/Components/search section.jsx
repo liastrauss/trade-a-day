@@ -15,7 +15,7 @@ function SearchSection() {
     let navigate = useNavigate();
     const theme = useTheme();
     return (
-        <Box>
+        <Box position='sticky' sx={{mt: 2}}>
             <Box sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -36,8 +36,8 @@ function SearchSection() {
                     >
                         Trade your day
                     </Button>
-                    {/*<Button variant="text">Booked experiences</Button>*/}
-                    <Avatar src="/broken-image.jpg" />
+                    <Button variant="outlined">My bookings</Button>
+                    <Avatar src="/broken-image.jpg" sx={{ml: 1}} />
                 </Box>
             </Box>
             <Divider />
@@ -50,13 +50,13 @@ function SearchSection() {
                 /*    align-self: flex-start;*/
                 /*    margin-left: 32px;*/
             }}>
-                <Button variant="contained" sx={{
-                    color: theme.palette.primary.lightest,
-                    height: 40,
-                    width: 10,
-                }}>
-                    <FilterAltRoundedIcon/>
-                </Button>
+                {/*<Button variant="contained" sx={{*/}
+                {/*    color: theme.palette.primary.lightest,*/}
+                {/*    height: 40,*/}
+                {/*    width: 10,*/}
+                {/*}}>*/}
+                {/*    <FilterAltRoundedIcon/>*/}
+                {/*</Button>*/}
                 <AllFilters data={filterData}/>
             </Box>
         </Box>
