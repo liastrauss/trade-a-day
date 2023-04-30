@@ -25,7 +25,6 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import EventForm from "../Components/EventForm";
 import ItemsForm from "../Components/ItemsForm";
-import PickDates from "../Components/PickDates";
 import HostInfo from "../Components/hostInfo";
 import Logo from "../Components/logo";
 import ControlledRadioButtonsGroup from "../Components/datesPicker";

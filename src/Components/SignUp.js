@@ -12,10 +12,20 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import ToggleButton from "@mui/material/ToggleButton"
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Logo from "./logo";
 
 const theme = createTheme();
 
 function SignUp() {
+    const [alignment, setAlignment] = React.useState('web');
+
+    const handleChange = (event, newAlignment) => {
+        setAlignment(newAlignment);
+    };
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -27,7 +37,24 @@ function SignUp() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
+            <AppBar
+                position="sticky"
+                color="transparent"
+                elevation={0}
+                sx={{
+                    position: 'relative',
+                    borderBottom: (t) => `1px solid ${t.palette.divider}`,
+                }}
+            >
+                <Toolbar>
+                    {/* The title of the app in the app bar */}
+                    {/*<Typography variant="h6" noWrap color = "primary">*/}
+                    {/*    Trade a Day*/}
+                    {/*</Typography>*/}
+                    <Logo sx = {{}}></Logo>
+                </Toolbar>
+            </AppBar>
+            <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
                 <CssBaseline />
                 <Box
                     sx={{
@@ -40,9 +67,7 @@ function SignUp() {
                     {/*<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>*/}
                     {/*    /!*<LockOutlinedIcon />*!/*/}
                     {/*</Avatar>*/}
-                    <Typography component="h1" variant="h5">
-                        Sign up
-                    </Typography>
+                    <Typography component="h1" variant="h4" align="center">Sign up</Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
@@ -80,12 +105,45 @@ function SignUp() {
                                 <TextField
                                     required
                                     fullWidth
+                                    id="phone"
+                                    label="Phone number"
+                                    name="phone"
+                                    autoComplete="phone"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
                                     name="password"
                                     label="Password"
                                     type="password"
                                     id="password"
                                     autoComplete="new-password"
                                 />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="AMA"
+                                    label="Ask me about..."
+                                    // variant="standard"
+                                />
+                            </Grid>
+                            <Grid container justify={"flex-end"}>
+                                <Typography variant="h6">I am a...</Typography>
+                                <ToggleButtonGroup
+                                    required
+                                    fullWidth
+                                    color="primary"
+                                    value={alignment}
+                                    exclusive
+                                    onChange={handleChange}
+                                >
+                                    <ToggleButton alignItems="center" value="Host">Host</ToggleButton>
+                                    <ToggleButton alignItems="center" value="Guest">Guest</ToggleButton>
+                                </ToggleButtonGroup>
                             </Grid>
                             <Grid item xs={12}>
                                 <FormControlLabel
@@ -114,5 +172,7 @@ function SignUp() {
             </Container>
         </ThemeProvider>
     );
+
 }
+
 export default SignUp;

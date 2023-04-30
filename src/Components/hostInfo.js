@@ -4,10 +4,10 @@ import {
     Typography,
 } from "@mui/material";
 // import { alpha, styled } from '@mui/material/styles';
-import FolderIcon from '@mui/icons-material/Folder';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Button from "@mui/material/Button";
-import {PhotoCamera} from "@mui/icons-material";
+// import FolderIcon from '@mui/icons-material/Folder';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import Button from "@mui/material/Button";
+// import {PhotoCamera} from "@mui/icons-material";
 import {useTheme} from "@mui/material/styles";
 import {Mapp, StandardImageList} from "./view2";
 
