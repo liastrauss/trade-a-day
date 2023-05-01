@@ -35,24 +35,3 @@ export default function Filter({ filter }) {
     )
 }
 
-            // <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
-            // <Box sx={{flexGrow: 1,
-            //     maxWidth: { xs: 320, sm: 480 },
-            //     bgcolor: 'background.paper',}}>
-            //     <Tabs
-            //         value={value}
-            //         onChange={handleChange}
-            //         variant="scrollable"
-            //         scrollButtons
-            //         aria-label="visible arrows tabs example"
-            //         sx={{
-            //             [`& .${tabsClasses.scrollButtons}`]: {
-            //                 '&.Mui-disabled': { opacity: 0.3 },
-            //             },
-            //         }}
-            //     >
-            //         <Tab label={filter}/>
-            //     </Tabs>
-            // </Box>
-//         );
-// }
