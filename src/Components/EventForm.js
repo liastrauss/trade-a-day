@@ -58,7 +58,7 @@ function EventForm () {
             <Grid container spacing={3}   justifyContent="flex-start"   alignItems="stretch"
 
             >
-                <Grid item xs={12}>
+                <Grid item xs={8}>
                     <TextField
                         required
                        id="standard-basic"
