@@ -29,4 +29,7 @@ export const filterData = [
     {
         filter: "Group",
     },
+    {
+        filter: "Near me",
+    },
 ];

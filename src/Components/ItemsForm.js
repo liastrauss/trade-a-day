@@ -53,7 +53,7 @@ export default function ItemsForm() {
     const [items, setItems] = React.useState([
     { id: 1, label: "Hiking Shoes",
             picture: "https://images.unsplash.com/photo-1551384955-233da563a9bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1959&q=80" },
-        { id: 2, label: "A Change of Clothes",
+        { id: 2, label: "Outdoor Clothes",
             picture: "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=654&q=80"
         },
         { id: 3, label: "Sunglasses",
@@ -82,8 +82,7 @@ export default function ItemsForm() {
                                 inputProps={{ 'aria-labelledby': labelId }}
                             />
                         }
-                        disablePadding
-                        color= "red"
+                        // disablePadding
                     >
                         <ListItemButton>
                             <ListItemAvatar>
@@ -101,7 +100,7 @@ export default function ItemsForm() {
                                     <TextField
                                         onChange={(e) => handleChangeText(item.id, e.target.value)}
                                         value={item.label}
-                                        variant = "filled"
+                                        variant = "outlined"
                                         placeholder={`Item ${item.id + 1}`}
                                     />
                                 }

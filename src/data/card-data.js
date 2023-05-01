@@ -33,7 +33,7 @@ export const cardData = [
         picture: "https://plus.unsplash.com/premium_photo-1682089616321-886d5b3d3626?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFkaW8lMjBlZGl0b3J8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
         hostName: "Michael",
         title: "Radio Editor",
-        duration: "3 hours",
+        duration: "7 hours",
         location: "Neve Ilan",
         rating: "4.0",
         about: "Welcome to my world! As a radio editor, I'm responsible for producing high-quality radio programs, from storyboarding to scriptwriting and sound editing. During your day with me, I'll walk you through the production process and give you a behind-the-scenes look at what it takes to create a successful radio program.",

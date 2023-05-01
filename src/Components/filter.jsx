@@ -27,7 +27,7 @@ export default function Filter({ filter }) {
             <Button variant="text"
                     sx={{
                         borderRadius: 5,
-                        ml: 3
+                        ml: 3,
                     }}>
                 {filter}
             </Button>
