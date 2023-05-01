@@ -47,7 +47,6 @@ function EventForm () {
     const handleChange = (event, newAlignment) => {
         setAlignment(newAlignment);
     };
-    // for rating:
 
 
     return (
