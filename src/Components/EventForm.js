@@ -58,7 +58,7 @@ function EventForm () {
             <Grid container spacing={3}   justifyContent="flex-start"   alignItems="stretch"
 
             >
-                <Grid item xs={8}>
+                <Grid item xs={12}>
                     <TextField
                         required
                        id="standard-basic"
@@ -67,7 +67,6 @@ function EventForm () {
                        fullWidth
                 />
                 </Grid>
-
                 <Grid item sm={6}>
                     <Autocomplete
                         disablePortal
@@ -87,44 +86,44 @@ function EventForm () {
                     />
                 </Grid>
                 {/*new rating:*/}
-                <Grid item sm={121} xl={12}>
+                <Grid item sm={12} xl={12}>
                     <Paper variant="outlined" sx={{ p: 2, outline: '1px' }}>
-                    <Box
-                    sx={{
-                        width: 200,
-                        display: 'flex',
-                        alignItems: 'center',
-                        typography: 'subtitle1',
-                        // color: 'text.secondary'
-                        // borderRadius: 2,
-                        // p: 1,
-
-                    }}
-                >
-                        <Typography component="legend" align="center" variant="body">Physical Effort</Typography>
-                        <Rating
+                        <Box
                         sx={{
-                            color: theme.palette.primary.main, // set the color to value from app js
+                            width: 200,
+                            display: 'flex',
+                            alignItems: 'center',
+                            typography: 'subtitle1',
+                            // color: 'text.secondary'
+                            // borderRadius: 2,
+                            // p: 1,
+
                         }}
-                        name="Physical-Effort"
-                        defaultValue={3}
-                        size="large"
-                        value={value}
-                        precision={1}
-                        getLabelText={getLabelText}
-                        onChange={(event, newValue) => {
-                            setValue(newValue);
-                        }}
-                        onChangeActive={(event, newHover) => {
-                            setHover(newHover);
-                        }}
-                        icon={<DirectionsRunIcon fontSize="inherit" />}
-                        emptyIcon={<DirectionsRunIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                    />
-                    {value !== null && (
-                        <Box sx={{ ml: 2, color: 'text.secondary' }}>{labels[hover !== -1 ? hover : value]}</Box>
-                    )}
-                    </Box>
+                    >
+                            <Typography component="legend" align="center" variant="body">Physical Effort</Typography>
+                            <Rating
+                            sx={{
+                                color: theme.palette.primary.main, // set the color to value from app js
+                            }}
+                            name="Physical-Effort"
+                            defaultValue={3}
+                            size="large"
+                            value={value}
+                            precision={1}
+                            getLabelText={getLabelText}
+                            onChange={(event, newValue) => {
+                                setValue(newValue);
+                            }}
+                            onChangeActive={(event, newHover) => {
+                                setHover(newHover);
+                            }}
+                            icon={<DirectionsRunIcon fontSize="inherit" />}
+                            emptyIcon={<DirectionsRunIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                            />
+                            {value !== null && (
+                                <Box sx={{ ml: 2, color: 'text.secondary' }}>{labels[hover !== -1 ? hover : value]}</Box>
+                            )}
+                        </Box>
                     </Paper>
                 </Grid>
 
@@ -145,20 +144,28 @@ function EventForm () {
 
                 {/*        Hard*/}
                 {/*    </Grid>*/}
-                    <Grid item xs={6}>
+                    <Grid item xs={6}
+                          // direction="row"
+                          // justifyContent="space-between"
+                          // alignItems="center"
+                          // display="flex"
+                    >
                         <ToggleButtonGroup
                             color="primary"
                             value={alignment}
                             exclusive
                             onChange={handleChange}
-                            aria-label="where"
+                            aria-label="indoorsoroutdoors"
                         >
                             <ToggleButton value="indoors">indoors</ToggleButton>
                             <ToggleButton value="outdoors">outdoors</ToggleButton>
                         </ToggleButtonGroup>                    </Grid>
-                    <Grid item xs={6}   direction="row"
+                    <Grid item xs={6}
+                          direction="row"
                           justifyContent="center"
                           alignItems="center"
+                          display="flex"
+
                     >
                         <Typography variant="body">Accessible?</Typography>
                         <Switch />
