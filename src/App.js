@@ -2,7 +2,7 @@ import './App.css';
 import Home from "./pages/Home";
 import { createTheme, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdapterDayjs } from '@mui/x-datey-pickers/AdapterDayjs';
 
 
 const theme = createTheme({
@@ -39,11 +39,11 @@ const theme = createTheme({
 
 function App() {
     return (
-        //   need this so we can work with dates:
+          // need this so we can work with dates:
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <div className="App">
                 <ThemeProvider theme={theme}>
-                    <div>
+                    <div>y
                         <Home/>
                     </div>
                 </ThemeProvider>

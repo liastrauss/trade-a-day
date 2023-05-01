@@ -1,19 +1,3 @@
-// import React from 'react';
-// import EventForm from "../Components/EventForm";
-//
-// function AddEvent(){
-//     return(
-//         <div>
-//             <h1>this is the add event PAGE!!!</h1>
-//             <EventForm/>
-//
-//         </div>
-//     );
-// }
-//
-//
-// export default AddEvent;
-// GITHUB CODE
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -31,23 +15,19 @@ import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import Logo from "../Components/logo"
 
 // Importing three form components that will be rendered inside the  component
-import EventForm from "../Components/EventForm";
+import MoreDetails from "../Components/SignUpMoreDetails";
 import ItemsForm from "../Components/ItemsForm";
 import DaySchedule from "../Components/DaySchedule";
-import SearchSection from "../Components/search section";
-import SearchBox from "../Components/searchBox";
-import {Avatar, Divider} from "@mui/material";
-import Topbar from "../Components/Topbar";
 
 
 // An array that stores the labels for the steps of the checkout process
-const steps = ['Tell us about yourself', 'Schedule the Day', 'Last info'];
+const steps = ['Personal info', 'More details'];
 
 // A function that returns the content of a specific step, based on the index passed as argument
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return <EventForm/>;
+            return <MoreDetails/>;
         case 1:
             return < DaySchedule/>;
         case 2:
@@ -58,7 +38,7 @@ function getStepContent(step) {
 }
 
 // The main functional component that renders the entire "add event" page and forms
-export default function AddEvent() {
+export default function CreateProfileNew() {
     // A state hook that keeps track of the currently active step
     const [activeStep, setActiveStep] = React.useState(0);
     // A function that increments the activeStep state when called
@@ -70,40 +50,35 @@ export default function AddEvent() {
         setActiveStep(activeStep - 1);
     };
 
-    const theme=useTheme()
     // The component's JSX code that gets returned
     return (
         <div>
-             {/*<CssBaseline />*/}
-             {/* The top app bar of the checkout page*/}
-            {/*<AppBar*/}
-            {/*    position="sticky"*/}
-            {/*    elevation={0}*/}
-            {/*    sx={{*/}
-            {/*        position: 'sticky',*/}
-            {/*        borderBottom: (t) => `1px solid ${t.palette.divider}`,*/}
-            {/*        color: theme.palette.primary.light,*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*     <Toolbar>*/}
-            {/*         /!* The title of the app in the app bar *!/*/}
-            {/*         /!*<Typography variant="h6" noWrap color = "primary">*!/*/}
-            {/*         /!*    Trade a Day*!/*/}
-            {/*         /!*</Typography>*!/*/}
-            {/*         <Logo sx = {{}}></Logo>*/}
-            {/*     </Toolbar>*/}
-            {/*</AppBar>*/}
-            <Topbar/>
+            {/*<CssBaseline />*/}
+            {/* The top app bar of the checkout page*/}
+            <AppBar
+                position="sticky"
+                color="transparent"
+                elevation={0}
+                sx={{
+                    position: 'relative',
+                    borderBottom: (t) => `1px solid ${t.palette.divider}`,
+                }}
+            >
+                <Toolbar>
+                    {/* The title of the app in the app bar */}
+                    {/*<Typography variant="h6" noWrap color = "primary">*/}
+                    {/*    Trade a Day*/}
+                    {/*</Typography>*/}
+                    <Logo sx = {{}}></Logo>
+                </Toolbar>
+            </AppBar>
 
-
-             {/*// The container that holds the main content of the page*/}
+            {/*// The container that holds the main content of the page*/}
             <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
                 <Paper>
                     <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-                        {/* The title of the checkout page */}
-                        <Typography component="h1" variant="h4" align="center">
-                            Trade Your Day
-                        </Typography>
+                        {/* The title of the page */}
+                        <Typography component="h1" variant="h4" align="center">Sign Up</Typography>
 
                         {/* The stepper component that displays the current step of the checkout process */}
                         <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
@@ -119,7 +94,7 @@ export default function AddEvent() {
                                     Thank you for joining the Trade a Day community!
                                 </Typography>
                                 <Typography variant="subtitle1">
-                                     We have emailed your confirmation,
+                                    We have emailed your confirmation,
                                     and will send you an update when people sign up.
                                 </Typography>
                             </React.Fragment>
