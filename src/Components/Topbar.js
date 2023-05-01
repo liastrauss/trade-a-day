@@ -13,6 +13,7 @@ export default function Topbar(props) {
     const theme = useTheme();
     const AddDay = props.AddDay;
     const Search = props.Search;
+    const Profile = props.Profile;
 
     return (
     <Box position='sticky' sx={{mt: 2}}>
@@ -52,7 +53,13 @@ export default function Topbar(props) {
             }
 
                 <Button variant="outlined">My bookings</Button>
-                <Avatar src="/broken-image.jpg" sx={{ml: 1}} />
+                <Avatar src="/broken-image.jpg"
+                        sx={{ml: 1}}
+                        onClick={() => {
+                            navigate("/CreateProfileNew");
+                        }}
+                        style={{cursor:'pointer'}}
+                />
             </Box>
         </Box>
         <Divider />
