@@ -82,8 +82,7 @@ export default function ItemsForm() {
                                 inputProps={{ 'aria-labelledby': labelId }}
                             />
                         }
-                        disablePadding
-                        color= "red"
+                        // disablePadding
                     >
                         <ListItemButton>
                             <ListItemAvatar>
@@ -101,7 +100,7 @@ export default function ItemsForm() {
                                     <TextField
                                         onChange={(e) => handleChangeText(item.id, e.target.value)}
                                         value={item.label}
-                                        variant = "filled"
+                                        variant = "outlined"
                                         placeholder={`Item ${item.id + 1}`}
                                     />
                                 }

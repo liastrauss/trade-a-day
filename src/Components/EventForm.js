@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Autocomplete, Avatar, ButtonGroup,
     Checkbox,
-    FormControlLabel,
+    FormControlLabel, FormGroup,
     Grid, IconButton,
     List, ListItem, ListItemAvatar, ListItemText,
     Rating,
@@ -86,7 +86,7 @@ function EventForm () {
                     />
                 </Grid>
                 {/*new rating:*/}
-                <Grid item sm={12} xl={12}>
+                <Grid item sm={12}>
                     <Paper variant="outlined" sx={{ p: 2, outline: '1px' }}>
                         <Box
                         sx={{
@@ -144,7 +144,7 @@ function EventForm () {
 
                 {/*        Hard*/}
                 {/*    </Grid>*/}
-                    <Grid item xs={6}
+                    <Grid item xs={5}
                           // direction="row"
                           // justifyContent="space-between"
                           // alignItems="center"
@@ -160,15 +160,23 @@ function EventForm () {
                             <ToggleButton value="indoors">indoors</ToggleButton>
                             <ToggleButton value="outdoors">outdoors</ToggleButton>
                         </ToggleButtonGroup>                    </Grid>
-                    <Grid item xs={6}
+                    <Grid item xs={3}
                           direction="row"
-                          justifyContent="center"
+                          justifyContent="flex-start"
                           alignItems="center"
                           display="flex"
 
                     >
-                        <Typography variant="body">Accessible?</Typography>
-                        <Switch />
+                        <FormGroup>
+                            <FormControlLabel
+                                control={<Switch defaultChecked />}
+                                label="Accessible?"
+                                labelPlacement="start"
+                            />
+                        </FormGroup>
+
+                            {/*<Typography variant="body">Accessible?</Typography>*/}
+                        {/*<Switch />*/}
                         {/*<Checkbox />*/}
                     </Grid>
                     <Grid item xs={12}>
