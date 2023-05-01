@@ -18,7 +18,7 @@ export function StandardImageList() {
     let a = [pic5,pic1,pic2,pic3,pic4];
 
     return (
-        <ImageList className="pictures" sx={{ width: 500, height: 250, my: 2, mx: 2}} cols={2} rowHeight={164}>
+        <ImageList className="pictures" sx={{ width: 800, height: 250, my: 3, mx: 1}} cols={2} rowHeight={164}>
             {a.map((item) => (
                 <ImageListItem key={item.img}>
                     <img
@@ -32,26 +32,26 @@ export function StandardImageList() {
         </ImageList>
     );
 }
-
-
-export function Mapp() {
-    let {index}=useParams();
-    let pic4= cardData[index-1].map;
-    let b=[pic4]
-    return (
-        <Box>
-            <ImageList className="pictures" sx={{width: 500, height: 250, my: 3 }}  cols={3} rowHeight={164}>
-                {b.map((item) => (
-                    <ImageListItem key={item.img}>
-                        <img
-                            src={`${item}?w=164&h=164&fit=crop&auto=format`}
-                            srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                            alt="map"
-                            loading="lazy"
-                        />
-                    </ImageListItem>
-                ))}
-            </ImageList>
-        </Box>
-    );
-}
+//
+//
+// export function Mapp() {
+//     let {index}=useParams();
+//     let pic4= cardData[index-1].map;
+//     let b=[pic4]
+//     return (
+//         <Box>
+//             <ImageList className="pictures" sx={{width: 500, height: 250, my: 3 }} cols={3} rowHeight={164}>
+//                 {b.map((item) => (
+//                     <ImageListItem key={item.img}>
+//                         <img
+//                             src={`${item}?w=164&h=164&fit=crop&auto=format`}
+//                             srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+//                             alt="map"
+//                             loading="lazy"
+//                         />
+//                     </ImageListItem>
+//                 ))}
+//             </ImageList>
+//         </Box>
+//     );
+// }
