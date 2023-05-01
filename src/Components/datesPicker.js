@@ -21,6 +21,7 @@ import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 import shadows from '@mui/system'
+import Paper from "@mui/material/Paper";
 
 
 export  function ControlledRadioButtonsGroup() {
@@ -104,6 +105,7 @@ export default function DatesPicker() {
         <React.Fragment>
             <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
             <CssBaseline />
+
             <Container maxWidth="lg" component="main"
             >
                 <Grid container spacing={3}   direction="column"
@@ -121,6 +123,8 @@ export default function DatesPicker() {
 
                         >
                             <Card
+                                elevation={5}
+                                position='static'
                             >
                                 <CardHeader
                                     title={tier.title}

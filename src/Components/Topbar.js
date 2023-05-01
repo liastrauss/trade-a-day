@@ -28,21 +28,29 @@ export default function Topbar(props) {
             //     placeholder with empty space so it will look the same
             :  <Box sx={{width: 350, height: 32}} />
                     }
-            {AddDay ?
-            <Button
-                variant="text"
-                onClick={() => {
-                    navigate("/AddEvent");
-                }}
-            >
-                Trade your day
-            </Button>
-            : <Box>{" "}</Box> }
-
             <Box sx={{
                 display: 'flex',
                 justifyContent: 'space-around',
             }}>
+
+            {AddDay ?
+                <Button
+                    variant="text"
+                    onClick={() => {
+                        navigate("/AddEvent");
+                    }}
+                >
+                    Trade your day
+                </Button>
+                :
+                <Button
+                    variant="text"
+                    disabled
+                >
+                    Trade your day
+                </Button>
+            }
+
                 <Button variant="outlined">My bookings</Button>
                 <Avatar src="/broken-image.jpg" sx={{ml: 1}} />
             </Box>
