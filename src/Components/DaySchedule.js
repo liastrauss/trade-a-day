@@ -22,17 +22,17 @@ export default function DaySchedule () {
 
 
 
-    const handleAddDatePicker = () => {
-        setDatePickerCount(datePickerCount + 1);
-        setDatePickerValues([...datePickerValues, null]); // add null value for the new DatePicker component
-    }; // function to add a new DatePicker component to the state
-
-    const handleRemoveDatePicker = () => {
-        if (datePickerCount > 1) { // prevent removing all the DatePicker components
-            setDatePickerCount(datePickerCount - 1);
-            setDatePickerValues(datePickerValues.slice(0, -1)); // remove the value of the last DatePicker component
-        }
-    }; // function to remove the last DatePicker component from the state
+    // const handleAddDatePicker = () => {
+    //     setDatePickerCount(datePickerCount + 1);
+    //     setDatePickerValues([...datePickerValues, null]); // add null value for the new DatePicker component
+    // }; // function to add a new DatePicker component to the state
+    //
+    // const handleRemoveDatePicker = () => {
+    //     if (datePickerCount > 1) { // prevent removing all the DatePicker components
+    //         setDatePickerCount(datePickerCount - 1);
+    //         setDatePickerValues(datePickerValues.slice(0, -1)); // remove the value of the last DatePicker component
+    //     }
+    // }; // function to remove the last DatePicker component from the state
 
 
 
@@ -66,15 +66,6 @@ export default function DaySchedule () {
         <div>
             <Typography variant="h6" gutterBottom>Schedule the Day</Typography>
             <Grid container spacing={3} justifyContent="flex-start" alignContent = "center">
-                {/*<Grid item xs={6}>*/}
-                {/*    <DatePicker*/}
-                {/*        required*/}
-                {/*        fullWidth*/}
-                {/*        label="Choose a day"*/}
-                {/*        value={value}*/}
-                {/*        onChange={(newValue) => setValue(newValue)}*/}
-                {/*    />*/}
-                {/*</Grid>*/}
             {[...Array(datePickerCount)].map((_, index) => ( // render the DatePicker components based on the state variable
                 <Grid item xs={6} key={index}>
                     <DatePicker
@@ -94,9 +85,9 @@ export default function DaySchedule () {
                     />
                 </Grid>
             ))}
-            <Grid item xs={3} sx={{ mt: 3 }}>
+            <Grid item xs={3} sx={{mt:0.5
+            }}>
                 <IconButton
-                    color="primary"
                     aria-label="add datepicker"
                     onClick={() => {
                         setDatePickerCount(datePickerCount + 1);
@@ -107,7 +98,6 @@ export default function DaySchedule () {
                 </IconButton>
                 {datePickerCount > 1 && (
                     <IconButton
-                        color="primary"
                         aria-label="remove datepicker"
                         onClick={() => {
                             setDatePickerCount(datePickerCount - 1);
