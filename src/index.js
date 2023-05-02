@@ -41,6 +41,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import OverView from "./pages/OverView";
 import OverView2 from "./pages/OverView2";
 import Logo from "./Components/logo";
+import Chat from "./pages/Chat";
 
 // configuring our theme
 const theme = createTheme({
@@ -88,6 +89,8 @@ export default function App() {
                                 <Route path="OverView2/:index" element={<OverView2/>} />
                                 <Route path="CreateProfile" element={<CreateProfile/>} />
                                 <Route path="CreateProfileNew" element={<CreateProfileNew/>} />
+                                <Route path="Chat" element={<Chat/>} />
+
                                 {/*<Route path="Home" element={<Home />} />*/}
                                 <Route path="*" element={<NoPage />} />
                             </Route>

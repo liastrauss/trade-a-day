@@ -40,7 +40,7 @@ export default function DaySchedule () {
 
     return (
         <div>
-            <Typography variant="h6">Schedule the Day</Typography>
+            <Typography variant="h6" gutterBottom>Schedule the Day</Typography>
             <Grid container spacing={3} justifyContent="flex-start" alignContent = "center">
                 <Grid item xs={6}>
                     <DatePicker
@@ -51,12 +51,17 @@ export default function DaySchedule () {
                         onChange={(newValue) => setValue(newValue)}
                     />
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={8}
+                // display="flex"
+                    direction="row"
+                    justifyContent="flex-start"
+                >
                     <Typography gutterBottom>
                             Hour range
                         </Typography>
 
                         <Slider
+                            sx={{ml: 2}}
                             fullWidth
                             getAriaLabel={() => 'Hour range'}
                             valueLabelDisplay="auto"
