@@ -52,7 +52,7 @@ function HostInfo() {
                 >
                     <Grid item xs={12}>
                         <Typography variant="h5" color="primary" gutterBottom>
-                            {hostt}
+                            A day with {hostt}
                         </Typography>
                         <Typography variant="subtitle1">
                             {about}
@@ -72,7 +72,7 @@ function HostInfo() {
 
                     <Grid item xs={4}>
                         <Typography variant="subtitle2" color="primary">
-                            Address
+                            Location
                         </Typography>
                         <Typography variant="subtitle1">
                             {address}
