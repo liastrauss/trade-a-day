@@ -159,6 +159,25 @@ export default function Topbar(props) {
                     </Button>
                 }
 
+                <Button variant="outlined"
+                        onClick={() =>{
+                            navigate("/GroceryDeliveryApp");
+                        }}
+                        style={{cursor: 'pointer'}}
+                >
+                    My bookings
+                </Button>
+                <Avatar src="/broken-image.jpg"
+                        sx={{ml: 1}}
+                        onClick={() => {
+                            navigate("/CreateProfileNew");
+                        }}
+                        style={{cursor:'pointer'}}
+                />
+            </Box>
+        </Box>
+        <Divider />
+    </Box>
                     <Button variant="outlined">My bookings</Button>
                     <Avatar src="/broken-image.jpg"
                             sx={{ml: 1}}
