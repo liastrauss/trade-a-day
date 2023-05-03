@@ -42,6 +42,7 @@ import OverView from "./pages/OverView";
 import OverView2 from "./pages/OverView2";
 import Logo from "./Components/logo";
 import Chat from "./pages/Chat";
+import BookedEvents from "./pages/Booked Events"
 
 // configuring our theme
 const theme = createTheme({
@@ -90,6 +91,7 @@ export default function App() {
                                 <Route path="CreateProfile" element={<CreateProfile/>} />
                                 <Route path="CreateProfileNew" element={<CreateProfileNew/>} />
                                 <Route path="Chat" element={<Chat/>} />
+                                <Route path="BookedEvents" element={<BookedEvents/>} />
 
                                 {/*<Route path="Home" element={<Home />} />*/}
                                 <Route path="*" element={<NoPage />} />
