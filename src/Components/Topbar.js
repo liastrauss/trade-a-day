@@ -49,9 +49,10 @@ function ElevationScroll(props) {
 //         <ElevationScroll {...props}>
 //             <AppBar sx={{
 //                 bgcolor: 'background.paper',
-//                 // direction: 'row',
+//                 width: 1,
+//                 flexDirection: 'row',
 //                 display: 'flex',
-//                 // justifyContent: 'stretch',
+//                 justifyContent: 'space-between',
 //                 alignItems: 'center',
 //                 mx: 4,
 //
@@ -60,10 +61,10 @@ function ElevationScroll(props) {
 //             <Box position='static'
 //                  sx={{mt: 2}}>
 //                 <Box sx={{
-//                     display: 'flex',
-//                     justifyContent: 'space-between',
-//                     alignItems: 'center',
-//                     mx: 4
+//                     // display: 'flex',
+//                     // justifyContent: 'space-between',
+//                     // alignItems: 'center',
+//                     // mx: 4
 //                 }}>
 //                     <Logo/>
 //                     {Search ?
@@ -121,7 +122,6 @@ export default function Topbar(props) {
     const Profile = props.Profile;
 
     return (
-        <ElevationScroll {...props}>
             <Box position='static'
              sx={{mt: 2}}>
             <Box sx={{
@@ -161,7 +161,7 @@ export default function Topbar(props) {
 
                 <Button variant="outlined"
                         onClick={() =>{
-                            navigate("/GroceryDeliveryApp");
+                            navigate("/BookedEvents");
                         }}
                         style={{cursor: 'pointer'}}
                 >
@@ -177,19 +177,6 @@ export default function Topbar(props) {
             </Box>
         </Box>
         <Divider />
-    </Box>
-                    <Button variant="outlined">My bookings</Button>
-                    <Avatar src="/broken-image.jpg"
-                            sx={{ml: 1}}
-                            onClick={() => {
-                                navigate("/CreateProfileNew");
-                            }}
-                            style={{cursor:'pointer'}}
-                    />
-                </Box>
-            </Box>
-            {/*<Divider />*/}
         </Box>
-    </ElevationScroll>
     );
 }

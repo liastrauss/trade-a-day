@@ -15,7 +15,7 @@ function SearchSection() {
     const theme = useTheme();
     return (
         <Box>
-            <Topbar Search AddDay Profile/>
+            {/*<Topbar Search AddDay Profile/>*/}
 
             {/*filters with buttons */}
             {/*<Box sx={{*/}

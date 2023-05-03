@@ -41,7 +41,7 @@ import Topbar from "../Components/Topbar";
 
 
 // An array that stores the labels for the steps of the checkout process
-const steps = ['Tell us about yourself', 'Schedule the Day', 'Last info'];
+const steps = ['A bit about yourself', 'Technicalities', 'What to bring'];
 
 // A function that returns the content of a specific step, based on the index passed as argument
 function getStepContent(step) {
@@ -119,8 +119,8 @@ export default function AddEvent() {
                                     Thank you for joining the Trade a Day community!
                                 </Typography>
                                 <Typography variant="subtitle1">
-                                     We have emailed your confirmation,
-                                    and will send you an update when people sign up.
+                                     A confirmation has been emailed to you,
+                                    and we will let you know about any bookings.
                                 </Typography>
                             </React.Fragment>
                         ) : (

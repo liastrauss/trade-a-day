@@ -41,7 +41,12 @@ export default function DaySchedule () {
     // hours for the slider:
     const marks = [
         { value: 8, label: '8:00' },
-        { value: 14.5, label: '14:30' },
+        { value: 14, label: '14:00' },
+        { value: 10, label: '10:00' },
+        { value: 16, label: '16:00' },
+
+
+
         {
             value: 6,
             label: '6:00'
@@ -55,8 +60,8 @@ export default function DaySchedule () {
             label: '18:00'
         },
         {
-            value: 23,
-            label: '23:00'
+            value: 20,
+            label: '20:00'
         }
     ];
 
@@ -127,7 +132,7 @@ export default function DaySchedule () {
                         step={0.5}
                         marks ={marks}
                         min={6}
-                        max={23}
+                        max={20}
                         value={hourRange}
                         onChange={(event, newValue) => {
                             sethourRange(newValue);
@@ -150,16 +155,17 @@ export default function DaySchedule () {
                     />
                 </Grid>
                 <Grid item sm={12}>
-                    <Typography gutterBottom>Give us a glimpse of how your day will look like!</Typography>
+                    <Typography gutterBottom>Give us a glimpse of what your day will look like!</Typography>
                     < br/>
                     <Button variant="contained" component="label">
-                        Upload
+                        <PhotoCamera sx={{mr: 1}}/>
+                         Upload
                         <input hidden accept="image/*" multiple type="file" />
                     </Button>
-                    <IconButton color="primary" aria-label="upload picture" component="label">
-                        <input hidden accept="image/*" type="file" />
-                        <PhotoCamera/>
-                    </IconButton>
+                    {/*<IconButton color="primary" aria-label="upload picture" component="label">*/}
+                    {/*    <input hidden accept="image/*" type="file" />*/}
+                    {/*    <PhotoCamera/>*/}
+                    {/*</IconButton>*/}
                 </Grid>
             </Grid>
         </div>
