@@ -99,7 +99,7 @@ export default function Orders(props) {
                             <TableCell>{row.name}</TableCell>
                             <TableCell>{row.num_people}</TableCell>
                             <TableCell>{row.special_requests}</TableCell>
-                            <TableCell><Button>chat now</Button></TableCell>
+                            <TableCell><Button variant="contained">chat now</Button></TableCell>
                             {/*<TableCell align="right">{`$${row.amount}`}</TableCell>*/}
                         </TableRow>
 
