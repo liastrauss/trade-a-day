@@ -73,7 +73,9 @@ export default function Orders(props) {
     // const rows= data.map(person =>
     //     createData(person.id, person.date, person.name, person.shipTo, person.paymentMethod, person.amount)
     // );
-    // const { data } = props;
+    const { dat } = props;
+    // const { group } = props;
+
 
 
     return (
@@ -90,7 +92,7 @@ export default function Orders(props) {
                 </TableHead>
                 <TableBody>
 
-                    {data.group1.map((row) => (
+                    {dat.map((row) => (
                         <TableRow key={row.id}>
                             <TableCell>{row.name}</TableCell>
                             <TableCell>{row.num_people}</TableCell>

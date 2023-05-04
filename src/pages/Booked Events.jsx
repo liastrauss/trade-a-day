@@ -185,7 +185,7 @@ function DashboardContent() {
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <Orders data={data.group1}/>
+                                    <Orders dat={data.group2} />
                                 </Paper>
                             </Grid>
                         </Grid>
