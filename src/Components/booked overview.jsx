@@ -6,7 +6,6 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import data from '../data/booked-days.json';
-
 // import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 
@@ -84,22 +83,34 @@ export default function Orders(props) {
                 <TableHead>
                     <TableRow>
                         <TableCell>Name</TableCell>
-                        <TableCell>Ship To</TableCell>
-                        <TableCell>Payment Method</TableCell>
-                        <TableCell align="right">Sale Amount</TableCell>
+                        <TableCell>Number of Guests</TableCell>
+                        <TableCell>Special Requests</TableCell>
+                        {/*<TableCell align="right">Sale Amount</TableCell>*/}
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data.map((group) => (
-                        group.map((row) => (
-                            <TableRow key={row.id}>
-                                <TableCell>{row.name}</TableCell>
-                                <TableCell>{row.num_people}</TableCell>
-                                <TableCell>{row.special_requests}</TableCell>
-                            </TableRow>
-                        ))
+
+                    {data.group1.map((row) => (
+                        <TableRow key={row.id}>
+                            <TableCell>{row.name}</TableCell>
+                            <TableCell>{row.num_people}</TableCell>
+                            <TableCell>{row.special_requests}</TableCell>
+                            {/*<TableCell align="right">{`$${row.amount}`}</TableCell>*/}
+                        </TableRow>
+
                     ))}
-                </TableBody>
+
+                            {/*{data.map((group) => (*/}
+                            {/*    group.map((row) => (*/}
+                            {/*        <TableRow key={row.id}>*/}
+                            {/*            <TableCell>{row.name}</TableCell>*/}
+                            {/*            <TableCell>{row.num_people}</TableCell>*/}
+                            {/*            <TableCell>{row.special_requests}</TableCell>*/}
+                            {/*        </TableRow>*/}
+                            {/*    ))*/}
+                            {/*))}*/}
+                        </TableBody>
+                {/*}*/}
             </Table>
             <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
                 See more orders
