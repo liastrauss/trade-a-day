@@ -1,5 +1,5 @@
 {
-  "group1": [
+  "day1": [
     {
       "id": 0,
       "name": "John Smith",
@@ -13,7 +13,7 @@
       "special_requests": "High floor with a view"
     }
   ],
-  "group2": [
+  "day2": [
     {
       "id": 0,
       "name": "Bob Johnson",
@@ -25,6 +25,20 @@
       "name": "Sarah Lee",
       "num_people": 1,
       "special_requests": "Early check-in"
+    }
+  ],
+  "day3": [
+    {
+      "id": 0,
+      "name": "David Kim",
+      "num_people": 2,
+      "special_requests": "Late check-out"
+    },
+    {
+      "id": 1,
+      "name": "Jessica Park",
+      "num_people": 2,
+      "special_requests": "Near the elevator"
     }
   ]
 }

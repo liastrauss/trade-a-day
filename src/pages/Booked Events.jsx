@@ -92,7 +92,7 @@ function DashboardContent() {
     ) => {
         setSelectedIndex(index);
     };
-    // const personOrders = data.people[0];
+    const dayNames = Object.keys(data);
 
     return (
         // <ThemeProvider theme={mytheme}>
@@ -142,7 +142,22 @@ function DashboardContent() {
                     {/*HOST LIST*/}
                     <ListSubheader>As a Host</ListSubheader>
                     <Divider />
+
                         <List component="nav" aria-label="secondary mailbox folder">
+
+                            {dayNames.map((day) => (
+                                <ListItemButton
+                                //     selected={selectedIndex === 2}
+                                //     onClick={(event) => handleListItemClick(event, 2)}
+                                    key={day}
+
+                                >
+                                <ListItemText primary={day} />
+                                </ListItemButton>
+
+                            ))}
+
+
                             <ListItemButton
                                 selected={selectedIndex === 2}
                                 onClick={(event) => handleListItemClick(event, 2)}
@@ -157,7 +172,7 @@ function DashboardContent() {
                             </ListItemButton>
                             <ListItemButton
                                 selected={selectedIndex === 4}
-                                onClick={(event) => handleListItemClick(event, 3)}
+                                onClick={(event) => handleListItemClick(event, 4)}
                             >
                                 <ListItemText primary="Trade a new day" />
                             </ListItemButton>
@@ -185,7 +200,7 @@ function DashboardContent() {
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <Orders dat={data.group2} />
+                                    <Orders dat={data.day3} />
                                 </Paper>
                             </Grid>
                         </Grid>

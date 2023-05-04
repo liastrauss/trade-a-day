@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import data from '../data/booked-days.json';
 // import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
+import Button from "@mui/material/Button";
 
 function Title(props) {
     return (
@@ -85,8 +86,9 @@ export default function Orders(props) {
                 <TableHead>
                     <TableRow>
                         <TableCell>Name</TableCell>
-                        <TableCell>Number of Guests</TableCell>
+                        <TableCell>Num. of Guests</TableCell>
                         <TableCell>Special Requests</TableCell>
+                        <TableCell></TableCell>
                         {/*<TableCell align="right">Sale Amount</TableCell>*/}
                     </TableRow>
                 </TableHead>
@@ -97,22 +99,13 @@ export default function Orders(props) {
                             <TableCell>{row.name}</TableCell>
                             <TableCell>{row.num_people}</TableCell>
                             <TableCell>{row.special_requests}</TableCell>
+                            <TableCell><Button>chat now</Button></TableCell>
                             {/*<TableCell align="right">{`$${row.amount}`}</TableCell>*/}
                         </TableRow>
 
                     ))}
 
-                            {/*{data.map((group) => (*/}
-                            {/*    group.map((row) => (*/}
-                            {/*        <TableRow key={row.id}>*/}
-                            {/*            <TableCell>{row.name}</TableCell>*/}
-                            {/*            <TableCell>{row.num_people}</TableCell>*/}
-                            {/*            <TableCell>{row.special_requests}</TableCell>*/}
-                            {/*        </TableRow>*/}
-                            {/*    ))*/}
-                            {/*))}*/}
                         </TableBody>
-                {/*}*/}
             </Table>
             <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
                 See more orders
