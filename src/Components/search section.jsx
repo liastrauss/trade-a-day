@@ -7,7 +7,8 @@ import Box from "@mui/material/Box";
 import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
 import {useTheme} from "@mui/material/styles";
 import Topbar from "./Topbar";
-import {filterData} from "../data/filter-data";
+// import {filterData} from "../data/filter-data";
+import filterData from "../data/filter-data.json"
 import Chips from "./filterChips";
 
 
@@ -28,7 +29,7 @@ function SearchSection() {
 
             {/*filters with chips*/}
             {/*<FilterTabs/>*/}
-            <Chips data={filterData}/>
+            <Chips data={filterData.filters}/>
         </Box>
     );
 }
