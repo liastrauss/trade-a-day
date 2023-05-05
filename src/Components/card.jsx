@@ -9,55 +9,68 @@ import AccessTimeFilledRoundedIcon from '@mui/icons-material/AccessTimeFilledRou
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import {CardActionArea} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import Box from "@mui/material/Box"
 
-export default function EventCard({id, picture, hostName, title, rating, location, duration}) {
+export default function EventCard({data}){
     const theme = useTheme();
-    let navigate = useNavigate()
+    let navigate = useNavigate();
     return (
-        <Card sx={{
-            width: 275,
-            fontFamily: theme.typography.fontFamily,
-            boxShadow: 0,
-            my: 2,
-            mx: 2,
-        }}
-        >
-            <CardActionArea     onClick={() => {
-                navigate(`/OverView2/${id}`);
-            }}>
-
-
-                <CardMedia
-                    component="img"
-                    image={picture}
-                    className="card-img"
-                    sx={{
-                        borderRadius: 3,
-                        height: 250
+        <Box sx={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+        }}>
+            {data.map((item) => (
+                    <Card sx={{
+                        width: 275,
+                        boxShadow: 0,
+                        my: 2,
+                        mx: 2,
                     }}
-                />
-                <CardContent sx={{
-                    fontSize: 13,
-                    fontWeight: theme.typography.fontWeightMedium,
-                    lineHeight: 0
-                }}
-                >
-                    {hostName}, {title}
-                </CardContent>
-                <CardActions
-                    sx={{
-                        color: theme.palette.text.secondary,
-                        fontWeight: theme.typography.fontWeightRegular,
-                        fontSize: 12,
-                        justifyContent: 'space-evenly',
-                        lineHeight: 0,
-                        mt: -2.5,
-                    }}>
-                    <p><LocationOnRoundedIcon sx={{fontSize: 13}}/>{location}</p>
-                    <p><AccessTimeFilledRoundedIcon sx={{fontSize: 13}}/>{duration}</p>
-                    <p><StarRateRoundedIcon sx={{fontSize: 13}}/>{rating}</p>
-                </CardActions>
-            </CardActionArea>
-        </Card>
-    );
+                    >
+                        <CardActionArea onClick={() => {
+                            navigate(`/OverView2/${item.id}`);
+                        }}>
+
+
+                            <CardMedia
+                                component="img"
+                                image={item.picture}
+                                className="card-img"
+                                sx={{
+                                    borderRadius: 3,
+                                    height: 250
+                                }}
+                            />
+                            <CardContent sx={{
+                                fontSize: 13,
+                                fontFamily: theme.typography.fontFamily,
+                                fontWeight: theme.typography.fontWeightMedium,
+                                lineHeight: 0
+                            }}
+                            >
+                                {item.hostName}, {item.title}
+                            </CardContent>
+                            <CardActions
+                                sx={{
+                                    color: theme.palette.text.secondary,
+                                    fontWeight: theme.typography.fontWeightRegular,
+                                    fontFamily: theme.typography.fontFamily,
+                                    fontSize: 12,
+                                    justifyContent: 'space-evenly',
+                                    lineHeight: 0,
+                                    mt: -2.5,
+                                }}>
+                                <p><LocationOnRoundedIcon sx={{fontSize: 13}}/>{item.location}</p>
+                                <p><AccessTimeFilledRoundedIcon sx={{fontSize: 13}}/>{item.duration}</p>
+                                <p><StarRateRoundedIcon sx={{fontSize: 13}}/>{item.rating}</p>
+                            </CardActions>
+                        </CardActionArea>
+                    </Card>
+            ))
+        }
+        </Box>
+    )
+
 }
