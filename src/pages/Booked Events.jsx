@@ -83,6 +83,8 @@ const drawerWidth = 240;
 
 function DashboardContent() {
     const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [selectedDay, setSelectedDay] = React.useState("day1");
+
 
     const mytheme = useTheme()
 
@@ -92,6 +94,17 @@ function DashboardContent() {
     ) => {
         setSelectedIndex(index);
     };
+
+    // this function is suitable for the host days, as it also changes the day that orders should render later:
+    const handleHostListItemClick = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        index: number,
+        day: string,
+    ) => {
+        setSelectedIndex(index);
+        setSelectedDay(day);
+    };
+
     const dayNames = Object.keys(data);
 
     return (
@@ -145,10 +158,11 @@ function DashboardContent() {
 
                         <List component="nav" aria-label="secondary mailbox folder">
 
-                            {dayNames.map((day) => (
+                            {dayNames.map((day,index) => (
                                 <ListItemButton
-                                //     selected={selectedIndex === 2}
-                                //     onClick={(event) => handleListItemClick(event, 2)}
+                                    // adding 2 to the index to account for how many "guest days" there are. should be dynamic
+                                    selected={selectedIndex === index+2}
+                                    onClick={(event) => handleHostListItemClick(event, index+2,day)}
                                     key={day}
 
                                 >
@@ -160,18 +174,6 @@ function DashboardContent() {
                             ))}
 
 
-                            <ListItemButton
-                                selected={selectedIndex === 2}
-                                onClick={(event) => handleListItemClick(event, 2)}
-                            >
-                                <ListItemText primary="September 14" />
-                            </ListItemButton>
-                            <ListItemButton
-                                selected={selectedIndex === 3}
-                                onClick={(event) => handleListItemClick(event, 3)}
-                            >
-                                <ListItemText primary="Trade a new day" />
-                            </ListItemButton>
                             <ListItemButton
                                 selected={selectedIndex === 4}
                                 onClick={(event) => handleListItemClick(event, 4)}
@@ -202,7 +204,8 @@ function DashboardContent() {
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <Orders dat={data.day3} />
+                                    {/*passing the correct day so it will render with important info from json*/}
+                                    <Orders dat={data[selectedDay]} />
                                 </Paper>
                             </Grid>
                         </Grid>
