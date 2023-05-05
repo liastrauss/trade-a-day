@@ -108,17 +108,18 @@ function DashboardContent() {
     const dayNames = Object.keys(data);
 
     return (
-        // <ThemeProvider theme={mytheme}>
-        <Container
-            // maxWidth="lg"
-            // sx={{ mt: 4, mb: 4 }}
-        >
-            <Box>
-                <Topbar AddDay/>
+        <div>
+        <Box>
+            <Topbar AddDay/>
             {/*    TODO - it gets smaller, but actually looks better. change others to match or change this*/}
-            </Box>
+        </Box>
 
-            {/*BOX FOR WHOLE PAGE*/}
+    <Container>
+            {/*// maxWidth="lg"*/}
+            {/*// sx={{ mt: 4, mb: 4 }}*/}
+
+
+        {/*BOX FOR WHOLE PAGE*/}
             <Box
                 sx={{ display: 'flex' }}
             >
@@ -128,7 +129,7 @@ function DashboardContent() {
                 <Box sx={{
                         alignItems: "flex-start",
                         width: '100%',
-                        maxWidth: 260,
+                        maxWidth: 220,
                         bgcolor: 'background.paper' }}>
                     <ListSubheader>As a Guest</ListSubheader>
                     <Divider/>
@@ -156,7 +157,7 @@ function DashboardContent() {
                     <ListSubheader>As a Host</ListSubheader>
                     <Divider />
 
-                        <List component="nav" aria-label="secondary mailbox folder">
+                        <List component="nav" aria-label="secondary host folder">
 
                             {dayNames.map((day,index) => (
                                 <ListItemButton
@@ -168,15 +169,15 @@ function DashboardContent() {
                                 >
                                 {/*let pat = {`data.${day}`};*/}
                                 {/*<Orders dat={pat} />*/}
-                                <ListItemText primary={day} />
+                                <ListItemText primary={data[day][0].day_date} />
                                 </ListItemButton>
 
                             ))}
 
 
                             <ListItemButton
-                                selected={selectedIndex === 4}
-                                onClick={(event) => handleListItemClick(event, 4)}
+                                selected={selectedIndex === 5}
+                                onClick={(event) => handleListItemClick(event, 5)}
                             >
                                 <ListItemText primary="Trade a new day" />
                             </ListItemButton>
@@ -213,7 +214,7 @@ function DashboardContent() {
                 </Box>
             </Box>
         </Container>
-        // </ThemeProvider>
+        </div>
 
     );
 }

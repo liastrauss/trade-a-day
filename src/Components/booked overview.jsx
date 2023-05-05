@@ -75,13 +75,13 @@ export default function Orders(props) {
     //     createData(person.id, person.date, person.name, person.shipTo, person.paymentMethod, person.amount)
     // );
     const { dat } = props;
-    // const { group } = props;
+
 
 
 
     return (
         <React.Fragment>
-            <Title>Guess Who's Coming</Title>
+            <Title dat>{dat[0].day_date}</Title>
             <Table size="small">
                 <TableHead>
                     <TableRow>
