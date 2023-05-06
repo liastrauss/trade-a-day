@@ -20,9 +20,6 @@ function Navbar() {
                 <li>
                     <Link to="/CreateProfile">CreateProfile</Link>
                 </li>
-                <li>
-                    <Link to="/CreateProfileNew">CreateProfileNew</Link>
-                </li>
             </ul>
         </nav>
     );
