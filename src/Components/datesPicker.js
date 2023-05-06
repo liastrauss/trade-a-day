@@ -20,11 +20,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
+import Fab from '@mui/material/Fab';
 import shadows from '@mui/system'
 import Paper from "@mui/material/Paper";
 
 
-export  function ControlledRadioButtonsGroup() {
+export function ControlledRadioButtonsGroup() {
     const [value, setValue] = React.useState('1.6.23');
 
     const handleChange = (event) => {
@@ -100,7 +101,7 @@ const tiers = [
 ];
 
 
-export default function DatesPicker() {
+export function DatesPicker() {
     return (
         <React.Fragment>
             <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />

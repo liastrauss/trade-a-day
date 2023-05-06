@@ -59,14 +59,14 @@ export default function ItemsForm() {
         { id: 3, label: "Sunglasses",
             picture: "https://images.unsplash.com/photo-1577803645773-f96470509666?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
         },
-        { id: 4, label: "A lot of water",
+        { id: 4, label: "Water",
             picture: "https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2236&q=80",
         },
     ]);
 
     return (
         <div>
-        <Typography variant="h6">What should they bring?</Typography>
+        <Typography variant="h6">What to bring?</Typography>
         <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
             {items.map((item) => {
                 const labelId = `checkbox-list-secondary-label-${item.id}`;

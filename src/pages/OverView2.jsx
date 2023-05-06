@@ -26,10 +26,8 @@ import Typography from '@mui/material/Typography';
 import {createTheme, ThemeProvider, useTheme} from '@mui/material/styles';
 import HostInfo from "../Components/hostInfo";
 import Logo from "../Components/logo";
-// import ControlledRadioButtonsGroup from "../Components/datesPicker";
-import DatesPicker from "../Components/datesPicker";
-import {DialogActions, DialogContent, DialogTitle, Divider, Dialog} from "@mui/material";
-import {Grid} from "@mui/material"
+// import DatesPicker from "../Components/datesPicker";
+import {Avatar, Grid, ListItem, ListItemAvatar} from "@mui/material"
 import CardContent from "@mui/material/CardContent";
 import {useState} from "react";
 import Topbar from "../Components/Topbar";
@@ -38,8 +36,10 @@ import Topbar from "../Components/Topbar";
 // An array that stores the labels for the steps of the checkout process
 // for dialog:
 // FOR DIALOG CHOICE:
-// import {DialogActions, DialogContent, DialogTitle, Divider, Dialog} from "@mui/material";
-// import ControlledRadioButtonsGroup from "../Components/datesPicker";
+import {DialogActions, DialogContent, DialogTitle, Divider, Dialog} from "@mui/material";
+import {ControlledRadioButtonsGroup} from "../Components/datesPicker";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
 // function SimpleDialog(props) {
 //     const { onClose, selectedValue, open } = props;
 //
@@ -84,44 +84,39 @@ import Topbar from "../Components/Topbar";
 //         </Dialog>
 //     );
 // }
-//
-// SimpleDialog.propTypes = {
-//     onClose: PropTypes.func.isRequired,
-//     open: PropTypes.bool.isRequired,
-//     selectedValue: PropTypes.string.isRequired,
-// };
-//
-// export function DialogWithCard() {
-//     const [open, setOpen] = useState(false);
-//
-//     const handleOpen = () => {
-//         setOpen(true);
-//     };
-//
-//     const handleClose = () => {
-//         setOpen(false);
-//     };
-//
-//     return (
-//         <div>
-//             <Button variant="outlined" onClick={handleOpen}>
-//                 Book
-//             </Button>
-//             <Dialog open={open} onClose={handleClose}>
-//                 <DialogTitle>Book your Day</DialogTitle>
-//                 <DialogContent>
-//                     <ControlledRadioButtonsGroup/>
-//                 </DialogContent>
-//                 <DialogActions>
-//                     <Button onClick={handleClose}>Cancel</Button>
-//                     <Button onClick={handleClose} variant="contained" autoFocus>
-//                         Book
-//                     </Button>
-//                 </DialogActions>
-//             </Dialog>
-//         </div>
-//     );
-// }
+
+
+export function DialogWithCard() {
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    return (
+        <div>
+            <Button variant="outlined" onClick={handleOpen}>
+                Book
+            </Button>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Book your Day</DialogTitle>
+                <DialogContent>
+                    <ControlledRadioButtonsGroup/>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose} variant="contained" autoFocus>
+                        Book
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </div>
+    );
+}
 
 
 // A function that returns the content of a specific step, based on the index passed as argument
@@ -172,11 +167,12 @@ export default function OverView2() {
                     </Grid>
                     {/*<ControlledRadioButtonsGroup></ControlledRadioButtonsGroup>*/}
                     <Grid item xs={12}>
-                        <DatesPicker/>
-                        {/*<DialogWithCard/>*/}
+                        {/*<DatesPicker/>*/}
+                        <DialogWithCard/>
                     </Grid>
                 </Grid>
                 <React.Fragment>
+
 
                     {/*<Button*/}
                     {/*    variant="outlined"*/}

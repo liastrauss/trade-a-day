@@ -28,7 +28,7 @@ import ItemsForm from "../Components/ItemsForm";
 // import PickDates from "../Components/PickDates";
 import HostInfo from "../Components/hostInfo";
 import Logo from "../Components/logo";
-import ControlledRadioButtonsGroup from "../Components/datesPicker";
+import {ControlledRadioButtonsGroup} from "../Components/datesPicker";
 
 
 // An array that stores the labels for the steps of the checkout process
@@ -49,7 +49,7 @@ function getStepContent(step) {
 
 
 
-export default function OverView2() {
+export default function OverView() {
 
     let navigate = useNavigate();
     // A state hook that keeps track of the currently active step
