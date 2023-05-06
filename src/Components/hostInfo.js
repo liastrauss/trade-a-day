@@ -9,13 +9,13 @@ import {
 // import Button from "@mui/material/Button";
 // import {PhotoCamera} from "@mui/icons-material";
 import {useTheme} from "@mui/material/styles";
-import {Mapp, StandardImageList} from "./view2";
+import {StandardImageList} from "./view2";
 
 import {Information} from "../pages/OverView-elements/information";
 import Box from "@mui/material/Box";
-import {cardData} from "../data/card-data";
+// import {cardData} from "../data/card-data";
 import {useParams} from "react-router-dom";
-
+import info from "../data/event-data.json";
 
 // {{Information.map((params, index)  => (
 //     {index===1 && return({props}))
@@ -36,11 +36,11 @@ function HostInfo() {
     let {index} = useParams();
     console.log(index);
 
-    let hostt = cardData[index - 1].hostName;
-    let about = cardData[index - 1].about;
-    let address = cardData[index - 1].location;
-    let bring = cardData[index - 1].bring;
-    let time = cardData[index - 1].duration;
+    let hostt = info.events[index - 1].hostName;
+    let about = info.events[index - 1].about;
+    let address = info.events[index - 1].location;
+    let bring = info.events[index - 1].bring;
+    let time = info.events[index - 1].duration;
 
     return (
         <React.Fragment>
