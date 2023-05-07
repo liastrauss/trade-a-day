@@ -4,6 +4,7 @@ import info from "../data/event-data.json";
 import React from "react";
 import {Grid, Typography} from "@mui/material";
 import {StandardImageList} from "./view2";
+import Button from "@mui/material/Button";
 
 function HostInfo2(props) {
     const theme = useTheme();
@@ -50,7 +51,7 @@ function HostInfo2(props) {
                     {/*</Grid>*/}
                     {/*<StandardImageList/>*/}
 
-                    <Grid item xs={4}>
+                    <Grid item xs={2}>
                         <Typography variant="subtitle2" color="primary">
                             Location
                         </Typography>
@@ -64,7 +65,7 @@ function HostInfo2(props) {
                     {/*<Grid item xs={6} justifyContent="flex-start" alignContent = "center">*/}
                     {/*    <Mapp/>*/}
                     {/*</Grid>*/}
-                    <Grid item xs={4}>
+                    <Grid item xs={3}>
 
                         <Typography variant="subtitle2" color="primary">
                             What to bring:
@@ -76,7 +77,7 @@ function HostInfo2(props) {
 
                     </Grid>
 
-                    <Grid item xs={4}>
+                    <Grid item xs={2}>
 
                         <Typography variant="subtitle2" color="primary">
                             Duration:
@@ -85,6 +86,10 @@ function HostInfo2(props) {
                             {time}
                         </Typography>
 
+                    </Grid>
+
+                    <Grid item xs={2}>
+                    <Button variant="contained">chat now</Button>
                     </Grid>
 
                 </Grid>

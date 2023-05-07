@@ -12,8 +12,8 @@ import Typography from '@mui/material/Typography';
 import Logo from "../Components/logo"
 
 // Importing three form components that will be rendered inside the  component
-import MoreDetails from "../Components/SignUpMoreDetails";
-import SignUp from "../Components/SignUpNew";
+// import MoreDetails from "../Components/SignUpMoreDetails";
+// import SignUp from "../Components/SignUpNew";
 import Topbar from "../Components/Topbar";
 import MoreDetails from "../Components/CreateProfileMoreDetails";
 import SignUp from "../Components/CreateProfileBasicInfo";

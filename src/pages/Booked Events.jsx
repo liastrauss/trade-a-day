@@ -14,6 +14,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import HostInfo2 from "../Components/hostInfo2";
 import ListSubheader from "@mui/material/ListSubheader";
 import data from '../data/booked-days.json';
+import Button from "@mui/material/Button";
 
 
 
@@ -129,7 +130,7 @@ function DashboardContent() {
                                 {/*<ListItemIcon>*/}
                                 {/*    <InboxIcon />*/}
                                 {/*</ListItemIcon>*/}
-                                <ListItemText primary="June 30" secondary="day with Tom"/>
+                                <ListItemText primary="June 30"/>
                             </ListItemButton>
                             <ListItemButton
                                 selected={selectedIndex === 1}
@@ -198,7 +199,9 @@ function DashboardContent() {
                                         <Orders dat={data[selectedDay]} />
                                         :
                                         // plaster - changing the props of the index of event-data from which to take the host info
-                                        <HostInfo2 index={selectedIndex+1}/>}
+                                        <HostInfo2 index={selectedIndex+1}/>
+
+                                    }
                                 </Paper>
                             </Grid>
                         </Grid>
