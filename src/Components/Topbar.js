@@ -136,6 +136,7 @@ export default function Topbar(props) {
                 //     placeholder with empty space so it will look the same
                 :  <Box sx={{width: 350, height: 32}} />
                         }
+
                 <Box sx={{
                     display: 'flex',
                     justifyContent: 'space-around',
