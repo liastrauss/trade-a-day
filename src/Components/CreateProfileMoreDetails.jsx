@@ -1,26 +1,8 @@
 import React from 'react';
-import {
-    Autocomplete, Avatar, ButtonGroup,
-    Checkbox,
-    FormControlLabel,
-    Grid, IconButton,
-    List, ListItem, ListItemAvatar, ListItemText,
-    Rating,
-    Switch,
-    TextField, ToggleButton,
-    Typography,
-} from "@mui/material";
-// import { alpha, styled } from '@mui/material/styles';
-import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-import FolderIcon from '@mui/icons-material/Folder';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Button from "@mui/material/Button";
-import {PhotoCamera} from "@mui/icons-material";
-import { useTheme } from "@mui/material/styles";
+import {Autocomplete, Grid, TextField, ToggleButton, Typography} from "@mui/material";
 import {ToggleButtonGroup} from "@mui/lab";
 
 function MoreDetails () {
-    const theme = useTheme();
     const [alignment, setAlignment] = React.useState('left');
 
     const handleChange = (event, newAlignment) => {
@@ -85,7 +67,7 @@ function MoreDetails () {
                             exclusive
                             onChange={handleChange}
                             aria-label="where">
-                            <ToggleButton value="Cat">Cats :}</ToggleButton>
+                            <ToggleButton value="Cat">Cats :)</ToggleButton>
                             <ToggleButton value="Dog">Dogs =D</ToggleButton>
                             <ToggleButton value="None">None :(</ToggleButton>
                         </ToggleButtonGroup>
