@@ -32,7 +32,7 @@ const users = [
     },
 ];
 
-export function ChatBox1 () {
+export default function ChatBox () {
     const [value, setValue] = useState(null);
     const [hover, setHover] = useState(-1);
 
@@ -242,7 +242,7 @@ export function ChatBox1 () {
 //     );
 // }
 
-export default function ChatBox() {
+export  function ChatBox2() {
     return (
         <div>
             <Box sx={{ backgroundColor: '#eee' }}>

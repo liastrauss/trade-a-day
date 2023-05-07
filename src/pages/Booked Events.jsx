@@ -82,7 +82,7 @@ const drawerWidth = 240;
 // const mdTheme = useTheme();
 
 function DashboardContent() {
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [selectedIndex, setSelectedIndex] = React.useState(3);
     const [selectedDay, setSelectedDay] = React.useState("day1");
 
 

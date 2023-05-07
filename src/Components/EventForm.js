@@ -158,7 +158,8 @@ function EventForm () {
                         >
                             <ToggleButton value="indoors">indoors</ToggleButton>
                             <ToggleButton value="outdoors">outdoors</ToggleButton>
-                        </ToggleButtonGroup>                    </Grid>
+                        </ToggleButtonGroup>
+                    </Grid>
                     <Grid item xs={3}
                           direction="row"
                           justifyContent="flex-start"

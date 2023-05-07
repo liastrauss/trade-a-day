@@ -9,6 +9,9 @@ import data from '../data/booked-days.json';
 // import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
+import {Avatar} from "@mui/material";
+import {useTheme} from "@mui/material/styles";
+import {palette} from "@mui/system";
 
 function Title(props) {
     return (
@@ -74,6 +77,7 @@ export default function Orders(props) {
     // const rows= data.map(person =>
     //     createData(person.id, person.date, person.name, person.shipTo, person.paymentMethod, person.amount)
     // );
+    const theme =useTheme()
     const { dat } = props;
 
 
@@ -85,6 +89,7 @@ export default function Orders(props) {
             <Table size="small">
                 <TableHead>
                     <TableRow>
+                        <TableCell></TableCell>
                         <TableCell>Name</TableCell>
                         <TableCell>Num. of Guests</TableCell>
                         <TableCell>Special Requests</TableCell>
@@ -96,6 +101,11 @@ export default function Orders(props) {
 
                     {dat.map((row) => (
                         <TableRow key={row.id}>
+                            <TableCell>
+                                <Avatar alt={row.name} src={row.picture}
+                                        sx={{ bgcolor: 'secondary.main' }}
+                                />
+                            </TableCell>
                             <TableCell>{row.name}</TableCell>
                             <TableCell>{row.num_people}</TableCell>
                             <TableCell>{row.special_requests}</TableCell>
