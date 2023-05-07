@@ -12,11 +12,8 @@ const AllFilters = ({data}) => {
         }}
         />;
     });
-    // return <div className = "cards-container">{filters}</div>
     return <Box sx={{
         display: 'flex',
-        // alignItems: 'flex-end',
-        // justifyContent: 'centered',
         mt: 2
     }}
         >{filters}

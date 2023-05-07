@@ -1,0 +1,50 @@
+{
+  "day1": [
+    {
+      "id": 0,
+      "name": "John Smith",
+      "num_people": 2,
+      "special_requests": "Extra toweliss and pillows",
+      "day_date": "01/05/2023"
+    },
+    {
+      "id": 1,
+      "name": "Jane Doe",
+      "num_people": 3,
+      "special_requests": "High floor with a view",
+      "day_date": "01/05/2023"
+    }
+  ],
+  "day2": [
+    {
+      "id": 0,
+      "name": "Bob Johnson",
+      "num_people": 4,
+      "special_requests": "Connecting rooms",
+      "day_date": "02/05/2023"
+    },
+    {
+      "id": 1,
+      "name": "Sarah Lee",
+      "num_people": 1,
+      "special_requests": "Early check-in",
+      "day_date": "02/05/2023"
+    }
+  ],
+  "day3": [
+    {
+      "id": 0,
+      "name": "David Kim",
+      "num_people": 2,
+      "special_requests": "Late check-out",
+      "day_date": "03/05/2023"
+    },
+    {
+      "id": 1,
+      "name": "Jessica Park",
+      "num_people": 2,
+      "special_requests": "Near the elevator",
+      "day_date": "03/05/2023"
+    }
+  ]
+}

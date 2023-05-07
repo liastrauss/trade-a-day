@@ -53,20 +53,20 @@ export default function ItemsForm() {
     const [items, setItems] = React.useState([
     { id: 1, label: "Hiking Shoes",
             picture: "https://images.unsplash.com/photo-1551384955-233da563a9bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1959&q=80" },
-        { id: 2, label: "A Change of Clothes",
+        { id: 2, label: "Outdoor Clothes",
             picture: "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=654&q=80"
         },
         { id: 3, label: "Sunglasses",
             picture: "https://images.unsplash.com/photo-1577803645773-f96470509666?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
         },
-        { id: 4, label: "A lot of water",
+        { id: 4, label: "Water",
             picture: "https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2236&q=80",
         },
     ]);
 
     return (
         <div>
-        <Typography variant="h6">What should they bring?</Typography>
+        <Typography variant="h6">What to bring?</Typography>
         <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
             {items.map((item) => {
                 const labelId = `checkbox-list-secondary-label-${item.id}`;
@@ -82,8 +82,7 @@ export default function ItemsForm() {
                                 inputProps={{ 'aria-labelledby': labelId }}
                             />
                         }
-                        disablePadding
-                        color= "red"
+                        // disablePadding
                     >
                         <ListItemButton>
                             <ListItemAvatar>
@@ -101,7 +100,7 @@ export default function ItemsForm() {
                                     <TextField
                                         onChange={(e) => handleChangeText(item.id, e.target.value)}
                                         value={item.label}
-                                        variant = "filled"
+                                        variant = "outlined"
                                         placeholder={`Item ${item.id + 1}`}
                                     />
                                 }

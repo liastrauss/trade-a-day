@@ -1,49 +1,33 @@
 import React from "react";
-import SearchBox from "./searchBox";
-import Logo from "./logo";
-import {Avatar, Button, Divider} from "@mui/material";
+import FilterTabs from "./filterChips";
 import AllFilters from "./allFilters";
-import {filterData} from "../data/filter-data";
 // for the routing to other pages
 import {useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
+import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
+import {useTheme} from "@mui/material/styles";
+import filterData from "../data/filter-data.json"
+import Chips from "./filterChips";
 
 
 function SearchSection() {
-    let navigate = useNavigate();
+    const theme = useTheme();
     return (
         <Box>
-            <Box sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                mx: 4
-            }}>
-                <Logo/>
-                <SearchBox/>
-                <Box sx={{
-                    display: 'flex',
-                    justifyContent: 'space-around',
-                }}>
-                    <Button
-                        variant="text"
-                        onClick={() => {
-                            navigate("/AddEvent");
-                        }}
-                    >
-                        Trade your day
-                    </Button>
-                    {/*<Button variant="text">Booked experiences</Button>*/}
-                    <Avatar src="/broken-image.jpg" />
-                </Box>
-            </Box>
-            <Divider />
-            {/*<div className="filter-buttons-container">*/}
-            <Box sx={{
-                display: 'flex',
-            }}>
-                <AllFilters data={filterData}/>
-            </Box>
+            {/*<Topbar Search AddDay Profile/>*/}
+
+            {/*filters with buttons */}
+            {/*<Box sx={{*/}
+            {/*    display: 'flex',*/}
+            {/*    justifyContent: 'centered',*/}
+            {/*    alignItems: 'center',*/}
+            {/*}}>*/}
+            {/*    <AllFilters data={filterData}/>*/}
+            {/*</Box>*/}
+
+            {/*filters with chips*/}
+            {/*<FilterTabs/>*/}
+            <Chips data={filterData.filters}/>
         </Box>
     );
 }

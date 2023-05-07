@@ -1,3 +1,4 @@
+
 // import {useTheme} from "@mui/material/styles";
 // import {useParams} from "react-router-dom";
 // import {cardData} from "../data/card-data";
@@ -6,7 +7,7 @@
 // import {Mapp, StandardImageList} from "../Components/view2";
 //
 
-
+import {useNavigate} from "react-router-dom"
 
 // GITHUB CODE
 import * as React from 'react';
@@ -22,118 +23,168 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
-import EventForm from "../Components/EventForm";
-import ItemsForm from "../Components/ItemsForm";
+import {createTheme, ThemeProvider, useTheme} from '@mui/material/styles';
 import HostInfo from "../Components/hostInfo";
 import Logo from "../Components/logo";
-import ControlledRadioButtonsGroup from "../Components/datesPicker";
+// import DatesPicker from "../Components/datesPicker";
+import {Avatar, Grid, ListItem, ListItemAvatar} from "@mui/material"
+import CardContent from "@mui/material/CardContent";
+import {useState} from "react";
+import Topbar from "../Components/Topbar";
 
 
 // An array that stores the labels for the steps of the checkout process
-const steps = ['about the place', 'available dates'];
+// for dialog:
+// FOR DIALOG CHOICE:
+import {DialogActions, DialogContent, DialogTitle, Divider, Dialog} from "@mui/material";
+import {ControlledRadioButtonsGroup} from "../Components/datesPicker";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+// function SimpleDialog(props) {
+//     const { onClose, selectedValue, open } = props;
+//
+//     const handleClose = () => {
+//         onClose(selectedValue);
+//     };
+//
+//     const handleListItemClick = (value) => {
+//         onClose(value);
+//     };
+//     return (
+//         <Dialog onClose={handleClose} open={open}>
+//             <DialogTitle>Set backup account</DialogTitle>
+//             <List sx={{ pt: 0 }}>
+//                 {emails.map((email) => (
+//                     <ListItem disableGutters>
+//                         <ListItemButton onClick={() => handleListItemClick(email)} key={email}>
+//                             <ListItemAvatar>
+//                                 <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
+//                                     <PersonIcon />
+//                                 </Avatar>
+//                             </ListItemAvatar>
+//                             <ListItemText primary={email} />
+//                         </ListItemButton>
+//                     </ListItem>
+//                 ))}
+//
+//                 <ListItem disableGutters>
+//                     <ListItemButton
+//                         autoFocus
+//                         onClick={() => handleListItemClick('addAccount')}
+//                     >
+//                         <ListItemAvatar>
+//                             <Avatar>
+//                                 <AddIcon />
+//                             </Avatar>
+//                         </ListItemAvatar>
+//                         <ListItemText primary="Add account" />
+//                     </ListItemButton>
+//                 </ListItem>
+//             </List>
+//         </Dialog>
+//     );
+// }
 
 
+export function DialogWithCard() {
+    const [open, setOpen] = useState(false);
 
-// A function that returns the content of a specific step, based on the index passed as argument
-function getStepContent(step) {
-    switch (step) {
-        case 0:
-            return <HostInfo/>
-        case 1:
-            return <ControlledRadioButtonsGroup/>;
-        default:
-            throw new Error('Unknown step');
-    }
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    return (
+        <div>
+            <Button variant="outlined" onClick={handleOpen}>
+                Book
+            </Button>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Book your Day</DialogTitle>
+                <DialogContent>
+                    <ControlledRadioButtonsGroup/>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose} variant="contained" autoFocus>
+                        Book
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </div>
+    );
 }
 
 
+// A function that returns the content of a specific step, based on the index passed as argument
 
 export default function OverView2() {
-    // A state hook that keeps track of the currently active step
-    const [activeStep, setActiveStep] = React.useState(0);
-    // A function that increments the activeStep state when called
-    const handleNext = () => {
-        setActiveStep(activeStep + 1);
-    };
-    // A function that decrements the activeStep state when called
-    const handleBack = () => {
-        setActiveStep(activeStep - 1);
-    };
 
-    // The component's JSX code that gets returned
+
+    let navigate = useNavigate();
+
+
+
+        // The component's JSX code that gets returned
     return (
         <div>
-        {/* The top app bar of the checkout page*/}
-        <AppBar
-            position="sticky"
-            color="transparent"
-            elevation={0}
-            sx={{
-                position: 'relative',
-                borderBottom: (t) => `1px solid ${t.palette.divider}`,
-            }}
-        >
-            <Toolbar>
-                {/* The title of the app in the app bar */}
-                {/*<Typography variant="h6" noWrap color = "primary">*/}
-                {/*    Trade a Day*/}
-                {/*</Typography>*/}
-                <Logo sx = {{}}></Logo>
-            </Toolbar>
-        </AppBar>
+            {/* The top app bar of the checkout page*/}
+            <Topbar AddDay/>
+            {/*<AppBar*/}
+            {/*    position="sticky"*/}
+            {/*    color= "background"*/}
+            {/*    elevation={0}*/}
+            {/*    sx={{*/}
+            {/*        borderBottom: (t) => `1px solid ${t.palette.divider}`,*/}
+            {/*        mt: 2*/}
+            {/*    }}*/}
+            {/*>*/}
+            {/*    <Toolbar>*/}
+            {/*        /!* The title of the app in the app bar *!/*/}
+            {/*        /!*<Typography variant="h6" noWrap color = "primary">*!/*/}
+            {/*        /!*    Trade a Day*!/*/}
+            {/*        /!*</Typography>*!/*/}
+            {/*        <Logo sx={{}}></Logo>*/}
+            {/*    </Toolbar>*/}
+            {/*</AppBar>*/}
 
-        <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-            <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-                {/* The title of the  page */}
+            <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
 
-                <Typography component="h1" variant="h4" align="center">
-                    Trade A Day
-                </Typography>
+                <Grid
+                    container
+                    direction="row"
+                    justifyContent="space-around"
+                    alignItems="center"
+                    spacing = {5}
+                >
 
-                {/* The stepper component that displays the current step of the checkout process */}
-                <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-                    {steps.map((label) => (
-                        <Step key={label}>
-                            <StepLabel>{label}</StepLabel>
-                        </Step>
-                    ))}
-                </Stepper>
-                {activeStep === steps.length ? (
-                    <React.Fragment>
-                        <Typography variant="h5" gutterBottom>
-                            we booked the occasion for you!
-                        </Typography>
-                        <Typography variant="subtitle1">
-                            We have emailed you the details of the occasion.
-                        </Typography>
-                        <Typography variant="subtitle1">
-                            In addition, you can see it on our website also under "BOOKED EXPERIENCES".
-                        </Typography>
+                    <Grid item xs={12}>
+                        <HostInfo/>
 
-                    </React.Fragment>
-                ) : (
-                    <React.Fragment>
-                        {getStepContent(activeStep)}
-                        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                            {activeStep !== 0 && (
-                                <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                                    Back
-                                </Button>
-                            )}
+                    </Grid>
+                    {/*<ControlledRadioButtonsGroup></ControlledRadioButtonsGroup>*/}
+                    <Grid item xs={12}>
+                        {/*<DatesPicker/>*/}
+                        <DialogWithCard/>
+                    </Grid>
+                </Grid>
+                <React.Fragment>
 
-                            <Button
-                                variant="contained"
-                                onClick={handleNext}
-                                sx={{ mt: 3, ml: 1 }}
-                            >
-                                {activeStep === steps.length - 1 ? 'Book' : 'Next'}
-                            </Button>
-                        </Box>
-                    </React.Fragment>
-                )}
-            </Paper>
-        </Container>
+
+                    {/*<Button*/}
+                    {/*    variant="outlined"*/}
+                    {/*    onClick={() => {*/}
+                    {/*        navigate("/");*/}
+                    {/*    }}*/}
+
+                    {/*    sx={{display: "flex", justifyContent: 'flex end'}}*/}
+                    {/*> Book*/}
+                    {/*</Button>*/}
+                </React.Fragment>
+            </Container>
         </div>
     );
 }

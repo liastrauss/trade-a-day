@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Autocomplete, Avatar, ButtonGroup,
     Checkbox,
-    FormControlLabel,
+    FormControlLabel, FormGroup,
     Grid, IconButton,
     List, ListItem, ListItemAvatar, ListItemText,
     Rating,
@@ -18,21 +18,44 @@ import Button from "@mui/material/Button";
 import {PhotoCamera} from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import {ToggleButtonGroup} from "@mui/lab";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+// for rating:
+const labels = {
+    0.5: 'Very easy',
+    1: 'Very easy',
+    1.5: 'Easy',
+    2: 'Easy',
+    2.5: 'Moderate',
+    3: 'Moderate',
+    3.5: 'Somewhat difficult',
+    4: 'Difficult',
+    4.5: 'Very difficult',
+    5: 'Extremely difficult',
+};
 
+function getLabelText(value) {
+    return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+}
 function EventForm () {
     const theme = useTheme();
     const [alignment, setAlignment] = React.useState('left');
+    const [value, setValue] = React.useState(2);
+    const [hover, setHover] = React.useState(-1);
+
 
     const handleChange = (event, newAlignment) => {
         setAlignment(newAlignment);
     };
+
 
     return (
         <React.Fragment>
         <div>
             <Typography variant="h6" gutterBottom> Tell us about yourself
             </Typography>
-            <Grid container spacing={3}   justifyContent="flex-start" alignContent = "center"
+            <Grid container spacing={3}   justifyContent="flex-start"   alignItems="stretch"
+
             >
                 <Grid item xs={12}>
                     <TextField
@@ -43,7 +66,6 @@ function EventForm () {
                        fullWidth
                 />
                 </Grid>
-
                 <Grid item sm={6}>
                     <Autocomplete
                         disablePortal
@@ -59,54 +81,102 @@ function EventForm () {
                         required
                         id="Address"
                         label="Address"
-                        variant="standard"
+                        variant="outlined"
                     />
                 </Grid>
-                <Grid item sm={6} xl={12}>
-                        <Typography component="legend" align="center">Physical Effort</Typography>
-                        Easy
-                        <Rating
+                {/*new rating:*/}
+                <Grid item sm={12}>
+                    <Paper variant="outlined" sx={{ p: 2, outline: '1px' }}>
+                        <Box
+                        sx={{
+                            width: 200,
+                            display: 'flex',
+                            alignItems: 'center',
+                            typography: 'subtitle1',
+                            // color: 'text.secondary'
+                            // borderRadius: 2,
+                            // p: 1,
+
+                        }}
+                    >
+                            <Typography component="legend" align="center" variant="body">Physical Effort</Typography>
+                            <Rating
                             sx={{
                                 color: theme.palette.primary.main, // set the color to value from app js
                             }}
-                            name="difficultyLevel"
+                            name="Physical-Effort"
                             defaultValue={3}
                             size="large"
-                            // getLabelText={getLabelText}
-
+                            value={value}
                             precision={1}
+                            getLabelText={getLabelText}
+                            onChange={(event, newValue) => {
+                                setValue(newValue);
+                            }}
+                            onChangeActive={(event, newHover) => {
+                                setHover(newHover);
+                            }}
                             icon={<DirectionsRunIcon fontSize="inherit" />}
-                            emptyIcon={<DirectionsRunIcon fontSize="inherit" />}
-                        //     value={value}
-                        //     getLabelText={getLabelText}
-                        //     onChange={(event, newValue) => {
-                        //         setValue(newValue);
-                        //     }}
-                        //     onChangeActive={(event, newHover) => {
-                        //         setHover(newHover);
-                        //     }}
-                        // />
-                        // {value !== null && (
-                        //     <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
-                        // )}
-                        />
-                        Hard
-                    </Grid>
-                    <Grid item xs={6}>
+                            emptyIcon={<DirectionsRunIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                            />
+                            {value !== null && (
+                                <Box sx={{ ml: 2, color: 'text.secondary' }}>{labels[hover !== -1 ? hover : value]}</Box>
+                            )}
+                        </Box>
+                    </Paper>
+                </Grid>
+
+                {/*<Grid item sm={6} xl={12}>*/}
+                {/*        <Typography component="legend" align="center">Physical Effort</Typography>*/}
+                {/*        Easy*/}
+                {/*        <Rating*/}
+                {/*            sx={{*/}
+                {/*                color: theme.palette.primary.main, // set the color to value from app js*/}
+                {/*            }}*/}
+                {/*            name="Physical-Effort"*/}
+                {/*            defaultValue={3}*/}
+                {/*            size="large"*/}
+                {/*            // getLabelText={getLabelText}*/}
+                {/*            precision={1}*/}
+                {/*            icon={<DirectionsRunIcon fontSize="inherit" />}*/}
+                {/*            emptyIcon={<DirectionsRunIcon fontSize="inherit" />} />*/}
+
+                {/*        Hard*/}
+                {/*    </Grid>*/}
+                    <Grid item xs={5}
+                          // direction="row"
+                          // justifyContent="space-between"
+                          // alignItems="center"
+                          // display="flex"
+                    >
                         <ToggleButtonGroup
                             color="primary"
                             value={alignment}
                             exclusive
                             onChange={handleChange}
-                            aria-label="where"
+                            aria-label="indoorsoroutdoors"
                         >
                             <ToggleButton value="indoors">indoors</ToggleButton>
                             <ToggleButton value="outdoors">outdoors</ToggleButton>
                         </ToggleButtonGroup>                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography>Accessible?</Typography>
+                    <Grid item xs={3}
+                          direction="row"
+                          justifyContent="flex-start"
+                          alignItems="center"
+                          display="flex"
+
+                    >
+                        <FormGroup>
+                            <FormControlLabel
+                                control={<Switch defaultChecked />}
+                                label="Accessible?"
+                                labelPlacement="start"
+                            />
+                        </FormGroup>
+
+                            {/*<Typography variant="body">Accessible?</Typography>*/}
                         {/*<Switch />*/}
-                        <Checkbox />
+                        {/*<Checkbox />*/}
                     </Grid>
                     <Grid item xs={12}>
                         <TextField
@@ -114,7 +184,6 @@ function EventForm () {
                             multiline
                             fullWidth
                             minRows = {4}
-                            helperText="Just a couple of words!!"
                             id="describeExperience"
                             label="Describe the experience"
                             placeholder="A day out in the pasture with some cows"
@@ -125,30 +194,6 @@ function EventForm () {
 
 
 
-                        {/*<Grid item xs={12} sm={6}>*/}
-
-                        {/*     <List>*/}
-                        {/*            <ListItem*/}
-                        {/*                secondaryAction={*/}
-                        {/*                    <IconButton edge="end" aria-label="delete">*/}
-                        {/*                        <DeleteIcon />*/}
-                        {/*                    </IconButton>*/}
-                        {/*                }*/}
-                        {/*            >*/}
-                        {/*                <ListItemAvatar>*/}
-                        {/*                    <Avatar>*/}
-                        {/*                        <FolderIcon />*/}
-                        {/*                    </Avatar>*/}
-                        {/*                </ListItemAvatar>*/}
-                        {/*                <ListItemText*/}
-                        {/*                    primary="Shoes"*/}
-                        {/*                    // secondary={secondary ? 'Secondary text' : null}*/}
-                        {/*                />*/}
-                        {/*            </ListItem>*/}
-                        {/*    </List>*/}
-
-
-                        {/*</Grid>*/}
 
 
 
