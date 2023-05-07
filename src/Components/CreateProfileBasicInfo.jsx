@@ -30,7 +30,7 @@ function SignUp() {
     return (
         <React.Fragment>
             <div>
-                <Typography variant="h6" gutterBottom>Let's get to know you better!</Typography>
+                <Typography variant="h6" gutterBottom>Please enter your personal details</Typography>
                 <Grid container spacing={3}   justifyContent="flex-start" alignContent = "center">
                         <Grid item xs={12} sm={6}>
                             <TextField

@@ -15,8 +15,8 @@ import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import Logo from "../Components/logo"
 
 // Importing three form components that will be rendered inside the  component
-import MoreDetails from "../Components/SignUpMoreDetails";
-import SignUp from "../Components/SignUpNew";
+import MoreDetails from "../Components/CreateProfileMoreDetails";
+import SignUp from "../Components/CreateProfileBasicInfo";
 
 
 // An array that stores the labels for the steps of the checkout process
