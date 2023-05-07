@@ -48,7 +48,7 @@ export default function ChatBox () {
 
     return (
         <div>
-            <Topbar/>
+            <Topbar BookedEvents AddDay Search/>
             <Grid container>
                 <Grid item xs={12}>
                     <Typography variant="h3" className="header-message">

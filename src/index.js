@@ -88,7 +88,6 @@ export default function App() {
                                 <Route path="AddEvent" element={<AddEvent/>} />
                                 <Route path="OverView2/:index" element={<OverView2/>} />
                                 <Route path="CreateProfile" element={<CreateProfile/>} />
-                                <Route path="CreateProfile" element={<CreateProfile/>} />
                                 <Route path="Chat" element={<Chat/>} />
                                 <Route path="BookedEvents" element={<BookedEvents/>} />
 
