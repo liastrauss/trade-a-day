@@ -6,12 +6,10 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import data from '../data/booked-days.json';
-// import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import {Avatar} from "@mui/material";
 import {useTheme} from "@mui/material/styles";
-import {palette} from "@mui/system";
 
 function Title(props) {
     return (
@@ -21,11 +19,7 @@ function Title(props) {
     );
 }
 
-// Title.propTypes = {
-//     children: PropTypes.node,
-// };
 
-// Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
     return { id, date, name, shipTo, paymentMethod, amount };
 }
@@ -71,12 +65,6 @@ function preventDefault(event) {
 }
 
 export default function Orders(props) {
-    // const rows = props.data.map(person =>
-    //     createData(person.id, person.date, person.name, person.shipTo, person.paymentMethod, person.amount)
-    // );
-    // const rows= data.map(person =>
-    //     createData(person.id, person.date, person.name, person.shipTo, person.paymentMethod, person.amount)
-    // );
     const theme =useTheme()
     const { dat } = props;
 

@@ -8,7 +8,6 @@ import {useTheme} from "@mui/material/styles";
 import SearchBox from "./searchBox";
 import AppBar from '@mui/material/AppBar';
 import Paper from "@mui/material/Paper";
-import PropTypes from 'prop-types';
 import Toolbar from '@mui/material/Toolbar';
 
 
