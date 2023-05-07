@@ -29,7 +29,6 @@ import Layout from "./pages/Layout";
 import AddEvent from "./pages/AddEvent";
 import Home from "./pages/Home";
 import CreateProfile from "./pages/CreateProfile"
-import CreateProfileNew from "./pages/CreateProfileNew"
 // import Blogs from "./pages/Blogs";
 // import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
@@ -89,10 +88,8 @@ export default function App() {
                                 <Route path="AddEvent" element={<AddEvent/>} />
                                 <Route path="OverView2/:index" element={<OverView2/>} />
                                 <Route path="CreateProfile" element={<CreateProfile/>} />
-                                <Route path="CreateProfileNew" element={<CreateProfileNew/>} />
                                 <Route path="Chat" element={<Chat/>} />
                                 <Route path="BookedEvents" element={<BookedEvents/>} />
-
                                 {/*<Route path="Home" element={<Home />} />*/}
                                 <Route path="*" element={<NoPage />} />
                             </Route>
