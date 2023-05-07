@@ -17,6 +17,7 @@ import Logo from "../Components/logo"
 // Importing three form components that will be rendered inside the  component
 import MoreDetails from "../Components/SignUpMoreDetails";
 import SignUp from "../Components/SignUpNew";
+import Topbar from "../Components/Topbar";
 
 
 // An array that stores the labels for the steps of the checkout process
@@ -52,23 +53,25 @@ export default function CreateProfile() {
         <div>
             {/*<CssBaseline />*/}
             {/* The top app bar of the checkout page*/}
-            <AppBar
-                position="sticky"
-                color="transparent"
-                elevation={0}
-                sx={{
-                    position: 'relative',
-                    borderBottom: (t) => `1px solid ${t.palette.divider}`,
-                }}
-            >
-                <Toolbar>
-                    {/* The title of the app in the app bar */}
-                    {/*<Typography variant="h6" noWrap color = "primary">*/}
-                    {/*    Trade a Day*/}
-                    {/*</Typography>*/}
-                    <Logo sx = {{}}></Logo>
-                </Toolbar>
-            </AppBar>
+            {/*<AppBar*/}
+            {/*    position="sticky"*/}
+            {/*    color="transparent"*/}
+            {/*    elevation={0}*/}
+            {/*    sx={{*/}
+            {/*        position: 'relative',*/}
+            {/*        borderBottom: (t) => `1px solid ${t.palette.divider}`,*/}
+            {/*    }}*/}
+            {/*>*/}
+            {/*    <Toolbar>*/}
+            {/*        /!* The title of the app in the app bar *!/*/}
+            {/*        /!*<Typography variant="h6" noWrap color = "primary">*!/*/}
+            {/*        /!*    Trade a Day*!/*/}
+            {/*        /!*</Typography>*!/*/}
+            {/*        <Logo sx = {{}}></Logo>*/}
+            {/*    </Toolbar>*/}
+            {/*</AppBar>*/}
+
+            <Topbar AddDay Profile/>
 
             {/*// The container that holds the main content of the page*/}
             <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
