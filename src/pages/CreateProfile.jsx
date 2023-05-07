@@ -1,5 +1,4 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -9,15 +8,16 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import Logo from "../Components/logo"
 
 // Importing three form components that will be rendered inside the  component
 import MoreDetails from "../Components/SignUpMoreDetails";
 import SignUp from "../Components/SignUpNew";
 import Topbar from "../Components/Topbar";
+import MoreDetails from "../Components/CreateProfileMoreDetails";
+import SignUp from "../Components/CreateProfileBasicInfo";
+import {useNavigate} from "react-router-dom";
 
 
 // An array that stores the labels for the steps of the checkout process
@@ -37,6 +37,7 @@ function getStepContent(step) {
 
 // The main functional component that renders the entire "add event" page and forms
 export default function CreateProfile() {
+    let navigate = useNavigate();
     // A state hook that keeps track of the currently active step
     const [activeStep, setActiveStep] = React.useState(0);
     // A function that increments the activeStep state when called
@@ -93,9 +94,24 @@ export default function CreateProfile() {
                                 <Typography variant="h5" gutterBottom>
                                     Thank you for joining the Trade a Day community!
                                 </Typography>
-                                <Typography variant="subtitle1">
-                                    Insert link here >>
-                                </Typography>
+                                <Box sx={{ display: 'flex', justifyContent: 'Center'}}>
+                                    <Button sx={{m:1}} variant="contained"
+                                            onClick={() =>{
+                                                navigate("/AddEvent");
+                                            }}
+                                            style={{cursor: 'pointer'}}
+                                    >
+                                        Host an experience!
+                                    </Button>
+                                    <Button sx={{m:1}} variant="contained"
+                                            onClick={() =>{
+                                                navigate("/");
+                                            }}
+                                            style={{cursor: 'pointer'}}
+                                    >
+                                        Find an experience!
+                                    </Button>
+                                </Box>
                             </React.Fragment>
                         ) : (
                             <React.Fragment>

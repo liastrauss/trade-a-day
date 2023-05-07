@@ -90,7 +90,6 @@ export default function App() {
                                 <Route path="CreateProfile" element={<CreateProfile/>} />
                                 <Route path="Chat" element={<Chat/>} />
                                 <Route path="BookedEvents" element={<BookedEvents/>} />
-
                                 {/*<Route path="Home" element={<Home />} />*/}
                                 <Route path="*" element={<NoPage />} />
                             </Route>
