@@ -23,10 +23,10 @@ export default function EventCard({data}){
         }}>
             {data.map((item) => (
                     <Card sx={{
-                        width: 275,
+                        width: 265,
                         boxShadow: 0,
                         my: 2,
-                        mx: 2,
+                        mx: 2.5,
                     }}
                     >
                         <CardActionArea onClick={() => {
@@ -43,29 +43,30 @@ export default function EventCard({data}){
                                     height: 250
                                 }}
                             />
-                            <CardContent sx={{
-                                fontSize: 13,
-                                fontFamily: theme.typography.fontFamily,
-                                fontWeight: theme.typography.fontWeightMedium,
-                                lineHeight: 0
-                            }}
-                            >
-                                {item.hostName}, {item.title}
-                            </CardContent>
-                            <CardActions
-                                sx={{
-                                    color: theme.palette.text.secondary,
-                                    fontWeight: theme.typography.fontWeightRegular,
+                            {/*<Box sx={{ flexDirection: 'row' }}>*/}
+                                <CardContent sx={{
+                                    fontSize: 13,
                                     fontFamily: theme.typography.fontFamily,
-                                    fontSize: 12,
-                                    justifyContent: 'space-evenly',
-                                    lineHeight: 0,
-                                    mt: -2.5,
-                                }}>
-                                <p><LocationOnRoundedIcon sx={{fontSize: 13}}/>{item.location}</p>
-                                <p><AccessTimeFilledRoundedIcon sx={{fontSize: 13}}/>{item.duration}</p>
-                                <p><StarRateRoundedIcon sx={{fontSize: 13}}/>{item.rating}</p>
-                            </CardActions>
+                                    fontWeight: theme.typography.fontWeightMedium,
+                                    lineHeight: 0
+                                }}
+                                >
+                                    {item.hostName}, {item.title}
+                                </CardContent>
+                                <CardActions
+                                    sx={{
+                                        color: theme.palette.text.secondary,
+                                        fontWeight: theme.typography.fontWeightRegular,
+                                        fontFamily: theme.typography.fontFamily,
+                                        fontSize: 12,
+                                        justifyContent: 'flex-start',
+                                        lineHeight: 0,
+                                        mt: -2.5,
+                                        ml: 1
+                                    }}>
+                                    <p><LocationOnRoundedIcon sx={{fontSize: 13}}/>{item.location}</p>
+                                </CardActions>
+                            {/*</Box>*/}
                         </CardActionArea>
                     </Card>
             ))

@@ -6,6 +6,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {useTheme} from "@mui/material/styles";
 import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
 import TuneRoundedIcon from '@mui/icons-material/TuneRounded';
+import {Tabs, TabScrollButton} from "@mui/material";
+
 
 function Chips({ data }) {
     const handleClick = () => {
@@ -22,7 +24,7 @@ function Chips({ data }) {
                spacing={2}
                justifyContent="center"
                alignItems="center"
-               sx={{mt: 2}}
+               sx={{mt: 2, flexWrap: 'nowrap', width: '100%'}}
         >
             <Chip icon={<TuneRoundedIcon/>}
                   label={"Filters"}
