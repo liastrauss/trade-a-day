@@ -20,14 +20,10 @@ import FormLabel from "@mui/material/FormLabel";
 
 function EventForm () {
     const theme = useTheme();
-    const [alignment, setAlignment] = React.useState('left');
     const [value, setValue] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
 
 
-    const handleChange = (event, newAlignment) => {
-        setAlignment(newAlignment);
-    };
 
 
     return (
@@ -57,24 +53,6 @@ function EventForm () {
                     />
                 </Grid>
 
-
-                    <Grid item xs={5}
-                          // direction="row"
-                          // justifyContent="space-between"
-                          // alignItems="center"
-                          // display="flex"
-                    >
-                        <ToggleButtonGroup
-                            color="primary"
-                            value={alignment}
-                            exclusive
-                            onChange={handleChange}
-                            aria-label="indoorsoroutdoors"
-                        >
-                            <ToggleButton value="indoors">indoors</ToggleButton>
-                            <ToggleButton value="outdoors">outdoors</ToggleButton>
-                        </ToggleButtonGroup>
-                    </Grid>
                     <Grid item
                           direction="row"
                           justifyContent="flex-start"

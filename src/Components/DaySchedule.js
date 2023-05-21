@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {DatePicker, TimePicker} from "@mui/x-date-pickers";
-import {Grid, IconButton, Rating, Slider, TextField} from "@mui/material";
+import {Grid, IconButton, Rating, Slider, TextField, ToggleButton} from "@mui/material";
 import Button from "@mui/material/Button";
 import {PhotoCamera} from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
@@ -10,6 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import Paper from "@mui/material/Paper";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import {useTheme} from "@mui/material/styles";
+import {ToggleButtonGroup} from "@mui/lab";
 
 const labels = {
     0.5: 'Very easy',
@@ -39,6 +40,7 @@ export default function DaySchedule () {
     // const [value, setValue] = useState();
     // const [hourRange, sethourRange] = useState([8, 17]);
 
+    const [alignment, setAlignment] = React.useState('left');
     const theme = useTheme();
     const [value, setValue] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
@@ -47,6 +49,10 @@ export default function DaySchedule () {
     const [datePickerCount, setDatePickerCount] = useState(1); // state variable for the number of DatePicker components
     const [datePickerValues, setDatePickerValues] = useState([null]); // state variable for the values of the DatePicker components
 
+    // for toggle
+    const handleChange = (event, newAlignment) => {
+        setAlignment(newAlignment);
+    };
 
 
     // const handleAddDatePicker = () => {
@@ -66,31 +72,28 @@ export default function DaySchedule () {
 
 
     // hours for the slider:
-    const marks = [
-        { value: 8, label: '8:00' },
-        { value: 14, label: '14:00' },
-        { value: 10, label: '10:00' },
-        { value: 16, label: '16:00' },
-
-
-
-        {
-            value: 6,
-            label: '6:00'
-        },
-        {
-            value: 12,
-            label: '12:00'
-        },
-        {
-            value: 18,
-            label: '18:00'
-        },
-        {
-            value: 20,
-            label: '20:00'
-        }
-    ];
+    // const marks = [
+    //     { value: 8, label: '8:00' },
+    //     { value: 14, label: '14:00' },
+    //     { value: 10, label: '10:00' },
+    //     { value: 16, label: '16:00' },
+    //     {
+    //         value: 6,
+    //         label: '6:00'
+    //     },
+    //     {
+    //         value: 12,
+    //         label: '12:00'
+    //     },
+    //     {
+    //         value: 18,
+    //         label: '18:00'
+    //     },
+    //     {
+    //         value: 20,
+    //         label: '20:00'
+    //     }
+    // ];
 
 
 
@@ -147,7 +150,7 @@ export default function DaySchedule () {
                     <Paper variant="outlined" sx={{ p: 2, outline: '1px' }}>
                         <Box
                             sx={{
-                                width: 200,
+                                width: '100%',
                                 display: 'flex',
                                 alignItems: 'center',
                                 typography: 'subtitle1',
@@ -157,7 +160,7 @@ export default function DaySchedule () {
 
                             }}
                         >
-                            <Typography component="legend" align="center" variant="body">Physical Effort</Typography>
+                            <Typography component="legend" align="center">Physical Effort</Typography>
                             <Rating
                                 sx={{
                                     color: theme.palette.primary.main, // set the color to value from app js
@@ -183,6 +186,25 @@ export default function DaySchedule () {
                         </Box>
                     </Paper>
                 </Grid>
+
+                <Grid item xs={5}
+                    // direction="row"
+                    // justifyContent="space-between"
+                    // alignItems="center"
+                    // display="flex"
+                >
+                    <ToggleButtonGroup
+                        color="primary"
+                        value={alignment}
+                        exclusive
+                        onChange={handleChange}
+                        aria-label="indoorsoroutdoors"
+                    >
+                        <ToggleButton value="indoors">indoors</ToggleButton>
+                        <ToggleButton value="outdoors">outdoors</ToggleButton>
+                    </ToggleButtonGroup>
+                </Grid>
+
 
                 {/*old time picker*/}
             {/*<Grid item xs={8}*/}
