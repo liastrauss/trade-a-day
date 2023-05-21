@@ -22,9 +22,13 @@ function Chips({ data }) {
     return (
         <Stack direction="row"
                spacing={2}
-               justifyContent="center"
-               alignItems="center"
-               sx={{mt: 2, flexWrap: 'nowrap', width: '100%'}}
+               justifyContent="flex-start"
+               alignItems="flex-start"
+               sx={{
+                   mt: 2,
+                   maxWidth: '100%',
+                   overflow: 'auto',
+        }}
         >
             <Chip icon={<TuneRoundedIcon/>}
                   label={"Filters"}
