@@ -23,7 +23,18 @@ export default function EventCard({data}){
         }}>
             {data.map((item) => (
                     <Card sx={{
-                        width: 265,
+                        width: {
+                            sm: 200, //600
+                            md: 300, //900
+                            lg: 400, //1200
+                            xl: 500, //1563
+                        },
+                        height: {
+                            sm: 264, //600
+                            md: 396, //900
+                            lg: 528, //1200
+                            xl: 660, //1563
+                        },
                         boxShadow: 0,
                         my: 2,
                         mx: 2.5,
@@ -40,7 +51,18 @@ export default function EventCard({data}){
                                 className="card-img"
                                 sx={{
                                     borderRadius: 3,
-                                    height: 250
+                                    width: {
+                                        sm: 200, //600
+                                        md: 300, //900
+                                        lg: 400, //1200
+                                        xl: 500, //1563
+                                    },
+                                    height: {
+                                        sm: 200, //600
+                                        md: 300, //900
+                                        lg: 400, //1200
+                                        xl: 500, //1563
+                                    },
                                 }}
                             />
                             {/*<Box sx={{ flexDirection: 'row' }}>*/}

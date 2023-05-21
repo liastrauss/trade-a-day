@@ -28,8 +28,8 @@ function Chips({ data }) {
                    mt: 2,
                    maxWidth: '100%',
                    overflow: 'auto',
-        }}
-        >
+                   ml: 3
+        }}>
             <Chip icon={<TuneRoundedIcon/>}
                   label={"Filters"}
                   size="small"
@@ -47,7 +47,7 @@ function Chips({ data }) {
                       color="primary"
                       sx={{fontWeight: theme.typography.fontWeightRegular}}
                 />
-            ))}
+            )) }
         </Stack>
     );
 }
