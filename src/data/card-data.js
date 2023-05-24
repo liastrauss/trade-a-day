@@ -184,7 +184,7 @@ export const cardData = [
         id:11,
         picture: "https://images.unsplash.com/photo-1451885140977-ed62a6b8744e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8b3JhbmdlJTIwZ3JvdmV8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
         hostName: "Gershon",
-        title: 'Orchard Worker',
+        title: 'Orchard Manager',
         duration: '6 hours',
         location: 'Pardes Hanna',
         rating: '4.5',
