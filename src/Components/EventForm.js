@@ -48,6 +48,7 @@ function EventForm () {
                         disablePortal
                         id="areas-autocomplete"
                         options = {areas}
+                        sx = {{ width: '100%' }}
                         // sx={{ width: 300 }}
                         renderInput={(params) => <TextField {...params} label="Area" />}
                     />
