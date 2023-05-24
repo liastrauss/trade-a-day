@@ -43,12 +43,12 @@ function EventForm () {
                        fullWidth
                 />
                 </Grid>
-                <Grid item sm={6}>
+                <Grid item xs={12}>
                     <Autocomplete
                         disablePortal
+                        fullWidth
                         id="areas-autocomplete"
                         options = {areas}
-                        sx = {{ width: '100%' }}
                         // sx={{ width: 300 }}
                         renderInput={(params) => <TextField {...params} label="Area" />}
                     />

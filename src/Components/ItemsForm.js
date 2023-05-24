@@ -22,6 +22,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import {styled} from "@mui/material/styles";
 
+const defaultIcon = <LuggageTwoToneIcon />; // Default icon for items not predefined
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     // apply to the children:
@@ -43,51 +44,106 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
         '&:first-of-type': {
             borderRadius: theme.shape.borderRadius,
         },
+        flexDirection: 'column',
+        alignItems: 'center',
+        '& > *:first-child': {
+            marginBottom: theme.spacing(1),
+        },
+
     },
 }));
 
-
 export function ItemsForm() {
-    const [items, setItems] = React.useState(() => ['bold', 'italic']);
+    const [items, setItems] = React.useState(() => ['water']);
+    const [allItems, setAllItems] = React.useState(() => ['water', 'hiking shoes']);
 
     const handleItems = (event, newItems) => {
         setItems(newItems);
     };
 
+
+
+    const addItem = () => {
+        // TODO: change to something that isn't a prompt
+        const newItem = prompt('Enter a new item'); // Prompt the user for the new item
+        if (newItem) {
+            setAllItems(prevItems => [...prevItems, newItem]); // Add the new item to the list
+        }
+    };
+
     return (
         <Grid container>
-            <Grid item><Typography variant="h6" >What to bring?</Typography></Grid>
-        <Grid item>
-            <StyledToggleButtonGroup
-            value={items}
-            onChange={handleItems}
-            aria-label="Items to bring"
-            orientation="vertical"
-        >
-            <ToggleButton value="water" aria-label="water"  labelPlacement="top" label="water"
-            >
-                <WaterDropTwoToneIcon />
-                Water Bottle
-            </ToggleButton>
-            <ToggleButton value="italic" aria-label="italic">
-                <CheckroomIcon  />
-                Change of Clothes
-            </ToggleButton>
-            <ToggleButton value="underlined" aria-label="underlined">
-                <RollerSkatingIcon />
-                Hiking Shoes
-            </ToggleButton>
-            <ToggleButton value="color" aria-label="color" disabled>
-                <FormatColorFillIcon />
-                <ArrowDropDownIcon />
-            </ToggleButton>
-        </StyledToggleButtonGroup>
+            <Grid item xs={12}><Typography variant="h6">What to bring?</Typography></Grid>
+            <Grid item xs={12}>
+                <StyledToggleButtonGroup
+                    value={items}
+                    onChange={handleItems}
+                    aria-label="Items to bring"
+                    orientation="vertical"
+                >
+                    {allItems.map((item) => (
+                        <ToggleButton key={item} value={item} aria-label={item}>
+                            {item === 'water' && <WaterDropTwoToneIcon />}
+                            {item === 'a change of clothes' && <CheckroomIcon />}
+                            {item === 'hiking shoes' && <RollerSkatingIcon />}
+                            {!['water', 'a change of clothes', 'hiking shoes'].includes(item) && defaultIcon}
+                            {item}
+                        </ToggleButton>
+                    ))}
+                </StyledToggleButtonGroup>
+            </Grid>
+            <Grid item>
+                <IconButton onClick={addItem} aria-label="Add item">
+                    <AddIcon />
+                </IconButton>
+            </Grid>
         </Grid>
-        {/*if i want another column, i can add on ehere*/}
-        </Grid>
-
-);
+    );
 }
+
+
+// before chat gpt - with no add
+// export function ItemsForm() {
+//     const [items, setItems] = React.useState(() => ['water', 'italic']);
+//
+//     const handleItems = (event, newItems) => {
+//         setItems(newItems);
+//     };
+//
+//     return (
+//         <Grid container>
+//             <Grid item xs={12}><Typography variant="h6" >What to bring?</Typography></Grid>
+//         <Grid item>
+//             <StyledToggleButtonGroup
+//             value={items}
+//             onChange={handleItems}
+//             aria-label="Items to bring"
+//             orientation="vertical"
+//         >
+//             <ToggleButton value="water" aria-label="water"  labelPlacement="top" label="water"
+//             >
+//                 <WaterDropTwoToneIcon />
+//                 Water Bottle
+//             </ToggleButton>
+//             <ToggleButton value="italic" aria-label="italic">
+//                 <CheckroomIcon  />
+//                 Change of Clothes
+//             </ToggleButton>
+//             <ToggleButton value="underlined" aria-label="underlined">
+//                 <RollerSkatingIcon />
+//                 Hiking Shoes
+//             </ToggleButton>
+//             {/*<ToggleButton value="color" aria-label="color" disabled>*/}
+//             {/*    <FormatColorFillIcon />*/}
+//             {/*    <ArrowDropDownIcon />*/}
+//             {/*</ToggleButton>*/}
+//         </StyledToggleButtonGroup>
+//         </Grid>
+//         {/*if i want another column, i can add on ehere*/}
+//         </Grid>
+//
+// );
+// }
 // old
 // export function oldItemsForm() {
 //     const [checked, setChecked] = React.useState([1]);
