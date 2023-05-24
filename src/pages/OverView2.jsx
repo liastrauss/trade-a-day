@@ -133,23 +133,7 @@ export default function OverView2() {
         <div>
             {/* The top app bar of the checkout page*/}
             <Topbar AddDay/>
-            {/*<AppBar*/}
-            {/*    position="sticky"*/}
-            {/*    color= "background"*/}
-            {/*    elevation={0}*/}
-            {/*    sx={{*/}
-            {/*        borderBottom: (t) => `1px solid ${t.palette.divider}`,*/}
-            {/*        mt: 2*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    <Toolbar>*/}
-            {/*        /!* The title of the app in the app bar *!/*/}
-            {/*        /!*<Typography variant="h6" noWrap color = "primary">*!/*/}
-            {/*        /!*    Trade a Day*!/*/}
-            {/*        /!*</Typography>*!/*/}
-            {/*        <Logo sx={{}}></Logo>*/}
-            {/*    </Toolbar>*/}
-            {/*</AppBar>*/}
+
 
             <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
 
@@ -171,19 +155,19 @@ export default function OverView2() {
                         <DialogWithCard/>
                     </Grid>
                 </Grid>
-                <React.Fragment>
+                {/*<React.Fragment>*/}
 
 
-                    {/*<Button*/}
-                    {/*    variant="outlined"*/}
-                    {/*    onClick={() => {*/}
-                    {/*        navigate("/");*/}
-                    {/*    }}*/}
+                {/*    /!*<Button*!/*/}
+                {/*    /!*    variant="outlined"*!/*/}
+                {/*    /!*    onClick={() => {*!/*/}
+                {/*    /!*        navigate("/");*!/*/}
+                {/*    /!*    }}*!/*/}
 
-                    {/*    sx={{display: "flex", justifyContent: 'flex end'}}*/}
-                    {/*> Book*/}
-                    {/*</Button>*/}
-                </React.Fragment>
+                {/*    /!*    sx={{display: "flex", justifyContent: 'flex end'}}*!/*/}
+                {/*    /!*> Book*!/*/}
+                {/*    /!*</Button>*!/*/}
+                {/*</React.Fragment>*/}
             </Container>
         </div>
     );

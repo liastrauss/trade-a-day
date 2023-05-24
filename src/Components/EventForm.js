@@ -1,10 +1,8 @@
 import React from 'react';
 import {
-    Autocomplete, Avatar, ButtonGroup,
-    Checkbox,
+    Autocomplete,
     FormControlLabel, FormGroup,
-    Grid, IconButton,
-    List, ListItem, ListItemAvatar, ListItemText,
+    Grid,
     Rating,
     Switch,
     TextField, ToggleButton,
@@ -12,10 +10,6 @@ import {
 } from "@mui/material";
 // import { alpha, styled } from '@mui/material/styles';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-import FolderIcon from '@mui/icons-material/Folder';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Button from "@mui/material/Button";
-import {PhotoCamera} from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import {ToggleButtonGroup} from "@mui/lab";
 import Box from "@mui/material/Box";
@@ -158,7 +152,8 @@ function EventForm () {
                         >
                             <ToggleButton value="indoors">indoors</ToggleButton>
                             <ToggleButton value="outdoors">outdoors</ToggleButton>
-                        </ToggleButtonGroup>                    </Grid>
+                        </ToggleButtonGroup>
+                    </Grid>
                     <Grid item xs={3}
                           direction="row"
                           justifyContent="flex-start"

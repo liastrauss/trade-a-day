@@ -10,7 +10,7 @@ function Home() {
     const theme = useTheme();
     return (
         <div>
-            <Topbar Search AddDay Profile/>
+            <Topbar Search AddDay Profile BookedEvents/>
             <SearchSection/>
             <EventCard data={cardData.events}/>
         </div>

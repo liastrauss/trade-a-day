@@ -1,35 +1,20 @@
 import React from 'react';
 import {styled, createTheme, ThemeProvider, useTheme} from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from '../Components/sidebar items';
-// import Chart from './Chart';
-// import Deposits from './Deposits';
 import Orders from '../Components/booked overview';
 import Topbar from "../Components/Topbar";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import {ListItemText} from "@mui/material";
 import ListItemButton from "@mui/material/ListItemButton";
-import InboxIcon from '@mui/icons-material/Inbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import HostInfo from "../Components/hostInfo";
+import HostInfo2 from "../Components/hostInfo2";
 import ListSubheader from "@mui/material/ListSubheader";
 import data from '../data/booked-days.json';
+import Button from "@mui/material/Button";
 
 
 
@@ -82,17 +67,20 @@ const drawerWidth = 240;
 // const mdTheme = useTheme();
 
 function DashboardContent() {
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [selectedIndex, setSelectedIndex] = React.useState(3);
     const [selectedDay, setSelectedDay] = React.useState("day1");
+    // a boolean flag for which page we're on
+    const [Host, setHost] = React.useState(true);
 
 
     const mytheme = useTheme()
 
-    const handleListItemClick = (
+    const handleVisitorItemClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
         index: number,
     ) => {
         setSelectedIndex(index);
+        setHost(false);
     };
 
     // this function is suitable for the host days, as it also changes the day that orders should render later:
@@ -103,6 +91,8 @@ function DashboardContent() {
     ) => {
         setSelectedIndex(index);
         setSelectedDay(day);
+        setHost(true);
+
     };
 
     const dayNames = Object.keys(data);
@@ -111,7 +101,6 @@ function DashboardContent() {
         <div>
         <Box>
             <Topbar AddDay/>
-            {/*    TODO - it gets smaller, but actually looks better. change others to match or change this*/}
         </Box>
 
     <Container>
@@ -136,16 +125,16 @@ function DashboardContent() {
                     <List component="nav" aria-label="main mailbox folders">
                             <ListItemButton
                                 selected={selectedIndex === 0}
-                                onClick={(event) => handleListItemClick(event, 0)}
+                                onClick={(event) => handleVisitorItemClick(event, 0)}
                             >
                                 {/*<ListItemIcon>*/}
                                 {/*    <InboxIcon />*/}
                                 {/*</ListItemIcon>*/}
-                                <ListItemText primary="June 30" secondary="orejdkf"/>
+                                <ListItemText primary="June 30"/>
                             </ListItemButton>
                             <ListItemButton
                                 selected={selectedIndex === 1}
-                                onClick={(event) => handleListItemClick(event, 1)}
+                                onClick={(event) => handleVisitorItemClick(event, 1)}
                             >
                                 {/*<ListItemIcon>*/}
                                 {/*    <DraftsIcon />*/}
@@ -165,10 +154,8 @@ function DashboardContent() {
                                     selected={selectedIndex === index+2}
                                     onClick={(event) => handleHostListItemClick(event, index+2,day)}
                                     key={day}
-
                                 >
-                                {/*let pat = {`data.${day}`};*/}
-                                {/*<Orders dat={pat} />*/}
+                                {/*    making the name of the list the date*/}
                                 <ListItemText primary={data[day][0].day_date} />
                                 </ListItemButton>
 
@@ -177,7 +164,7 @@ function DashboardContent() {
 
                             <ListItemButton
                                 selected={selectedIndex === 5}
-                                onClick={(event) => handleListItemClick(event, 5)}
+                                onClick={(event) => handleVisitorItemClick(event, 5)}
                             >
                                 <ListItemText primary="Trade a new day" />
                             </ListItemButton>
@@ -205,8 +192,16 @@ function DashboardContent() {
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    {/*passing the correct day so it will render with important info from json*/}
-                                    <Orders dat={data[selectedDay]} />
+
+                                    {/*check if a host page or not*/}
+                                    {Host ?
+                                        // passing the correct day so it will render with important info from json
+                                        <Orders dat={data[selectedDay]} />
+                                        :
+                                        // plaster - changing the props of the index of event-data from which to take the host info
+                                        <HostInfo2 index={selectedIndex+1}/>
+
+                                    }
                                 </Paper>
                             </Grid>
                         </Grid>
@@ -284,7 +279,7 @@ function DashboardContent() {
 //         <List component="nav" aria-label="main mailbox folders">
 //             <ListItemButton
 //                 selected={selectedIndex === 0}
-//                 onClick={(event) => handleListItemClick(event, 0)}
+//                 onClick={(event) => handleVisitorItemClick(event, 0)}
 //             >
 //                 <ListItemIcon>
 //                     <InboxIcon />
@@ -293,7 +288,7 @@ function DashboardContent() {
 //             </ListItemButton>
 //             <ListItemButton
 //                 selected={selectedIndex === 1}
-//                 onClick={(event) => handleListItemClick(event, 1)}
+//                 onClick={(event) => handleVisitorItemClick(event, 1)}
 //             >
 //                 <ListItemIcon>
 //                     <DraftsIcon />
@@ -305,13 +300,13 @@ function DashboardContent() {
 //         <List component="nav" aria-label="secondary mailbox folder">
 //             <ListItemButton
 //                 selected={selectedIndex === 2}
-//                 onClick={(event) => handleListItemClick(event, 2)}
+//                 onClick={(event) => handleVisitorItemClick(event, 2)}
 //             >
 //                 <ListItemText primary="Trash" />
 //             </ListItemButton>
 //             <ListItemButton
 //                 selected={selectedIndex === 3}
-//                 onClick={(event) => handleListItemClick(event, 3)}
+//                 onClick={(event) => handleVisitorItemClick(event, 3)}
 //             >
 //                 <ListItemText primary="Spam" />
 //             </ListItemButton>
