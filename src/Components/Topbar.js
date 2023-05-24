@@ -153,24 +153,6 @@ export default function Topbar(props) {
                     </Button>
                 }
 
-                    {BookedEvents ?
-                <Button variant="outlined"
-                        onClick={() =>{
-                            navigate("/BookedEvents");
-                        }}
-                        style={{cursor: 'pointer'}}
-                >
-                    My bookings
-                </Button>
-                        :
-                        <Button variant="outlined"
-                                disabled
-                        >
-                            My bookings
-
-                        </Button>
-
-                        }
                 <Avatar src="/broken-image.jpg"
                         sx={{ml: 1}}
                         onClick={() => {
