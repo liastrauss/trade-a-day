@@ -24,16 +24,15 @@ export default function EventCard({data}){
             {data.map((item) => (
                     <Card sx={{
                         width: {
-                            sm: 200, //600
-                            md: 300, //900
-                            lg: 400, //1200
-                            xl: 500, //1563
+                            // sm: 200, //600
+                            md: 150, //900
+                            lg: 250, //1200
+
                         },
                         height: {
-                            sm: 264, //600
-                            md: 396, //900
-                            lg: 528, //1200
-                            xl: 660, //1563
+                            // sm: 264, //600
+                            md: 198, //900
+                            lg: 330, //120
                         },
                         boxShadow: 0,
                         my: 2,
@@ -52,16 +51,16 @@ export default function EventCard({data}){
                                 sx={{
                                     borderRadius: 3,
                                     width: {
-                                        sm: 200, //600
-                                        md: 300, //900
-                                        lg: 400, //1200
-                                        xl: 500, //1563
+                                        // sm: 200, //600
+                                        md: 150, //900
+                                        lg: 250, //1200
+                                        // xl: 400, //1563
                                     },
                                     height: {
-                                        sm: 200, //600
-                                        md: 300, //900
-                                        lg: 400, //1200
-                                        xl: 500, //1563
+                                        // sm: 200, //600
+                                        md: 150, //900
+                                        lg: 250, //1200
+                                        // xl: 400, //1563
                                     },
                                 }}
                             />
