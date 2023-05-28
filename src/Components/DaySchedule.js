@@ -11,6 +11,10 @@ import Paper from "@mui/material/Paper";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import {useTheme} from "@mui/material/styles";
 import {ToggleButtonGroup} from "@mui/lab";
+import {storage} from "../config/firebase";
+import {ref, uploadBytes} from "firebase/storage";
+import {v4} from "uuid";
+
 
 const labels = {
     0.5: 'Very easy',
@@ -54,6 +58,13 @@ export default function DaySchedule () {
         setAlignment(newAlignment);
     };
 
+    const [imageUpload, setImageUpload] = useState(null);
+    const uploadImage = () =>{
+        if (imageUpload==null) return;
+        const imageRef = ref(storage, `images/${imageUpload.name+ v4()} `)
+
+
+    };
 
     // const handleAddDatePicker = () => {
     //     setDatePickerCount(datePickerCount + 1);
@@ -249,10 +260,10 @@ export default function DaySchedule () {
                 <Grid item sm={12}>
                     <Typography gutterBottom>Give us a glimpse of what your day will look like!</Typography>
                     < br/>
-                    <Button variant="contained" component="label">
+                    <Button variant="contained" component="label" onClick={{uploadImage}}>
                         <PhotoCamera sx={{mr: 1}}/>
                          Upload
-                        <input hidden accept="image/*" multiple type="file" />
+                        <input hidden accept="image/*" multiple type="file" onChange={(event) => {setImageUpload(event.target.files)}} />
                     </Button>
                     {/*<IconButton color="primary" aria-label="upload picture" component="label">*/}
                     {/*    <input hidden accept="image/*" type="file" />*/}
