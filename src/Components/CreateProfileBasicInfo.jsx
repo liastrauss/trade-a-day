@@ -52,6 +52,7 @@ function SignUp() {
                                 fullWidth
                                 label="Password"
                                 autoFocus
+                                type="password"
                             />
                         </Grid>
                         {/*Host/Guest Button*/}
