@@ -11,6 +11,10 @@ import Paper from "@mui/material/Paper";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import {useTheme} from "@mui/material/styles";
 import {ToggleButtonGroup} from "@mui/lab";
+import {storage} from "../config/firebase";
+import {ref, uploadBytes} from "firebase/storage";
+import {v4} from "uuid";
+
 
 const labels = {
     0.5: 'Very easy',
@@ -54,6 +58,22 @@ export default function DaySchedule () {
         setAlignment(newAlignment);
     };
 
+    const [imageUpload, setImageUpload] = useState(null);
+    const uploadImage = () =>{
+        if (imageUpload==null) return;
+
+        const files = Array.from(imageUpload); // Convert FileList to an array
+
+        // // Map over each selected file and set the imageUpload state
+        files.map((pic) => {
+
+        const imageRef = ref(storage, `images/${pic.name+ v4()} `)
+        uploadBytes(imageRef, pic).then(()=>{
+             // alert("image uploaded")
+        })
+        });
+
+    };
 
     // const handleAddDatePicker = () => {
     //     setDatePickerCount(datePickerCount + 1);
@@ -249,11 +269,22 @@ export default function DaySchedule () {
                 <Grid item sm={12}>
                     <Typography gutterBottom>Give us a glimpse of what your day will look like!</Typography>
                     < br/>
+
+
                     <Button variant="contained" component="label">
                         <PhotoCamera sx={{mr: 1}}/>
-                         Upload
-                        <input hidden accept="image/*" multiple type="file" />
+                         choose files
+                        <input hidden accept="image/*" multiple type="file" onChange={(event) => {setImageUpload(event.target.files);
+                        }}/>
+
                     </Button>
+
+                    <Button variant="contained" component="label" onClick={uploadImage}>
+
+                        Upload
+                    </Button>
+
+
                     {/*<IconButton color="primary" aria-label="upload picture" component="label">*/}
                     {/*    <input hidden accept="image/*" type="file" />*/}
                     {/*    <PhotoCamera/>*/}
