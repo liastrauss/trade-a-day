@@ -78,4 +78,14 @@ function MoreDetails () {
     )
 }
 const interests = ['TV/Netflix', 'Cooking/Baking', 'Training', 'Singing/Playing', 'Traveling', 'Night in the city'];
+const foods = ['Pizza/Pasta', 'Salads', 'Burgers', 'Sushi/Thai', 'Ben & Jerry', 'Mexican'];
+
+// Do you fold your Pizza?
+// Favorite pizza toppings ['Mushrooms', 'Cheese', 'Olives', 'Corn','Tuna', 'Pineapple']
+// If I could I would master these arts ['speaking in movie quotes', 'Extreme face-making', 'Rapping but backwards',
+// 'Beatboxing', 'Dancing perfectly terrible', 'Remembering useless trivia']
+// What is the best superpower? ['Snap your fingers to make someone else dance', 'The ability to turn everything into pizza',
+// 'The ability to control the volume of someone else's sneezes, from barely audible whispers to ground-shaking booms',
+// 'The ability to turn water to any beverage you want', 'The ability to generate an endless supply of ripe Avocados',
+// 'The ability to communicate with unanimate objects, but they only respond sarcastically']
 export default MoreDetails;

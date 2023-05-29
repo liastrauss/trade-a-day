@@ -5,7 +5,7 @@
       "name": "John Smith",
       "picture": "https://plus.unsplash.com/premium_photo-1682089616321-886d5b3d3626?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFkaW8lMjBlZGl0b3J8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
       "num_people": 2,
-      "special_requests": "Extra toweliss and pillows",
+      "special_requests": "Slower explanations",
       "day_date": "May 5th"
     },
     {
@@ -13,7 +13,7 @@
       "name": "Jane Doe",
       "picture": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8bWFya2V0aW5nJTIwbWFuYWdlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
       "num_people": 3,
-      "special_requests": "High floor with a view",
+      "special_requests": "Wants to see the cows",
       "day_date": "May 5th"
     }
   ],
@@ -22,7 +22,7 @@
       "id": 0,
       "name": "Bob Johnson",
       "num_people": 4,
-      "special_requests": "Connecting rooms",
+      "special_requests": "Small children",
       "day_date": "April 3rd"
     },
     {
@@ -38,14 +38,14 @@
       "id": 0,
       "name": "David Kim",
       "num_people": 2,
-      "special_requests": "Late check-out",
+      "special_requests": "Will be a little late",
       "day_date": "October 3rd"
     },
     {
       "id": 1,
       "name": "Jessica Park",
       "num_people": 2,
-      "special_requests": "Near the elevator",
+      "special_requests": "Needs accessibility",
       "day_date": "October 3rd"
     }
   ]

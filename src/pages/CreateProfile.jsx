@@ -10,6 +10,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Logo from "../Components/logo"
+import SignIn from '../Components/SignInPopup'
 
 // Importing three form components that will be rendered inside the  component
 // import MoreDetails from "../Components/SignUpMoreDetails";
@@ -27,7 +28,7 @@ const steps = ['Personal info', 'More details'];
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return <SignUp/>;
+            return <SignUp/>; //change to SignUp
         case 1:
             return <MoreDetails/>;
         default:

@@ -40,8 +40,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import OverView from "./pages/OverView";
 import OverView2 from "./pages/OverView2";
 import Logo from "./Components/logo";
-import Chat from "./pages/Chat";
-import BookedEvents from "./pages/Booked Events"
+import Chat from "./zevel/Chat";
+import BookedEvents from "./zevel/Booked Events"
 
 // configuring our theme
 const theme = createTheme({

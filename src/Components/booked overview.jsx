@@ -5,7 +5,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import data from '../data/booked-days.json';
+import data from '../zevel/booked-days.json';
 import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import {Avatar} from "@mui/material";

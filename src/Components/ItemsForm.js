@@ -25,7 +25,12 @@ import {styled} from "@mui/material/styles";
 const defaultIcon = <LuggageTwoToneIcon />; // Default icon for items not predefined
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+    '& .MuiToggleButton-root': {
+        flex: '1 0 120px', // Adjust the width as needed
+        whiteSpace: 'normal', // Allow text labels to wrap if they exceed the button width
+    },
     // apply to the children:
+
     '& .MuiToggleButtonGroup-grouped': {
         margin: theme.spacing(0.5),
         border:0,
@@ -44,23 +49,29 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
         '&:first-of-type': {
             borderRadius: theme.shape.borderRadius,
         },
-        flexDirection: 'column',
+        flexDirection: 'column', // label on the row below
         alignItems: 'center',
-        '& > *:first-child': {
-            marginBottom: theme.spacing(1),
+        // display: 'flex',
+        // flexWrap: 'wrap',
+        '& > *': {
+            marginLeft: theme.spacing(0.5), // Added marginLeft to separate items
         },
+
 
     },
 }));
 
-export function ItemsForm() {
-    const [items, setItems] = React.useState(() => ['water']);
-    const [allItems, setAllItems] = React.useState(() => ['water', 'hiking shoes']);
+export function ItemsForm({ formData, setFormData }) {
+    // the list of all items, selected + unselected
+    const [allItems, setAllItems] = React.useState(() =>
+        ['water', 'a change of clothes','closed shoes', 'professional attire', 'sunglasses','sunhat',]);
+
 
     const handleItems = (event, newItems) => {
-        setItems(newItems);
-    };
+        setFormData((prevFormData) => ({ ...prevFormData, toBring: newItems }));
 
+
+    };
 
 
     const addItem = () => {
@@ -68,35 +79,46 @@ export function ItemsForm() {
         const newItem = prompt('Enter a new item'); // Prompt the user for the new item
         if (newItem) {
             setAllItems(prevItems => [...prevItems, newItem]); // Add the new item to the list
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                toBring: [...prevFormData.toBring, newItem],
+            }));
         }
     };
+
+
 
     return (
         <Grid container>
             <Grid item xs={12}><Typography variant="h6">What to bring?</Typography></Grid>
             <Grid item xs={12}>
                 <StyledToggleButtonGroup
-                    value={items}
+                    value={formData.toBring}
                     onChange={handleItems}
                     aria-label="Items to bring"
-                    orientation="vertical"
+                    // orientation="vertical"
+                    sx = {{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+
+                    }}
                 >
                     {allItems.map((item) => (
                         <ToggleButton key={item} value={item} aria-label={item}>
                             {item === 'water' && <WaterDropTwoToneIcon />}
                             {item === 'a change of clothes' && <CheckroomIcon />}
-                            {item === 'hiking shoes' && <RollerSkatingIcon />}
-                            {!['water', 'a change of clothes', 'hiking shoes'].includes(item) && defaultIcon}
+                            {item === 'closed shoes' && <RollerSkatingIcon />}
+                            {!['water', 'a change of clothes', 'closed shoes'].includes(item) && defaultIcon}
                             {item}
                         </ToggleButton>
                     ))}
                 </StyledToggleButtonGroup>
             </Grid>
-            <Grid item>
-                <IconButton onClick={addItem} aria-label="Add item">
-                    <AddIcon />
-                </IconButton>
-            </Grid>
+            {/*<Grid item>*/}
+            {/*    <IconButton onClick={addItem} aria-label="Add item">*/}
+            {/*        <AddIcon />*/}
+            {/*    </IconButton>*/}
+            {/*</Grid>*/}
         </Grid>
     );
 }
