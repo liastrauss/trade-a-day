@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import info from "../data/event-data.json";
 import React from "react";
 import {Grid, Typography} from "@mui/material";
-import {StandardImageList} from "./view2";
+import {StandardImageList} from "../Components/view2";
 import Button from "@mui/material/Button";
 
 function HostInfo2(props) {

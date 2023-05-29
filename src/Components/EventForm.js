@@ -3,28 +3,21 @@ import {
     Autocomplete,
     FormControlLabel, FormGroup, FormControl,
     Grid,
-    Rating,
+        Rating,
     Switch,
     TextField, ToggleButton,
     Typography,
 } from "@mui/material";
 // import { alpha, styled } from '@mui/material/styles';
-import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import { useTheme } from "@mui/material/styles";
-import {ToggleButtonGroup} from "@mui/lab";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import FormLabel from "@mui/material/FormLabel";
-// for rating:
 
 
-function EventForm () {
-    const theme = useTheme();
-    const [value, setValue] = React.useState(2);
-    const [hover, setHover] = React.useState(-1);
+function EventForm ({ formData, setFormData }) {
 
-
-
+    const areas = ['North', 'South','Jerusalem Area','West bank','Tel Aviv','Haifa','Golan'];
 
     return (
         <React.Fragment>
@@ -32,7 +25,6 @@ function EventForm () {
             <Typography variant="h6" gutterBottom> Tell us about yourself
             </Typography>
             <Grid container spacing={3}   justifyContent="flex-start"   alignItems="stretch"
-
             >
                 <Grid item xs={12}>
                     <TextField
@@ -41,6 +33,13 @@ function EventForm () {
                        label="What do you do?"
                        variant="standard"
                        fullWidth
+                        onChange={(e) => {
+                            setFormData({
+                                ...formData,
+                                jobTitle: e.target.value,
+                            });
+                        }}
+                        value = {formData.jobTitle}
                 />
                 </Grid>
                 <Grid item xs={12}>
@@ -51,6 +50,12 @@ function EventForm () {
                         options = {areas}
                         // sx={{ width: 300 }}
                         renderInput={(params) => <TextField {...params} label="Area" />}
+                       // TODO: solve the circular json problem
+                        // onChange={(e) => {
+                        //     setFormData({ ...formData, location: e, });
+                        // }}
+                        // value={formData.location}
+
                     />
                 </Grid>
 
@@ -65,13 +70,32 @@ function EventForm () {
                             {/*<FormLabel component="legend">Label placement</FormLabel>*/}
                             <FormGroup row>
                             <FormControlLabel
-                                control={<Switch defaultChecked />}
+                                control={<Switch
+
+                                                 onChange={(e) => {
+                                                     setFormData({
+                                                         ...formData,
+                                                         accessible: e.target.checked,
+                                                     });
+                                                 }}
+                                                 checked={formData.accessible}
+                                />}
                                 label="Accessible?"
                                 labelPlacement="start"
+
                             />
 
                             <FormControlLabel
-                                control={<Switch defaultChecked />}
+                                control={<Switch
+                                                 onChange={(e) => {
+                                                     setFormData({
+                                                         ...formData,
+                                                         suitableForChildren: e.target.checked,
+                                                     });
+                                                 }}
+                                                 checked={formData.suitableForChildren}
+
+                                />}
                                 label="Suitable for Children?"
                                 labelPlacement="start"
                             />
@@ -94,6 +118,14 @@ function EventForm () {
                             label="Describe the experience"
                             placeholder="A day out in the pasture with some cows"
                             variant="outlined"
+                            onChange={(e) => {
+                                setFormData({
+                                    ...formData,
+                                    dayDescription: e.target.value,
+                                });
+                            }}
+                            value = {formData.dayDescription}
+
                         />
                     </Grid>
 
@@ -110,7 +142,6 @@ function EventForm () {
         </React.Fragment>
     )
 }
-const areas = ['North', 'South','Jerusalem Area','West bank','Center Dan'];
 export default EventForm;
 
 

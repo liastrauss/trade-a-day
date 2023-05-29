@@ -54,9 +54,12 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 }));
 
 export function ItemsForm() {
+    // selected items only
     const [items, setItems] = React.useState(() => ['water']);
+    // the list of all items, selected + unselected
     const [allItems, setAllItems] = React.useState(() => ['water', 'hiking shoes']);
 
+    // for selecting items
     const handleItems = (event, newItems) => {
         setItems(newItems);
     };
