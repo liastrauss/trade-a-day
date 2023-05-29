@@ -29,7 +29,6 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
         whiteSpace: 'normal', // Allow text labels to wrap if they exceed the button width
     },
     // apply to the children:
-
     '& .MuiToggleButtonGroup-grouped': {
         margin: theme.spacing(0.5),
         border:0,
@@ -68,22 +67,20 @@ export function ItemsForm({ formData, setFormData }) {
 
     const handleItems = (event, newItems) => {
         setFormData((prevFormData) => ({ ...prevFormData, toBring: newItems }));
-
-
     };
 
 
-    const addItem = () => {
-        // TODO: change to something that isn't a prompt
-        const newItem = prompt('Enter a new item'); // Prompt the user for the new item
-        if (newItem) {
-            setAllItems(prevItems => [...prevItems, newItem]); // Add the new item to the list
-            setFormData((prevFormData) => ({
-                ...prevFormData,
-                toBring: [...prevFormData.toBring, newItem],
-            }));
-        }
-    };
+    // const addItem = () => {
+    //     // TODO: change to something that isn't a prompt
+    //     const newItem = prompt('Enter a new item'); // Prompt the user for the new item
+    //     if (newItem) {
+    //         setAllItems(prevItems => [...prevItems, newItem]); // Add the new item to the list
+    //         setFormData((prevFormData) => ({
+    //             ...prevFormData,
+    //             toBring: [...prevFormData.toBring, newItem],
+    //         }));
+    //     }
+    // };
 
 
 
