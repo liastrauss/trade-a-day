@@ -67,6 +67,8 @@ export default function DaySchedule () {
         // // Map over each selected file and set the imageUpload state
         files.map((pic) => {
 
+         // here we save the images to directory!! so for a host we will save it to his id
+            // directory for example
         const imageRef = ref(storage, `images/${pic.name+ v4()} `)
         uploadBytes(imageRef, pic).then(()=>{
              // alert("image uploaded")
