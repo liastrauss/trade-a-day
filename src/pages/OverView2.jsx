@@ -1,12 +1,3 @@
-
-// import {useTheme} from "@mui/material/styles";
-// import {useParams} from "react-router-dom";
-// import {cardData} from "../data/card-data";
-// import React from "react";
-// import {Grid, Typography} from "@mui/material";
-// import {Mapp, StandardImageList} from "../Components/view2";
-//
-
 import {useNavigate} from "react-router-dom"
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 // GITHUB CODE
@@ -29,7 +20,7 @@ import Logo from "../Components/logo";
 // import DatesPicker from "../Components/datesPicker";
 import {Avatar, Grid, ListItem, ListItemAvatar} from "@mui/material"
 import CardContent from "@mui/material/CardContent";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Topbar from "../Components/Topbar";
 
 
@@ -40,50 +31,9 @@ import {DialogActions, DialogContent, DialogTitle, Divider, Dialog} from "@mui/m
 import {ControlledRadioButtonsGroup} from "../Components/datesPicker";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
-// function SimpleDialog(props) {
-//     const { onClose, selectedValue, open } = props;
-//
-//     const handleClose = () => {
-//         onClose(selectedValue);
-//     };
-//
-//     const handleListItemClick = (value) => {
-//         onClose(value);
-//     };
-//     return (
-//         <Dialog onClose={handleClose} open={open}>
-//             <DialogTitle>Set backup account</DialogTitle>
-//             <List sx={{ pt: 0 }}>
-//                 {emails.map((email) => (
-//                     <ListItem disableGutters>
-//                         <ListItemButton onClick={() => handleListItemClick(email)} key={email}>
-//                             <ListItemAvatar>
-//                                 <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-//                                     <PersonIcon />
-//                                 </Avatar>
-//                             </ListItemAvatar>
-//                             <ListItemText primary={email} />
-//                         </ListItemButton>
-//                     </ListItem>
-//                 ))}
-//
-//                 <ListItem disableGutters>
-//                     <ListItemButton
-//                         autoFocus
-//                         onClick={() => handleListItemClick('addAccount')}
-//                     >
-//                         <ListItemAvatar>
-//                             <Avatar>
-//                                 <AddIcon />
-//                             </Avatar>
-//                         </ListItemAvatar>
-//                         <ListItemText primary="Add account" />
-//                     </ListItemButton>
-//                 </ListItem>
-//             </List>
-//         </Dialog>
-//     );
-// }
+import {doc, getDoc} from "firebase/firestore";
+import {db} from "../config/firebase";
+
 
 
 export function DialogWithCard() {
@@ -97,21 +47,37 @@ export function DialogWithCard() {
         setOpen(false);
     };
 
+    const [eventInfoData, setEventInfoData] = useState();
+
+    useEffect (() => {
+        async function fetchEventInfoData(){
+            try {
+                const eventInfoRef = doc(db, "DataBase", "4iXQXB2wbEPKGIffOk8i")
+                const eventInfoSnapshot = await getDoc(eventInfoRef)
+                const data = eventInfoSnapshot.data()
+                setEventInfoData(data);
+            } catch (error) {
+                console.error("Error retrieving event info:", error)
+            }
+        }
+        fetchEventInfoData();
+    }, []);
+
     return (
         <div>
             <Button variant="outlined" onClick={handleOpen}>
-                <MailOutlineIcon/>  Contact with the host
+                <MailOutlineIcon/>   Contact {eventInfoData?.hostName}
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle> mail </DialogTitle>
                 <DialogContent>
                     {/*<ControlledRadioButtonsGroup/>*/}
-                    you can write here your massage to the host
+                    Write a message to {eventInfoData?.hostName}
                 </DialogContent>
                 <DialogActions>
                     {/*<Button onClick={handleClose}>Cancel</Button>*/}
                     <Button onClick={handleClose} variant="contained" autoFocus>
-                        send
+                        Send
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -123,11 +89,7 @@ export function DialogWithCard() {
 // A function that returns the content of a specific step, based on the index passed as argument
 
 export default function OverView2() {
-
-
     let navigate = useNavigate();
-
-
 
         // The component's JSX code that gets returned
     return (

@@ -10,6 +10,7 @@ import {collection, doc, getDoc, getDocs, getFirestore} from "firebase/firestore
 function HostInfo() {
     const theme = useTheme();
     const { index } = useParams(); // Access the id parameter from the URL
+    // const { id } = useParams(); // Access the id parameter from the URL
 
     const [eventInfoData, setEventInfoData] = useState();
 
@@ -17,6 +18,7 @@ function HostInfo() {
         async function fetchEventInfoData(){
             try {
                 const eventInfoRef = doc(db, "DataBase1", index)
+                // const eventInfoRef = doc(db, "DataBase", id)
                 const eventInfoSnapshot = await getDoc(eventInfoRef)
                 const data = eventInfoSnapshot.data()
                 setEventInfoData(data);
@@ -28,14 +30,14 @@ function HostInfo() {
     }, [index]);
 
 
+
     return (
         <React.Fragment>
             <div>
                 <Typography variant="h6" gutterBottom>
                 </Typography>
 
-                <Grid container spacing={3} justifyContent="space-evenly"
-                >
+                <Grid container spacing={3} justifyContent="space-evenly">
                     <Grid item xs={12}>
                         <Typography variant="h5" color="primary" gutterBottom>
                             A day with {eventInfoData?.hostName}
@@ -71,7 +73,6 @@ function HostInfo() {
                         </Typography>
 
                         <Typography variant="subtitle1">
-                            {/{eventInfoData?.toBring}/}
                             {eventInfoData?.toBring && (
                                 <ul>
                                     {eventInfoData.toBring.map((item, index) => (
@@ -80,7 +81,9 @@ function HostInfo() {
                                         </li>
                                     ))}
                                 </ul>
-                            )}s
+                            )}
+                            {eventInfoData?.bring}
+
                         </Typography>
 
                     </Grid>
