@@ -10,7 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import Paper from "@mui/material/Paper";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import {useTheme} from "@mui/material/styles";
-import {ToggleButtonGroup} from "@mui/lab";
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const labels = {
     0.5: 'Very easy',
@@ -50,6 +50,10 @@ export default function DaySchedule ({ formData, setFormData }) {
     // for toggle
     const handleChange = (event, newAlignment) => {
         setAlignment(newAlignment);
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            outdoors: newAlignment === 'outdoors',
+        }));
     };
 
 
@@ -191,7 +195,7 @@ export default function DaySchedule ({ formData, setFormData }) {
                 >
                     <ToggleButtonGroup
                         color="primary"
-                        value={alignment}
+                        value={formData.outdoors ? 'outdoors' : 'indoors'}
                         exclusive
                         onChange={handleChange}
                         aria-label="indoorsoroutdoors"
