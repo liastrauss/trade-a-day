@@ -1,6 +1,8 @@
 import React from 'react';
 import {Grid, TextField, ToggleButton, Typography} from "@mui/material";
 import {ToggleButtonGroup} from "@mui/lab";
+import {signInWithPopup, signOut} from "firebase/auth";
+import {auth, googleProvider} from "../config/firebase";
 
 function SignUp() {
     const [alignment, setAlignment] = React.useState('left');
@@ -8,6 +10,24 @@ function SignUp() {
     const handleChange = (event, newAlignment) => {
         setAlignment(newAlignment);
     };
+
+    const signInWithGoogle = async () => {
+        try {
+            await signInWithPopup(auth, googleProvider);
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
+    const logOut = async () => {
+        try {
+            await signOut(auth);
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
 
     return (
         <React.Fragment>
@@ -68,6 +88,8 @@ function SignUp() {
                                 <ToggleButton value="Guest">Guest</ToggleButton>
                             </ToggleButtonGroup>
                         </Grid>
+                        <button onclick={signInWithGoogle}>Sign In With Google</button>
+                        <button onClick={logOut}>Logout</button>
                     </Grid>
             </div>
         </React.Fragment>
