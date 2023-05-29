@@ -1,19 +1,41 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import {useTheme} from '@mui/material/styles';
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
-import AccessTimeFilledRoundedIcon from '@mui/icons-material/AccessTimeFilledRounded';
-import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import {CardActionArea} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import Box from "@mui/material/Box"
+import Box from "@mui/material/Box";
+import { db } from "../config/firebase";
+import { getDocs, collection } from "firebase/firestore";
 
-export default function EventCard({data}){
+export default function EventCard({info}){
     const theme = useTheme();
     let navigate = useNavigate();
+
+    // access info from firebase
+    const [cardData, setCardData] = useState([]);
+    const cardCollectionRef = collection(db, "Trade your day")
+
+    // function to get card data
+    useEffect(() => {
+        const getCardData = async () => {
+            // read data and set the card data
+            try {
+                const data = await getDocs(cardCollectionRef);
+                const cardInfo = data.docs.map((doc) => ({
+                    ...doc.data(),
+                    id: doc.id,
+                }));
+                setCardData(cardInfo);
+            } catch (err) {
+                console.error(err)
+            }
+        };
+        getCardData();
+    }, []);
     return (
         <Box sx={{
             display: 'flex',
@@ -21,7 +43,7 @@ export default function EventCard({data}){
             flexWrap: 'wrap',
             justifyContent: 'center'
         }}>
-            {data.map((item) => (
+            {cardData.map((item) => (
                     <Card sx={{
                         width: {
                             // sm: 200, //600
