@@ -88,7 +88,7 @@ function SignUp() {
                                 <ToggleButton value="Guest">Guest</ToggleButton>
                             </ToggleButtonGroup>
                         </Grid>
-                        <button onclick={signInWithGoogle}>Sign In With Google</button>
+                        <button onClick={signInWithGoogle}>Sign In With Google</button>
                         <button onClick={logOut}>Logout</button>
                     </Grid>
             </div>
