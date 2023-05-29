@@ -26,23 +26,20 @@ const labels = {
 };
 
 
-function valuetext(value) {
-    return `${value}°C`;
-}
 
-function getLabelText(value) {
-    return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+function getLabelText(rating) {
+    return `${rating} Star${rating !== 1 ? 's' : ''}, ${labels[rating]}`;
 }
 
 
-export default function DaySchedule () {
+export default function DaySchedule ({ formData, setFormData }) {
     // old consts for hour range:
-    // const [value, setValue] = useState();
+    // const [value, setRating] = useState();
     // const [hourRange, sethourRange] = useState([8, 17]);
 
     const [alignment, setAlignment] = React.useState('left');
     const theme = useTheme();
-    const [value, setValue] = React.useState(2);
+    const [rating, setRating] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
 
     // new:
@@ -67,8 +64,6 @@ export default function DaySchedule () {
     //         setDatePickerValues(datePickerValues.slice(0, -1)); // remove the value of the last DatePicker component
     //     }
     // }; // function to remove the last DatePicker component from the state
-
-
 
 
 
@@ -169,11 +164,11 @@ export default function DaySchedule () {
                                 name="Physical-Effort"
                                 defaultValue={3}
                                 size="large"
-                                value={value}
+                                value={rating}
                                 precision={1}
                                 getLabelText={getLabelText}
-                                onChange={(event, newValue) => {
-                                    setValue(newValue);
+                                onChange={(event, newRating) => {
+                                    setRating(newRating);
                                 }}
                                 onChangeActive={(event, newHover) => {
                                     setHover(newHover);
@@ -181,8 +176,8 @@ export default function DaySchedule () {
                                 icon={<DirectionsRunIcon fontSize="inherit" />}
                                 emptyIcon={<DirectionsRunIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                             />
-                            {value !== null && (
-                                <Box sx={{ ml: 2, color: 'text.secondary' }}>{labels[hover !== -1 ? hover : value]}</Box>
+                            {rating !== null && (
+                                <Box sx={{ ml: 2, color: 'text.secondary' }}>{labels[hover !== -1 ? hover : rating]}</Box>
                             )}
                         </Box>
                     </Paper>
@@ -207,46 +202,6 @@ export default function DaySchedule () {
                 </Grid>
 
 
-                {/*old time picker*/}
-            {/*<Grid item xs={8}*/}
-            {/*        // display="flex"*/}
-            {/*          direction="row"*/}
-            {/*          justifyContent="flex-start"*/}
-            {/*    >*/}
-            {/*        <Typography gutterBottom>*/}
-            {/*            Hour range*/}
-            {/*        </Typography>*/}
-
-            {/*        <Slider*/}
-            {/*            sx={{ml: 2}}*/}
-            {/*            fullWidth*/}
-            {/*            getAriaLabel={() => 'Hour range'}*/}
-            {/*            valueLabelDisplay="auto"*/}
-            {/*            step={0.5}*/}
-            {/*            marks ={marks}*/}
-            {/*            min={6}*/}
-            {/*            max={20}*/}
-            {/*            value={hourRange}*/}
-            {/*            onChange={(event, newValue) => {*/}
-            {/*                sethourRange(newValue);*/}
-            {/*            }}*/}
-            {/*            getAriaValueText={valuetext}*/}
-            {/*            range*/}
-            {/*        />*/}
-            {/*    </Grid>*/}
-            {/*    <Grid item sm={5}>*/}
-            {/*        <TextField*/}
-            {/*            fullWidth*/}
-            {/*            required*/}
-            {/*            id="NumOfGuests"*/}
-            {/*            label="Number of Guests"*/}
-            {/*            type="number"*/}
-            {/*            InputLabelProps={{*/}
-            {/*                shrink: true,*/}
-            {/*            }}*/}
-            {/*            variant="standard"*/}
-            {/*        />*/}
-            {/*    </Grid>*/}
                 <Grid item sm={12}>
                     <Typography gutterBottom>Give us a glimpse of what your day will look like!</Typography>
                     < br/>
@@ -268,7 +223,7 @@ export default function DaySchedule () {
 
 
 // export  function oldDaySchedule () {
-//     const [value, setValue] = useState();
+//     const [value, setRating] = useState();
 //     const [hourRange, sethourRange] = useState([8, 17]);
 //
 //     // hours for the slider:
@@ -305,7 +260,7 @@ export default function DaySchedule () {
 //                         fullWidth
 //                         label="Choose a day"
 //                         value={value}
-//                         onChange={(newValue) => setValue(newValue)}
+//                         onChange={(newValue) => setRating(newValue)}
 //                     />
 //                 </Grid>
 //                 <Grid item xs={8}
@@ -376,7 +331,7 @@ export default function DaySchedule () {
 //     {/*//                 fullWidth*/}
 //     {/*//                 label="Choose a day"*/}
 //     {/*//                 value={value}*/}
-//     {/*//                 onChange={(newValue) => setValue(newValue)}*/}
+//     {/*//                 onChange={(newValue) => setRating(newValue)}*/}
 //     {/*//         />*/}
 //     {/*//             </Grid>*/}
 //     {/*//             <Grid item xs={6}>*/}
