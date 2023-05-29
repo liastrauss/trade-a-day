@@ -25,6 +25,37 @@
         5: 'Extremely difficult',
     };
 
+    const [imageUpload, setImageUpload] = useState(null);
+    const uploadImage = () =>{
+        if (imageUpload==null) return;
+
+        const files = Array.from(imageUpload); // Convert FileList to an array
+
+        // // Map over each selected file and set the imageUpload state
+        files.map((pic) => {
+
+         // here we save the images to directory!! so for a host we will save it to his id
+            // directory for example
+        const imageRef = ref(storage, `images/${pic.name+ v4()} `)
+        uploadBytes(imageRef, pic).then(()=>{
+             // alert("image uploaded")
+        })
+        });
+
+    };
+
+    // const handleAddDatePicker = () => {
+    //     setDatePickerCount(datePickerCount + 1);
+    //     setDatePickerValues([...datePickerValues, null]); // add null value for the new DatePicker component
+    // }; // function to add a new DatePicker component to the state
+    //
+    // const handleRemoveDatePicker = () => {
+    //     if (datePickerCount > 1) { // prevent removing all the DatePicker components
+    //         setDatePickerCount(datePickerCount - 1);
+    //         setDatePickerValues(datePickerValues.slice(0, -1)); // remove the value of the last DatePicker component
+    //     }
+    // }; // function to remove the last DatePicker component from the state
+
 
 
 
