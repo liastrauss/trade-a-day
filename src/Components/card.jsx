@@ -72,6 +72,8 @@ export default function EventCard(){
                                 className="card-img"
                                 sx={{
                                     borderRadius: 3,
+                                    backgroundSize: 'cover', // Equivalent to object-fit: cover
+                                    backgroundPosition: 'center',
                                     width: {
                                         // sm: 200, //600
                                         md: 150, //900
