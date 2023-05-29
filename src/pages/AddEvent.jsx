@@ -44,22 +44,28 @@ import Topbar from "../Components/Topbar";
 const steps = ['A bit about yourself', 'Technicalities', 'What to bring'];
 
 // A function that returns the content of a specific step, based on the index passed as argument
-function getStepContent(step) {
-    switch (step) {
-        case 0:
-            return <EventForm/>;
-        case 1:
-            return < DaySchedule/>;
-        case 2:
-            return <ItemsForm />;
-        default:
-            throw new Error('Unknown step');
-    }
-}
 
 // The main functional component that renders the entire "add event" page and forms
 export default function AddEvent() {
-    // A state hook that keeps track of the currently active step
+
+    // the data from the form
+    const [formData, setFormData] = React.useState({
+        hostID: '',
+        hostName: '',
+        jobTitle: '',
+        dayDescription: '',
+        dates: [],
+        location: '',
+        accessible: true,
+        suitableForChildren: true,
+        toBring: ['hiking shoes'],
+        gallery: [],
+        physicalEffort: 0,
+    });
+
+
+
+    // A state hook that keeps track of the currently active step:
     const [activeStep, setActiveStep] = React.useState(0);
     // A function that increments the activeStep state when called
     const handleNext = () => {
@@ -70,31 +76,25 @@ export default function AddEvent() {
         setActiveStep(activeStep - 1);
     };
 
+
+    function getStepContent(step) {
+        switch (step) {
+            case 0:
+                return <EventForm formData={formData} setFormData={setFormData} />;
+            case 1:
+                return < DaySchedule formData={formData} setFormData={setFormData}/>;
+            case 2:
+                return <ItemsForm formData={formData} setFormData={setFormData}/>;
+            default:
+                throw new Error('Unknown step');
+        }
+    }
+
     const theme=useTheme()
     // The component's JSX code that gets returned
     return (
         <div>
-             {/*<CssBaseline />*/}
-             {/* The top app bar of the checkout page*/}
-            {/*<AppBar*/}
-            {/*    position="sticky"*/}
-            {/*    elevation={0}*/}
-            {/*    sx={{*/}
-            {/*        position: 'sticky',*/}
-            {/*        borderBottom: (t) => `1px solid ${t.palette.divider}`,*/}
-            {/*        color: theme.palette.primary.light,*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*     <Toolbar>*/}
-            {/*         /!* The title of the app in the app bar *!/*/}
-            {/*         /!*<Typography variant="h6" noWrap color = "primary">*!/*/}
-            {/*         /!*    Trade a Day*!/*/}
-            {/*         /!*</Typography>*!/*/}
-            {/*         <Logo sx = {{}}></Logo>*/}
-            {/*     </Toolbar>*/}
-            {/*</AppBar>*/}
             <Topbar BookedEvents/>
-
 
              {/*// The container that holds the main content of the page*/}
             <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
