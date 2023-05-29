@@ -11,13 +11,13 @@ import Box from "@mui/material/Box";
 import { db } from "../config/firebase";
 import { getDocs, collection } from "firebase/firestore";
 
-export default function EventCard({info}){
+export default function EventCard(){
     const theme = useTheme();
     let navigate = useNavigate();
 
     // access info from firebase
     const [cardData, setCardData] = useState([]);
-    const cardCollectionRef = collection(db, "Trade your day")
+    const cardCollectionRef = collection(db, "DataBase")
 
     // function to get card data
     useEffect(() => {
