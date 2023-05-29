@@ -8,7 +8,7 @@
 //
 
 import {useNavigate} from "react-router-dom"
-
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 // GITHUB CODE
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -100,17 +100,18 @@ export function DialogWithCard() {
     return (
         <div>
             <Button variant="outlined" onClick={handleOpen}>
-                Book
+                <MailOutlineIcon/>  Contact with the host
             </Button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Book your Day</DialogTitle>
+                <DialogTitle> mail </DialogTitle>
                 <DialogContent>
-                    <ControlledRadioButtonsGroup/>
+                    {/*<ControlledRadioButtonsGroup/>*/}
+                    you can write here your massage to the host
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
+                    {/*<Button onClick={handleClose}>Cancel</Button>*/}
                     <Button onClick={handleClose} variant="contained" autoFocus>
-                        Book
+                        send
                     </Button>
                 </DialogActions>
             </Dialog>
