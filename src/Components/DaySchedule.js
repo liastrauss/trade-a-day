@@ -49,6 +49,7 @@ export default function DaySchedule () {
     const [datePickerCount, setDatePickerCount] = useState(1); // state variable for the number of DatePicker components
     const [datePickerValues, setDatePickerValues] = useState([null]); // state variable for the values of the DatePicker components
 
+    console.log(datePickerValues)
     // for toggle
     const handleChange = (event, newAlignment) => {
         setAlignment(newAlignment);

@@ -11,9 +11,9 @@ import Orders from '../Components/booked overview';
 import Topbar from "../Components/Topbar";
 import {ListItemText} from "@mui/material";
 import ListItemButton from "@mui/material/ListItemButton";
-import HostInfo2 from "../Components/hostInfo2";
+import HostInfo2 from "./hostInfo2";
 import ListSubheader from "@mui/material/ListSubheader";
-import data from '../data/booked-days.json';
+import data from './booked-days.json';
 import Button from "@mui/material/Button";
 
 
