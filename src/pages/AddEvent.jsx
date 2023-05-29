@@ -93,7 +93,7 @@ export default function AddEvent() {
             {/*         <Logo sx = {{}}></Logo>*/}
             {/*     </Toolbar>*/}
             {/*</AppBar>*/}
-            <Topbar/>
+            <Topbar BookedEvents/>
 
 
              {/*// The container that holds the main content of the page*/}

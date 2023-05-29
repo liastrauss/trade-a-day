@@ -1,25 +1,58 @@
 import React, {useState} from 'react';
 import {DatePicker, TimePicker} from "@mui/x-date-pickers";
-import {Grid, IconButton, Slider, TextField} from "@mui/material";
+import {Grid, IconButton, Rating, Slider, TextField, ToggleButton} from "@mui/material";
 import Button from "@mui/material/Button";
 import {PhotoCamera} from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from "@mui/icons-material/Add";
+import Paper from "@mui/material/Paper";
+import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
+import {useTheme} from "@mui/material/styles";
+import {ToggleButtonGroup} from "@mui/lab";
+
+const labels = {
+    0.5: 'Very easy',
+    1: 'Very easy',
+    1.5: 'Easy',
+    2: 'Easy',
+    2.5: 'Moderate',
+    3: 'Moderate',
+    3.5: 'Somewhat difficult',
+    4: 'Difficult',
+    4.5: 'Very difficult',
+    5: 'Extremely difficult',
+};
+
 
 function valuetext(value) {
     return `${value}°C`;
 }
 
+function getLabelText(value) {
+    return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+}
+
+
 export default function DaySchedule () {
-    const [value, setValue] = useState();
-    const [hourRange, sethourRange] = useState([8, 17]);
+    // old consts for hour range:
+    // const [value, setValue] = useState();
+    // const [hourRange, sethourRange] = useState([8, 17]);
+
+    const [alignment, setAlignment] = React.useState('left');
+    const theme = useTheme();
+    const [value, setValue] = React.useState(2);
+    const [hover, setHover] = React.useState(-1);
 
     // new:
     const [datePickerCount, setDatePickerCount] = useState(1); // state variable for the number of DatePicker components
     const [datePickerValues, setDatePickerValues] = useState([null]); // state variable for the values of the DatePicker components
 
+    // for toggle
+    const handleChange = (event, newAlignment) => {
+        setAlignment(newAlignment);
+    };
 
 
     // const handleAddDatePicker = () => {
@@ -39,31 +72,28 @@ export default function DaySchedule () {
 
 
     // hours for the slider:
-    const marks = [
-        { value: 8, label: '8:00' },
-        { value: 14, label: '14:00' },
-        { value: 10, label: '10:00' },
-        { value: 16, label: '16:00' },
-
-
-
-        {
-            value: 6,
-            label: '6:00'
-        },
-        {
-            value: 12,
-            label: '12:00'
-        },
-        {
-            value: 18,
-            label: '18:00'
-        },
-        {
-            value: 20,
-            label: '20:00'
-        }
-    ];
+    // const marks = [
+    //     { value: 8, label: '8:00' },
+    //     { value: 14, label: '14:00' },
+    //     { value: 10, label: '10:00' },
+    //     { value: 16, label: '16:00' },
+    //     {
+    //         value: 6,
+    //         label: '6:00'
+    //     },
+    //     {
+    //         value: 12,
+    //         label: '12:00'
+    //     },
+    //     {
+    //         value: 18,
+    //         label: '18:00'
+    //     },
+    //     {
+    //         value: 20,
+    //         label: '20:00'
+    //     }
+    // ];
 
 
 
@@ -76,7 +106,8 @@ export default function DaySchedule () {
                     <DatePicker
                         required
                         fullWidth
-                        label={`Choose Date ${index + 1}`}
+                        views={['year', 'month']}
+                        label={`Available Month #${index + 1}`}
                         value={datePickerValues[index]}
                         onChange={(newValue) => {
                             const newDateValues = [...datePickerValues];
@@ -86,7 +117,7 @@ export default function DaySchedule () {
                         renderInput={(params) => (
                             <TextField {...params} variant="standard" />
                         )}
-                        inputFormat="DD/MM/YYYY"
+                        inputFormat="MMMM/YYYY"
                     />
                 </Grid>
             ))}
@@ -114,46 +145,107 @@ export default function DaySchedule () {
                 )}
             </Grid>
 
+                {/*new rating:*/}
+                <Grid item sm={12}>
+                    <Paper variant="outlined" sx={{ p: 2, outline: '1px' }}>
+                        <Box
+                            sx={{
+                                width: '100%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                typography: 'subtitle1',
+                                // color: 'text.secondary'
+                                // borderRadius: 2,
+                                // p: 1,
 
-            <Grid item xs={8}
+                            }}
+                        >
+                            <Typography component="legend" align="center">Physical Effort</Typography>
+                            <Rating
+                                sx={{
+                                    color: theme.palette.primary.main, // set the color to value from app js
+                                }}
+                                name="Physical-Effort"
+                                defaultValue={3}
+                                size="large"
+                                value={value}
+                                precision={1}
+                                getLabelText={getLabelText}
+                                onChange={(event, newValue) => {
+                                    setValue(newValue);
+                                }}
+                                onChangeActive={(event, newHover) => {
+                                    setHover(newHover);
+                                }}
+                                icon={<DirectionsRunIcon fontSize="inherit" />}
+                                emptyIcon={<DirectionsRunIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                            />
+                            {value !== null && (
+                                <Box sx={{ ml: 2, color: 'text.secondary' }}>{labels[hover !== -1 ? hover : value]}</Box>
+                            )}
+                        </Box>
+                    </Paper>
+                </Grid>
+
+                <Grid item xs={5}
+                    // direction="row"
+                    // justifyContent="space-between"
+                    // alignItems="center"
                     // display="flex"
-                      direction="row"
-                      justifyContent="flex-start"
                 >
-                    <Typography gutterBottom>
-                        Hour range
-                    </Typography>
+                    <ToggleButtonGroup
+                        color="primary"
+                        value={alignment}
+                        exclusive
+                        onChange={handleChange}
+                        aria-label="indoorsoroutdoors"
+                    >
+                        <ToggleButton value="indoors">indoors</ToggleButton>
+                        <ToggleButton value="outdoors">outdoors</ToggleButton>
+                    </ToggleButtonGroup>
+                </Grid>
 
-                    <Slider
-                        sx={{ml: 2}}
-                        fullWidth
-                        getAriaLabel={() => 'Hour range'}
-                        valueLabelDisplay="auto"
-                        step={0.5}
-                        marks ={marks}
-                        min={6}
-                        max={20}
-                        value={hourRange}
-                        onChange={(event, newValue) => {
-                            sethourRange(newValue);
-                        }}
-                        getAriaValueText={valuetext}
-                        range
-                    />
-                </Grid>
-                <Grid item sm={5}>
-                    <TextField
-                        fullWidth
-                        required
-                        id="NumOfGuests"
-                        label="Number of Guests"
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        variant="standard"
-                    />
-                </Grid>
+
+                {/*old time picker*/}
+            {/*<Grid item xs={8}*/}
+            {/*        // display="flex"*/}
+            {/*          direction="row"*/}
+            {/*          justifyContent="flex-start"*/}
+            {/*    >*/}
+            {/*        <Typography gutterBottom>*/}
+            {/*            Hour range*/}
+            {/*        </Typography>*/}
+
+            {/*        <Slider*/}
+            {/*            sx={{ml: 2}}*/}
+            {/*            fullWidth*/}
+            {/*            getAriaLabel={() => 'Hour range'}*/}
+            {/*            valueLabelDisplay="auto"*/}
+            {/*            step={0.5}*/}
+            {/*            marks ={marks}*/}
+            {/*            min={6}*/}
+            {/*            max={20}*/}
+            {/*            value={hourRange}*/}
+            {/*            onChange={(event, newValue) => {*/}
+            {/*                sethourRange(newValue);*/}
+            {/*            }}*/}
+            {/*            getAriaValueText={valuetext}*/}
+            {/*            range*/}
+            {/*        />*/}
+            {/*    </Grid>*/}
+            {/*    <Grid item sm={5}>*/}
+            {/*        <TextField*/}
+            {/*            fullWidth*/}
+            {/*            required*/}
+            {/*            id="NumOfGuests"*/}
+            {/*            label="Number of Guests"*/}
+            {/*            type="number"*/}
+            {/*            InputLabelProps={{*/}
+            {/*                shrink: true,*/}
+            {/*            }}*/}
+            {/*            variant="standard"*/}
+            {/*        />*/}
+            {/*    </Grid>*/}
                 <Grid item sm={12}>
                     <Typography gutterBottom>Give us a glimpse of what your day will look like!</Typography>
                     < br/>

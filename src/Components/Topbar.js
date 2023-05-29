@@ -8,7 +8,6 @@ import {useTheme} from "@mui/material/styles";
 import SearchBox from "./searchBox";
 import AppBar from '@mui/material/AppBar';
 import Paper from "@mui/material/Paper";
-import PropTypes from 'prop-types';
 import Toolbar from '@mui/material/Toolbar';
 
 
@@ -29,14 +28,6 @@ function ElevationScroll(props) {
     });
 }
 
-// ElevationScroll.propTypes = {
-//     children: PropTypes.element.isRequired,
-//     /**
-//      * Injected by the documentation to work in an iframe.
-//      * You won't need it on your project.
-//      */
-//     window: PropTypes.func,
-// };
 
 // export function newTopbar(props) {
 //     let navigate = useNavigate();
@@ -120,6 +111,8 @@ export default function Topbar(props) {
     const AddDay = props.AddDay;
     const Search = props.Search;
     const Profile = props.Profile;
+    const BookedEvents = props.BookedEvents;
+
 
     return (
             <Box position='static'
@@ -136,6 +129,7 @@ export default function Topbar(props) {
                 //     placeholder with empty space so it will look the same
                 :  <Box sx={{width: 350, height: 32}} />
                         }
+
                 <Box sx={{
                     display: 'flex',
                     justifyContent: 'space-around',
@@ -159,14 +153,6 @@ export default function Topbar(props) {
                     </Button>
                 }
 
-                <Button variant="outlined"
-                        onClick={() =>{
-                            navigate("/BookedEvents");
-                        }}
-                        style={{cursor: 'pointer'}}
-                >
-                    My bookings
-                </Button>
                 <Avatar src="/broken-image.jpg"
                         sx={{ml: 1}}
                         onClick={() => {

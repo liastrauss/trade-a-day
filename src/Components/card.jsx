@@ -23,10 +23,21 @@ export default function EventCard({data}){
         }}>
             {data.map((item) => (
                     <Card sx={{
-                        width: 275,
+                        width: {
+                            sm: 200, //600
+                            md: 300, //900
+                            lg: 400, //1200
+                            xl: 500, //1563
+                        },
+                        height: {
+                            sm: 264, //600
+                            md: 396, //900
+                            lg: 528, //1200
+                            xl: 660, //1563
+                        },
                         boxShadow: 0,
                         my: 2,
-                        mx: 2,
+                        mx: 2.5,
                     }}
                     >
                         <CardActionArea onClick={() => {
@@ -40,32 +51,44 @@ export default function EventCard({data}){
                                 className="card-img"
                                 sx={{
                                     borderRadius: 3,
-                                    height: 250
+                                    width: {
+                                        sm: 200, //600
+                                        md: 300, //900
+                                        lg: 400, //1200
+                                        xl: 500, //1563
+                                    },
+                                    height: {
+                                        sm: 200, //600
+                                        md: 300, //900
+                                        lg: 400, //1200
+                                        xl: 500, //1563
+                                    },
                                 }}
                             />
-                            <CardContent sx={{
-                                fontSize: 13,
-                                fontFamily: theme.typography.fontFamily,
-                                fontWeight: theme.typography.fontWeightMedium,
-                                lineHeight: 0
-                            }}
-                            >
-                                {item.hostName}, {item.title}
-                            </CardContent>
-                            <CardActions
-                                sx={{
-                                    color: theme.palette.text.secondary,
-                                    fontWeight: theme.typography.fontWeightRegular,
+                            {/*<Box sx={{ flexDirection: 'row' }}>*/}
+                                <CardContent sx={{
+                                    fontSize: 13,
                                     fontFamily: theme.typography.fontFamily,
-                                    fontSize: 12,
-                                    justifyContent: 'space-evenly',
-                                    lineHeight: 0,
-                                    mt: -2.5,
-                                }}>
-                                <p><LocationOnRoundedIcon sx={{fontSize: 13}}/>{item.location}</p>
-                                <p><AccessTimeFilledRoundedIcon sx={{fontSize: 13}}/>{item.duration}</p>
-                                <p><StarRateRoundedIcon sx={{fontSize: 13}}/>{item.rating}</p>
-                            </CardActions>
+                                    fontWeight: theme.typography.fontWeightMedium,
+                                    lineHeight: 0
+                                }}
+                                >
+                                    {item.hostName}, {item.title}
+                                </CardContent>
+                                <CardActions
+                                    sx={{
+                                        color: theme.palette.text.secondary,
+                                        fontWeight: theme.typography.fontWeightRegular,
+                                        fontFamily: theme.typography.fontFamily,
+                                        fontSize: 12,
+                                        justifyContent: 'flex-start',
+                                        lineHeight: 0,
+                                        mt: -2.5,
+                                        ml: 1
+                                    }}>
+                                    <p><LocationOnRoundedIcon sx={{fontSize: 13}}/>{item.location}</p>
+                                </CardActions>
+                            {/*</Box>*/}
                         </CardActionArea>
                     </Card>
             ))

@@ -12,6 +12,9 @@ import Typography from '@mui/material/Typography';
 import Logo from "../Components/logo"
 
 // Importing three form components that will be rendered inside the  component
+// import MoreDetails from "../Components/SignUpMoreDetails";
+// import SignUp from "../Components/SignUpNew";
+import Topbar from "../Components/Topbar";
 import MoreDetails from "../Components/CreateProfileMoreDetails";
 import SignUp from "../Components/CreateProfileBasicInfo";
 import {useNavigate} from "react-router-dom";
@@ -51,23 +54,25 @@ export default function CreateProfile() {
         <div>
             {/*<CssBaseline />*/}
             {/* The top app bar of the checkout page*/}
-            <AppBar
-                position="sticky"
-                color="transparent"
-                elevation={0}
-                sx={{
-                    position: 'relative',
-                    borderBottom: (t) => `1px solid ${t.palette.divider}`,
-                }}
-            >
-                <Toolbar>
-                    {/* The title of the app in the app bar */}
-                    {/*<Typography variant="h6" noWrap color = "primary">*/}
-                    {/*    Trade a Day*/}
-                    {/*</Typography>*/}
-                    <Logo sx = {{}}></Logo>
-                </Toolbar>
-            </AppBar>
+            {/*<AppBar*/}
+            {/*    position="sticky"*/}
+            {/*    color="transparent"*/}
+            {/*    elevation={0}*/}
+            {/*    sx={{*/}
+            {/*        position: 'relative',*/}
+            {/*        borderBottom: (t) => `1px solid ${t.palette.divider}`,*/}
+            {/*    }}*/}
+            {/*>*/}
+            {/*    <Toolbar>*/}
+            {/*        /!* The title of the app in the app bar *!/*/}
+            {/*        /!*<Typography variant="h6" noWrap color = "primary">*!/*/}
+            {/*        /!*    Trade a Day*!/*/}
+            {/*        /!*</Typography>*!/*/}
+            {/*        <Logo sx = {{}}></Logo>*/}
+            {/*    </Toolbar>*/}
+            {/*</AppBar>*/}
+
+            <Topbar AddDay Profile BookedEvents/>
 
             {/*// The container that holds the main content of the page*/}
             <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
