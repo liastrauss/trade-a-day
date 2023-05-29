@@ -61,6 +61,7 @@ export default function AddEvent() {
         toBring: ['hiking shoes'],
         gallery: [],
         physicalEffort: 0,
+        outdoors: true,
     });
 
 
