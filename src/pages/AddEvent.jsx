@@ -39,11 +39,12 @@ import SearchBox from "../Components/searchBox";
 import {Avatar, Divider} from "@mui/material";
 import Topbar from "../Components/Topbar";
 
+import { db } from "../config/firebase";
+import {addDoc, collection} from 'firebase/firestore';
 
 // An array that stores the labels for the steps of the checkout process
 const steps = ['A bit about yourself', 'Technicalities', 'What to bring'];
 
-// A function that returns the content of a specific step, based on the index passed as argument
 
 // The main functional component that renders the entire "add event" page and forms
 export default function AddEvent() {
@@ -58,12 +59,34 @@ export default function AddEvent() {
         location: '',
         accessible: true,
         suitableForChildren: true,
-        toBring: ['hiking shoes'],
+        toBring: ['hiking shoes'], //doesn't matter the init
         gallery: [],
-        physicalEffort: 0,
+        physicalEffort: 1, // init the physical effort
         outdoors: true,
     });
 
+    const dbRef = collection(db,"DataBase");
+    const onSubmit = async () => {
+        try {
+        await addDoc(dbRef, {
+            // hostID: '',
+            // hostName: '',
+            jobTitle: formData.jobTitle,
+            dayDescription: formData.dayDescription,
+            dates: formData.dates,
+            location: formData.location,
+            accessible: formData.accessible,
+            suitableForChildren: formData.suitableForChildren,
+            toBring: formData.toBring, //doesn't matter the init
+            // gallery: [],//TODO: when the photo is ready
+            physicalEffort: formData.physicalEffort, // init the physical effort
+            // outdoors: true,
+
+        })
+        } catch(err) {
+            console.error(err)
+        }
+    }
 
 
     // A state hook that keeps track of the currently active step:
@@ -136,7 +159,7 @@ export default function AddEvent() {
 
                                     <Button
                                         variant="contained"
-                                        onClick={handleNext}
+                                        onClick={activeStep === steps.length - 1 ? onSubmit : handleNext} // Call onSubmit only when all steps are finished
                                         sx={{ mt: 3, ml: 1 }}
                                     >
                                         {activeStep === steps.length - 1 ? 'Add your day' : 'Next'}
