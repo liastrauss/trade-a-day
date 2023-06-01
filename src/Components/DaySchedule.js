@@ -1,3 +1,7 @@
+import {storage} from "../config/firebase";
+import {ref, uploadBytes} from "firebase/storage";
+import {v4} from "uuid";
+
     import React, {useState} from 'react';
     import {DatePicker, TimePicker} from "@mui/x-date-pickers";
     import {Grid, IconButton, Rating, Slider, TextField, ToggleButton} from "@mui/material";
@@ -26,6 +30,9 @@
     };
 
 
+function valuetext(value) {
+    return `${value}°C`;
+}
 
 
 
@@ -57,6 +64,24 @@
             return `${rating} Star${formData.physicalEffort !== 1 ? 's' : ''}, ${labels[formData.physicalEffort !== -1 ? formData.physicalEffort : rating]}`;
         }
 
+    const [imageUpload, setImageUpload] = useState(null);
+    const uploadImage = () =>{
+        if (imageUpload==null) return;
+
+        const files = Array.from(imageUpload); // Convert FileList to an array
+
+        // // Map over each selected file and set the imageUpload state
+        files.map((pic) => {
+
+         // here we save the images to directory!! so for a host we will save it to his id
+            // directory for example
+        const imageRef = ref(storage, `images/${pic.name+ v4()} `)
+        uploadBytes(imageRef, pic).then(()=>{
+             // alert("image uploaded")
+        })
+        });
+
+    };
 
         // const handleAddDatePicker = () => {
         //     setDatePickerCount(datePickerCount + 1);
@@ -238,9 +263,13 @@
                         < br/>
                         <Button variant="contained" component="label">
                             <PhotoCamera sx={{mr: 1}}/>
-                             Upload
-                            <input hidden accept="image/*" multiple type="file" />
-                        </Button>
+                             choose files
+                            <input hidden accept="image/*" multiple type="file" onChange={(event) => {setImageUpload(event.target.files);
+                        }}/>
+                        </Button><Button variant="contained" component="label" onClick={uploadImage}>
+
+                        Upload
+                    </Button>
                         {/*<IconButton color="primary" aria-label="upload picture" component="label">*/}
                         {/*    <input hidden accept="image/*" type="file" />*/}
                         {/*    <PhotoCamera/>*/}
