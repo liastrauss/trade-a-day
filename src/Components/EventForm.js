@@ -60,7 +60,7 @@ function EventForm ({ formData, setFormData }) {
                 </Grid>
 
                     <Grid item
-                          direction="row"
+                          // direction="row"
                           justifyContent="flex-start"
                           alignItems="center"
                           display="flex"

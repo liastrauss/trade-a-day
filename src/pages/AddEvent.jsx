@@ -18,9 +18,6 @@ import Logo from "../Components/logo"
 import EventForm from "../Components/EventForm";
 import ItemsForm from "../Components/ItemsForm";
 import DaySchedule from "../Components/DaySchedule";
-import SearchSection from "../Components/search section";
-import SearchBox from "../Components/searchBox";
-import {Avatar, Divider} from "@mui/material";
 import Topbar from "../Components/Topbar";
 
 import { db } from "../config/firebase";
@@ -34,7 +31,8 @@ const steps = ['A bit about yourself', 'Technicalities', 'What to bring'];
 export default function AddEvent() {
 
     // the data from the form
-    const [formData, setFormData] = React.useState({
+    const [formData, setFormData] =
+        React.useState({
         hostID: '',
         hostName: '',
         jobTitle: '',
@@ -43,11 +41,11 @@ export default function AddEvent() {
         location: '',
         accessible: true,
         suitableForChildren: true,
-        toBring: ['hiking shoes'], //doesn't matter the init
+        toBring: [],
         gallery: [],
         physicalEffort: 1, // init the physical effort
         outdoors: true,
-    });
+    },[]);
 
     const dbRef = collection(db,"DataBase1");
     const onSubmit = async () => {
@@ -66,7 +64,7 @@ export default function AddEvent() {
             physicalEffort: formData.physicalEffort, // init the physical effort
             // outdoors: true,
 
-        })
+        });
         } catch(err) {
             console.error(err)
         }
@@ -99,6 +97,7 @@ export default function AddEvent() {
     }
 
     const theme=useTheme()
+    const acc = formData.suitableForChildren
     // The component's JSX code that gets returned
     return (
         <div>
@@ -123,12 +122,20 @@ export default function AddEvent() {
                         </Stepper>
                         {activeStep === steps.length ? (
                             <React.Fragment>
+                                <Button onClick = {onSubmit}> submit </Button>
+                                <div>
+                                    <Typography>review your details:</Typography>
+                                    {formData.dates.map((item) => (
+                                        <Typography key={item}>{item}</Typography>
+                                    ))}
+                                </div>
                                 <Typography variant="h5" gutterBottom>
                                     Thank you for joining the Trade a Day community!
                                 </Typography>
                                 <Typography variant="subtitle1">
                                      A confirmation has been emailed to you,
                                     and we will let you know about any bookings.
+
                                 </Typography>
                             </React.Fragment>
                         ) : (
@@ -143,7 +150,8 @@ export default function AddEvent() {
 
                                     <Button
                                         variant="contained"
-                                        onClick={activeStep === steps.length - 1 ? onSubmit : handleNext} // Call onSubmit only when all steps are finished
+                                        onClick={handleNext} // Call onSubmit only when all steps are finished
+                                        // onClick={activeStep === steps.length - 1 ? onSubmit : handleNext} // Call onSubmit only when all steps are finished
                                         sx={{ mt: 3, ml: 1 }}
                                     >
                                         {activeStep === steps.length - 1 ? 'Add your day' : 'Next'}
