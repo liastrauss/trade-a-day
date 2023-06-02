@@ -5,7 +5,6 @@ import {StandardImageList} from "./view2";
 import {useParams} from "react-router-dom";
 import {db} from "../config/firebase";
 import {collection, doc, getDoc, getDocs, getFirestore} from "firebase/firestore";
-import ToBring from "./toBringHostInfo"
 
 
 function HostInfo() {
@@ -73,7 +72,15 @@ function HostInfo() {
 
                         <Typography variant="subtitle1">
                             {/*{eventInfoData?.toBring}*/}
-                            <ToBring index={index} />
+                            {eventInfoData?.toBring && (
+                                <ul>
+                                    {eventInfoData.toBring.map((item, index) => (
+                                        <li key={index}>
+                                            <Typography variant="subtitle1">{item}</Typography>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}s
                         </Typography>
 
                     </Grid>
