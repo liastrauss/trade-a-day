@@ -138,6 +138,7 @@
                         <DatePicker
                             required
                             fullWidth
+                            disablePast
                             views={['year', 'month']}
                             label={`Available Month #${index + 1}`}
                             // value={datePickerValues[index]}
