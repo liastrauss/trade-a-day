@@ -5,6 +5,7 @@ import {StandardImageList} from "./view2";
 import {useParams} from "react-router-dom";
 import {db} from "../config/firebase";
 import {collection, doc, getDoc, getDocs, getFirestore} from "firebase/firestore";
+import ToBring from "./toBringHostInfo"
 
 
 function HostInfo() {
@@ -16,7 +17,6 @@ function HostInfo() {
     useEffect (() => {
         async function fetchEventInfoData(){
             try {
-                //TODO this function gets index as parameter. need to send document id for routing to send parameter, but otherwise works!
                 const eventInfoRef = doc(db, "DataBase1", index)
                 const eventInfoSnapshot = await getDoc(eventInfoRef)
                 const data = eventInfoSnapshot.data()
@@ -42,7 +42,7 @@ function HostInfo() {
                             A day with {eventInfoData?.hostName}
                         </Typography>
                         <Typography variant="subtitle1">
-                            {eventInfoData?.about}
+                            {eventInfoData?.dayDescription}
                         </Typography>
 
                     </Grid>
@@ -72,7 +72,8 @@ function HostInfo() {
                         </Typography>
 
                         <Typography variant="subtitle1">
-                            {eventInfoData?.bring}
+                            {/*{eventInfoData?.toBring}*/}
+                            <ToBring index={index} />
                         </Typography>
 
                     </Grid>
