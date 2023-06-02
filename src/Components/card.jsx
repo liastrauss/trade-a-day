@@ -17,7 +17,7 @@ export default function EventCard(){
 
     // access info from firebase
     const [cardData, setCardData] = useState([]);
-    const cardCollectionRef = collection(db, "DataBase")
+    const cardCollectionRef = collection(db, "DataBase1")
 
     // function to get card data
     useEffect(() => {
@@ -96,7 +96,7 @@ export default function EventCard(){
                                     lineHeight: 0
                                 }}
                                 >
-                                    {item.hostName}, {item.title}
+                                    {item.hostName}, {item.jobTitle}
                                 </CardContent>
                                 <CardActions
                                     sx={{

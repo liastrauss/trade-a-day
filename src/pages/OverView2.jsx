@@ -118,19 +118,6 @@ export default function OverView2() {
                         <DialogWithCard/>
                     </Grid>
                 </Grid>
-                {/*<React.Fragment>*/}
-
-
-                {/*    /!*<Button*!/*/}
-                {/*    /!*    variant="outlined"*!/*/}
-                {/*    /!*    onClick={() => {*!/*/}
-                {/*    /!*        navigate("/");*!/*/}
-                {/*    /!*    }}*!/*/}
-
-                {/*    /!*    sx={{display: "flex", justifyContent: 'flex end'}}*!/*/}
-                {/*    /!*> Book*!/*/}
-                {/*    /!*</Button>*!/*/}
-                {/*</React.Fragment>*/}
             </Container>
         </div>
     );
