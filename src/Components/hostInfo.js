@@ -9,15 +9,15 @@ import {collection, doc, getDoc, getDocs, getFirestore} from "firebase/firestore
 
 function HostInfo() {
     const theme = useTheme();
-    const { id } = useParams(); // Access the id parameter from the URL
+    const { index } = useParams(); // Access the id parameter from the URL
 
     const [eventInfoData, setEventInfoData] = useState();
 
     useEffect (() => {
         async function fetchEventInfoData(){
             try {
-                //TODO this function gets id as parameter. need to send document id for routing to send parameter, but otherwise works!
-                const eventInfoRef = doc(db, "DataBase", id)
+                //TODO this function gets index as parameter. need to send document id for routing to send parameter, but otherwise works!
+                const eventInfoRef = doc(db, "DataBase1", index)
                 const eventInfoSnapshot = await getDoc(eventInfoRef)
                 const data = eventInfoSnapshot.data()
                 setEventInfoData(data);
@@ -26,7 +26,7 @@ function HostInfo() {
             }
         }
         fetchEventInfoData();
-    }, [id]);
+    }, [index]);
 
 
     return (
