@@ -16,7 +16,6 @@ function HostInfo() {
     useEffect (() => {
         async function fetchEventInfoData(){
             try {
-                //TODO this function gets index as parameter. need to send document id for routing to send parameter, but otherwise works!
                 const eventInfoRef = doc(db, "DataBase1", index)
                 const eventInfoSnapshot = await getDoc(eventInfoRef)
                 const data = eventInfoSnapshot.data()
@@ -42,7 +41,7 @@ function HostInfo() {
                             A day with {eventInfoData?.hostName}
                         </Typography>
                         <Typography variant="subtitle1">
-                            {eventInfoData?.about}
+                            {eventInfoData?.dayDescription}
                         </Typography>
 
                     </Grid>
@@ -72,7 +71,16 @@ function HostInfo() {
                         </Typography>
 
                         <Typography variant="subtitle1">
-                            {eventInfoData?.bring}
+                            {/*{eventInfoData?.toBring}*/}
+                            {eventInfoData?.toBring && (
+                                <ul>
+                                    {eventInfoData.toBring.map((item, index) => (
+                                        <li key={index}>
+                                            <Typography variant="subtitle1">{item}</Typography>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}s
                         </Typography>
 
                     </Grid>
