@@ -30,7 +30,7 @@ const steps = ['A bit about yourself', 'Technicalities', 'What to bring'];
 // The main functional component that renders the entire "add event" page and forms
 export default function AddEvent() {
 
-    // the data from the form
+    // initialize the data from the form parts
     const [formData, setFormData] =
         React.useState({
         hostID: '',
@@ -52,7 +52,7 @@ export default function AddEvent() {
     const extractedDates = datesArray.map((date) => date && date.$d); // Extract the $d property from each date
 
 
-
+// update backend:
     const dbRef = collection(db,"DataBase1");
     const onSubmit = async () => {
         try {
@@ -71,11 +71,25 @@ export default function AddEvent() {
             outdoors: formData.outdoors,
 
         });
+        // TODO: the docId is undefined. but do we really need hostId field anymore?
+        // const docId = onSubmit.id;
+            // Update the document with the auto-generated ID
+        // await updateDoc(dbRef, {
+        //     hostID: docId
+        // });
+            // advance to the final page:
+            setActiveStep(activeStep + 1);
+
         } catch(err) {
             console.error(err)
         }
     }
     console.log(formData)
+
+
+
+
+
 
 
     // A state hook that keeps track of the currently active step:
@@ -104,7 +118,6 @@ export default function AddEvent() {
     }
 
     const theme=useTheme()
-    const acc = formData.suitableForChildren
 
 
     // The component's JSX code that gets returned
@@ -132,15 +145,6 @@ export default function AddEvent() {
                         {activeStep === steps.length ? (
                             <React.Fragment>
                                 <Button onClick = {onSubmit}> submit </Button>
-                                <div>
-                                    <Typography>review your details:</Typography>
-                                    {/*{formData.dates.map((item) => (*/}
-                                    {/*    <Typography key={item}>{item}</Typography>*/}
-                                    {/*))}*/}
-                                    {/*<Typography>{formData.dates[0].$d}</Typography>*/}
-
-
-                                </div>
                                 <Typography variant="h5" gutterBottom>
                                     Thank you for joining the Trade a Day community!
                                 </Typography>
@@ -162,8 +166,8 @@ export default function AddEvent() {
 
                                     <Button
                                         variant="contained"
-                                        onClick={handleNext} // Call onSubmit only when all steps are finished
-                                        // onClick={activeStep === steps.length - 1 ? onSubmit : handleNext} // Call onSubmit only when all steps are finished
+                                        // onClick={handleNext}
+                                        onClick={activeStep === steps.length - 1 ? onSubmit : handleNext} // Call onSubmit only when all steps are finished
                                         sx={{ mt: 3, ml: 1 }}
                                     >
                                         {activeStep === steps.length - 1 ? 'Add your day' : 'Next'}
