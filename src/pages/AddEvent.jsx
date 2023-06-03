@@ -38,7 +38,7 @@ export default function AddEvent() {
         jobTitle: '',
         dayDescription: '',
         dates: [null],
-        location: '',
+        location: null,
         accessible: true,
         suitableForChildren: true,
         toBring: [],

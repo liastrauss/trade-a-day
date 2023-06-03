@@ -50,11 +50,10 @@ function EventForm ({ formData, setFormData }) {
                         options = {areas}
                         // sx={{ width: 300 }}
                         renderInput={(params) => <TextField {...params} label="Area" />}
-                       // TODO: solve the circular json problem
-                        // onChange={(e) => {
-                        //     setFormData({ ...formData, location: e, });
-                        // }}
-                        // value={formData.location}
+                        onChange={(e, newValue) => {
+                            setFormData({ ...formData, location: newValue, });
+                        }}
+                        value={formData.location}
 
                     />
                 </Grid>
