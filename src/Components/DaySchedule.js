@@ -1,65 +1,103 @@
-    import React, {useState} from 'react';
-    import {DatePicker, TimePicker} from "@mui/x-date-pickers";
-    import {Grid, IconButton, Rating, Slider, TextField, ToggleButton} from "@mui/material";
-    import Button from "@mui/material/Button";
-    import {PhotoCamera} from "@mui/icons-material";
-    import Typography from "@mui/material/Typography";
-    import Box from "@mui/material/Box";
-    import RemoveIcon from '@mui/icons-material/Remove';
-    import AddIcon from "@mui/icons-material/Add";
-    import Paper from "@mui/material/Paper";
-    import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
-    import {useTheme} from "@mui/material/styles";
-    import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-
-    const labels = {
-        0.5: 'Very easy',
-        1: 'Very easy',
-        1.5: 'Easy',
-        2: 'Easy',
-        2.5: 'Moderate',
-        3: 'Moderate',
-        3.5: 'Somewhat difficult',
-        4: 'Difficult',
-        4.5: 'Very difficult',
-        5: 'Extremely difficult',
-    };
-
-    const [imageUpload, setImageUpload] = useState(null);
-    const uploadImage = () =>{
-        if (imageUpload==null) return;
-
-        const files = Array.from(imageUpload); // Convert FileList to an array
-
-        // // Map over each selected file and set the imageUpload state
-        files.map((pic) => {
-
-         // here we save the images to directory!! so for a host we will save it to his id
-            // directory for example
-        const imageRef = ref(storage, `images/${pic.name+ v4()} `)
-        uploadBytes(imageRef, pic).then(()=>{
-             // alert("image uploaded")
-        })
-        });
-
-    };
-
-    // const handleAddDatePicker = () => {
-    //     setDatePickerCount(datePickerCount + 1);
-    //     setDatePickerValues([...datePickerValues, null]); // add null value for the new DatePicker component
-    // }; // function to add a new DatePicker component to the state
-    //
-    // const handleRemoveDatePicker = () => {
-    //     if (datePickerCount > 1) { // prevent removing all the DatePicker components
-    //         setDatePickerCount(datePickerCount - 1);
-    //         setDatePickerValues(datePickerValues.slice(0, -1)); // remove the value of the last DatePicker component
-    //     }
-    // }; // function to remove the last DatePicker component from the state
+import React, {useState} from 'react';
+import {DatePicker, TimePicker} from "@mui/x-date-pickers";
+import {Grid, IconButton, Rating, Slider, TextField, ToggleButton} from "@mui/material";
+import Button from "@mui/material/Button";
+import {PhotoCamera} from "@mui/icons-material";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from "@mui/icons-material/Add";
+import Paper from "@mui/material/Paper";
+import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
+import {useTheme} from "@mui/material/styles";
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import {storage} from "../config/firebase";
+import {ref, uploadBytes} from "firebase/storage";
+import {v4} from "uuid";
 
 
+const labels = {
+    0.5: 'Very easy',
+    1: 'Very easy',
+    1.5: 'Easy',
+    2: 'Easy',
+    2.5: 'Moderate',
+    3: 'Moderate',
+    3.5: 'Somewhat difficult',
+    4: 'Difficult',
+    4.5: 'Very difficult',
+    5: 'Extremely difficult',
+};
 
 
+function valuetext(value) {
+    return `${value}°C`;
+}
 
+
+// export default function DaySchedule({formData, setFormData}) {
+//     // old consts for hour range:
+//     // const [value, setRating] = useState();
+//     // const [hourRange, sethourRange] = useState([8, 17]);
+//
+//     const [setting, setSetting] = React.useState('outdoors');
+//     const theme = useTheme();
+//     const [rating, setRating] = React.useState(2);
+//     const [hover, setHover] = React.useState(-1);
+//
+//     // for new dates:
+//     const [datePickerCount, setDatePickerCount] = useState(1); // state variable for the number of DatePicker components
+//     const [datePickerValues, setDatePickerValues] = useState([null]); // state variable for the values of the DatePicker components
+//
+//     //for indoors outdoors:
+//     const handleChange = (event, newSetting) => {
+//         setSetting(newSetting);
+//         setFormData((prevFormData) => ({
+//             ...prevFormData,
+//             outdoors: newSetting === 'outdoors',
+//         }));
+//     };
+//
+//     const [imageUpload, setImageUpload] = useState(null);
+//     const uploadImage = () =>{
+//         if (imageUpload==null) return;
+//
+//         const files = Array.from(imageUpload); // Convert FileList to an array
+//
+//         // // Map over each selected file and set the imageUpload state
+//         files.map((pic) => {
+//
+//          // here we save the images to directory!! so for a host we will save it to his id
+//             // directory for example
+//         const imageRef = ref(storage, `images/${pic.name+ v4()} `)
+//         uploadBytes(imageRef, pic).then(()=>{
+//              // alert("image uploaded")
+//         })
+//         });
+//
+//     };
+//
+//     // const handleAddDatePicker = () => {
+//     //     setDatePickerCount(datePickerCount + 1);
+//     //     setDatePickerValues([...datePickerValues, null]); // add null value for the new DatePicker component
+//     // }; // function to add a new DatePicker component to the state
+//     //
+//     // const handleRemoveDatePicker = () => {
+//     //     if (datePickerCount > 1) { // prevent removing all the DatePicker components
+//     //         setDatePickerCount(datePickerCount - 1);
+//     //         setDatePickerValues(datePickerValues.slice(0, -1)); // remove the value of the last DatePicker component
+//     //     }
+//     // }; // function to remove the last DatePicker component from the state
+//
+//
+//
+//
+//     console.log(formData.dates)
+//     // console.log(datePickerValues[0].$d);
+//
+//
+//
+// ]
     export default function DaySchedule ({ formData, setFormData }) {
         // old consts for hour range:
         // const [value, setRating] = useState();
@@ -133,6 +171,11 @@
             <div>
                 <Typography variant="h6" gutterBottom>Schedule the Day</Typography>
                 <Grid container spacing={3} justifyContent="flex-start" alignContent = "center">
+    return (
+        <div>
+            {/*<DatePickerList formData={formData} setFormData={setFormData}/>*/}
+            <Typography variant="h6" gutterBottom>Schedule the Day</Typography>
+            <Grid container spacing={3} justifyContent="flex-start" alignContent="center">
                 {[...Array(datePickerCount)].map((_, index) => ( // render the DatePicker components based on the state variable
                     <Grid item xs={6} key={index}>
                         <DatePicker

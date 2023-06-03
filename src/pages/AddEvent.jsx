@@ -37,7 +37,7 @@ export default function AddEvent() {
         hostName: '',
         jobTitle: '',
         dayDescription: '',
-        dates: [],
+        dates: [null],
         location: '',
         accessible: true,
         suitableForChildren: true,
@@ -47,28 +47,35 @@ export default function AddEvent() {
         outdoors: true,
     },[]);
 
+    // extracting the dates to a convinent array format
+    const datesArray = formData.dates; //  formData.dates is the array of dates you want to extract
+    const extractedDates = datesArray.map((date) => date && date.$d); // Extract the $d property from each date
+
+
+
     const dbRef = collection(db,"DataBase1");
     const onSubmit = async () => {
         try {
         await addDoc(dbRef, {
-            // hostID: '',
-            // hostName: '',
+            hostID: '',
+            hostName: '',
             jobTitle: formData.jobTitle,
             dayDescription: formData.dayDescription,
-            dates: formData.dates,
+            dates: extractedDates,
             location: formData.location,
             accessible: formData.accessible,
             suitableForChildren: formData.suitableForChildren,
             toBring: formData.toBring, //doesn't matter the init
             // gallery: [],//TODO: when the photo is ready
             physicalEffort: formData.physicalEffort, // init the physical effort
-            // outdoors: true,
+            outdoors: formData.outdoors,
 
         });
         } catch(err) {
             console.error(err)
         }
     }
+    console.log(formData)
 
 
     // A state hook that keeps track of the currently active step:
@@ -98,6 +105,8 @@ export default function AddEvent() {
 
     const theme=useTheme()
     const acc = formData.suitableForChildren
+
+
     // The component's JSX code that gets returned
     return (
         <div>
@@ -125,9 +134,12 @@ export default function AddEvent() {
                                 <Button onClick = {onSubmit}> submit </Button>
                                 <div>
                                     <Typography>review your details:</Typography>
-                                    {formData.dates.map((item) => (
-                                        <Typography key={item}>{item}</Typography>
-                                    ))}
+                                    {/*{formData.dates.map((item) => (*/}
+                                    {/*    <Typography key={item}>{item}</Typography>*/}
+                                    {/*))}*/}
+                                    {/*<Typography>{formData.dates[0].$d}</Typography>*/}
+
+
                                 </div>
                                 <Typography variant="h5" gutterBottom>
                                     Thank you for joining the Trade a Day community!

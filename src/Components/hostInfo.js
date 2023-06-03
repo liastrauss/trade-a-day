@@ -26,7 +26,8 @@ function HostInfo() {
         }
         fetchEventInfoData();
     }, [index]);
-    
+
+
 
     return (
         <React.Fragment>
