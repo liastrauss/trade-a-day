@@ -13,8 +13,8 @@ import AddIcon from "@mui/icons-material/Add";
 import Paper from "@mui/material/Paper";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import {useTheme} from "@mui/material/styles";
-import {ToggleButtonGroup} from "@mui/lab";
-
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import DatePickerList from "./DatePickerList";
 
 const labels = {
     0.5: 'Very easy',
@@ -45,11 +45,10 @@ export default function DaySchedule({formData, setFormData}) {
     const [rating, setRating] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
 
-    // new:
+    // for new dates:
     const [datePickerCount, setDatePickerCount] = useState(1); // state variable for the number of DatePicker components
     const [datePickerValues, setDatePickerValues] = useState([null]); // state variable for the values of the DatePicker components
 
-    console.log(formData.dates)
     //for indoors outdoors:
     const handleChange = (event, newSetting) => {
         setSetting(newSetting);
@@ -131,9 +130,14 @@ export default function DaySchedule({formData, setFormData}) {
     //     }
     // ];
 
+    console.log(formData.dates)
+    // console.log(datePickerValues[0].$d);
+
+
 
     return (
         <div>
+            {/*<DatePickerList formData={formData} setFormData={setFormData}/>*/}
             <Typography variant="h6" gutterBottom>Schedule the Day</Typography>
             <Grid container spacing={3} justifyContent="flex-start" alignContent="center">
                 {[...Array(datePickerCount)].map((_, index) => ( // render the DatePicker components based on the state variable
