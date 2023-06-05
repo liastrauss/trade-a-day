@@ -20,6 +20,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import {styled} from "@mui/material/styles";
+import {TbSunglasses} from "react-icons/tb";
 
 const defaultIcon = <LuggageTwoToneIcon />; // Default icon for items not predefined
 
@@ -104,7 +105,8 @@ export function ItemsForm({ formData, setFormData }) {
                             {item === 'water' && <WaterDropTwoToneIcon />}
                             {item === 'a change of clothes' && <CheckroomIcon />}
                             {item === 'closed shoes' && <RollerSkatingIcon />}
-                            {!['water', 'a change of clothes', 'closed shoes'].includes(item) && defaultIcon}
+                            {item === 'sunglasses' && <TbSunglasses/>}
+                            {!['water', 'a change of clothes', 'closed shoes','sunglasses'].includes(item) && defaultIcon}
                             {item}
                         </ToggleButton>
                     ))}

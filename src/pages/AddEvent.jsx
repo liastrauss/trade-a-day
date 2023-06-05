@@ -71,15 +71,9 @@ export default function AddEvent() {
             outdoors: formData.outdoors,
 
         });
-        // TODO: the docId is undefined. but do we really need hostId field ?
-        // const docId = onSubmit.id;
-        //     const thisDoc = doc(db,"DataBase1",id);
-            // Update the document with the auto-generated ID
-        // await updateDoc(dbRef, {
-        //     hostID: docId
-        // });
             // advance to the final page:
             setActiveStep(activeStep + 1);
+            console.log("added the doc succecfully!")
 
         } catch(err) {
             console.error(err)
