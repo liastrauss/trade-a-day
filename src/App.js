@@ -41,7 +41,7 @@ function App() {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <div className="App">
                 <ThemeProvider theme={theme}>
-                    <div>y
+                    <div>
                         <Home/>
                     </div>
                 </ThemeProvider>

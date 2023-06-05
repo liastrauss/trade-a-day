@@ -1,43 +1,32 @@
-import React from 'react';
-import {
-    Grid,
-    Typography,
-} from "@mui/material";
-// import { alpha, styled } from '@mui/material/styles';
-// import FolderIcon from '@mui/icons-material/Folder';
-// import DeleteIcon from '@mui/icons-material/Delete';
-// import Button from "@mui/material/Button";
-// import {PhotoCamera} from "@mui/icons-material";
+import React, {useEffect, useState} from 'react';
+import {Grid, Typography} from "@mui/material";
 import {useTheme} from "@mui/material/styles";
 import {StandardImageList} from "./view2";
-
 import {useParams} from "react-router-dom";
-import info from "../data/event-data.json";
-
-// {{Information.map((params, index)  => (
-//     {index===1 && return({props}))
-// }}
-// function Details(props) {
-//     Information.map((info) => {
-//         if (info.id === 1) {
-//                 let hostt = info.HostName;
-//                 let about = info.about;
-//                 let address = info.address;
-//         }
-//     })}
+import {db} from "../config/firebase";
+import {collection, doc, getDoc, getDocs, getFirestore} from "firebase/firestore";
 
 
 function HostInfo() {
     const theme = useTheme();
+    const { index } = useParams(); // Access the id parameter from the URL
 
-    let {index} = useParams();
-    console.log(index);
+    const [eventInfoData, setEventInfoData] = useState();
 
-    let hostt = info.events[index - 1].hostName;
-    let about = info.events[index - 1].about;
-    let address = info.events[index - 1].location;
-    let bring = info.events[index - 1].bring;
-    let time = info.events[index - 1].duration;
+    useEffect (() => {
+        async function fetchEventInfoData(){
+            try {
+                const eventInfoRef = doc(db, "DataBase1", index)
+                const eventInfoSnapshot = await getDoc(eventInfoRef)
+                const data = eventInfoSnapshot.data()
+                setEventInfoData(data);
+            } catch (error) {
+                console.error("Error retrieving event info:", error)
+            }
+        }
+        fetchEventInfoData();
+    }, [index]);
+
 
     return (
         <React.Fragment>
@@ -49,10 +38,10 @@ function HostInfo() {
                 >
                     <Grid item xs={12}>
                         <Typography variant="h5" color="primary" gutterBottom>
-                            A day with {hostt}
+                            A day with {eventInfoData?.hostName}
                         </Typography>
                         <Typography variant="subtitle1">
-                            {about}
+                            {eventInfoData?.dayDescription}
                         </Typography>
 
                     </Grid>
@@ -65,43 +54,33 @@ function HostInfo() {
 
                     </Grid>
 
-                    <StandardImageList/>
+                    {/*<StandardImageList/>*/}
 
                     <Grid item xs={4}>
                         <Typography variant="subtitle2" color="primary">
                             Location
                         </Typography>
                         <Typography variant="subtitle1">
-                            {address}
+                            {eventInfoData?.location}
                         </Typography>
-                            {/*<Mapp/>*/}
-
-
                     </Grid>
-                    {/*TODO play with grid here so map will be good*/}
-                    {/*<Grid item xs={6} justifyContent="flex-start" alignContent = "center">*/}
-                    {/*    <Mapp/>*/}
-                    {/*</Grid>*/}
                     <Grid item xs={4}>
 
                         <Typography variant="subtitle2" color="primary">
-                                 What to bring:
+                            What to bring:
                         </Typography>
 
                         <Typography variant="subtitle1">
-                            {bring}
-                        </Typography>
-
-                    </Grid>
-
-                    <Grid item xs={4}>
-
-                        <Typography variant="subtitle2" color="primary">
-                            Duration:
-                        </Typography>
-
-                        <Typography variant="subtitle1">
-                            {time}
+                            {/{eventInfoData?.toBring}/}
+                            {eventInfoData?.toBring && (
+                                <ul>
+                                    {eventInfoData.toBring.map((item, index) => (
+                                        <li key={index}>
+                                            <Typography variant="subtitle1">{item}</Typography>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}s
                         </Typography>
 
                     </Grid>
@@ -113,6 +92,3 @@ function HostInfo() {
 }
 
 export default HostInfo;
-
-
-

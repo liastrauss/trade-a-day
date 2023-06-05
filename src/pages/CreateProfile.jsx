@@ -10,27 +10,28 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Logo from "../Components/logo"
-import SignIn from '../Components/SignInPopup'
+import SignInDialog from '../Components/SignInDialog'
+import SignInButton from '../Components/SignInButton'
+import Registration1 from '../Components/Registration1BasicInfo'
+import Registration2 from '../Components/Registration2MoreDetails'
 
 // Importing three form components that will be rendered inside the  component
-// import MoreDetails from "../Components/SignUpMoreDetails";
-// import SignUp from "../Components/SignUpNew";
 import Topbar from "../Components/Topbar";
-import MoreDetails from "../Components/CreateProfileMoreDetails";
-import SignUp from "../Components/CreateProfileBasicInfo";
 import {useNavigate} from "react-router-dom";
 
 
 // An array that stores the labels for the steps of the checkout process
-const steps = ['Personal info', 'More details'];
+const steps = ['Sign In', 'Registration1 - basic info' , 'Registration2 - 5 questions'];
 
 // A function that returns the content of a specific step, based on the index passed as argument
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return <SignUp/>; //change to SignUp
+            return <SignInDialog/>;
         case 1:
-            return <MoreDetails/>;
+            return <Registration1/>;
+        case 2:
+            return <Registration2/>;
         default:
             throw new Error('Unknown step');
     }
@@ -72,7 +73,6 @@ export default function CreateProfile() {
             {/*        <Logo sx = {{}}></Logo>*/}
             {/*    </Toolbar>*/}
             {/*</AppBar>*/}
-
             <Topbar AddDay Profile BookedEvents/>
 
             {/*// The container that holds the main content of the page*/}
