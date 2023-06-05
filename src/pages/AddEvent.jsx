@@ -20,7 +20,7 @@ import ItemsForm from "../Components/ItemsForm";
 import DaySchedule from "../Components/DaySchedule";
 import Topbar from "../Components/Topbar";
 
-import { db } from "../config/firebase";
+import { db, auth } from "../config/firebase";
 import {addDoc, collection} from 'firebase/firestore';
 
 // An array that stores the labels for the steps of the checkout process
@@ -57,8 +57,8 @@ export default function AddEvent() {
     const onSubmit = async () => {
         try {
         await addDoc(dbRef, {
-            hostID: '',
-            hostName: '',
+            hostID: auth?.currentUser?.uid,
+            hostName: auth?.currentUser?.displayName,
             jobTitle: formData.jobTitle,
             dayDescription: formData.dayDescription,
             dates: extractedDates,
@@ -66,13 +66,14 @@ export default function AddEvent() {
             accessible: formData.accessible,
             suitableForChildren: formData.suitableForChildren,
             toBring: formData.toBring, //doesn't matter the init
-            // gallery: [],//TODO: when the photo is ready
+            gallery: [],//TODO: when the photo is ready
             physicalEffort: formData.physicalEffort, // init the physical effort
             outdoors: formData.outdoors,
 
         });
-        // TODO: the docId is undefined. but do we really need hostId field anymore?
+        // TODO: the docId is undefined. but do we really need hostId field ?
         // const docId = onSubmit.id;
+        //     const thisDoc = doc(db,"DataBase1",id);
             // Update the document with the auto-generated ID
         // await updateDoc(dbRef, {
         //     hostID: docId
@@ -84,7 +85,7 @@ export default function AddEvent() {
             console.error(err)
         }
     }
-    console.log(formData)
+    console.log("formDara is:",formData)
 
 
 
@@ -126,7 +127,7 @@ export default function AddEvent() {
             <Topbar BookedEvents/>
 
              {/*// The container that holds the main content of the page*/}
-            <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+            <Container component="main" maxWidth="sm" sx={{ mb: 4 }} >
                 <Paper>
                     <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                         {/* The title of the checkout page */}

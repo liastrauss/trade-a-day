@@ -139,7 +139,9 @@ export default function DaySchedule({formData, setFormData}) {
         <div>
             {/*<DatePickerList formData={formData} setFormData={setFormData}/>*/}
             <Typography variant="h6" gutterBottom>Schedule the Day</Typography>
-            <Grid container spacing={3} justifyContent="flex-start" alignContent="center">
+            <Grid container spacing={3}
+                  justifyContent="flex-start" alignContent="center"
+            >
                 {[...Array(datePickerCount)].map((_, index) => ( // render the DatePicker components based on the state variable
                     <Grid item xs={6} key={index}>
                         <DatePicker
@@ -209,7 +211,10 @@ export default function DaySchedule({formData, setFormData}) {
 
             {/*new rating:*/}
             <Grid item sm={12}>
-                <Paper variant="outlined" sx={{p: 2, outline: '1px'}}>
+                <Paper variant="outlined"
+                       sx={{p: 2, outline: '1px',
+                       }}
+                >
                     <Box
                         sx={{
                             width: '100%',
@@ -219,6 +224,7 @@ export default function DaySchedule({formData, setFormData}) {
                             // color: 'text.secondary'
                             // borderRadius: 2,
                             // p: 1,
+
 
                         }}
                     >
@@ -251,8 +257,11 @@ export default function DaySchedule({formData, setFormData}) {
                         {formData.physicalEffort !== null && (
                             <Box sx={{
                                 ml: 2,
-                                color: 'text.secondary'
-                            }}>{labels[hover !== -1 ? hover : formData.physicalEffort]}</Box>
+                                color: 'text.secondary',
+
+
+                            }}>{labels[hover !== -1 ? hover : formData.physicalEffort]}
+                            </Box>
                         )}
                     </Box>
                 </Paper>
@@ -260,9 +269,10 @@ export default function DaySchedule({formData, setFormData}) {
 
             <Grid item xs={5}
                 // direction="row"
-                // justifyContent="space-between"
-                // alignItems="center"
-                // display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                display="flex"
+                  sx = {{mt: 3}} // plaster because they were smooshed together and couldnt solve it
             >
                 <ToggleButtonGroup
                     color="primary"
