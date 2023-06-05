@@ -1,6 +1,4 @@
 import React from "react";
-import FilterTabs from "./filterChips";
-import AllFilters from "./allFilters";
 // for the routing to other pages
 import {useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
