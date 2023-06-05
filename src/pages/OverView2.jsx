@@ -1,4 +1,4 @@
-import {useNavigate} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 // GITHUB CODE
 import * as React from 'react';
@@ -47,12 +47,14 @@ export function DialogWithCard() {
         setOpen(false);
     };
 
+    const { index } = useParams(); // Access the id parameter from the URL
+
     const [eventInfoData, setEventInfoData] = useState();
 
     useEffect (() => {
         async function fetchEventInfoData(){
             try {
-                const eventInfoRef = doc(db, "DataBase", "4iXQXB2wbEPKGIffOk8i")
+                const eventInfoRef = doc(db, "DataBase1", index)
                 const eventInfoSnapshot = await getDoc(eventInfoRef)
                 const data = eventInfoSnapshot.data()
                 setEventInfoData(data);
@@ -61,7 +63,7 @@ export function DialogWithCard() {
             }
         }
         fetchEventInfoData();
-    }, []);
+    }, [index]);
 
     return (
         <div>
@@ -69,7 +71,7 @@ export function DialogWithCard() {
                 <MailOutlineIcon/>   Contact {eventInfoData?.hostName}
             </Button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle> mail </DialogTitle>
+                <DialogTitle> Connect </DialogTitle>
                 <DialogContent>
                     {/*<ControlledRadioButtonsGroup/>*/}
                     Write a message to {eventInfoData?.hostName}
