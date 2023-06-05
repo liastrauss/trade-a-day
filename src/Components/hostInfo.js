@@ -1,10 +1,56 @@
 import React, {useEffect, useState} from 'react';
 import {Grid, Typography} from "@mui/material";
-import {useTheme} from "@mui/material/styles";
+import {styled, useTheme} from "@mui/material/styles";
 import {StandardImageList} from "./view2";
 import {useParams} from "react-router-dom";
 import {db} from "../config/firebase";
 import {collection, doc, getDoc, getDocs, getFirestore} from "firebase/firestore";
+import WaterDropTwoToneIcon from "@mui/icons-material/WaterDropTwoTone";
+import CheckroomIcon from "@mui/icons-material/Checkroom";
+import RollerSkatingIcon from "@mui/icons-material/RollerSkating";
+import ToggleButton from "@mui/material/ToggleButton";
+import LuggageTwoToneIcon from "@mui/icons-material/LuggageTwoTone";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import Chip from "@mui/material/Chip";
+import Box from "@mui/material/Box";
+
+const defaultIcon = <LuggageTwoToneIcon />; // Default icon for items not predefined
+
+const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+    '& .MuiToggleButton-root': {
+        flex: '1 0 120px', // Adjust the width as needed
+        whiteSpace: 'normal', // Allow text labels to wrap if they exceed the button width
+    },
+    // apply to the children:
+    '& .MuiToggleButtonGroup-grouped': {
+        margin: theme.spacing(0.5),
+        border:0,
+        '&.Mui-disabled': {
+            border: 0,
+            color: theme.palette.primary.light,
+        },
+        '& .Mui-selected' : {
+            border: 0,
+            color: theme.palette.primary.main,
+
+        },
+        '&:not(:first-of-type)': {
+            borderRadius: theme.shape.borderRadius,
+        },
+        '&:first-of-type': {
+            borderRadius: theme.shape.borderRadius,
+        },
+        flexDirection: 'column', // label on the row below
+        alignItems: 'center',
+        // display: 'flex',
+        // flexWrap: 'wrap',
+        '& > *': {
+            marginLeft: theme.spacing(0.5), // Added marginLeft to separate items
+        },
+
+
+    },
+}));
 
 
 function HostInfo() {
@@ -56,7 +102,7 @@ function HostInfo() {
 
                     {/*<StandardImageList/>*/}
 
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
                         <Typography variant="subtitle2" color="primary">
                             Location
                         </Typography>
@@ -64,7 +110,7 @@ function HostInfo() {
                             {eventInfoData?.location}
                         </Typography>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
 
                         <Typography variant="subtitle2" color="primary">
                             What to bring:
@@ -84,14 +130,32 @@ function HostInfo() {
 
                             {/*{eventInfoData?.toBring}*/}
                             {eventInfoData?.toBring && (
-                                <ul>
+                                <Box sx={{flexDirection: 'row',
+                                    display: 'flex',
+                                    flexWrap: 'wrap',}}>
                                     {eventInfoData.toBring.map((item, index) => (
-                                        <li key={index}>
-                                            <Typography variant="subtitle1">{item}</Typography>
-                                        </li>
+                                        <Chip
+                                            key={index}
+                                            variant="outlined"
+                                            label={item.toUpperCase()}
+                                            icon={
+                                                item === 'water' ? (
+                                                    <WaterDropTwoToneIcon />
+                                                ) : item === 'comfortable clothes' ? (
+                                                    <CheckroomIcon />
+                                                ) : item === 'closed shoes' ? (
+                                                    <RollerSkatingIcon />
+                                                ) : (
+                                                    <LuggageTwoToneIcon />
+                                                )
+                                            }
+                                            sx={{ margin: 1}}
+                                        />
                                     ))}
-                                </ul>
-                            )}s
+
+
+                                </Box>
+                            )}
                         </Typography>
 
                     </Grid>
