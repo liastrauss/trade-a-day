@@ -175,7 +175,9 @@ function valuetext(value) {
         <div>
             {/*<DatePickerList formData={formData} setFormData={setFormData}/>*/}
             <Typography variant="h6" gutterBottom>Schedule the Day</Typography>
-            <Grid container spacing={3} justifyContent="flex-start" alignContent="center">
+            <Grid container spacing={3}
+                  justifyContent="flex-start" alignContent="center"
+            >
                 {[...Array(datePickerCount)].map((_, index) => ( // render the DatePicker components based on the state variable
                     <Grid item xs={6} key={index}>
                         <DatePicker
@@ -224,6 +226,7 @@ function valuetext(value) {
                         {/*TODO: doesn't show the new dates when you switch pages. something with the render? but i think the prop remembers.*/}
                         <AddIcon />
                     </IconButton>
+
                     {datePickerCount > 1 && (
                         <IconButton
                             aria-label="remove datepicker"
@@ -239,6 +242,144 @@ function valuetext(value) {
                             <RemoveIcon />
                         </IconButton>
                     )}
+                )}
+            </Grid>
+
+            {/*new rating:*/}
+            <Grid item sm={12}>
+                <Paper variant="outlined"
+                       sx={{p: 2, outline: '1px',
+                       }}
+                >
+                    <Box
+                        sx={{
+                            width: '100%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            typography: 'subtitle1',
+                            // color: 'text.secondary'
+                            // borderRadius: 2,
+                            // p: 1,
+
+
+                        }}
+                    >
+                        <Typography component="legend" align="center">Physical Effort</Typography>
+                        <Rating
+                            sx={{
+                                color: theme.palette.primary.main, // set the color to value from app js
+                            }}
+                            name="Physical-Effort"
+                            // defaultValue={3}
+                            size="large"
+                            precision={1}
+                            getLabelText={getLabelText}
+                            onChange={(event, newRating) => {
+                                setRating(newRating);
+                                setFormData((prevFormData) => ({...prevFormData, physicalEffort: newRating}));
+                                // setFormData({
+                                //     ...formData,
+                                //     physicalEffort: newRating,
+                                // });
+
+                            }}
+                            value={formData.physicalEffort}
+                            onChangeActive={(event, newHover) => {
+                                setHover(newHover);
+                            }}
+                            icon={<DirectionsRunIcon fontSize="inherit"/>}
+                            emptyIcon={<DirectionsRunIcon style={{opacity: 0.55}} fontSize="inherit"/>}
+                        />
+                        {formData.physicalEffort !== null && (
+                            <Box sx={{
+                                ml: 2,
+                                color: 'text.secondary',
+
+
+                            }}>{labels[hover !== -1 ? hover : formData.physicalEffort]}
+                            </Box>
+                        )}
+                    </Box>
+                </Paper>
+            </Grid>
+
+            <Grid item xs={5}
+                // direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                display="flex"
+                  sx = {{mt: 3}} // plaster because they were smooshed together and couldnt solve it
+            >
+                <ToggleButtonGroup
+                    color="primary"
+                    value={formData.outdoors ? 'outdoors' : 'indoors'} // so it will be boolean
+                    exclusive
+                    onChange={handleChange}
+                    aria-label="setting choice -outdoors/indoors"
+                >
+                    <ToggleButton value="indoors">indoors</ToggleButton>
+                    <ToggleButton value="outdoors">outdoors</ToggleButton>
+                </ToggleButtonGroup>
+            </Grid>
+
+
+            <Grid item sm={12}>
+                <Typography gutterBottom>Give us a glimpse of what your day will look like!</Typography>
+                < br/>
+                <Button variant="contained" component="label">
+                    <PhotoCamera sx={{mr: 1}}/>
+                    choose files
+                    <input hidden accept="image/*" multiple type="file" onChange={(event) => {
+                        setImageUpload(event.target.files);
+                    }}/>
+                </Button><Button variant="contained" component="label" onClick={uploadImage}>
+
+                Upload
+                {/*        <Slider*/}
+                {/*            sx={{ml: 2}}*/}
+                {/*            fullWidth*/}
+                {/*            getAriaLabel={() => 'Hour range'}*/}
+                {/*            valueLabelDisplay="auto"*/}
+                {/*            step={0.5}*/}
+                {/*            marks ={marks}*/}
+                {/*            min={6}*/}
+                {/*            max={20}*/}
+                {/*            value={hourRange}*/}
+                {/*            onChange={(event, newValue) => {*/}
+                {/*                sethourRange(newValue);*/}
+                {/*            }}*/}
+                {/*            getAriaValueText={valuetext}*/}
+                {/*            range*/}
+                {/*        />*/}
+                {/*    </Grid>*/}
+                {/*    <Grid item sm={5}>*/}
+                {/*        <TextField*/}
+                {/*            fullWidth*/}
+                {/*            required*/}
+                {/*            id="NumOfGuests"*/}
+                {/*            label="Number of Guests"*/}
+                {/*            type="number"*/}
+                {/*            InputLabelProps={{*/}
+                {/*                shrink: true,*/}
+                {/*            }}*/}
+                {/*            variant="standard"*/}
+                {/*        />*/}
+                {/*    </Grid>*/}
+            </Button>
+                <Grid item sm={12}>
+                    <Typography gutterBottom>Give us a glimpse of what your day will look like!</Typography>
+                    < br/>
+                    <Button variant="contained" component="label" onClick={{uploadImage}}>
+                        <PhotoCamera sx={{mr: 1}}/>
+                        Upload
+                        <input hidden accept="image/*" multiple type="file" onChange={(event) => {
+                            setImageUpload(event.target.files)
+                        }}/>
+                    </Button>
+                    {/*<IconButton color="primary" aria-label="upload picture" component="label">*/}
+                    {/*    <input hidden accept="image/*" type="file" />*/}
+                    {/*    <PhotoCamera/>*/}
+                    {/*</IconButton>*/}
                 </Grid>
 
                     {/*new rating:*/}
