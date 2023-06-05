@@ -8,16 +8,23 @@ import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import {CardActionArea} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
-import { db } from "../config/firebase";
-import { getDocs, collection } from "firebase/firestore";
+import {db} from "../config/firebase";
+import {getDocs, collection} from "firebase/firestore";
+import Chips from "./filterChips";
 
-export default function EventCard(){
+export default function EventCard({value = null}) {
     const theme = useTheme();
     let navigate = useNavigate();
 
     // access info from firebase
     const [cardData, setCardData] = useState([]);
     const cardCollectionRef = collection(db, "DataBase1")
+
+    // filtering
+
+    const [filtered, setfiltered] = useState([]);
+    const [activeFilter, setActiveFilter] = useState("Filters");
+
 
     // function to get card data
     useEffect(() => {
@@ -29,21 +36,30 @@ export default function EventCard(){
                     ...doc.data(),
                     id: doc.id,
                 }));
+
                 setCardData(cardInfo);
+                setfiltered(cardInfo)
+
             } catch (err) {
                 console.error(err)
             }
         };
+
+
         getCardData();
     }, []);
     return (
-        <Box sx={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            flexWrap: 'wrap',
-            justifyContent: 'center'
-        }}>
-            {cardData.map((item) => (
+        <div>
+
+            <Chips cardData={cardData} activeFiler={activeFilter} setActiveFilter={setActiveFilter} setfiltered={setfiltered}/>
+
+            <Box sx={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                flexWrap: 'wrap',
+                justifyContent: 'center'
+            }}>
+                {filtered.map((item) => (
                     <Card sx={{
                         width: {
                             // sm: 200, //600
@@ -89,34 +105,35 @@ export default function EventCard(){
                                 }}
                             />
                             {/*<Box sx={{ flexDirection: 'row' }}>*/}
-                                <CardContent sx={{
-                                    fontSize: 13,
+                            <CardContent sx={{
+                                fontSize: 13,
+                                fontFamily: theme.typography.fontFamily,
+                                fontWeight: theme.typography.fontWeightMedium,
+                                lineHeight: 0
+                            }}
+                            >
+                                {item.hostName}, {item.jobTitle}
+                            </CardContent>
+                            <CardActions
+                                sx={{
+                                    color: theme.palette.text.secondary,
+                                    fontWeight: theme.typography.fontWeightRegular,
                                     fontFamily: theme.typography.fontFamily,
-                                    fontWeight: theme.typography.fontWeightMedium,
-                                    lineHeight: 0
-                                }}
-                                >
-                                    {item.hostName}, {item.jobTitle}
-                                </CardContent>
-                                <CardActions
-                                    sx={{
-                                        color: theme.palette.text.secondary,
-                                        fontWeight: theme.typography.fontWeightRegular,
-                                        fontFamily: theme.typography.fontFamily,
-                                        fontSize: 12,
-                                        justifyContent: 'flex-start',
-                                        lineHeight: 0,
-                                        mt: -2.5,
-                                        ml: 1
-                                    }}>
-                                    <p><LocationOnRoundedIcon sx={{fontSize: 13}}/>{item.location}</p>
-                                </CardActions>
+                                    fontSize: 12,
+                                    justifyContent: 'flex-start',
+                                    lineHeight: 0,
+                                    mt: -2.5,
+                                    ml: 1
+                                }}>
+                                <p><LocationOnRoundedIcon sx={{fontSize: 13}}/>{item.location}</p>
+                            </CardActions>
                             {/*</Box>*/}
                         </CardActionArea>
                     </Card>
-            ))
-        }
-        </Box>
+                ))
+                }
+            </Box>
+        </div>
     )
 
 }

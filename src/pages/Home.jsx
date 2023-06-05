@@ -5,13 +5,12 @@ import { useTheme } from '@mui/material/styles';
 import Topbar from "../Components/Topbar";
 import EventCard from "../Components/card";
 
-
 function Home() {
     const theme = useTheme();
     return (
         <div>
             <Topbar Search AddDay Profile/>
-            <SearchSection/>
+            {/*<SearchSection/>*/}
             <EventCard/>
         </div>
     );
