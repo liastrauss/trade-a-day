@@ -67,7 +67,7 @@ function HostInfo() {
                     <Grid item xs={4}>
 
                         <Typography variant="subtitle2" color="primary">
-                                 What to bring:
+                            What to bring:
                         </Typography>
 
                         <Typography variant="subtitle1">
@@ -92,6 +92,3 @@ function HostInfo() {
 }
 
 export default HostInfo;
-
-
-
