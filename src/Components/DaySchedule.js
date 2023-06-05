@@ -296,9 +296,8 @@ export default function DaySchedule({formData, setFormData}) {
                     <input hidden accept="image/*" multiple type="file" onChange={(event) => {
                         setImageUpload(event.target.files);
                     }}/>
-                </Button><Button variant="contained" component="label" onClick={uploadImage}>
-
-                Upload
+                </Button>
+                <Button variant="contained" component="label" onClick={uploadImage}>Upload
                 {/*        <Slider*/}
                 {/*            sx={{ml: 2}}*/}
                 {/*            fullWidth*/}
@@ -330,21 +329,23 @@ export default function DaySchedule({formData, setFormData}) {
                 {/*        />*/}
                 {/*    </Grid>*/}
             </Button>
-                <Grid item sm={12}>
-                    <Typography gutterBottom>Give us a glimpse of what your day will look like!</Typography>
-                    < br/>
-                    <Button variant="contained" component="label" onClick={{uploadImage}}>
-                        <PhotoCamera sx={{mr: 1}}/>
-                        Upload
-                        <input hidden accept="image/*" multiple type="file" onChange={(event) => {
-                            setImageUpload(event.target.files)
-                        }}/>
-                    </Button>
-                    {/*<IconButton color="primary" aria-label="upload picture" component="label">*/}
-                    {/*    <input hidden accept="image/*" type="file" />*/}
-                    {/*    <PhotoCamera/>*/}
-                    {/*</IconButton>*/}
-                </Grid>
+
+
+                {/*<Grid item sm={12}>*/}
+                {/*    <Typography gutterBottom>Give us a glimpse of what your day will look like!</Typography>*/}
+                {/*    < br/>*/}
+                {/*    <Button variant="contained" component="label" onClick={{uploadImage}}>*/}
+                {/*        <PhotoCamera sx={{mr: 1}}/>*/}
+                {/*        Upload*/}
+                {/*        <input hidden accept="image/*" multiple type="file" onChange={(event) => {*/}
+                {/*            setImageUpload(event.target.files)*/}
+                {/*        }}/>*/}
+                {/*    </Button>*/}
+                {/*    /!*<IconButton color="primary" aria-label="upload picture" component="label">*!/*/}
+                {/*    /!*    <input hidden accept="image/*" type="file" />*!/*/}
+                {/*    /!*    <PhotoCamera/>*!/*/}
+                {/*    /!*</IconButton>*!/*/}
+                {/*</Grid>*/}
             </Grid>
         </div>
     )

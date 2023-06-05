@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
 import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
 import {useTheme} from "@mui/material/styles";
-import filterData from "../data/filter-data.json"
+import filterData from "../data/filter-data.json";
 import Chips from "./filterChips";
 
 
