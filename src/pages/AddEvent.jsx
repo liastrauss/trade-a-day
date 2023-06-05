@@ -58,7 +58,7 @@ export default function AddEvent() {
         try {
         await addDoc(dbRef, {
             hostID: auth?.currentUser?.uid,
-            hostName: auth?.currentUser?.displayName,
+            hostName: auth?.currentUser?.displayName, // the full name from the auth. maybe we want to change it to somth from profile
             jobTitle: formData.jobTitle,
             dayDescription: formData.dayDescription,
             dates: extractedDates,
