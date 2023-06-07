@@ -20,7 +20,7 @@ import ItemsForm from "../Components/ItemsForm";
 import DaySchedule from "../Components/DaySchedule";
 import Topbar from "../Components/Topbar";
 
-import { db } from "../config/firebase";
+import { db, auth } from "../config/firebase";
 import {addDoc, collection} from 'firebase/firestore';
 
 // An array that stores the labels for the steps of the checkout process
@@ -30,15 +30,15 @@ const steps = ['A bit about yourself', 'Technicalities', 'What to bring'];
 // The main functional component that renders the entire "add event" page and forms
 export default function AddEvent() {
 
-    // the data from the form
+    // initialize the data from the form parts
     const [formData, setFormData] =
         React.useState({
         hostID: '',
         hostName: '',
         jobTitle: '',
         dayDescription: '',
-        dates: [],
-        location: '',
+        dates: [null],
+        location: null,
         accessible: true,
         suitableForChildren: true,
         toBring: [],
@@ -47,28 +47,44 @@ export default function AddEvent() {
         outdoors: true,
     },[]);
 
+    // extracting the dates to a convinent array format
+    const datesArray = formData.dates; //  formData.dates is the array of dates you want to extract
+    const extractedDates = datesArray.map((date) => date && date.$d); // Extract the $d property from each date
+
+
+// update backend:
     const dbRef = collection(db,"DataBase1");
     const onSubmit = async () => {
         try {
         await addDoc(dbRef, {
-            // hostID: '',
-            // hostName: '',
+            hostID: auth?.currentUser?.uid,
+            hostName: auth?.currentUser?.displayName, // the full name from the auth. maybe we want to change it to somth from profile
             jobTitle: formData.jobTitle,
             dayDescription: formData.dayDescription,
-            dates: formData.dates,
+            dates: extractedDates,
             location: formData.location,
             accessible: formData.accessible,
             suitableForChildren: formData.suitableForChildren,
             toBring: formData.toBring, //doesn't matter the init
-            // gallery: [],//TODO: when the photo is ready
+            gallery: [],//TODO: when the photo is ready
             physicalEffort: formData.physicalEffort, // init the physical effort
-            // outdoors: true,
+            outdoors: formData.outdoors,
 
         });
+            // advance to the final page:
+            setActiveStep(activeStep + 1);
+            console.log("added the doc succecfully!")
+
         } catch(err) {
             console.error(err)
         }
     }
+    console.log("formDara is:",formData)
+
+
+
+
+
 
 
     // A state hook that keeps track of the currently active step:
@@ -97,14 +113,15 @@ export default function AddEvent() {
     }
 
     const theme=useTheme()
-    const acc = formData.suitableForChildren
+
+
     // The component's JSX code that gets returned
     return (
         <div>
             <Topbar BookedEvents/>
 
              {/*// The container that holds the main content of the page*/}
-            <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+            <Container component="main" maxWidth="sm" sx={{ mb: 4 }} >
                 <Paper>
                     <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                         {/* The title of the checkout page */}
@@ -123,12 +140,6 @@ export default function AddEvent() {
                         {activeStep === steps.length ? (
                             <React.Fragment>
                                 <Button onClick = {onSubmit}> submit </Button>
-                                <div>
-                                    <Typography>review your details:</Typography>
-                                    {formData.dates.map((item) => (
-                                        <Typography key={item}>{item}</Typography>
-                                    ))}
-                                </div>
                                 <Typography variant="h5" gutterBottom>
                                     Thank you for joining the Trade a Day community!
                                 </Typography>
@@ -150,8 +161,8 @@ export default function AddEvent() {
 
                                     <Button
                                         variant="contained"
-                                        onClick={handleNext} // Call onSubmit only when all steps are finished
-                                        // onClick={activeStep === steps.length - 1 ? onSubmit : handleNext} // Call onSubmit only when all steps are finished
+                                        // onClick={handleNext}
+                                        onClick={activeStep === steps.length - 1 ? onSubmit : handleNext} // Call onSubmit only when all steps are finished
                                         sx={{ mt: 3, ml: 1 }}
                                     >
                                         {activeStep === steps.length - 1 ? 'Add your day' : 'Next'}
