@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import DoneIcon from '@mui/icons-material/Done';
@@ -7,11 +7,28 @@ import {useTheme} from "@mui/material/styles";
 import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
 import TuneRoundedIcon from '@mui/icons-material/TuneRounded';
 import {Tabs, TabScrollButton} from "@mui/material";
+import Filtered from "./filtered_data";
+import filterData from "../data/filter-data.json";
+import EventCard from "./card";
 
 
-function Chips({ data }) {
-    const handleClick = () => {
+function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
+
+    useEffect(()=>{
+        if (activeFiler==="Filters"){
+            setfiltered(cardData);
+            return;
+        }
+
+        const filtered = cardData.filter((item) => item.location===(activeFiler)
+    );
+    setfiltered(filtered);
+    }, [activeFiler]);
+
+    const handleClick = (filter) => {
         console.info('You clicked the Chip.');
+        console.info(filter);
+        setActiveFilter(filter)
     };
 
     const handleDelete = () => {
@@ -34,20 +51,26 @@ function Chips({ data }) {
                   label={"Filters"}
                   size="small"
                   color="primary"
-                  onClick={handleClick}
+                  o onClick={() => handleClick("Filters")}
                   sx={{fontWeight: theme.typography.fontWeightRegular}}/>
-            {data.map((item) => (
+            {filterData.filters.map((item) => (
                 <Chip key={item.id}
                       label={item.filter}
-                      onClick={handleClick}
-                      onDelete={handleDelete}
+                      onClick={() => handleClick(item.filter)}
+                      // onDelete={handleDelete}
                       deleteIcon={<DoneIcon />}
                       variant="outlined"
                       size="small"
                       color="primary"
-                      sx={{fontWeight: theme.typography.fontWeightRegular}}
-                />
+                      sx={{fontWeight: theme.typography.fontWeightRegular}}>
+                      {/*{showEventCard && <EventCard value="Jerusalem" />}*/}
+
+
+                </Chip>
             )) }
+
+
+
         </Stack>
     );
 }
