@@ -2,8 +2,8 @@ import {storage} from "../config/firebase";
 import {ref, uploadBytes} from "firebase/storage";
 import {v4} from "uuid";
 import React, {useState} from 'react';
-import {DatePicker, TimePicker} from "@mui/x-date-pickers";
-import {Grid, IconButton, Rating, Slider, TextField, ToggleButton} from "@mui/material";
+import {DatePicker} from "@mui/x-date-pickers";
+import {Grid, IconButton, Rating, TextField, ToggleButton} from "@mui/material";
 import Button from "@mui/material/Button";
 import {PhotoCamera} from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
@@ -290,7 +290,7 @@ export default function DaySchedule({formData, setFormData}) {
             <Grid item sm={12}>
                 <Typography gutterBottom>Give us a glimpse of what your day will look like!</Typography>
                 < br/>
-                <Button variant="contained" component="label">
+                <Button variant="outlined" component="label">
                     <PhotoCamera sx={{mr: 1}}/>
                     choose files
                     <input hidden accept="image/*" multiple type="file" onChange={(event) => {

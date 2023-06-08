@@ -44,6 +44,7 @@ function EventForm ({ formData, setFormData }) {
                 </Grid>
                 <Grid item xs={12}>
                     <Autocomplete
+                        required
                         disablePortal
                         fullWidth
                         id="areas-autocomplete"
@@ -66,11 +67,9 @@ function EventForm ({ formData, setFormData }) {
 
                     >
                         <FormControl component="fieldset">
-                            {/*<FormLabel component="legend">Label placement</FormLabel>*/}
                             <FormGroup row>
                             <FormControlLabel
                                 control={<Switch
-
                                                  onChange={(e) => {
                                                      setFormData({
                                                          ...formData,

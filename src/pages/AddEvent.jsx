@@ -65,21 +65,21 @@ export default function AddEvent() {
             location: formData.location,
             accessible: formData.accessible,
             suitableForChildren: formData.suitableForChildren,
-            toBring: formData.toBring, //doesn't matter the init
+            toBring: formData.toBring,
             gallery: [],//TODO: when the photo is ready
-            physicalEffort: formData.physicalEffort, // init the physical effort
+            physicalEffort: formData.physicalEffort,
             outdoors: formData.outdoors,
 
         });
             // advance to the final page:
             setActiveStep(activeStep + 1);
-            console.log("added the doc succecfully!")
+            console.log("added the doc successfully!")
 
         } catch(err) {
             console.error(err)
         }
     }
-    console.log("formDara is:",formData)
+    console.log("formData is:",formData)
 
 
 
