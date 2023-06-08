@@ -2,47 +2,43 @@
   "filters": [
     {
       "id": "1",
-      "filter": "Indoors"
+      "filter": "indoors"
     },
     {
       "id": "2",
-      "filter": "Tel Aviv"
+      "filter": "outdoors"
     },
     {
       "id": "3",
-      "filter": "Agriculture"
+      "filter": "Center"
     },
     {
       "id": "4",
-      "filter": "Half day"
+      "filter": "South"
     },
     {
       "id": "5",
-      "filter": "Jerusalem"
+      "filter": "North"
     },
     {
       "id": "6",
-      "filter": "Animals"
+      "filter": "accessible"
     },
     {
       "id": "7",
-      "filter": "Full day"
+      "filter": "suitable for children"
     },
     {
       "id": "8",
-      "filter": "Office"
+      "filter": "standard physical effort"
     },
     {
       "id": "9",
-      "filter": "Center district"
+      "filter": "Jerusalem"
     },
     {
       "id": "10",
-      "filter": "Group"
-    },
-    {
-      "id": "11",
-      "filter": "Near me"
+      "filter": "Tel Aviv"
     }
   ]
 }
