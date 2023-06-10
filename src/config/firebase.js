@@ -22,6 +22,16 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+
+if (window.location.hostname === 'localhost') {
+    console.log("testing locally -- hitting local functions and firestore emulators");
+    // firebase.firestore().settings({
+    //     host: 'localhost:8080',
+    //     ssl: false
+    // });
+}
+
 export const storage= getStorage(app)
 export const auth = getAuth(app)
 export const db = getFirestore(app)
