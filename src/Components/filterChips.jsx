@@ -14,20 +14,77 @@ import EventCard from "./card";
 
 function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
 
+
+    const [selectedChip, setSelectedChip] = useState(null);
+
+
+
     useEffect(()=>{
+        let filtered;
+
+
         if (activeFiler==="Filters"){
             setfiltered(cardData);
             return;
         }
 
-        const filtered = cardData.filter((item) => item.location===(activeFiler)
-    );
+        if (activeFiler==="outdoors"){
+        // const filtered = cardData.filter((item) => item.location===(activeFiler)
+            filtered = cardData.filter((item) => item.outdoors===true);
+            setfiltered(filtered);
+            return;
+        }
+
+        if (activeFiler==="indoors"){
+            // const filtered = cardData.filter((item) => item.location===(activeFiler)
+            filtered = cardData.filter((item) => item.outdoors===false);
+            setfiltered(filtered);
+            return;
+        }
+
+        if (activeFiler==="accessible"){
+            // const filtered = cardData.filter((item) => item.location===(activeFiler)
+            filtered = cardData.filter((item) => item.accessible===true);
+            setfiltered(filtered);
+            return;
+        }
+
+        if (activeFiler==="suitable for children"){
+            filtered = cardData.filter((item) => item.suitableForChildren===true);
+            setfiltered(filtered);
+            return;
+        }
+
+        if (activeFiler==="standard physical effort"){
+            filtered = cardData.filter((item) => item.physicalEffort===2 ||  item.physicalEffort===1);
+            setfiltered(filtered);
+            return;
+        }
+
+
+        filtered = cardData.filter((item) => item.location===(activeFiler));
+
+
+
     setfiltered(filtered);
     }, [activeFiler]);
 
     const handleClick = (filter) => {
         console.info('You clicked the Chip.');
         console.info(filter);
+
+        setSelectedChip(filter);
+
+
+        //
+        // if (selectedChip === filter) {
+        //     // If the same chip is clicked again, clear the selection
+        //     setSelectedChip(null);
+        // } else {
+        //     // If a different chip is clicked, update the selection
+        //     setSelectedChip(filter);
+        // }
+
         setActiveFilter(filter)
     };
 
@@ -51,7 +108,8 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
                   label={"Filters"}
                   size="small"
                   color="primary"
-                  o onClick={() => handleClick("Filters")}
+                  variant="outlined"
+                  onClick={() => handleClick("Filters")}
                   sx={{fontWeight: theme.typography.fontWeightRegular}}/>
             {filterData.filters.map((item) => (
                 <Chip key={item.id}
@@ -59,11 +117,13 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
                       onClick={() => handleClick(item.filter)}
                       // onDelete={handleDelete}
                       deleteIcon={<DoneIcon />}
-                      variant="outlined"
+                      // variant="outlined"
+                      variant={selectedChip === item.filter ? 'contained' : 'outlined'} // Check if the chip is selected
+
                       size="small"
                       color="primary"
                       sx={{fontWeight: theme.typography.fontWeightRegular}}>
-                      {/*{showEventCard && <EventCard value="Jerusalem" />}*/}
+
 
 
                 </Chip>

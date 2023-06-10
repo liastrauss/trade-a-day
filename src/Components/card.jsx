@@ -60,7 +60,9 @@ export default function EventCard({value = null}) {
                 justifyContent: 'center'
             }}>
                 {filtered.map((item) => (
-                    <Card sx={{
+                    <Card
+                        key={item.id} // Provide a unique key for each item
+                        sx={{
                         width: {
                             // sm: 200, //600
                             md: 150, //900
