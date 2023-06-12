@@ -144,9 +144,9 @@ export default function AddEvent() {
                                     Thank you for joining the Trade a Day community!
                                 </Typography>
                                 <Typography variant="subtitle1">
-                                     A confirmation has been emailed to you,
-                                    and we will let you know about any bookings.
-
+                                    Congratulations on adding your day! Get ready to form exciting connections.
+                                    Keep an eye on your preferred contact method as interested guests will be
+                                    reaching out to you directly. Together, let's make Trade a Day a success!
                                 </Typography>
                             </React.Fragment>
                         ) : (
