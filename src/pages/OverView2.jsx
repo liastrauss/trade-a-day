@@ -22,6 +22,7 @@ import {Avatar, Grid, ListItem, ListItemAvatar} from "@mui/material"
 import CardContent from "@mui/material/CardContent";
 import {useEffect, useState} from "react";
 import Topbar from "../Components/Topbar";
+import { auth, getAuth } from "../config/firebase"
 
 
 // An array that stores the labels for the steps of the checkout process
@@ -38,6 +39,7 @@ import {db} from "../config/firebase";
 
 export function DialogWithCard() {
     const [open, setOpen] = useState(false);
+    const [contactInfo, setContactInfo] = useState('');
 
     const handleOpen = () => {
         setOpen(true);
@@ -51,19 +53,28 @@ export function DialogWithCard() {
 
     const [eventInfoData, setEventInfoData] = useState();
 
-    useEffect (() => {
-        async function fetchEventInfoData(){
+    useEffect(() => {
+        async function fetchEventInfoData() {
             try {
-                const eventInfoRef = doc(db, "DataBase1", index)
-                const eventInfoSnapshot = await getDoc(eventInfoRef)
-                const data = eventInfoSnapshot.data()
+                const eventInfoRef = doc(db, "DataBase1", index);
+                const eventInfoSnapshot = await getDoc(eventInfoRef);
+                const data = eventInfoSnapshot.data();
                 setEventInfoData(data);
+
+                if (data) {
+                    const usersRef = db.collection("users").where("authID", "==", data.hostID);
+                    const usersSnapshot = await usersRef.get();
+                    const contactInfo = usersSnapshot.docs[0]?.data()?.userEmail;
+                    setContactInfo(contactInfo);
+                }
             } catch (error) {
-                console.error("Error retrieving event info:", error)
+                console.error("Error retrieving event info:", error);
             }
         }
         fetchEventInfoData();
     }, [index]);
+
+
 
     return (
         <div>
@@ -75,6 +86,7 @@ export function DialogWithCard() {
                 <DialogContent>
                     {/*<ControlledRadioButtonsGroup/>*/}
                     Write a message to {eventInfoData?.hostName}
+                    {contactInfo}
                 </DialogContent>
                 <DialogActions>
                     {/*<Button onClick={handleClose}>Cancel</Button>*/}
