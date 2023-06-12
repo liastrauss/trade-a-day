@@ -41,7 +41,6 @@ import OverView from "./pages/OverView";
 import OverView2 from "./pages/OverView2";
 import Logo from "./Components/logo";
 import Chat from "./zevel/Chat";
-import BookedEvents from "./zevel/Booked Events"
 
 // configuring our theme
 const theme = createTheme({
@@ -89,7 +88,6 @@ export default function App() {
                                 <Route path="OverView2/:index" element={<OverView2/>} />
                                 <Route path="CreateProfile" element={<CreateProfile/>} />
                                 <Route path="Chat" element={<Chat/>} />
-                                <Route path="BookedEvents" element={<BookedEvents/>} />
                                 {/*<Route path="Home" element={<Home />} />*/}
                                 <Route path="*" element={<NoPage />} />
                             </Route>
