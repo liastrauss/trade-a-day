@@ -25,6 +25,7 @@ function SearchSection() {
 
             {/*filters with chips*/}
             {/*<FilterTabs/>*/}
+
             <Chips data={filterData.filters}/>
         </Box>
     );
