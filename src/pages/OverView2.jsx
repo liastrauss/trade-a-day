@@ -98,9 +98,25 @@ export default function OverView2() {
         <div>
             {/* The top app bar of the checkout page*/}
             <Topbar AddDay/>
+            {/*The entire page */}
+            <Box
+                component="main"
+                // color for the whole page:
+                sx={{
+                    backgroundColor: (theme) =>
+                        theme.palette.mode === 'light'
+                            ? theme.palette.grey[100]
+                            : theme.palette.grey[900],
+                    flexGrow: 1,
+                    height: '100vh',
+                    overflow: 'auto',
+                }}
+            >
 
 
-            <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
+
+            <Container component="main" maxWidth="md" sx={{ mb: 4,
+            }}>
 
                 <Grid
                     container
@@ -108,19 +124,27 @@ export default function OverView2() {
                     justifyContent="space-around"
                     alignItems="center"
                     spacing = {5}
-                >
+                    sx={{
+                        // backgroundColor: '#F1F1', // Replace with your desired color
+                    }}
 
+                >
+                    <Paper sx={{ mx:4, mt:10, p: 2, display: 'flex', flexDirection: 'column' }}>
+
+                    {/*The info itself */}
                     <Grid item xs={12}>
                         <HostInfo/>
-
                     </Grid>
                     {/*<ControlledRadioButtonsGroup></ControlledRadioButtonsGroup>*/}
                     <Grid item xs={12}>
                         {/*<DatesPicker/>*/}
                         <DialogWithCard/>
                     </Grid>
+                    </Paper>
+
                 </Grid>
             </Container>
+            </Box>
         </div>
     );
 }
