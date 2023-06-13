@@ -1,4 +1,4 @@
-import {storage} from "../config/firebase";
+import {storage, auth} from "../config/firebase";
 import {ref, uploadBytes} from "firebase/storage";
 import {v4} from "uuid";
 import React, {useState} from 'react';
@@ -15,6 +15,10 @@ import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import {useTheme} from "@mui/material/styles";
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import DatePickerList from "./DatePickerList";
+import {onAuthStateChanged} from "firebase/auth"
+
+
+
 
 const labels = {
     0.5: 'Very easy',
@@ -49,6 +53,8 @@ export default function DaySchedule({formData, setFormData}) {
     const [datePickerCount, setDatePickerCount] = useState(1); // state variable for the number of DatePicker components
     const [datePickerValues, setDatePickerValues] = useState([null]); // state variable for the values of the DatePicker components
 
+    const [user,setUser]=useState({})
+
     //for indoors outdoors:
     const handleChange = (event, newSetting) => {
         setSetting(newSetting);
@@ -57,6 +63,7 @@ export default function DaySchedule({formData, setFormData}) {
             outdoors: newSetting === 'outdoors',
         }));
     };
+
 
     function getLabelText(rating) {
         return `${rating} Star${formData.physicalEffort !== 1 ? 's' : ''}, ${labels[formData.physicalEffort !== -1 ? formData.physicalEffort : rating]}`;
@@ -68,12 +75,28 @@ export default function DaySchedule({formData, setFormData}) {
 
         const files = Array.from(imageUpload); // Convert FileList to an array
 
+
+        // onAuthStateChanged(auth,(currentUser)=> {
+        //         setUser(currentUser);
+        //
+        // });
+        //
+        //
+        // console.log(user?.uid)
+
+        console.log(auth?.currentUser?.uid)
+
         // // Map over each selected file and set the imageUpload state
         files.map((pic) => {
 
             // here we save the images to directory!! so for a host we will save it to his id
             // directory for example
-            const imageRef = ref(storage, `images/${pic.name + v4()} `)
+
+            const imageRef = ref(
+                storage,
+                `${auth?.currentUser?.uid}/${pic.name+ v4()}'}`
+            );
+            // const imageRef = ref(storage, `images/${pic.name + v4()} `)
             uploadBytes(imageRef, pic).then(() => {
                 // alert("image uploaded")
             })
