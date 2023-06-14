@@ -63,7 +63,7 @@ export function StandardImageList() {
     return (
         <ImageList
             className="pictures"
-            sx={{ width: 800, height: 250, my: 3, mx: 1 }}
+            sx={{ width: 800, height: 250, my: 3, mx: 1 }} //TODO - the width shouln't be absoulute
             cols={2}
             rowHeight={164}
         >

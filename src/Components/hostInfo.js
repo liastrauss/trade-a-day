@@ -12,7 +12,12 @@ import LuggageTwoToneIcon from "@mui/icons-material/LuggageTwoTone";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Chip from "@mui/material/Chip";
 import Box from "@mui/material/Box";
-
+import ForestIcon from '@mui/icons-material/Forest';
+import HomeIcon from '@mui/icons-material/Home';
+import AccessibleIcon from '@mui/icons-material/Accessible';
+import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
+import Card from "@mui/material/Card";
+import Paper from "@mui/material/Paper";
 
 function HostInfo() {
     const theme = useTheme();
@@ -69,7 +74,6 @@ function HostInfo() {
                         <Typography variant="subtitle2" color="primary">
                             Gallery
                         </Typography>
-
                     </Grid>
 
                     <StandardImageList/>
@@ -125,6 +129,37 @@ function HostInfo() {
                             )}
                         </Typography>
 
+                    </Grid>
+
+                    <Grid item xs={12}>
+                    <Typography variant="subtitle2" color="primary">
+                        This Day is:
+                    </Typography>
+
+                        {eventInfoData?.accessible ?
+
+                                <Typography variant="button" display="block" gutterBottom>
+                                    <AccessibleIcon/> Accessible
+                                </Typography>
+                                  :
+                            <div></div>
+                        }
+
+                        {eventInfoData?.suitableForChildren ?
+                            <Typography> <EscalatorWarningIcon/> Children Friendly </Typography> :
+                            <div></div>
+                        }
+
+                        {eventInfoData?.outdoors ?
+                            <Typography> <ForestIcon/> Outdoors </Typography> :
+                            <Typography> <HomeIcon/> Indoors </Typography>
+                        }
+                        {/*TODO: add the physical effort*/}
+
+
+                        <Typography>
+
+                    </Typography>
                     </Grid>
 
                 </Grid>

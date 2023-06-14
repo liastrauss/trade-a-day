@@ -17,7 +17,7 @@ import FormLabel from "@mui/material/FormLabel";
 
 function EventForm ({ formData, setFormData }) {
 
-    const areas = ['North', 'South','Jerusalem Area','West bank','Tel Aviv','Haifa','Golan'];
+    const areas = ['Tel Aviv','Jerusalem','North', 'South','Center','West bank',];
 
     return (
         <React.Fragment>

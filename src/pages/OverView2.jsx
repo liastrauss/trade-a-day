@@ -146,7 +146,7 @@ export default function OverView2() {
 
                 >
                     <Paper sx={{ ml:4, mr:4, mt:10, p: 2, display: 'flex', flexDirection: 'column' }}>
-
+                    {/*// TODO - scrollbar is weird because of the boxes and the papers. if topbar will be sticky this can be solved*/}
                     {/*The info itself */}
                     <Grid item xs={12}>
                         <HostInfo/>
