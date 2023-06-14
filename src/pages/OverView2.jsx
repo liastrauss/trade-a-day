@@ -113,6 +113,8 @@ export default function OverView2() {
             {/*The entire page */}
             <Box
                 component="main"
+                alignContent="center"
+
                 // color for the whole page:
                 sx={{
                     backgroundColor: (theme) =>
@@ -127,8 +129,10 @@ export default function OverView2() {
 
 
 
-            <Container component="main" maxWidth="md" sx={{ mb: 4,
-            }}>
+            <Container component="main" maxWidth="md"
+                       sx={{ mb: 4,
+            }}
+            >
 
                 <Grid
                     container
@@ -141,7 +145,7 @@ export default function OverView2() {
                     }}
 
                 >
-                    <Paper sx={{ mx:4, mt:10, p: 2, display: 'flex', flexDirection: 'column' }}>
+                    <Paper sx={{ ml:4, mr:4, mt:10, p: 2, display: 'flex', flexDirection: 'column' }}>
 
                     {/*The info itself */}
                     <Grid item xs={12}>
