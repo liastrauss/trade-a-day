@@ -14,31 +14,70 @@ import SignInDialog from '../Components/SignInDialog'
 import SignInButton from '../Components/SignInButton'
 import Registration1 from '../Components/Registration1BasicInfo'
 import Registration2 from '../Components/Registration2MoreDetails'
-
-// Importing three form components that will be rendered inside the  component
 import Topbar from "../Components/Topbar";
 import {useNavigate} from "react-router-dom";
+import {addDoc, collection} from "firebase/firestore";
+import {auth, db} from "../config/firebase";
 
 
 // An array that stores the labels for the steps of the checkout process
 const steps = ['Sign In', 'Registration1 - basic info' , 'Registration2 - 5 questions'];
 
-// A function that returns the content of a specific step, based on the index passed as argument
-function getStepContent(step) {
-    switch (step) {
-        case 0:
-            return <SignInDialog/>;
-        case 1:
-            return <Registration1/>;
-        case 2:
-            return <Registration2/>;
-        default:
-            throw new Error('Unknown step');
-    }
-}
-
 // The main functional component that renders the entire "add event" page and forms
 export default function CreateProfile() {
+    //Initialize user data
+    const [userData, setUserData] =
+        React.useState({
+            userID: '',
+            userFirstName: '',
+            userLastName: '',
+            userEmail: '',
+            userPhone: '',
+            PizzaToppings: [],
+            favoriteFood: [],
+            skills: [],
+            superpowers: [],
+        },[]);
+
+
+
+    const dbRef = collection(db,"users");
+    const onSubmit = async () => {
+        try {
+            await addDoc(dbRef, {
+                userID: auth?.currentUser?.uid,
+                userFirstName: userData.userFirstName,
+                userLastName: userData.userLastName,
+                userEmail: userData.userEmail,
+                userPhone: userData.userPhone,
+                PizzaToppings: userData.PizzaToppings,
+                favoriteFood: userData.favoriteFood,
+                skills: userData.skills,
+                superpowers: userData.superpowers,
+            });
+        } catch(err) {
+            console.error(err)
+        }
+    }
+
+
+
+
+    // A function that returns the content of a specific step, based on the index passed as argument
+    function getStepContent(step) {
+        switch (step) {
+            case 0:
+                return <SignInDialog/>;
+            case 1:
+                return <Registration1 userData={userData} setUserData={setUserData}/>;
+            case 2:
+                return <Registration2 userData={userData} setUserData={setUserData}/>;
+            default:
+                throw new Error('Unknown step');
+        }
+    }
+
+    //
     let navigate = useNavigate();
     // A state hook that keeps track of the currently active step
     const [activeStep, setActiveStep] = React.useState(0);
@@ -54,25 +93,6 @@ export default function CreateProfile() {
     // The component's JSX code that gets returned
     return (
         <div>
-            {/*<CssBaseline />*/}
-            {/* The top app bar of the checkout page*/}
-            {/*<AppBar*/}
-            {/*    position="sticky"*/}
-            {/*    color="transparent"*/}
-            {/*    elevation={0}*/}
-            {/*    sx={{*/}
-            {/*        position: 'relative',*/}
-            {/*        borderBottom: (t) => `1px solid ${t.palette.divider}`,*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    <Toolbar>*/}
-            {/*        /!* The title of the app in the app bar *!/*/}
-            {/*        /!*<Typography variant="h6" noWrap color = "primary">*!/*/}
-            {/*        /!*    Trade a Day*!/*/}
-            {/*        /!*</Typography>*!/*/}
-            {/*        <Logo sx = {{}}></Logo>*/}
-            {/*    </Toolbar>*/}
-            {/*</AppBar>*/}
             <Topbar AddDay Profile BookedEvents/>
 
             {/*// The container that holds the main content of the page*/}

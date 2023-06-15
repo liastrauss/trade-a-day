@@ -21,6 +21,19 @@ export default function SignInDialog() {
     //     exist ? setExist(true) : Register()
     // };
 
+    const [userData, setUserData] =
+        React.useState({
+            userID: '',
+            userFirstName: '',
+            userLastName: '',
+            userEmail: '',
+            userPhone: '',
+            PizzaToppings: [],
+            favoriteFood: [],
+            skills: [],
+            superpowers: [],
+        },[]);
+
     //handleClickOpen is the function that sets the dialog state to True, opening the popup
     const handleClickOpen = () => {
         setOpen(true);
@@ -67,12 +80,6 @@ export default function SignInDialog() {
                     <DialogContentText>
                         Choose your preferred login or signup method!
                     </DialogContentText>
-                    {/*<IconButton variant='outlined' onClick={signInWithGoogle}>*/}
-                    {/*    <GoogleIcon color='primary' style={{fontSize: 60}}></GoogleIcon>*/}
-                    {/*</IconButton>*/}
-                    {/*<IconButton onClick={signInWithFacebook}>*/}
-                    {/*    <FacebookIcon color='primary' style={{fontSize: 60}}></FacebookIcon>*/}
-                    {/*</IconButton>*/}
                     <Button startIcon={<GoogleIcon color='primary' style={{fontSize: 45}}></GoogleIcon>} onClick={signInWithGoogle}>
                         Sign in with Google
                     </Button>
