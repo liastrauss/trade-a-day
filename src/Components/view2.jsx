@@ -61,9 +61,35 @@ export function StandardImageList() {
     }
 
     return (
+        // <ImageList
+        //         //     className="pictures"
+        //         //     sx={{ width: 800, height: 250, my: 3, mx: 1 ,gap: 10 }}
+        //         //     cols={2}
+        //         //     rowHeight={164}
+        //         // >
+        //         //     {imageListGallery.map((url) => (
+        //         //         <ImageListItem key={url}>
+        //         //             <img
+        //         //                 src={`${url}?w=164&h=164&fit=crop&auto=format`}
+        //         //                 srcSet={`${url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+        //         //                 alt="gallery"
+        //         //                 loading="lazy"
+        //         //             />
+        //         //         </ImageListItem>
+        //         //     ))}
+        //         // </ImageList>
+
         <ImageList
             className="pictures"
-            sx={{ width: 800, height: 250, my: 3, mx: 1 }}
+            sx={{
+                width: 800,
+                height: 250,
+                my: 3,
+                mx: 1,
+                "& .MuiImageListItem-root": {
+                    marginBottom: "20px" // Adjust the marginBottom value as per your preference
+                }
+            }}
             cols={2}
             rowHeight={164}
         >
@@ -78,5 +104,25 @@ export function StandardImageList() {
                 </ImageListItem>
             ))}
         </ImageList>
+
+
+        // <ImageList
+        //     className="pictures"
+        //     sx={{ width: 800, height: 'auto', my: 3, mx: 1 }}
+        //     cols={3} // Adjust the number of columns as needed
+        //     rowHeight={250} // Adjust the row height as needed
+        // >
+        //     {imageListGallery.map((url) => (
+        //         <ImageListItem key={url}>
+        //             <img
+        //                 src={`${url}?w=164&h=164&fit=crop&auto=format`}
+        //                 srcSet={`${url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+        //                 alt="gallery"
+        //                 loading="lazy"
+        //             />
+        //         </ImageListItem>
+        //     ))}
+        // </ImageList>
+
     );
 }
