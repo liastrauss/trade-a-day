@@ -18,7 +18,9 @@ function HostInfo() {
     const theme = useTheme();
     const { index } = useParams(); // Access the id parameter from the URL
 
-    const [eventInfoData, setEventInfoData] = useState();
+    const [eventInfoData, setEventInfoData] = useState("");
+
+    const [event, setEvent] = useState();
 
     useEffect (() => {
         async function fetchEventInfoData(){
@@ -27,12 +29,20 @@ function HostInfo() {
                 const eventInfoSnapshot = await getDoc(eventInfoRef)
                 const data = eventInfoSnapshot.data()
                 setEventInfoData(data);
+
+                setEvent(data?.hostID);
+
             } catch (error) {
                 console.error("Error retrieving event info:", error)
             }
         }
+
         fetchEventInfoData();
+
+
     }, [index]);
+
+
 
 
     return (
@@ -49,6 +59,7 @@ function HostInfo() {
                         </Typography>
                         <Typography variant="subtitle1">
                             {eventInfoData?.dayDescription}
+
                         </Typography>
 
                     </Grid>
@@ -61,7 +72,7 @@ function HostInfo() {
 
                     </Grid>
 
-                    {/*<StandardImageList/>*/}
+                    <StandardImageList/>
 
                     <Grid item xs={6}>
                         <Typography variant="subtitle2" color="primary">
