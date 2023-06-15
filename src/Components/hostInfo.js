@@ -151,7 +151,11 @@ function HostInfo() {
 
                             {eventInfoData?.accessible ?
 
-                                <Button>
+                                <Button sx={{
+                                    pointerEvents: 'none', // Disable pointer events
+                                    // opacity: 0.5, // Reduce opacity to indicate disabled state
+                                    // Add any other custom styles here
+                                }}>
                                     <AccessibleIcon/> Accessible
                                 </Button>
                                 :
@@ -159,7 +163,13 @@ function HostInfo() {
                             }
 
                             {eventInfoData?.suitableForChildren ?
-                                <Button selected disabled>
+                                <Button   sx={{
+                                    pointerEvents: 'none',
+                                    color: "secondary.main",// Disable pointer events
+                                    // opacity: 0.5, // Reduce opacity to indicate disabled state
+                                    // Add any other custom styles here
+                                }}
+                                >
                                     <EscalatorWarningIcon/> Children Friendly </Button> :
                                 <div></div>
                             }
@@ -193,7 +203,13 @@ function HostInfo() {
                             }
 
                             {eventInfoData?.suitableForChildren ?
-                                <ToggleButton selected disabled>
+                                <ToggleButton
+                                    sx={{
+                                    pointerEvents: 'none', // Disable pointer events
+                                    // opacity: 0.5, // Reduce opacity to indicate disabled state
+                                    // Add any other custom styles here
+                                }}
+                                >
                                     <EscalatorWarningIcon/> Children Friendly </ToggleButton> :
                                 <div></div>
                             }
