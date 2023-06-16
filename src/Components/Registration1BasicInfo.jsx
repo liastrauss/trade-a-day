@@ -11,7 +11,7 @@ import {db} from "../config/firebase";
 import { getDocs, collection, addDoc } from "firebase/firestore";
 import {useState} from "react";
 import {auth} from "../config/firebase";
-import {Submit} from "../Components/draft"
+import Box from '@mui/material/Box';
 
 export default function Registration1({ userData, setUserData }) {
     //this State defines whether the popup should open (true) or close (false)
@@ -21,21 +21,21 @@ export default function Registration1({ userData, setUserData }) {
     };
 
 
-    // const usersCollectionRef = collection(db, "users")
+    const usersCollectionRef = collection(db, "users")
 
-    // const[newFirstName, setNewFirstName] = useState("");
-    // const[newLastName, setNewLastName] = useState("");
-    // const[newEmail, setNewEmail] = useState("");
-    // const[newPhone, setNewPhone] = useState("");
-    //
-    // const onSubmitR1 = async () => {
-    //     await addDoc(usersCollectionRef, {
-    //         firstName: newFirstName,
-    //         lastName: newLastName,
-    //         email: newEmail,
-    //         phone: newPhone,
-    //     });
-    // };
+    const[newFirstName, setNewFirstName] = useState("");
+    const[newLastName, setNewLastName] = useState("");
+    const[newEmail, setNewEmail] = useState("");
+    const[newPhone, setNewPhone] = useState("");
+
+    const onSubmitR1 = async () => {
+        await addDoc(usersCollectionRef, {
+            firstName: userData.userFirstName,
+            lastName: userData.userLastName,
+            email: userData.userEmail,
+            phone: userData.userPhone,
+        });
+    };
 
     return (
         <div>
@@ -57,12 +57,12 @@ export default function Registration1({ userData, setUserData }) {
                                 defaultValue={auth?.currentUser?.displayName}
                                 autoFocus
                                 onChange={(e) => {
-                                    setUserData({
-                                        ...userData,
-                                        userFirstName: e.target.value,
-                                    });
+                                    // setNewFirstName(e.target.value);
+                                        setUserData({
+                                            ...userData,
+                                            userFirstName: e.target.value,
+                                        });
                                 }}
-
                                 value = {userData.userFirstName}
                             />
                         </Grid>
@@ -113,11 +113,18 @@ export default function Registration1({ userData, setUserData }) {
                             />
                         </Grid>
                     </Grid>
+                    <Box>
+                        <h5>{userData.userFirstName}</h5>
+                        <h5>{userData.userLastName}</h5>
+                        <h5>{userData.userPhone}</h5>
+                        <h5>{userData.userEmail}</h5>
+
+                    </Box>
                 </DialogContent>
 
                 <DialogActions>
                     <Button onClick={Registration2}>Next</Button>
-                    {/*<Button onClick={Submit}>Submit</Button>*/}
+                    <Button onClick={onSubmitR1}>Submit</Button>
                 </DialogActions>
             </Dialog>
         </div>
