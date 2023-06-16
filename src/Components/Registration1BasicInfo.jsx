@@ -34,6 +34,7 @@ export default function Registration1({ userData, setUserData }) {
             lastName: userData.userLastName,
             email: userData.userEmail,
             phone: userData.userPhone,
+            hostID: auth?.currentUser?.uid
         });
     };
 

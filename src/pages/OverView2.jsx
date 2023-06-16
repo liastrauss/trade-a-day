@@ -24,7 +24,6 @@ import {useEffect, useState} from "react";
 import Topbar from "../Components/Topbar";
 import { auth, getAuth } from "../config/firebase"
 
-
 // An array that stores the labels for the steps of the checkout process
 // for dialog:
 // FOR DIALOG CHOICE:
@@ -33,7 +32,7 @@ import {ControlledRadioButtonsGroup} from "../Components/datesPicker";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import {doc, getDoc} from "firebase/firestore";
-import {db} from "../config/firebase";
+import { db } from "../config/firebase";
 
 
 
@@ -62,10 +61,16 @@ export function DialogWithCard() {
                 setEventInfoData(data);
 
                 if (data) {
-                    const usersRef = db.collection("users").where("authID", "==", data.hostID);
+                    alert("1")
+                    const usersRef = db.collection("users").where("hostID", "==", eventInfoData?.hostID);
+                    alert("2") //TODO: THIS IS WHERE IT GETS STUCK :(
                     const usersSnapshot = await usersRef.get();
-                    const contactInfo = usersSnapshot.docs[0]?.data()?.userEmail;
+                    alert("3")
+                    const contactInfo = usersSnapshot.docs[0]?.data()?.email;
+                    alert("4")
+                    alert(contactInfo)
                     setContactInfo(contactInfo);
+                    alert("5")
                 }
             } catch (error) {
                 console.error("Error retrieving event info:", error);
@@ -91,7 +96,7 @@ export function DialogWithCard() {
                 <DialogActions>
                     {/*<Button onClick={handleClose}>Cancel</Button>*/}
                     <Button onClick={handleClose} variant="contained" autoFocus>
-                        Send
+                        Done
                     </Button>
                 </DialogActions>
             </Dialog>

@@ -11,6 +11,8 @@ import Box from "@mui/material/Box";
 import {db} from "../config/firebase";
 import {getDocs, collection} from "firebase/firestore";
 import Chips from "./filterChips";
+import { getDownloadURL, ref, getStorage } from "firebase/storage";
+
 
 export default function EventCard({value = null}) {
     const theme = useTheme();
