@@ -4,7 +4,7 @@ import { getAnalytics } from "firebase/analytics";
 
 import {getStorage} from "firebase/storage"
 
-import {FacebookAuthProvider, getAuth, GoogleAuthProvider} from "firebase/auth"
+import {FacebookAuthProvider, getAuth, GoogleAuthProvider, signOut} from "firebase/auth"
 
 import { getFirestore } from "firebase/firestore"
 // TODO: Add SDKs for Firebase products that you want to use
