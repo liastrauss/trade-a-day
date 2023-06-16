@@ -118,6 +118,9 @@ export default function Registration1({ userData, setUserData }) {
                         <h5>{userData.userLastName}</h5>
                         <h5>{userData.userPhone}</h5>
                         <h5>{userData.userEmail}</h5>
+                        <h5>{auth?.currentUser?.email}</h5>
+                        <h5>{auth?.currentUser?.displayName}</h5>
+
 
                     </Box>
                 </DialogContent>
