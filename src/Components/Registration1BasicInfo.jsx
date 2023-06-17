@@ -23,19 +23,20 @@ export default function Registration1({ userData, setUserData }) {
 
     const usersCollectionRef = collection(db, "users")
 
-    const[newFirstName, setNewFirstName] = useState("");
-    const[newLastName, setNewLastName] = useState("");
-    const[newEmail, setNewEmail] = useState("");
-    const[newPhone, setNewPhone] = useState("");
+    // const[newFirstName, setNewFirstName] = useState("");
+    // const[newLastName, setNewLastName] = useState("");
+    // const[newEmail, setNewEmail] = useState("");
+    // const[newPhone, setNewPhone] = useState("");
 
     const onSubmitR1 = async () => {
-        await addDoc(usersCollectionRef, {
-            firstName: userData.userFirstName,
-            lastName: userData.userLastName,
-            email: userData.userEmail,
-            phone: userData.userPhone,
-            hostID: auth?.currentUser?.uid
-        });
+        // await addDoc(usersCollectionRef, {
+        //     userID: auth.currentUser.uid,
+        //     firstName: userData.userFirstName,
+        //     lastName: userData.userLastName,
+        //     email: userData.userEmail,
+        //     phone: userData.userPhone,
+        // });
+        handleClose();
     };
 
     return (
@@ -115,6 +116,7 @@ export default function Registration1({ userData, setUserData }) {
                         </Grid>
                     </Grid>
                     <Box>
+                        <h5>{auth?.currentUser?.uid}</h5>
                         <h5>{userData.userFirstName}</h5>
                         <h5>{userData.userLastName}</h5>
                         <h5>{userData.userPhone}</h5>
@@ -127,7 +129,7 @@ export default function Registration1({ userData, setUserData }) {
                 </DialogContent>
 
                 <DialogActions>
-                    <Button onClick={Registration2}>Next</Button>
+                    {/*<Button onClick={Registration2}>Next</Button>*/}
                     <Button onClick={onSubmitR1}>Submit</Button>
                 </DialogActions>
             </Dialog>
