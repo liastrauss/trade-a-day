@@ -22,6 +22,8 @@ import Button from "@mui/material/Button";
 import { CgGym } from 'react-icons/cg';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import {addDoc, collection} from "firebase/firestore";
+import {auth, db} from "../config/firebase";
 
 export default function Registration2({ userData, setUserData }) {
     const [open, setOpen] = React.useState(true);
@@ -30,24 +32,44 @@ export default function Registration2({ userData, setUserData }) {
         setOpen(false);
     };
 
-
+    const usersCollectionRef = collection(db, "users")
+    const onSubmit = async () => {
+        try {
+            await addDoc(usersCollectionRef, {
+                userID: auth?.currentUser?.uid,
+                userFirstName: userData.userFirstName,
+                userLastName: userData.userLastName,
+                userEmail: userData.userEmail,
+                userPhone: userData.userPhone,
+                favoriteFood: userData.favoriteFood,
+                pizzaToppings: userData.pizzaToppings,
+                hobbies: userData.hobbies,
+                skills: userData.skills,
+                superpowers: userData.superpowers,
+            });
+        } catch(err) {
+            console.error(err)
+        }
+    }
 
     //useStates
-    const [foods, setFood] = React.useState(() => ['',])
-    const [topping, setTopping] = React.useState(() => ['',])
-    const [hobby, setHobby] = React.useState(() => ['',])
-    const [skill, setSkill] = React.useState(() => ['',])
-    const [power, setPower] = React.useState(() => ['',])
+    // const [foods, setFood] = React.useState(() => ['',])
+    // const [topping, setTopping] = React.useState(() => ['',])
+    // const [hobby, setHobby] = React.useState(() => ['',])
+    // const [skill, setSkill] = React.useState(() => ['',])
+    // const [power, setPower] = React.useState(() => ['',])
 
     //event handlers
     const handleFood = (event, newData) => {
-        setFood(newData);
-        setUserData((userData) => ({...userData, favoriteFood: newData })); };
-    const handleTopping = (event, newData) => {setTopping(newData); };
-    const handleHobby = (event, newData) => {setHobby(newData); };
-    const handleSkill = (event, newData) => {setSkill(newData); };
-    const handlePower = (event, newData) => {setPower(newData); };
-
+        setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData })); };
+    const handleTopping = (event, newData) => {
+        setUserData((prevUserData) => ({...prevUserData, pizzaToppings: newData })); };
+    const handleHobby = (event, newData) => {
+        setUserData((prevUserData) => ({...prevUserData, hobbies: newData })); };
+    const handleSkill = (event, newData) => {
+        setUserData((prevUserData) => ({...prevUserData, skills: newData })); };
+    const handlePower = (event, newData) => {
+        setUserData((prevUserData) => ({...prevUserData, superpowers: newData })); };
 
 
     return (
@@ -75,156 +97,29 @@ export default function Registration2({ userData, setUserData }) {
                             </ToggleButtonGroup>
                         </Box>
 
+                        <Box>
+                            <h4>My favorite toppings are...</h4>
+                            <ToggleButtonGroup color='primary' value={userData.pizzaToppings} onChange={handleTopping}>
+                                <ToggleButton value="Mushroom"> <GiSlicedMushroom/> Mushroom </ToggleButton>
+                                <ToggleButton value="Cheese"> <GiCheeseWedge/> Cheese </ToggleButton>
+                                <ToggleButton value="Corn"> <GiCorn/> Corn </ToggleButton>
+                                <ToggleButton value="Tuna"> <GiCannedFish/> Tuna </ToggleButton>
+                                <ToggleButton value="Pineapple"> <GiPineapple/> Pineapple </ToggleButton>
+                                <ToggleButton value="Anti"> <AiOutlineStop/> Hate Pizza </ToggleButton>
+                            </ToggleButtonGroup>
+                        </Box>
 
+                        <Box>
+                            <h4>When I'm bored on Friday you'll find me....</h4>
+                            <ToggleButtonGroup color='primary' value={userData.hobbies} onChange={handleHobby} exclusive>
+                                <ToggleButton value="Netflix"> <SiNetflix/> Netflix </ToggleButton>
+                                <ToggleButton value="Cooking"> <GiChefToque/> Cooking </ToggleButton>
+                                <ToggleButton value="Training"> <CgGym/> Training </ToggleButton>
+                                <ToggleButton value="Singing"> <GiMusicalNotes/> Singing </ToggleButton>
+                                <ToggleButton value="Traveling"> <FaHiking/> Traveling </ToggleButton>
+                            </ToggleButtonGroup>
+                        </Box>
                         {/*<Box>*/}
-                        {/*    <h4>The ultimate Pizza has ____ on it</h4>*/}
-                        {/*    <ToggleButtonGroup color='primary' value={nutrition} onChange={handleNutrition}>*/}
-                        {/*    <ToggleButton value="Mushroom"> <GiSlicedMushroom/> Mushroom </ToggleButton>*/}
-                        {/*    <ToggleButton value="Cheese"> <GiCheeseWedge/> Cheese </ToggleButton>*/}
-                        {/*    <ToggleButton value="Corn"> <GiCorn/> Corn </ToggleButton>*/}
-                        {/*    <ToggleButton value="Tuna"> <GiCannedFish/> Tuna </ToggleButton>*/}
-                        {/*    <ToggleButton value="Pineapple"> <GiPineapple/> Pineapple </ToggleButton>*/}
-                        {/*    <ToggleButton value="Anti"> <AiOutlineStop/> Hate Pizza </ToggleButton>*/}
-                        {/*</ToggleButtonGroup>*/}
-                        {/*</Box>*/}
-
-                        {/*<Box>*/}
-                        {/*    <h4>When I'm bored on Friday you'll find me...</h4>*/}
-                        {/*    <ToggleButtonGroup color='primary' onChange={handleInterestChange} exclusive>*/}
-                        {/*        <ToggleButton> <SiNetflix/> Netflix </ToggleButton>*/}
-                        {/*        <ToggleButton> <GiChefToque/> Cooking </ToggleButton>*/}
-                        {/*        <ToggleButton> <CgGym/> Working Out </ToggleButton>*/}
-                        {/*        <ToggleButton> <GiMusicalNotes/> Singing </ToggleButton>*/}
-                        {/*        <ToggleButton> <FaHiking/> Traveling </ToggleButton>*/}
-                        {/*    </ToggleButtonGroup>*/}
-                        {/*</Box>*/}
-
-                        {/*<Box>*/}
-                        {/*    <h4>If I could, I would master the art of...</h4>*/}
-                        {/*    <ToggleButtonGroup color='primary' onChange={handleInterestChange} exclusive>*/}
-                        {/*        <ToggleButton color='primary'> Speaking in movie quotes </ToggleButton>*/}
-                        {/*        <ToggleButton> Extreme face-making </ToggleButton>*/}
-                        {/*        <ToggleButton> Rapping but backwards </ToggleButton>*/}
-                        {/*        <ToggleButton> Beat-boxing classic symphonies</ToggleButton>*/}
-                        {/*        <ToggleButton> Dancing perfectly terrible </ToggleButton>*/}
-                        {/*        <ToggleButton> Remembering useless trivia </ToggleButton>*/}
-                        {/*    </ToggleButtonGroup>*/}
-                        {/*</Box>*/}
-
-                        {/*<Box>*/}
-                        {/*    <h4>If I could, I would harness the next superpower</h4>*/}
-                        {/*    <ToggleButtonGroup color='primary' onChange={handleInterestChange} exclusive>*/}
-                        {/*        <ToggleButton> Snap your fingers to make someone else dance </ToggleButton>*/}
-                        {/*        <ToggleButton> Turn everything you touch into Burgers </ToggleButton>*/}
-                        {/*        <ToggleButton> Control the volume of everyone else's sneezes </ToggleButton>*/}
-                        {/*        <ToggleButton> Turn water into any beverage you want </ToggleButton>*/}
-                        {/*        <ToggleButton> Generate an endless supply of ripe Avocados </ToggleButton>*/}
-                        {/*        <ToggleButton> Communicate with objects, but they only respond sarcastically </ToggleButton>*/}
-                        {/*    </ToggleButtonGroup>*/}
-                        {/*</Box>*/}
-
-
-                        {/*<Box>*/}
-                        {/*    <FormControl*/}
-                        {/*        required*/}
-                        {/*        error={foodsError}*/}
-                        {/*        component="fieldset"*/}
-                        {/*        sx={{ m: 3, width: '550px' }}*/}
-                        {/*        variant="standard"*/}
-                        {/*    >*/}
-                        {/*        <FormLabel component="legend">My favorite food is...</FormLabel>*/}
-                        {/*        <FormGroup style={{ display: 'flex', flexDirection: 'row' }}>*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={pizza} onChange={(e) => {handleEventChange(e,food, setFoods)}} name="pizza" />}*/}
-                        {/*                label="Pizza"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={salad} onChange={(e) => {handleEventChange(e,food, setFoods)}} name="salad" />}*/}
-                        {/*                label="Salad"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={burger} onChange={(e) => {handleEventChange(e,food, setFoods)}} name="burger" />}*/}
-                        {/*                label="Burger"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={sushi} onChange={(e) => {handleEventChange(e,food, setFoods)}} name="sushi" />}*/}
-                        {/*                label="Sushi"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={mexican} onChange={(e) => {handleEventChange(e,food, setFoods)}} name="mexican" />}*/}
-                        {/*                label="Mexican"*/}
-                        {/*            />*/}
-                        {/*        </FormGroup>*/}
-                        {/*        <FormHelperText>You can only choose one favorite food!</FormHelperText>*/}
-                        {/*    </FormControl>*/}
-                        {/*    <FormControl*/}
-                        {/*        required*/}
-                        {/*        error={toppingsError}*/}
-                        {/*        component="fieldset"*/}
-                        {/*        sx={{ m: 3, width: '550px' }}*/}
-                        {/*        variant="standard"*/}
-                        {/*    >*/}
-                        {/*        <FormLabel component="legend">My favorite Pizza toppings are... (choose up to 2!)</FormLabel>*/}
-                        {/*        <FormGroup style={{ display: 'flex', flexDirection: 'row' }}>*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={mushroom} onChange={(e) => {handleEventChange(e,topping, setTopping)}} name="mushroom" />}*/}
-                        {/*                label="Mushroom"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={cheese} onChange={(e) => {handleEventChange(e,topping, setTopping)}} name="cheese" />}*/}
-                        {/*                label="Cheese"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={corn} onChange={(e) => {handleEventChange(e,topping, setTopping)}} name="corn" />}*/}
-                        {/*                label="Corn"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={tuna} onChange={(e) => {handleEventChange(e,topping, setTopping)}} name="tuna" />}*/}
-                        {/*                label="Tuna"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={pineapple} onChange={(e) => {handleEventChange(e,topping, setTopping)}} name="pineapple" />}*/}
-                        {/*                label="Pineapple"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={anti} onChange={(e) => {handleEventChange(e,topping, setTopping)}} name="anti" />}*/}
-                        {/*                label="Hate pizza"*/}
-                        {/*            />*/}
-                        {/*        </FormGroup>*/}
-                        {/*        <FormHelperText>You can only choose up to two toppings!</FormHelperText>*/}
-                        {/*    </FormControl>*/}
-                        {/*    <FormControl*/}
-                        {/*        required*/}
-                        {/*        error={interestsError}*/}
-                        {/*        component="fieldset"*/}
-                        {/*        sx={{ m: 3, width: '550px' }}*/}
-                        {/*        variant="standard"*/}
-                        {/*    >*/}
-                        {/*        <FormLabel component="legend">When I'm bored on Friday you'll find me...</FormLabel>*/}
-                        {/*        <FormGroup style={{ display: 'flex', flexDirection: 'row' }}>*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={netflix} onChange={(e) => {handleEventChange(e,interest, setInterest)}} name="netflix" />}*/}
-                        {/*                label="On Netflix"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={cooking} onChange={(e) => {handleEventChange(e,interest, setInterest)}} name="cooking" />}*/}
-                        {/*                label="Cooking"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={interest['training']} onChange={(e) => {handleEventChange(e,interest, setInterest)}} name="training" />}*/}
-                        {/*                label="Working out"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={singing} onChange={(e) => {handleEventChange(e,interest, setInterest)}} name="singing" />}*/}
-                        {/*                label="Singing"*/}
-                        {/*            />*/}
-                        {/*            <FormControlLabel*/}
-                        {/*                control={<Checkbox checked={traveling} onChange={(e) => {handleEventChange(e,interest, setInterest)}} name="traveling" />}*/}
-                        {/*                label="Traveling"*/}
-                        {/*            />*/}
-                        {/*        </FormGroup>*/}
-                        {/*        <FormHelperText>You can only choose one ultimate hobby!</FormHelperText>*/}
-                        {/*    </FormControl>*/}
                         {/*    <FormControl*/}
                         {/*        required*/}
                         {/*        error={skillsError}*/}
@@ -298,21 +193,53 @@ export default function Registration2({ userData, setUserData }) {
                         {/*        <FormHelperText>Choose only one superpower!</FormHelperText>*/}
                         {/*    </FormControl>*/}
                         {/*</Box>*/}
+
+                        <Box>
+                            <h4>If I could, I would master the art of...</h4>
+                            <ToggleButtonGroup color='primary' value={userData.skills} onChange={handleSkill} exclusive>
+                                <ToggleButton color='primary'> Speaking in movie quotes </ToggleButton>
+                                <ToggleButton value="Facemaking"> Extreme face-making </ToggleButton>
+                                <ToggleButton value="Rapping"> Rapping but backwards </ToggleButton>
+                                <ToggleButton value="Beatboxing"> Beat-boxing classic symphonies</ToggleButton>
+                                <ToggleButton value="Dancing"> Dancing perfectly terrible </ToggleButton>
+                                <ToggleButton value="Trivia"> Remembering useless trivia </ToggleButton>
+                            </ToggleButtonGroup>
+                        </Box>
+
+                        <Box>
+                            <h4>If I could, I would harness the next superpower</h4>
+                            <ToggleButtonGroup color='primary' value={userData.superpowers} onChange={handlePower} exclusive>
+                                <ToggleButton value="SnapToDance"> Snap your fingers to make someone dance </ToggleButton>
+                                <ToggleButton value="BurgerMidas"> Turn anything you touch into Burgers </ToggleButton>
+                                <ToggleButton value="SneezeVolume"> Control the volume of people's sneezes </ToggleButton>
+                                <ToggleButton value="Beverage"> Turn water into any beverage </ToggleButton>
+                                <ToggleButton value="GenAvocado"> Generate ripe Avocados </ToggleButton>
+                                <ToggleButton value="Medium"> Communicate with objects, but they are always sarcastic</ToggleButton>
+                            </ToggleButtonGroup>
+                        </Box>
+
+                        <Box>
+                            <h5>{auth?.currentUser?.uid}</h5>
+                            <h5>{userData.userFirstName}</h5>
+                            <h5>{userData.userLastName}</h5>
+                            <h5>{userData.userPhone}</h5>
+                            <h5>{userData.userEmail}</h5>
+                            <h5>{userData.favoriteFood}</h5>
+                            <h5>{userData.pizzaToppings}</h5>
+                            <h5>{userData.hobbies}</h5>
+                            <h5>{userData.skills}</h5>
+                            <h5>{userData.superpowers}</h5>
+
+                        </Box>
+
                     </Grid>
                 </DialogContent>
 
                 <DialogActions>
-                    <Button>Sign up!</Button>
+                    <Button onClick={onSubmit}>Submit</Button>
                 </DialogActions>
             </Dialog>
         </div>
     );
 
 };
-
-// const arts = ['Speaking in movie quotes', 'Extreme face-making', 'Rapping but backwards', 'Beatboxing',
-// 'Dancing perfectly terrible', 'Remembering useless trivia'];
-// const superpowers = ['Snap your fingers to make someone else dance', 'The ability to turn everything into pizza',
-// "The ability to control the volume of someone elses sneezes, from barely audible whispers to ground-shaking booms",
-// 'The ability to turn water to any beverage you want', 'The ability to generate an endless supply of ripe Avocados',
-// 'The ability to communicate with unanimate objects, but they only respond sarcastically'];

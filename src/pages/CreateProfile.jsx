@@ -33,32 +33,34 @@ export default function CreateProfile() {
             userLastName: '',
             userEmail: '',
             userPhone: '',
-            PizzaToppings: [],
             favoriteFood: [],
+            pizzaToppings: [],
+            hobbies: [],
             skills: [],
             superpowers: [],
         },[]);
 
 
 
-    const dbRef = collection(db,"users");
-    const onSubmit = async () => {
-        try {
-            await addDoc(dbRef, {
-                userID: auth?.currentUser?.uid,
-                userFirstName: userData.userFirstName,
-                userLastName: userData.userLastName,
-                userEmail: userData.userEmail,
-                userPhone: userData.userPhone,
-                PizzaToppings: userData.PizzaToppings,
-                favoriteFood: userData.favoriteFood,
-                skills: userData.skills,
-                superpowers: userData.superpowers,
-            });
-        } catch(err) {
-            console.error(err)
-        }
-    }
+    // const dbRef = collection(db,"users");
+    // const onSubmit = async () => {
+    //     try {
+    //         await addDoc(dbRef, {
+    //             userID: auth?.currentUser?.uid,
+    //             userFirstName: userData.userFirstName,
+    //             userLastName: userData.userLastName,
+    //             userEmail: userData.userEmail,
+    //             userPhone: userData.userPhone,
+    //             favoriteFood: userData.favoriteFood,
+    //             pizzaToppings: userData.pizzaToppings,
+    //             hobbies: userData.hobbies,
+    //             skills: userData.skills,
+    //             superpowers: userData.superpowers,
+    //         });
+    //     } catch(err) {
+    //         console.error(err)
+    //     }
+    // }
 
 
 
