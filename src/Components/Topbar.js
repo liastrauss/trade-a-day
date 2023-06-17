@@ -9,6 +9,8 @@ import SearchBox from "./searchBox";
 import AppBar from '@mui/material/AppBar';
 import Paper from "@mui/material/Paper";
 import Toolbar from '@mui/material/Toolbar';
+import {auth} from "../config/firebase";
+import {useEffect, useState} from "react";
 
 
 // for the elevation when scorlled
@@ -113,6 +115,10 @@ export default function Topbar(props) {
     const Profile = props.Profile;
     const BookedEvents = props.BookedEvents;
 
+    const [avatarSrc, setAvatarSrc] = useState("/broken-image.jpg");
+    useEffect(() => {
+        // Update the avatar source when the auth object changes
+        if (auth?.currentUser?.photoURL) {setAvatarSrc(auth.currentUser.photoURL);}}, [auth]);
 
     return (
             <Box position='static'
@@ -153,7 +159,7 @@ export default function Topbar(props) {
                     </Button>
                 }
 
-                <Avatar src="/broken-image.jpg"
+                <Avatar src={avatarSrc}
                         sx={{ml: 1}}
                         onClick={() => {
                             navigate("/CreateProfile");
