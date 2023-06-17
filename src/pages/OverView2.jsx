@@ -90,7 +90,8 @@ export function DialogWithCard() {
                 <DialogTitle> Connect </DialogTitle>
                 <DialogContent>
                     {/*<ControlledRadioButtonsGroup/>*/}
-                    Write a message to {eventInfoData?.hostName}
+                    Write a message to {eventInfoData?.hostName}:
+                    {eventInfoData?.email} {/*TODO: just a plaster until everything works*/}
                     {contactInfo}
                 </DialogContent>
                 <DialogActions>

@@ -37,6 +37,7 @@ export default function AddEvent() {
         hostName: '',
         jobTitle: '',
         dayDescription: '',
+        email: '',
         dates: [null],
         location: null,
         accessible: true,
@@ -61,6 +62,7 @@ export default function AddEvent() {
             hostName: auth?.currentUser?.displayName, // the full name from the auth. maybe we want to change it to somth from profile
             jobTitle: formData.jobTitle,
             dayDescription: formData.dayDescription,
+            email: formData.email,
             dates: extractedDates,
             location: formData.location,
             accessible: formData.accessible,

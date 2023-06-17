@@ -43,6 +43,24 @@ function EventForm ({ formData, setFormData }) {
                 />
                 </Grid>
                 <Grid item xs={12}>
+                    {/*TODO: this is just a plaster for email.*/}
+                    <TextField
+                        id="standard-basic"
+                        label="Email address:"
+                        variant="standard"
+                        placeholder="yourname@email.com"
+                        fullWidth
+                        onChange={(e) => {
+                            setFormData({
+                                ...formData,
+                                email: e.target.value,
+                            });
+                        }}
+                        value = {formData.email}
+                    />
+                </Grid>
+
+                <Grid item xs={12}>
                     <Autocomplete
                         required
                         disablePortal
