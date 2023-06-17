@@ -11,6 +11,8 @@ import Paper from "@mui/material/Paper";
 import Toolbar from '@mui/material/Toolbar';
 
 
+import {cardData} from "../data/card-data";
+
 // for the elevation when scorlled
 function ElevationScroll(props) {
     const { children, window } = props;
@@ -111,7 +113,6 @@ export default function Topbar(props) {
     const AddDay = props.AddDay;
     const Search = props.Search;
     const Profile = props.Profile;
-    const BookedEvents = props.BookedEvents;
 
 
     return (
@@ -125,8 +126,8 @@ export default function Topbar(props) {
             }}>
                 <Logo/>
                 {Search ?
-                <SearchBox/>
-                //     placeholder with empty space so it will look the same
+                <SearchBox data={cardData}/>
+                //     placeholder with empty space so it will look the same:
                 :  <Box sx={{width: 350, height: 32}} />
                         }
 

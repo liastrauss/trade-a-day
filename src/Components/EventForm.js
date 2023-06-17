@@ -43,10 +43,10 @@ function EventForm ({ formData, setFormData }) {
                 />
                 </Grid>
                 <Grid item xs={12}>
-                    {/*TODO: this is just a plaster for email.*/}
+                    {/*TODO: this is just a temporary plaster for email.*/}
                     <TextField
                         id="standard-basic"
-                        label="Email address:"
+                        label="Preferred contact email"
                         variant="standard"
                         placeholder="yourname@email.com"
                         fullWidth
