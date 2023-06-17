@@ -71,7 +71,7 @@ export default function SearchBox({cardData,activeSearch, setActiveSearch,setSea
         <div>
         <Paper
             component="form"
-            sx={{ p: '1px 4px', display: 'flex', alignItems: 'center', width: 350, height: 32, borderRadius: 25,
+            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 350, height: 32, borderRadius: 25,
 
                 position: 'relative',
                 marginLeft: 'auto',

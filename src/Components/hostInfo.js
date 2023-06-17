@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Grid, ToggleButton, Typography} from "@mui/material";
+import Divider from '@mui/material/Divider';
 import {styled, useTheme} from "@mui/material/styles";
 import {StandardImageList} from "./view2";
 import {useParams} from "react-router-dom";
@@ -139,7 +140,7 @@ function HostInfo() {
                     <Typography variant="subtitle2" color="primary">
                         This Day is:
                     </Typography>
-
+                        {/*OTHER STYLING OPTIONS*/}
                         {/*<ButtonGroup*/}
                         {/*    variant="outlined"*/}
                         {/*    sx = {{*/}
@@ -218,37 +219,47 @@ function HostInfo() {
                         {/*        <ToggleButton selected disabled> <ForestIcon/> Outdoors </ToggleButton> :*/}
                         {/*        <ToggleButton selected disabled> <HomeIcon/> Indoors </ToggleButton>*/}
                         {/*    }*/}
-
-
-
-
                         {/*</ToggleButtonGroup>*/}
-
-                        {eventInfoData?.accessible ?
-
-                                <Typography variant="button" display="inline" gutterBottom>
-                                    <AccessibleIcon/> Accessible |
+                        <Box display="flex" alignItems="center" sx={{mb: 2}}>
+                            {eventInfoData?.accessible && (
+                                <Typography
+                                    variant="button"
+                                    display="inline"
+                                    gutterBottom
+                                    color="primary.light"
+                                    sx={{ letterSpacing: '.1rem' }}
+                                >
+                                    <AccessibleIcon /> Accessible
                                 </Typography>
-                                  :
-                            <div></div>
-                        }
+                            )}
+                            <Divider orientation="vertical" flexItem sx={{ mx: 2, color: "primary.light" }} />
 
                         {eventInfoData?.suitableForChildren ?
                             <Typography variant="button" display="inline" gutterBottom color = "primary.light"
-                            > <EscalatorWarningIcon/> Children Friendly |</Typography> :
+                                        sx = {{ letterSpacing: '.1rem'}}
+
+
+                            > <EscalatorWarningIcon/> Children Friendly </Typography> :
                             <div></div>
                         }
+                            <Divider orientation="vertical" flexItem sx={{ mx: 2 }} />
 
                         {eventInfoData?.outdoors ?
-                            <Typography variant="button" display="inline" gutterBottom> <ForestIcon/> Outdoors </Typography> :
-                            <Typography variant="button" display="inline" gutterBottom> <HomeIcon/> Indoors </Typography>
+                            <Typography variant="button" display="inline" gutterBottom color = "primary.light"
+                                        sx = {{ letterSpacing: '.1rem'}}
+                            > <ForestIcon/> Outdoors </Typography> :
+                            <Typography variant="button" display="inline" gutterBottom color = "primary.light"
+                                        sx = {{ letterSpacing: '.1rem'}}
+                            > <HomeIcon/> Indoors </Typography>
                         }
-                        {/*TODO: add the physical effort*/}
+
+                            {/*TODO: add the physical effort*/}
 
 
                         <Typography>
 
                     </Typography>
+                        </Box>
                     </Grid>
 
                 </Grid>
