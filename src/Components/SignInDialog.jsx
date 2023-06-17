@@ -70,6 +70,7 @@ export default function SignInDialog() {
         catch (err) {
             console.error(err)
         }
+        handleClose();
     }
 
     return (
@@ -98,8 +99,6 @@ export default function SignInDialog() {
                     <Button onClick={logOut}>
                         Log Out
                     </Button>
-                    <h5>{auth?.currentUser?.displayName}</h5>
-                    <h5>{auth?.currentUser?.email}</h5>
                 </DialogContent>
 
                 <DialogActions>
