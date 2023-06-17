@@ -31,52 +31,43 @@ import {db} from "../config/firebase";
 //     );
 // }
 
-export default function SearchBox({placeholder, data}) {
+export default function SearchBox({cardData,activeSearch, setActiveSearch,setSearched}) {
     const theme = useTheme();
 
-    // access info from firebase
-    const [cardData, setCardData] = useState([]);
-    const cardCollectionRef = collection(db, "DataBase1");
 
     // for filtering the actual data
-    const [searched, setSearched] = useState([]);
+    // const [searched, setSearched] = useState([]);
     // for knowing when something is typed
     const [searchTyped, setSearchTyped] = useState("");
 
+    useEffect(()=>{
+        // let searched;
+
+        // actually filtering:
+        const newSearch = cardData.filter((value) => value.jobTitle.toLowerCase().includes(activeSearch.toLowerCase()));
+        setSearched(newSearch);
+
+    }, [activeSearch]);
+
+
+
     const handleSearch = (event) => {
         const searchWord = event.target.value;
-        const newSearch = data.filter((value) => {
-            return value.title.toLowerCase().includes(searchWord.toLowerCase())
+        const newSearch = cardData.filter((value) => {
+            return value.jobTitle.toLowerCase().includes(searchWord.toLowerCase())
         });
         setSearched(newSearch);
         setSearchTyped(searchWord);
+        setActiveSearch(searchWord);
     };
 
 
-    // function to get card data
-    // useEffect(() => {
-    //     const getCardData = async () => {
-    //         // read data and set the card data
-    //         try {
-    //             const data = await getDocs(cardCollectionRef);
-    //             const cardInfo = data.docs.map((doc) => ({
-    //                 ...doc.data(),
-    //                 id: doc.id,
-    //             }));
-    //
-    //             setCardData(cardInfo);
-    //
-    //         } catch (err) {
-    //             console.error(err)
-    //         }
-    //     };
-    //     getCardData();
-    // }, []);
 
 
 
 
-        return (
+
+    return (
         <div>
         <Paper
             component="form"
@@ -102,6 +93,7 @@ export default function SearchBox({placeholder, data}) {
                             onClick={() => {
                                 setSearchTyped('');
                                 setSearched([]);
+                                setActiveSearch('');
                             }}
                         >
                             <ClearIcon />
@@ -111,10 +103,10 @@ export default function SearchBox({placeholder, data}) {
         </Paper>
         {/*    this is will delete, dont want to show */}
         <div className={"dataResult"}>
-            {searched.map((value, key) => {
-                return <a className="dataItem"> {value.title}</a>; // TODO: change to jobTitle
+            {/*{searched.map((value, key) => {*/}
+            {/*    return <a className="dataItem"> {value.title}</a>; // TODO: change to jobTitle*/}
 
-            })}
+            {/*})}*/}
         </div>
         </div>
 

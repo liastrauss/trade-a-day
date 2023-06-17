@@ -40,34 +40,32 @@ function ElevationScroll(props) {
 //
 //     return (
 //         <ElevationScroll {...props}>
-//             <AppBar sx={{
+//             <AppBar
+//                 sx={{
 //                 bgcolor: 'background.paper',
 //                 width: 1,
 //                 flexDirection: 'row',
-//                 display: 'flex',
-//                 justifyContent: 'space-between',
-//                 alignItems: 'center',
-//                 mx: 4,
 //
 //             }}>
-//             <Toolbar>
-//             <Box position='static'
-//                  sx={{mt: 2}}>
-//                 <Box sx={{
-//                     // display: 'flex',
-//                     // justifyContent: 'space-between',
-//                     // alignItems: 'center',
-//                     // mx: 4
-//                 }}>
-//                     <Logo/>
-//                     {Search ?
-//                         <SearchBox/>
+//             <Toolbar
+//
+//             sx = {{
+//                 mt: 2,
+//             }}>
+//                 <Box> <Logo/> </Box>
+//
+//                 <Box sx={{  mx: 'auto' }}>
+//                 {Search ?
+//
+//                         <SearchBox data={cardData}/>
 //                         //     placeholder with empty space so it will look the same
 //                         :  <Box sx={{width: 350, height: 32}} />
 //                     }
+//                 </Box>
 //                     <Box sx={{
 //                         display: 'flex',
 //                         justifyContent: 'space-around',
+//                         ml: 'auto',
 //                     }}>
 //
 //                         {AddDay ?
@@ -88,7 +86,6 @@ function ElevationScroll(props) {
 //                             </Button>
 //                         }
 //
-//                         <Button variant="outlined">My bookings</Button>
 //                         <Avatar src="/broken-image.jpg"
 //                                 sx={{ml: 1}}
 //                                 onClick={() => {
@@ -97,16 +94,13 @@ function ElevationScroll(props) {
 //                                 style={{cursor:'pointer'}}
 //                         />
 //                     </Box>
-//                 </Box>
-//                 {/*<Divider />*/}
-//             </Box>
 //             </Toolbar>
 //             </AppBar>
 //         </ElevationScroll>
 //     );
 // }
 
-//
+// not a toolbar
 export default function Topbar(props) {
     let navigate = useNavigate();
     const theme = useTheme();
@@ -126,7 +120,8 @@ export default function Topbar(props) {
             }}>
                 <Logo/>
                 {Search ?
-                <SearchBox data={cardData}/>
+                    <div></div>
+                // <SearchBox />
                 //     placeholder with empty space so it will look the same:
                 :  <Box sx={{width: 350, height: 32}} />
                         }

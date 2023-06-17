@@ -12,6 +12,7 @@ import {db} from "../config/firebase";
 import {getDocs, collection} from "firebase/firestore";
 import Chips from "./filterChips";
 import { getDownloadURL, ref, getStorage } from "firebase/storage";
+import SearchBox from "./searchBox";
 
 
 export default function EventCard({value = null}) {
@@ -26,6 +27,7 @@ export default function EventCard({value = null}) {
 
     const [filtered, setfiltered] = useState([]);
     const [activeFilter, setActiveFilter] = useState("Filters");
+    const [activeSearch, setActiveSearch] = useState();
 
 
     // function to get card data
@@ -40,7 +42,7 @@ export default function EventCard({value = null}) {
                 }));
 
                 setCardData(cardInfo);
-                setfiltered(cardInfo)
+                setfiltered(cardInfo);
 
             } catch (err) {
                 console.error(err)
@@ -52,8 +54,10 @@ export default function EventCard({value = null}) {
     }, []);
     return (
         <div>
-
+            <SearchBox cardData={cardData} activeSearch={activeSearch} setActiveSearch ={setActiveSearch} setSearched={setfiltered} />
             <Chips cardData={cardData} activeFiler={activeFilter} setActiveFilter={setActiveFilter} setfiltered={setfiltered}/>
+
+
 
             <Box sx={{
                 display: 'flex',
