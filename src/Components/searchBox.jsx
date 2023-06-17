@@ -52,9 +52,9 @@ export default function SearchBox({cardData,activeSearch, setActiveSearch,setSea
 
 
     const handleSearch = (event) => {
-        const searchWord = event.target.value;
+        const searchWord = event.target?.value;
         const newSearch = cardData.filter((value) => {
-            return value.jobTitle.toLowerCase().includes(searchWord.toLowerCase())
+            return value.jobTitle?.toLowerCase().includes(searchWord?.toLowerCase())
         });
         setSearched(newSearch);
         setSearchTyped(searchWord);
@@ -71,7 +71,15 @@ export default function SearchBox({cardData,activeSearch, setActiveSearch,setSea
         <div>
         <Paper
             component="form"
-            sx={{ p: '1px 4px', display: 'flex', alignItems: 'center', width: 350, height: 32, borderRadius: 25 }}
+            sx={{ p: '1px 4px', display: 'flex', alignItems: 'center', width: 350, height: 32, borderRadius: 25,
+                position: 'relative',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                top: -60,
+                zIndex: 1,
+
+
+            }}
         >
                 <InputBase
                     sx={{
@@ -85,7 +93,9 @@ export default function SearchBox({cardData,activeSearch, setActiveSearch,setSea
                     value = {searchTyped}
                 />
                     {searchTyped.length === 0  ? (
-                        <IconButton color="primary" type="button" sx={{ p: '10px' }} aria-label="search">
+                        <IconButton color="primary" type="button" sx={{ p: '10px',
+                                    pointerEvents: 'none',
+                                   }} aria-label="search">
                             <SearchIcon />
                         </IconButton>
                         ) : (

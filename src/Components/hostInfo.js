@@ -140,89 +140,89 @@ function HostInfo() {
                         This Day is:
                     </Typography>
 
-                        <ButtonGroup
-                            variant="outlined"
-                            sx = {{
-                                display: 'flex',
-                                flexWrap: 'wrap',
+                        {/*<ButtonGroup*/}
+                        {/*    variant="outlined"*/}
+                        {/*    sx = {{*/}
+                        {/*        display: 'flex',*/}
+                        {/*        flexWrap: 'wrap',*/}
 
-                            }}
-                        >
+                        {/*    }}*/}
+                        {/*>*/}
 
-                            {eventInfoData?.accessible ?
+                        {/*    {eventInfoData?.accessible ?*/}
 
-                                <Button sx={{
-                                    pointerEvents: 'none', // Disable pointer events
-                                    // opacity: 0.5, // Reduce opacity to indicate disabled state
-                                    // Add any other custom styles here
-                                }}>
-                                    <AccessibleIcon/> Accessible
-                                </Button>
-                                :
-                                <div></div>
-                            }
+                        {/*        <Button sx={{*/}
+                        {/*            pointerEvents: 'none', // Disable pointer events*/}
+                        {/*            // opacity: 0.5, // Reduce opacity to indicate disabled state*/}
+                        {/*            // Add any other custom styles here*/}
+                        {/*        }}>*/}
+                        {/*            <AccessibleIcon/> Accessible*/}
+                        {/*        </Button>*/}
+                        {/*        :*/}
+                        {/*        <div></div>*/}
+                        {/*    }*/}
 
-                            {eventInfoData?.suitableForChildren ?
-                                <Button   sx={{
-                                    pointerEvents: 'none',
-                                    color: "secondary.main",// Disable pointer events
-                                    // opacity: 0.5, // Reduce opacity to indicate disabled state
-                                    // Add any other custom styles here
-                                }}
-                                >
-                                    <EscalatorWarningIcon/> Children Friendly </Button> :
-                                <div></div>
-                            }
+                        {/*    {eventInfoData?.suitableForChildren ?*/}
+                        {/*        <Button   sx={{*/}
+                        {/*            pointerEvents: 'none',*/}
+                        {/*            color: "secondary.main",// Disable pointer events*/}
+                        {/*            // opacity: 0.5, // Reduce opacity to indicate disabled state*/}
+                        {/*            // Add any other custom styles here*/}
+                        {/*        }}*/}
+                        {/*        >*/}
+                        {/*            <EscalatorWarningIcon/> Children Friendly </Button> :*/}
+                        {/*        <div></div>*/}
+                        {/*    }*/}
 
-                            {eventInfoData?.outdoors ?
-                                <Button selected disabled> <ForestIcon/> Outdoors </Button> :
-                                <Button selected disabled> <HomeIcon/> Indoors </Button>
-                            }
-
-
-
-
-                        </ButtonGroup>
-
-
-                        <ToggleButtonGroup
-                            sx = {{
-                                display: 'flex',
-                                flexWrap: 'wrap',
-
-                            }}
-                        >
-
-                            {eventInfoData?.accessible ?
-
-                                <ToggleButton disabled selected>
-                                    <AccessibleIcon/> Accessible
-                                </ToggleButton>
-                                :
-                                <div></div>
-                            }
-
-                            {eventInfoData?.suitableForChildren ?
-                                <ToggleButton
-                                    sx={{
-                                    pointerEvents: 'none', // Disable pointer events
-                                    // opacity: 0.5, // Reduce opacity to indicate disabled state
-                                    // Add any other custom styles here
-                                }}
-                                >
-                                    <EscalatorWarningIcon/> Children Friendly </ToggleButton> :
-                                <div></div>
-                            }
-
-                            {eventInfoData?.outdoors ?
-                                <ToggleButton selected disabled> <ForestIcon/> Outdoors </ToggleButton> :
-                                <ToggleButton selected disabled> <HomeIcon/> Indoors </ToggleButton>
-                            }
+                        {/*    {eventInfoData?.outdoors ?*/}
+                        {/*        <Button selected disabled> <ForestIcon/> Outdoors </Button> :*/}
+                        {/*        <Button selected disabled> <HomeIcon/> Indoors </Button>*/}
+                        {/*    }*/}
 
 
 
 
-                        </ToggleButtonGroup>
+                        {/*</ButtonGroup>*/}
+
+
+                        {/*<ToggleButtonGroup*/}
+                        {/*    sx = {{*/}
+                        {/*        display: 'flex',*/}
+                        {/*        flexWrap: 'wrap',*/}
+
+                        {/*    }}*/}
+                        {/*>*/}
+
+                        {/*    {eventInfoData?.accessible ?*/}
+
+                        {/*        <ToggleButton disabled selected>*/}
+                        {/*            <AccessibleIcon/> Accessible*/}
+                        {/*        </ToggleButton>*/}
+                        {/*        :*/}
+                        {/*        <div></div>*/}
+                        {/*    }*/}
+
+                        {/*    {eventInfoData?.suitableForChildren ?*/}
+                        {/*        <ToggleButton*/}
+                        {/*            sx={{*/}
+                        {/*            pointerEvents: 'none', // Disable pointer events*/}
+                        {/*            // opacity: 0.5, // Reduce opacity to indicate disabled state*/}
+                        {/*            // Add any other custom styles here*/}
+                        {/*        }}*/}
+                        {/*        >*/}
+                        {/*            <EscalatorWarningIcon/> Children Friendly </ToggleButton> :*/}
+                        {/*        <div></div>*/}
+                        {/*    }*/}
+
+                        {/*    {eventInfoData?.outdoors ?*/}
+                        {/*        <ToggleButton selected disabled> <ForestIcon/> Outdoors </ToggleButton> :*/}
+                        {/*        <ToggleButton selected disabled> <HomeIcon/> Indoors </ToggleButton>*/}
+                        {/*    }*/}
+
+
+
+
+                        {/*</ToggleButtonGroup>*/}
 
                         {eventInfoData?.accessible ?
 
