@@ -72,14 +72,18 @@ export default function SearchBox({cardData,activeSearch, setActiveSearch,setSea
         <Paper
             component="form"
             sx={{ p: '1px 4px', display: 'flex', alignItems: 'center', width: 350, height: 32, borderRadius: 25,
+
                 position: 'relative',
                 marginLeft: 'auto',
                 marginRight: 'auto',
                 top: -60,
                 zIndex: 1,
+                [theme.breakpoints.down('md')]: {
+                        top: 10, // Adjusted value for smaller screens
+                    }
 
 
-            }}
+                    }}
         >
                 <InputBase
                     sx={{
