@@ -72,7 +72,6 @@ export default function EventCard({value = null}) {
             <Chips cardData={cardData} activeFiler={activeFilter} setActiveFilter={setActiveFilter} setfiltered={setfiltered}/>
 
 
-
             <Box sx={{
                 display: 'flex',
                 alignItems: 'flex-start',
