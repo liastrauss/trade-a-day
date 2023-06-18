@@ -232,7 +232,10 @@ function HostInfo() {
                                     <AccessibleIcon /> Accessible
                                 </Typography>
                             )}
-                            <Divider orientation="vertical" flexItem sx={{ mx: 2, color: "primary.light" }} />
+                            {eventInfoData?.accessible && (
+                                <Divider orientation="vertical" flexItem sx={{ mx: 2, color: "primary.light" }} />
+                            )}
+
 
                         {eventInfoData?.suitableForChildren ?
                             <Typography variant="button" display="inline" gutterBottom color = "primary.light"
@@ -242,7 +245,9 @@ function HostInfo() {
                             > <EscalatorWarningIcon/> Children Friendly </Typography> :
                             <div></div>
                         }
-                            <Divider orientation="vertical" flexItem sx={{ mx: 2 }} />
+                            {eventInfoData?.suitableForChildren && (
+                                <Divider orientation="vertical" flexItem sx={{ mx: 2, color: "primary.light" }} />
+                            )}
 
                         {eventInfoData?.outdoors ?
                             <Typography variant="button" display="inline" gutterBottom color = "primary.light"
