@@ -8,9 +8,14 @@ import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import {CardActionArea} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
-import {db} from "../config/firebase";
 import {getDocs, collection} from "firebase/firestore";
 import Chips from "./filterChips";
+import { db, storage} from "../config/firebase";
+
+import MainImage from "./mainImage";
+import Images from "./mainimage2";
+
+
 import { getDownloadURL, ref, getStorage } from "firebase/storage";
 import SearchBox from "./searchBox";
 
@@ -43,18 +48,27 @@ export default function EventCard({value = null}) {
 
                 setCardData(cardInfo);
                 setfiltered(cardInfo);
+                setfiltered(cardInfo);
+                // Images({cardInfo})
+
 
             } catch (err) {
                 console.error(err)
             }
         };
 
-
         getCardData();
     }, []);
+
+
+
+
+
     return (
         <div>
             <SearchBox cardData={cardData} activeSearch={activeSearch} setActiveSearch ={setActiveSearch} setSearched={setfiltered} />
+            <Images events={cardData} />
+
             <Chips cardData={cardData} activeFiler={activeFilter} setActiveFilter={setActiveFilter} setfiltered={setfiltered}/>
 
 
@@ -89,10 +103,9 @@ export default function EventCard({value = null}) {
                             navigate(`/OverView2/${item.id}`);
                         }}>
 
-
                             <CardMedia
                                 component="img"
-                                image={item.picture}
+                                image={item?.picture}
                                 className="card-img"
                                 sx={{
                                     borderRadius: 3,
@@ -138,6 +151,7 @@ export default function EventCard({value = null}) {
                             {/*</Box>*/}
                         </CardActionArea>
                     </Card>
+
                 ))
                 }
             </Box>

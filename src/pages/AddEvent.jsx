@@ -46,7 +46,7 @@ export default function AddEvent() {
         gallery: [],
         physicalEffort: 1, // init the physical effort
         outdoors: true,
-        picture: "",
+        picture: "none",
     },[]);
 
     // extracting the dates to a convinent array format
@@ -72,7 +72,7 @@ export default function AddEvent() {
             gallery: [],//TODO: when the photo is ready
             physicalEffort: formData.physicalEffort,
             outdoors: formData.outdoors,
-            picture: "",
+            picture: "none",
 
 
         });
