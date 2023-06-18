@@ -2,8 +2,7 @@ import {useNavigate, useParams} from "react-router-dom"
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 // GITHUB CODE
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
+
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
