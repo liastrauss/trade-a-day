@@ -32,6 +32,7 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import {doc, getDoc} from "firebase/firestore";
 import { db } from "../config/firebase";
+import HostHobbies from "./hostHobbies";
 
 
 
@@ -58,19 +59,6 @@ export function DialogWithCard() {
                 const eventInfoSnapshot = await getDoc(eventInfoRef);
                 const data = eventInfoSnapshot.data();
                 setEventInfoData(data);
-
-                if (data) {
-                    alert("1")
-                    const usersRef = db.collection("users").where("hostID", "==", eventInfoData?.hostID);
-                    alert("2") //TODO: THIS IS WHERE IT GETS STUCK :(
-                    const usersSnapshot = await usersRef.get();
-                    alert("3")
-                    const contactInfo = usersSnapshot.docs[0]?.data()?.email;
-                    alert("4")
-                    alert(contactInfo)
-                    setContactInfo(contactInfo);
-                    alert("5")
-                }
             } catch (error) {
                 console.error("Error retrieving event info:", error);
             }
@@ -78,20 +66,15 @@ export function DialogWithCard() {
         fetchEventInfoData();
     }, [index]);
 
-
-
     return (
         <div>
             <Button variant="outlined" onClick={handleOpen}>
                 <MailOutlineIcon/>   Contact {eventInfoData?.hostName}
             </Button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle> Connect </DialogTitle>
+                <DialogTitle> Get to know {eventInfoData?.hostName}!</DialogTitle>
                 <DialogContent>
-                    {/*<ControlledRadioButtonsGroup/>*/}
-                    Write a message to {eventInfoData?.hostName}:
-                    {eventInfoData?.email} {/*TODO: just a plaster until everything works*/}
-                    {contactInfo}
+                    <HostHobbies hostID={eventInfoData?.hostID} />
                 </DialogContent>
                 <DialogActions>
                     {/*<Button onClick={handleClose}>Cancel</Button>*/}

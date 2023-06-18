@@ -91,7 +91,7 @@ export default function Registration2({ userData, setUserData }) {
                             <ToggleButtonGroup color='primary' value={userData.favoriteFood} onChange={handleFood} exclusive>
                                 <ToggleButton value="Pizza"> <LuPizza/> Pizza </ToggleButton>
                                 <ToggleButton value="Salad"> <LuSalad/> Salad </ToggleButton>
-                                <ToggleButton value="Burger"> <FaHamburger/> Burger </ToggleButton>
+                                <ToggleButton value="Burger"> <FaHamburger/> Hamburger </ToggleButton>
                                 <ToggleButton value="Sushi"> <BiSushi/> Sushi </ToggleButton>
                                 <ToggleButton value="Mexican"> <GiTacos/> Mexican </ToggleButton>
                             </ToggleButtonGroup>
