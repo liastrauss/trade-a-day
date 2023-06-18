@@ -28,34 +28,34 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
             return;
         }
 
-        if (activeFiler==="outdoors"){
+        if (activeFiler==="Outdoors"){
         // const filtered = cardData.filter((item) => item.location===(activeFiler)
             filtered = cardData.filter((item) => item.outdoors===true);
             setfiltered(filtered);
             return;
         }
 
-        if (activeFiler==="indoors"){
+        if (activeFiler==="Indoors"){
             // const filtered = cardData.filter((item) => item.location===(activeFiler)
             filtered = cardData.filter((item) => item.outdoors===false);
             setfiltered(filtered);
             return;
         }
 
-        if (activeFiler==="accessible"){
+        if (activeFiler==="Accessible"){
             // const filtered = cardData.filter((item) => item.location===(activeFiler)
             filtered = cardData.filter((item) => item.accessible===true);
             setfiltered(filtered);
             return;
         }
 
-        if (activeFiler==="suitable for children"){
+        if (activeFiler==="Suitable for Children"){
             filtered = cardData.filter((item) => item.suitableForChildren===true);
             setfiltered(filtered);
             return;
         }
 
-        if (activeFiler==="standard physical effort"){
+        if (activeFiler==="Standard Physical Effort"){
             filtered = cardData.filter((item) => item.physicalEffort===2 ||  item.physicalEffort===1);
             setfiltered(filtered);
             return;

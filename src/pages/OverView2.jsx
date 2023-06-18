@@ -2,8 +2,7 @@ import {useNavigate, useParams} from "react-router-dom"
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 // GITHUB CODE
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
+
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
@@ -24,7 +23,6 @@ import {useEffect, useState} from "react";
 import Topbar from "../Components/Topbar";
 import { auth, getAuth } from "../config/firebase"
 
-
 // An array that stores the labels for the steps of the checkout process
 // for dialog:
 // FOR DIALOG CHOICE:
@@ -33,7 +31,8 @@ import {ControlledRadioButtonsGroup} from "../Components/datesPicker";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import {doc, getDoc} from "firebase/firestore";
-import {db} from "../config/firebase";
+import { db } from "../config/firebase";
+import HostHobbies from "./hostHobbies";
 
 
 
@@ -60,13 +59,6 @@ export function DialogWithCard() {
                 const eventInfoSnapshot = await getDoc(eventInfoRef);
                 const data = eventInfoSnapshot.data();
                 setEventInfoData(data);
-
-                if (data) {
-                    const usersRef = db.collection("users").where("authID", "==", data.hostID);
-                    const usersSnapshot = await usersRef.get();
-                    const contactInfo = usersSnapshot.docs[0]?.data()?.userEmail;
-                    setContactInfo(contactInfo);
-                }
             } catch (error) {
                 console.error("Error retrieving event info:", error);
             }
@@ -74,24 +66,20 @@ export function DialogWithCard() {
         fetchEventInfoData();
     }, [index]);
 
-
-
     return (
         <div>
             <Button variant="outlined" onClick={handleOpen}>
                 <MailOutlineIcon/>   Contact {eventInfoData?.hostName}
             </Button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle> Connect </DialogTitle>
+                <DialogTitle> Get to know {eventInfoData?.hostName}!</DialogTitle>
                 <DialogContent>
-                    {/*<ControlledRadioButtonsGroup/>*/}
-                    Write a message to {eventInfoData?.hostName}
-                    {contactInfo}
+                    <HostHobbies hostID={eventInfoData?.hostID} />
                 </DialogContent>
                 <DialogActions>
                     {/*<Button onClick={handleClose}>Cancel</Button>*/}
                     <Button onClick={handleClose} variant="contained" autoFocus>
-                        Send
+                        Done
                     </Button>
                 </DialogActions>
             </Dialog>

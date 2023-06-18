@@ -42,6 +42,7 @@ function EventForm ({ formData, setFormData }) {
                         value = {formData.jobTitle}
                 />
                 </Grid>
+
                 <Grid item xs={12}>
                     <Autocomplete
                         required
