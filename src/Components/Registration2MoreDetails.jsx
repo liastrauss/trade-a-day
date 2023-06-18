@@ -86,7 +86,7 @@ export default function Registration2({ userData, setUserData }) {
 
                     <Grid container spacing={1} justifyContent="flex-start" alignContent="center">
 
-                        <Box>
+                        <Box sx={{ width: 700, padding: 1, margin: 2 }}>
                             <h4>My favorite food is...</h4>
                             <ToggleButtonGroup color='primary' value={userData.favoriteFood} onChange={handleFood} exclusive>
                                 <ToggleButton value="Pizza"> <LuPizza/> Pizza </ToggleButton>
@@ -206,7 +206,7 @@ export default function Registration2({ userData, setUserData }) {
                             </ToggleButtonGroup>
                         </Box>
 
-                        <Box>
+                        <Box sx={{ width: 700, padding: 1, margin: 2 }}>
                             <h4>If I could, I would harness the next superpower</h4>
                             <ToggleButtonGroup color='primary' value={userData.superpowers} onChange={handlePower} exclusive>
                                 <ToggleButton value="SnapToDance"> Snap your fingers to make someone dance </ToggleButton>
