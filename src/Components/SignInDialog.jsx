@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import {signInWithPopup} from "firebase/auth";
+import {signInWithPopup, signOut} from "firebase/auth";
 import {auth, googleProvider, facebookProvider} from "../config/firebase";
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -20,6 +20,19 @@ export default function SignInDialog() {
     // const accountHandle = () => {
     //     exist ? setExist(true) : Register()
     // };
+
+    const [userData, setUserData] =
+        React.useState({
+            userID: '',
+            userFirstName: '',
+            userLastName: '',
+            userEmail: '',
+            userPhone: '',
+            PizzaToppings: [],
+            favoriteFood: [],
+            skills: [],
+            superpowers: [],
+        },[]);
 
     //handleClickOpen is the function that sets the dialog state to True, opening the popup
     const handleClickOpen = () => {
@@ -50,6 +63,15 @@ export default function SignInDialog() {
         }
     }
 
+    const logOut = async () => {
+        try {
+            await signOut(auth)
+        }
+        catch (err) {
+            console.error(err)
+        }
+    }
+
     return (
         <div>
             <Button variant="contained" onClick={handleClickOpen}>
@@ -67,18 +89,17 @@ export default function SignInDialog() {
                     <DialogContentText>
                         Choose your preferred login or signup method!
                     </DialogContentText>
-                    {/*<IconButton variant='outlined' onClick={signInWithGoogle}>*/}
-                    {/*    <GoogleIcon color='primary' style={{fontSize: 60}}></GoogleIcon>*/}
-                    {/*</IconButton>*/}
-                    {/*<IconButton onClick={signInWithFacebook}>*/}
-                    {/*    <FacebookIcon color='primary' style={{fontSize: 60}}></FacebookIcon>*/}
-                    {/*</IconButton>*/}
                     <Button startIcon={<GoogleIcon color='primary' style={{fontSize: 45}}></GoogleIcon>} onClick={signInWithGoogle}>
                         Sign in with Google
                     </Button>
                     <Button startIcon={<FacebookIcon color='primary' style={{fontSize: 45}}></FacebookIcon>} onClick={signInWithFacebook}>
                         Sign in with Facebook
                     </Button>
+                    <Button onClick={logOut}>
+                        Log Out
+                    </Button>
+                    <h5>{auth?.currentUser?.displayName}</h5>
+                    <h5>{auth?.currentUser?.email}</h5>
                 </DialogContent>
 
                 <DialogActions>

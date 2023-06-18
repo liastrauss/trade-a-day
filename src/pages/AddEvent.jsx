@@ -37,6 +37,7 @@ export default function AddEvent() {
         hostName: '',
         jobTitle: '',
         dayDescription: '',
+        email: '',
         dates: [null],
         location: null,
         accessible: true,
@@ -45,6 +46,7 @@ export default function AddEvent() {
         gallery: [],
         physicalEffort: 1, // init the physical effort
         outdoors: true,
+        picture: "",
     },[]);
 
     // extracting the dates to a convinent array format
@@ -61,6 +63,7 @@ export default function AddEvent() {
             hostName: auth?.currentUser?.displayName, // the full name from the auth. maybe we want to change it to somth from profile
             jobTitle: formData.jobTitle,
             dayDescription: formData.dayDescription,
+            email: formData.email,
             dates: extractedDates,
             location: formData.location,
             accessible: formData.accessible,
@@ -69,6 +72,8 @@ export default function AddEvent() {
             gallery: [],//TODO: when the photo is ready
             physicalEffort: formData.physicalEffort,
             outdoors: formData.outdoors,
+            picture: "",
+
 
         });
             // advance to the final page:
@@ -144,9 +149,9 @@ export default function AddEvent() {
                                     Thank you for joining the Trade a Day community!
                                 </Typography>
                                 <Typography variant="subtitle1">
-                                     A confirmation has been emailed to you,
-                                    and we will let you know about any bookings.
-
+                                    Congratulations on adding your day! Get ready to form exciting connections.
+                                    Keep an eye on your preferred contact method as interested guests will be
+                                    reaching out to you directly. Together, let's make Trade a Day a success!
                                 </Typography>
                             </React.Fragment>
                         ) : (

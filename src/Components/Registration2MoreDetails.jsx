@@ -20,114 +20,57 @@ import { SiNetflix } from 'react-icons/si';
 import { GiTacos, GiSlicedMushroom, GiCheeseWedge, GiCorn, GiCannedFish, GiPineapple, GiChefToque, GiMusicalNotes } from 'react-icons/gi';
 import Button from "@mui/material/Button";
 import { CgGym } from 'react-icons/cg';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import {addDoc, collection} from "firebase/firestore";
+import {auth, db} from "../config/firebase";
 
-export default function Registration2() {
+export default function Registration2({ userData, setUserData }) {
     const [open, setOpen] = React.useState(true);
 
     const handleClose = () => {
         setOpen(false);
     };
 
-    //useState for foods
-    const [food, setFoods] = React.useState({
-        pizza: false,
-        salad: false,
-        burger: false,
-        sushi: false,
-        mexican: false,
-    });
-    const handleFoodChange = (event) => {
-        setFoods({
-            ...food,
-            [event.target.name]: event.target.checked,
-        });
-    };
-    const {pizza, salad, burger, sushi, mexican} = food;
-    const foodsError = [pizza, salad, burger, sushi, mexican].filter((v) => v).length !== 1;
+    const usersCollectionRef = collection(db, "users")
+    const onSubmit = async () => {
+        try {
+            await addDoc(usersCollectionRef, {
+                userID: auth?.currentUser?.uid,
+                userFirstName: userData.userFirstName,
+                userLastName: userData.userLastName,
+                userEmail: userData.userEmail,
+                userPhone: userData.userPhone,
+                favoriteFood: userData.favoriteFood,
+                pizzaToppings: userData.pizzaToppings,
+                hobbies: userData.hobbies,
+                skills: userData.skills,
+                superpowers: userData.superpowers,
+            });
+        } catch(err) {
+            console.error(err)
+        }
+    }
 
-    // let selectedFoods = [pizza, salad, burger, sushi, mexican].filter((v) => v)
-    // selectedFoods ==! 1 ? errorMsg("You can only choose one food!")
-    //
-    // const errorMsg = (props) {
-    //     return (
-    //         {props}
-    //     );
-    // };
+    //useStates
+    // const [foods, setFood] = React.useState(() => ['',])
+    // const [topping, setTopping] = React.useState(() => ['',])
+    // const [hobby, setHobby] = React.useState(() => ['',])
+    // const [skill, setSkill] = React.useState(() => ['',])
+    // const [power, setPower] = React.useState(() => ['',])
 
-    //useState for toppings
-    const [topping, setTopping] = React.useState({
-        mushroom: false,
-        cheese: false,
-        corn: false,
-        tuna: false,
-        pineapple: false,
-        anti: false,
-    });
-    const handleToppingChange = (event) => {
-        setTopping({
-            ...topping,
-            [event.target.name]: event.target.checked,
-        });
-    };
-    const {mushroom, cheese, corn, tuna, pineapple, anti} = topping;
-    const toppingsError = ([mushroom, cheese, corn, tuna, pineapple, anti].filter((v) => v).length === 0) || ([mushroom, cheese, corn, tuna, pineapple, anti].filter((v) => v).length > 2);
+    //event handlers
+    const handleFood = (event, newData) => {
+        setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData })); };
+    const handleTopping = (event, newData) => {
+        setUserData((prevUserData) => ({...prevUserData, pizzaToppings: newData })); };
+    const handleHobby = (event, newData) => {
+        setUserData((prevUserData) => ({...prevUserData, hobbies: newData })); };
+    const handleSkill = (event, newData) => {
+        setUserData((prevUserData) => ({...prevUserData, skills: newData })); };
+    const handlePower = (event, newData) => {
+        setUserData((prevUserData) => ({...prevUserData, superpowers: newData })); };
 
-
-    //useState for interests
-    const [interest, setInterest] = React.useState({
-        netflix: false,
-        cooking: false,
-        training: false,
-        singing: false,
-        traveling: false,
-        nightout: false,
-    });
-    const handleInterestChange = (event) => {
-        setInterest({
-            ...interest,
-            [event.target.name]: event.target.checked,
-        });
-    };
-    const {netflix, cooking, training, singing, traveling, nightout} = interest;
-    const interestsError = [netflix, cooking, training, singing, traveling, nightout].filter((v) => v).length !== 1;
-
-    //useState for skills
-    const [skill, setSkill] = React.useState({
-        quotes: false,
-        faces: false,
-        rap: false,
-        beatbox: false,
-        dance: false,
-        trivia: false,
-    });
-    const handleSkillChange = (event) => {
-        setSkill({
-            ...skill,
-            [event.target.name]: event.target.checked,
-        });
-    };
-
-    const {quotes, faces, rap, beatbox, dance, trivia} = skill;
-    const skillsError = [quotes, faces, rap, beatbox, dance, trivia].filter((v) => v).length !== 1;
-
-    //useState for superpowers
-    const [superpower, setPower] = React.useState({
-        snap: false,
-        midas: false,
-        sneeze: false,
-        beverage: false,
-        avocado: false,
-        medium: false,
-    });
-    const handlePowerChange = (event) => {
-        setPower({
-            ...superpower,
-            [event.target.name]: event.target.checked,
-        });
-    };
-
-    const {snap, midas, sneeze, beverage, avocado, medium} = superpower;
-    const powersError = [snap, midas, sneeze, beverage, avocado, medium].filter((v) => v).length !== 1;
 
     return (
         <div>
@@ -142,229 +85,161 @@ export default function Registration2() {
                     </DialogContentText>
 
                     <Grid container spacing={1} justifyContent="flex-start" alignContent="center">
-                        {/*Foods Component*/}
-                        <Box style={{display: 'flex'}}>
-                            <FormControl
-                                required
-                                error={foodsError}
-                                component="fieldset"
-                                sx={{ m: 3, width: '550px' }}
-                                variant="standard"
-                            >
-                                <FormLabel component="legend">My favorite food is...</FormLabel>
-                                <FormGroup style={{ display: 'flex', flexDirection: 'row' }}>
-                                    <FormControlLabel
-                                        control={<Checkbox checked={pizza} onChange={handleFoodChange} name="pizza" />}
-                                        label="Pizza"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={salad} onChange={handleFoodChange} name="salad" />}
-                                        label="Salad"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={burger} onChange={handleFoodChange} name="burger" />}
-                                        label="Burger"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={sushi} onChange={handleFoodChange} name="sushi" />}
-                                        label="Sushi"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={mexican} onChange={handleFoodChange} name="mexican" />}
-                                        label="Mexican"
-                                    />
-                                </FormGroup>
-                                <FormHelperText>You can only choose one favorite food!</FormHelperText>
-                            </FormControl>
+
+                        <Box>
+                            <h4>My favorite food is...</h4>
+                            <ToggleButtonGroup color='primary' value={userData.favoriteFood} onChange={handleFood} exclusive>
+                                <ToggleButton value="Pizza"> <LuPizza/> Pizza </ToggleButton>
+                                <ToggleButton value="Salad"> <LuSalad/> Salad </ToggleButton>
+                                <ToggleButton value="Burger"> <FaHamburger/> Burger </ToggleButton>
+                                <ToggleButton value="Sushi"> <BiSushi/> Sushi </ToggleButton>
+                                <ToggleButton value="Mexican"> <GiTacos/> Mexican </ToggleButton>
+                            </ToggleButtonGroup>
                         </Box>
 
-                        <Button variant="outlined" startIcon={<LuPizza/>}> Pizza </Button>
-                        <Button variant="outlined" startIcon={<LuSalad/>}> Salad </Button>
-                        <Button variant="outlined" startIcon={<FaHamburger/>}> Burger </Button>
-                        <Button variant="outlined" startIcon={<BiSushi/>}> Sushi </Button>
-                        <Button variant="outlined" startIcon={<GiTacos/>}> Mexican </Button>
-
-                        {/*Toppings Component*/}
-                        <Box style={{display: 'flex'}}>
-                            <FormControl
-                                required
-                                error={toppingsError}
-                                component="fieldset"
-                                sx={{ m: 3, width: '550px' }}
-                                variant="standard"
-                            >
-                                <FormLabel component="legend">My favorite Pizza toppings are... (choose up to 2!)</FormLabel>
-                                <FormGroup style={{ display: 'flex', flexDirection: 'row' }}>
-                                    <FormControlLabel
-                                        control={<Checkbox checked={mushroom} onChange={handleToppingChange} name="mushroom" />}
-                                        label="Mushroom"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={cheese} onChange={handleToppingChange} name="cheese" />}
-                                        label="Cheese"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={corn} onChange={handleToppingChange} name="corn" />}
-                                        label="Corn"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={tuna} onChange={handleToppingChange} name="tuna" />}
-                                        label="Tuna"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={pineapple} onChange={handleToppingChange} name="pineapple" />}
-                                        label="Pineapple"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={anti} onChange={handleToppingChange} name="anti" />}
-                                        label="Hate pizza"
-                                    />
-                                </FormGroup>
-                                <FormHelperText>You can only choose up to two toppings!</FormHelperText>
-                            </FormControl>
-                        </Box>
-                        <Button variant="outlined" startIcon={<GiSlicedMushroom/>}> Mushroom </Button>
-                        <Button variant="outlined" startIcon={<GiCheeseWedge/>}> Cheese </Button>
-                        <Button variant="outlined" startIcon={<GiCorn/>}> Corn </Button>
-                        <Button variant="outlined" startIcon={<GiCannedFish/>}> Tuna </Button>
-                        <Button variant="outlined" startIcon={<GiPineapple/>}> Pineapple </Button>
-                        <Button variant="outlined" startIcon={<AiOutlineStop/>}> Hate Pizza </Button>
-
-                        {/*Interests Component*/}
-                        <Box style={{display: 'flex'}}>
-                            <FormControl
-                                required
-                                error={interestsError}
-                                component="fieldset"
-                                sx={{ m: 3, width: '550px' }}
-                                variant="standard"
-                            >
-                                <FormLabel component="legend">When I'm bored on Friday you'll find me...</FormLabel>
-                                <FormGroup style={{ display: 'flex', flexDirection: 'row' }}>
-                                    <FormControlLabel
-                                        control={<Checkbox checked={netflix} onChange={handleInterestChange} name="netflix" />}
-                                        label="On Netflix"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={cooking} onChange={handleInterestChange} name="cooking" />}
-                                        label="Cooking"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={training} onChange={handleInterestChange} name="training" />}
-                                        label="Working out"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={singing} onChange={handleInterestChange} name="singing" />}
-                                        label="Singing"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={traveling} onChange={handleInterestChange} name="traveling" />}
-                                        label="Traveling"
-                                    />
-                                </FormGroup>
-                                <FormHelperText>You can only choose one ultimate hobby!</FormHelperText>
-                            </FormControl>
+                        <Box>
+                            <h4>My favorite toppings are...</h4>
+                            <ToggleButtonGroup color='primary' value={userData.pizzaToppings} onChange={handleTopping}>
+                                <ToggleButton value="Mushroom"> <GiSlicedMushroom/> Mushroom </ToggleButton>
+                                <ToggleButton value="Cheese"> <GiCheeseWedge/> Cheese </ToggleButton>
+                                <ToggleButton value="Corn"> <GiCorn/> Corn </ToggleButton>
+                                <ToggleButton value="Tuna"> <GiCannedFish/> Tuna </ToggleButton>
+                                <ToggleButton value="Pineapple"> <GiPineapple/> Pineapple </ToggleButton>
+                                <ToggleButton value="Anti"> <AiOutlineStop/> Hate Pizza </ToggleButton>
+                            </ToggleButtonGroup>
                         </Box>
 
-                        <Button variant="outlined" startIcon={<SiNetflix/>}> Netflix </Button>
-                        <Button variant="outlined" startIcon={<GiChefToque/>}> Cooking </Button>
-                        <Button variant="outlined" startIcon={<CgGym/>}> Working Out </Button>
-                        <Button variant="outlined" startIcon={<GiMusicalNotes/>}> Singing </Button>
-                        <Button variant="outlined" startIcon={<FaHiking/>}> Traveling </Button>
+                        <Box>
+                            <h4>When I'm bored on Friday you'll find me....</h4>
+                            <ToggleButtonGroup color='primary' value={userData.hobbies} onChange={handleHobby} exclusive>
+                                <ToggleButton value="Netflix"> <SiNetflix/> Netflix </ToggleButton>
+                                <ToggleButton value="Cooking"> <GiChefToque/> Cooking </ToggleButton>
+                                <ToggleButton value="Training"> <CgGym/> Training </ToggleButton>
+                                <ToggleButton value="Singing"> <GiMusicalNotes/> Singing </ToggleButton>
+                                <ToggleButton value="Traveling"> <FaHiking/> Traveling </ToggleButton>
+                            </ToggleButtonGroup>
+                        </Box>
+                        {/*<Box>*/}
+                        {/*    <FormControl*/}
+                        {/*        required*/}
+                        {/*        error={skillsError}*/}
+                        {/*        component="fieldset"*/}
+                        {/*        sx={{ m: 3, width: '550px' }}*/}
+                        {/*        variant="standard"*/}
+                        {/*    >*/}
+                        {/*        <FormLabel component="legend">If I could, I would master the art of...</FormLabel>*/}
+                        {/*        <FormGroup style={{ display: 'flex', flexDirection: 'row' }}>*/}
+                        {/*            <FormControlLabel*/}
+                        {/*                control={<Checkbox checked={quotes} onChange={(e) => {handleEventChange(e,skill, setSkill)}} name="quotes" />}*/}
+                        {/*                label="Speaking in movie quotes"*/}
+                        {/*            />*/}
+                        {/*            <FormControlLabel*/}
+                        {/*                control={<Checkbox checked={faces} onChange={(e) => {handleEventChange(e,skill, setSkill)}} name="faces" />}*/}
+                        {/*                label="Extreme face-making"*/}
+                        {/*            />*/}
+                        {/*            <FormControlLabel*/}
+                        {/*                control={<Checkbox checked={rap} onChange={(e) => {handleEventChange(e,skill, setSkill)}} name="rap" />}*/}
+                        {/*                label="Rapping but backwards"*/}
+                        {/*            />*/}
+                        {/*            <FormControlLabel*/}
+                        {/*                control={<Checkbox checked={beatbox} onChange={(e) => {handleEventChange(e,skill, setSkill)}} name="beatbox" />}*/}
+                        {/*                label="Beatboxing classic symphonies"*/}
+                        {/*            />*/}
+                        {/*            <FormControlLabel*/}
+                        {/*                control={<Checkbox checked={dance} onChange={(e) => {handleEventChange(e,skill, setSkill)}} name="dance" />}*/}
+                        {/*                label="Dancing perfectly terrible"*/}
+                        {/*            />*/}
+                        {/*            <FormControlLabel*/}
+                        {/*                control={<Checkbox checked={trivia} onChange={(e) => {handleEventChange(e,skill, setSkill)}} name="trivia" />}*/}
+                        {/*                label="Remembering useless trivia"*/}
+                        {/*            />*/}
+                        {/*        </FormGroup>*/}
+                        {/*        <FormHelperText>You can only master one skill!</FormHelperText>*/}
+                        {/*    </FormControl>*/}
+                        {/*    <FormControl*/}
+                        {/*        required*/}
+                        {/*        error={powersError}*/}
+                        {/*        component="fieldset"*/}
+                        {/*        sx={{ m: 3, width: '550px' }}*/}
+                        {/*        variant="standard"*/}
+                        {/*    >*/}
+                        {/*        <FormLabel component="legend">If I could, I would harness the next superpower</FormLabel>*/}
+                        {/*        <FormGroup style={{ display: 'flex', flexDirection: 'row' }}>*/}
+                        {/*            <FormControlLabel*/}
+                        {/*                control={<Checkbox checked={snap} onChange={(e) => {handleEventChange(e,superpower, setPower)}} name="snap" />}*/}
+                        {/*                label="Snap your fingers to make someone else dance"*/}
+                        {/*            />*/}
+                        {/*            <FormControlLabel*/}
+                        {/*                control={<Checkbox checked={midas} onChange={(e) => {handleEventChange(e,superpower, setPower)}} name="midas" />}*/}
+                        {/*                label="Turn everything you touch into Burgers"*/}
+                        {/*            />*/}
+                        {/*            <FormControlLabel*/}
+                        {/*                control={<Checkbox checked={sneeze} onChange={(e) => {handleEventChange(e,superpower, setPower)}} name="sneeze" />}*/}
+                        {/*                label="Control the volume of everyone elses sneezes"*/}
+                        {/*            />*/}
+                        {/*            <FormControlLabel*/}
+                        {/*                control={<Checkbox checked={beverage} onChange={(e) => {handleEventChange(e,superpower, setPower)}} name="beverage" />}*/}
+                        {/*                label="Turn water into any beverage you want"*/}
+                        {/*            />*/}
+                        {/*            <FormControlLabel*/}
+                        {/*                control={<Checkbox checked={avocado} onChange={(e) => {handleEventChange(e,superpower, setPower)}} name="avocado" />}*/}
+                        {/*                label="Generate an endless supply of ripe Avocados"*/}
+                        {/*            />*/}
+                        {/*            <FormControlLabel*/}
+                        {/*                control={<Checkbox checked={medium} onChange={(e) => {handleEventChange(e,superpower, setPower)}} name="medium" />}*/}
+                        {/*                label="Communicate with objects, but they only respond sarcastically"*/}
+                        {/*            />*/}
+                        {/*        </FormGroup>*/}
+                        {/*        <FormHelperText>Choose only one superpower!</FormHelperText>*/}
+                        {/*    </FormControl>*/}
+                        {/*</Box>*/}
 
-                        {/*Skills Component*/}
-                        <Box style={{display: 'flex'}}>
-                            <FormControl
-                                required
-                                error={skillsError}
-                                component="fieldset"
-                                sx={{ m: 3, width: '550px' }}
-                                variant="standard"
-                            >
-                                <FormLabel component="legend">If I could, I would master the art of...</FormLabel>
-                                <FormGroup style={{ display: 'flex', flexDirection: 'row' }}>
-                                    <FormControlLabel
-                                        control={<Checkbox checked={quotes} onChange={handleSkillChange} name="quotes" />}
-                                        label="Speaking in movie quotes"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={faces} onChange={handleSkillChange} name="faces" />}
-                                        label="Extreme face-making"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={rap} onChange={handleSkillChange} name="rap" />}
-                                        label="Rapping but backwards"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={beatbox} onChange={handleSkillChange} name="beatbox" />}
-                                        label="Beatboxing classic symphonies"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={dance} onChange={handleSkillChange} name="dance" />}
-                                        label="Dancing perfectly terrible"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={trivia} onChange={handleSkillChange} name="trivia" />}
-                                        label="Remembering useless trivia"
-                                    />
-                                </FormGroup>
-                                <FormHelperText>You can only master one skill!</FormHelperText>
-                            </FormControl>
+                        <Box>
+                            <h4>If I could, I would master the art of...</h4>
+                            <ToggleButtonGroup color='primary' value={userData.skills} onChange={handleSkill} exclusive>
+                                <ToggleButton color='primary'> Speaking in movie quotes </ToggleButton>
+                                <ToggleButton value="Facemaking"> Extreme face-making </ToggleButton>
+                                <ToggleButton value="Rapping"> Rapping but backwards </ToggleButton>
+                                <ToggleButton value="Beatboxing"> Beat-boxing classic symphonies</ToggleButton>
+                                <ToggleButton value="Dancing"> Dancing perfectly terrible </ToggleButton>
+                                <ToggleButton value="Trivia"> Remembering useless trivia </ToggleButton>
+                            </ToggleButtonGroup>
                         </Box>
-                        {/*Superpowers Component*/}
-                        <Box style={{display: 'flex'}}>
-                            <FormControl
-                                required
-                                error={powersError}
-                                component="fieldset"
-                                sx={{ m: 3, width: '550px' }}
-                                variant="standard"
-                            >
-                                <FormLabel component="legend">If I could, I would harness the next superpower</FormLabel>
-                                <FormGroup style={{ display: 'flex', flexDirection: 'row' }}>
-                                    <FormControlLabel
-                                        control={<Checkbox checked={snap} onChange={handlePowerChange} name="snap" />}
-                                        label="Snap your fingers to make someone else dance"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={midas} onChange={handlePowerChange} name="midas" />}
-                                        label="Turn everything you touch into Burgers"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={sneeze} onChange={handlePowerChange} name="sneeze" />}
-                                        label="Control the volume of everyone elses sneezes"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={beverage} onChange={handlePowerChange} name="beverage" />}
-                                        label="Turn water into any beverage you want"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={avocado} onChange={handlePowerChange} name="avocado" />}
-                                        label="Generate an endless supply of ripe Avocados"
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={medium} onChange={handlePowerChange} name="medium" />}
-                                        label="Communicate with objects, but they only respond sarcastically"
-                                    />
-                                </FormGroup>
-                                <FormHelperText>Choose only one superpower!</FormHelperText>
-                            </FormControl>
+
+                        <Box>
+                            <h4>If I could, I would harness the next superpower</h4>
+                            <ToggleButtonGroup color='primary' value={userData.superpowers} onChange={handlePower} exclusive>
+                                <ToggleButton value="SnapToDance"> Snap your fingers to make someone dance </ToggleButton>
+                                <ToggleButton value="BurgerMidas"> Turn anything you touch into Burgers </ToggleButton>
+                                <ToggleButton value="SneezeVolume"> Control the volume of people's sneezes </ToggleButton>
+                                <ToggleButton value="Beverage"> Turn water into any beverage </ToggleButton>
+                                <ToggleButton value="GenAvocado"> Generate ripe Avocados </ToggleButton>
+                                <ToggleButton value="Medium"> Communicate with objects, but they are always sarcastic</ToggleButton>
+                            </ToggleButtonGroup>
                         </Box>
+
+                        <Box>
+                            <h5>{auth?.currentUser?.uid}</h5>
+                            <h5>{userData.userFirstName}</h5>
+                            <h5>{userData.userLastName}</h5>
+                            <h5>{userData.userPhone}</h5>
+                            <h5>{userData.userEmail}</h5>
+                            <h5>{userData.favoriteFood}</h5>
+                            <h5>{userData.pizzaToppings}</h5>
+                            <h5>{userData.hobbies}</h5>
+                            <h5>{userData.skills}</h5>
+                            <h5>{userData.superpowers}</h5>
+
+                        </Box>
+
                     </Grid>
                 </DialogContent>
 
                 <DialogActions>
-                    <Button>Sign up!</Button>
+                    <Button onClick={onSubmit}>Submit</Button>
                 </DialogActions>
             </Dialog>
         </div>
     );
 
 };
-
-// const arts = ['Speaking in movie quotes', 'Extreme face-making', 'Rapping but backwards', 'Beatboxing',
-// 'Dancing perfectly terrible', 'Remembering useless trivia'];
-// const superpowers = ['Snap your fingers to make someone else dance', 'The ability to turn everything into pizza',
-// "The ability to control the volume of someone elses sneezes, from barely audible whispers to ground-shaking booms",
-// 'The ability to turn water to any beverage you want', 'The ability to generate an endless supply of ripe Avocados',
-// 'The ability to communicate with unanimate objects, but they only respond sarcastically'];

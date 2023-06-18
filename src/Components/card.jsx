@@ -16,6 +16,9 @@ import MainImage from "./mainImage";
 import Images from "./mainimage2";
 
 
+import { getDownloadURL, ref, getStorage } from "firebase/storage";
+import SearchBox from "./searchBox";
+
 
 export default function EventCard({value = null}) {
     const theme = useTheme();
@@ -29,6 +32,7 @@ export default function EventCard({value = null}) {
 
     const [filtered, setfiltered] = useState([]);
     const [activeFilter, setActiveFilter] = useState("Filters");
+    const [activeSearch, setActiveSearch] = useState();
 
 
     // function to get card data
@@ -43,6 +47,7 @@ export default function EventCard({value = null}) {
                 }));
 
                 setCardData(cardInfo);
+                setfiltered(cardInfo);
                 setfiltered(cardInfo);
                 // Images({cardInfo})
 
@@ -61,9 +66,12 @@ export default function EventCard({value = null}) {
 
     return (
         <div>
+            <SearchBox cardData={cardData} activeSearch={activeSearch} setActiveSearch ={setActiveSearch} setSearched={setfiltered} />
             <Images events={cardData} />
 
             <Chips cardData={cardData} activeFiler={activeFilter} setActiveFilter={setActiveFilter} setfiltered={setfiltered}/>
+
+
 
             <Box sx={{
                 display: 'flex',

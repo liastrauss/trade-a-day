@@ -81,15 +81,16 @@ export function StandardImageList() {
 
         <ImageList
             className="pictures"
-            sx={{
-                width: 800,
-                height: 250,
-                my: 3,
-                mx: 1,
-                "& .MuiImageListItem-root": {
-                    marginBottom: "20px" // Adjust the marginBottom value as per your preference
-                }
-            }}
+            sx={{ width: 800, height: 250, my: 3, mx: 1 }} //TODO - the width shouln't be absoulute
+            // sx={{
+            //     width: 800,
+            //     height: 250,
+            //     my: 3,
+            //     mx: 1,
+            //     "& .MuiImageListItem-root": {
+            //         marginBottom: "20px" // Adjust the marginBottom value as per your preference
+            //     }
+            // }}
             cols={2}
             rowHeight={164}
         >

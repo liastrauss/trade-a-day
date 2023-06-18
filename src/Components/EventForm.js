@@ -17,7 +17,7 @@ import FormLabel from "@mui/material/FormLabel";
 
 function EventForm ({ formData, setFormData }) {
 
-    const areas = ['North', 'South','Jerusalem Area','West bank','Tel Aviv','Haifa','Golan'];
+    const areas = ['Tel Aviv','Jerusalem','North', 'South','Center','West bank',];
 
     return (
         <React.Fragment>
@@ -42,6 +42,24 @@ function EventForm ({ formData, setFormData }) {
                         value = {formData.jobTitle}
                 />
                 </Grid>
+                <Grid item xs={12}>
+                    {/*TODO: this is just a temporary plaster for email.*/}
+                    <TextField
+                        id="standard-basic"
+                        label="Preferred contact email"
+                        variant="standard"
+                        placeholder="yourname@email.com"
+                        fullWidth
+                        onChange={(e) => {
+                            setFormData({
+                                ...formData,
+                                email: e.target.value,
+                            });
+                        }}
+                        value = {formData.email}
+                    />
+                </Grid>
+
                 <Grid item xs={12}>
                     <Autocomplete
                         required
