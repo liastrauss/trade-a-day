@@ -218,19 +218,18 @@ export default function Registration2({ userData, setUserData }) {
                             </ToggleButtonGroup>
                         </Box>
 
-                        <Box>
-                            <h5>{auth?.currentUser?.uid}</h5>
-                            <h5>{userData.userFirstName}</h5>
-                            <h5>{userData.userLastName}</h5>
-                            <h5>{userData.userPhone}</h5>
-                            <h5>{userData.userEmail}</h5>
-                            <h5>{userData.favoriteFood}</h5>
-                            <h5>{userData.pizzaToppings}</h5>
-                            <h5>{userData.hobbies}</h5>
-                            <h5>{userData.skills}</h5>
-                            <h5>{userData.superpowers}</h5>
-
-                        </Box>
+                        {/*<Box>*/}
+                        {/*    <h5>{auth?.currentUser?.uid}</h5>*/}
+                        {/*    <h5>{userData.userFirstName}</h5>*/}
+                        {/*    <h5>{userData.userLastName}</h5>*/}
+                        {/*    <h5>{userData.userPhone}</h5>*/}
+                        {/*    <h5>{userData.userEmail}</h5>*/}
+                        {/*    <h5>{userData.favoriteFood}</h5>*/}
+                        {/*    <h5>{userData.pizzaToppings}</h5>*/}
+                        {/*    <h5>{userData.hobbies}</h5>*/}
+                        {/*    <h5>{userData.skills}</h5>*/}
+                        {/*    <h5>{userData.superpowers}</h5>*/}
+                        {/*</Box>*/}
 
                     </Grid>
                 </DialogContent>

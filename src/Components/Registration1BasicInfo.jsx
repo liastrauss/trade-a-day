@@ -115,17 +115,15 @@ export default function Registration1({ userData, setUserData }) {
                             />
                         </Grid>
                     </Grid>
-                    <Box>
-                        <h5>{auth?.currentUser?.uid}</h5>
-                        <h5>{userData.userFirstName}</h5>
-                        <h5>{userData.userLastName}</h5>
-                        <h5>{userData.userPhone}</h5>
-                        <h5>{userData.userEmail}</h5>
-                        <h5>{auth?.currentUser?.email}</h5>
-                        <h5>{auth?.currentUser?.displayName}</h5>
-
-
-                    </Box>
+                    {/*<Box>*/}
+                    {/*    <h5>{auth?.currentUser?.uid}</h5>*/}
+                    {/*    <h5>{userData.userFirstName}</h5>*/}
+                    {/*    <h5>{userData.userLastName}</h5>*/}
+                    {/*    <h5>{userData.userPhone}</h5>*/}
+                    {/*    <h5>{userData.userEmail}</h5>*/}
+                    {/*    <h5>{auth?.currentUser?.email}</h5>*/}
+                    {/*    <h5>{auth?.currentUser?.displayName}</h5>*/}
+                    {/*</Box>*/}
                 </DialogContent>
 
                 <DialogActions>

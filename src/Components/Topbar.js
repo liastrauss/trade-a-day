@@ -9,6 +9,8 @@ import SearchBox from "./searchBox";
 import AppBar from '@mui/material/AppBar';
 import Paper from "@mui/material/Paper";
 import Toolbar from '@mui/material/Toolbar';
+import {auth} from "../config/firebase";
+import {useEffect, useState} from "react";
 
 
 import {cardData} from "../data/card-data";
@@ -107,6 +109,20 @@ export default function Topbar(props) {
     const AddDay = props.AddDay;
     const Search = props.Search;
     const Profile = props.Profile;
+    const BookedEvents = props.BookedEvents;
+    let greeting = "Log in!"
+
+    const [avatarSrc, setAvatarSrc] = useState("/broken-image.jpg");
+    useEffect(() => {
+        {auth?.currentUser?.displayName ? greeting="Hello {auth.currentUser.displayName}!" : greeting="Log in!"}
+    }, [auth]);
+    useEffect(() => {
+        // Update the avatar source when the auth object changes
+        if (auth?.currentUser?.photoURL) {
+            setAvatarSrc(auth.currentUser.photoURL);
+        }
+    }, [auth]);
+
 
 
     return (
@@ -131,32 +147,50 @@ export default function Topbar(props) {
                     justifyContent: 'space-around',
                 }}>
 
-                {AddDay ?
-                    <Button
-                        variant="text"
-                        onClick={() => {
-                            navigate("/AddEvent");
-                        }}
-                    >
-                        Trade your day
-                    </Button>
-                    :
-                    <Button
-                        variant="text"
-                        disabled
-                    >
-                        Trade your day
-                    </Button>
-                }
+                    {AddDay ?
+                        <Button
+                            variant="text"
+                            onClick={() => {
+                                navigate("/AddEvent");
+                            }}
+                        >
+                            Trade your day
+                        </Button>
+                        :
+                        <Button
+                            variant="text"
+                            disabled
+                        >
+                            Trade your day
+                        </Button>
+                    }
 
-                <Avatar src="/broken-image.jpg"
-                        sx={{ml: 1}}
-                        onClick={() => {
-                            navigate("/CreateProfile");
-                        }}
-                        style={{cursor:'pointer'}}
-                />
-            </Box>
+                    {auth?.currentUser?.displayName ?
+                        <Button
+                            variant="text"
+                            disabled
+                        >
+                            {auth?.currentUser?.displayName}
+                        </Button>
+                        :
+                        <Button
+                            variant="text"
+                            onClick={() => {
+                                navigate("/CreateProfile");
+                            }}
+                        >
+                            Log In!
+                        </Button>
+                    }
+
+                    <Avatar src={avatarSrc}
+                            sx={{ml: 1}}
+                            onClick={() => {
+                                navigate("/CreateProfile");
+                            }}
+                            style={{cursor:'pointer'}}
+                    />
+                </Box>
         </Box>
         <Divider />
         </Box>
