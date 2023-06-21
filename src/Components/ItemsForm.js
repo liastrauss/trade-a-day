@@ -63,7 +63,9 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 export function ItemsForm({ formData, setFormData }) {
     // the list of all items, selected + unselected
     const [allItems, setAllItems] = React.useState(() =>
-        ['water', 'a change of clothes','closed shoes', 'professional attire', 'sunglasses','sunhat',]);
+        ['water', 'a change of clothes','closed shoes', 'professional attire', 'sunglasses', 'talk to me about additional items',
+            // 'sunhat',
+        ]);
 
 
     const handleItems = (event, newItems) => {
@@ -106,7 +108,8 @@ export function ItemsForm({ formData, setFormData }) {
                             {item === 'a change of clothes' && <CheckroomIcon />}
                             {item === 'closed shoes' && <RollerSkatingIcon />}
                             {item === 'sunglasses' && <TbSunglasses/>}
-                            {!['water', 'a change of clothes', 'closed shoes','sunglasses'].includes(item) && defaultIcon}
+                            {item === 'talk to me about additional items' && <AddIcon/>}
+                            {!['water', 'a change of clothes', 'closed shoes','sunglasses','talk to me about additional items'].includes(item) && defaultIcon}
                             {item}
                         </ToggleButton>
                     ))}

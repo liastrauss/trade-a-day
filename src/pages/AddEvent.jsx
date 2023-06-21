@@ -40,7 +40,6 @@ export default function AddEvent() {
         dates: [null],
         location: null,
         accessible: true,
-        suitableForChildren: true,
         toBring: [],
         gallery: [],
         physicalEffort: 1, // init the physical effort
@@ -65,7 +64,6 @@ export default function AddEvent() {
             dates: extractedDates,
             location: formData.location,
             accessible: formData.accessible,
-            suitableForChildren: formData.suitableForChildren,
             toBring: formData.toBring,
             gallery: [],//TODO: when the photo is ready
             physicalEffort: formData.physicalEffort,
