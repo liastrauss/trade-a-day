@@ -49,11 +49,36 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
             return;
         }
 
-        if (activeFiler==="Suitable for Children"){
-            filtered = cardData.filter((item) => item.suitableForChildren===true);
+        if (activeFiler==="Available Next Month"){
+            // filtered = cardData.filter((item) => item.dates===true);
+            // setfiltered(filtered);
+            const currentDate = new Date();
+            const nextMonthStart = new Date(
+                currentDate.getFullYear(),
+                currentDate.getMonth() - 1,
+                1
+            );
+            const nextMonthEnd = new Date(
+                currentDate.getFullYear(),
+                currentDate.getMonth() + 2,
+                0
+            );
+
+            filtered = cardData.filter((item) => {
+                return item.dates.some((date) => {
+                    const dateObject = new Date(date);
+                    return (
+                        dateObject >= nextMonthStart && dateObject <= nextMonthEnd
+                    );
+                });
+            });
+
             setfiltered(filtered);
             return;
-        }
+
+
+
+    }
 
         if (activeFiler==="Standard Physical Effort"){
             filtered = cardData.filter((item) => item.physicalEffort===2 ||  item.physicalEffort===1);
