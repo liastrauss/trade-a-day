@@ -110,23 +110,23 @@ function HostInfo() {
                                 }}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         {eventInfoData.dates.map((date, index) => {
-                                            const formattedDate = dayjs(date.seconds * 1000).toDate().toISOString();
+                                            // const formattedDate = dayjs(date.seconds * 1000).toDate().toISOString();
                                             // const formattedDateString = new Date(formattedDate).toLocaleDateString();
                                             const formattedDateString = new Date(date.seconds * 1000).toLocaleDateString();
-                                            console.log("formatted",formattedDate,"str:",formattedDateString);
+                                            console.log("str:",formattedDateString);
                                             return (
                                                 <div key={index}>
                                                     {date && date.seconds && (
                                                         <>
                                                             <Typography>
-                                                                {/*{formattedDate.toLocaleDateString()}*/}
+                                                                {formattedDateString}
                                                             </Typography>
-                                                            <DateCalendar
-                                                                value={dayjs(formattedDateString)}
-                                                                onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler
+                                                            {/*<DateCalendar*/}
+                                                            {/*    // defaultValue={dayjs(formattedDateString)}*/}
+                                                            {/*    // onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler*/}
 
-                                                                readOnly
-                                                            />
+                                                            {/*    readOnly*/}
+                                                            {/*/>*/}
                                                         </>
                                                     )}
                                                 </div>
