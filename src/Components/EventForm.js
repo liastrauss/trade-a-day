@@ -16,6 +16,7 @@ import FormLabel from "@mui/material/FormLabel";
 
 
 function EventForm ({ formData, setFormData }) {
+    const theme = useTheme();
 
     const areas = ['Tel Aviv','Jerusalem','North', 'South','Center','West bank',];
 
@@ -41,23 +42,6 @@ function EventForm ({ formData, setFormData }) {
                         }}
                         value = {formData.jobTitle}
                 />
-                </Grid>
-                <Grid item xs={12}>
-                    {/*TODO: this is just a temporary plaster for email.*/}
-                    <TextField
-                        id="standard-basic"
-                        label="Preferred contact email"
-                        variant="standard"
-                        placeholder="yourname@email.com"
-                        fullWidth
-                        onChange={(e) => {
-                            setFormData({
-                                ...formData,
-                                email: e.target.value,
-                            });
-                        }}
-                        value = {formData.email}
-                    />
                 </Grid>
 
                 <Grid item xs={12}>
@@ -95,26 +79,32 @@ function EventForm ({ formData, setFormData }) {
                                                      });
                                                  }}
                                                  checked={formData.accessible}
+
                                 />}
                                 label="Accessible?"
                                 labelPlacement="start"
+                                style={{
+                                    color: formData.accessible
+                                        ? theme.palette.primary.main
+                                        : theme.palette.text.main,
+                                }}
 
                             />
 
-                            <FormControlLabel
-                                control={<Switch
-                                                 onChange={(e) => {
-                                                     setFormData({
-                                                         ...formData,
-                                                         suitableForChildren: e.target.checked,
-                                                     });
-                                                 }}
-                                                 checked={formData.suitableForChildren}
+                            {/*<FormControlLabel*/}
+                            {/*    control={<Switch*/}
+                            {/*                     onChange={(e) => {*/}
+                            {/*                         setFormData({*/}
+                            {/*                             ...formData,*/}
+                            {/*                             suitableForChildren: e.target.checked,*/}
+                            {/*                         });*/}
+                            {/*                     }}*/}
+                            {/*                     checked={formData.suitableForChildren}*/}
 
-                                />}
-                                label="Suitable for Children?"
-                                labelPlacement="start"
-                            />
+                            {/*    />}*/}
+                            {/*    label="Suitable for Children?"*/}
+                            {/*    labelPlacement="start"*/}
+                            {/*/>*/}
                         </FormGroup>
 
                             {/*<Typography variant="body">Accessible?</Typography>*/}

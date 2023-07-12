@@ -37,11 +37,9 @@ export default function AddEvent() {
         hostName: '',
         jobTitle: '',
         dayDescription: '',
-        email: '',
         dates: [null],
         location: null,
         accessible: true,
-        suitableForChildren: true,
         toBring: [],
         gallery: [],
         physicalEffort: 1, // init the physical effort
@@ -63,11 +61,9 @@ export default function AddEvent() {
             hostName: auth?.currentUser?.displayName, // the full name from the auth. maybe we want to change it to somth from profile
             jobTitle: formData.jobTitle,
             dayDescription: formData.dayDescription,
-            email: formData.email,
             dates: extractedDates,
             location: formData.location,
             accessible: formData.accessible,
-            suitableForChildren: formData.suitableForChildren,
             toBring: formData.toBring,
             gallery: [],//TODO: when the photo is ready
             physicalEffort: formData.physicalEffort,
