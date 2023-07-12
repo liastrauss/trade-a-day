@@ -2,11 +2,11 @@
   "filters": [
     {
       "id": "1",
-      "filter": "indoors"
+      "filter": "Indoors"
     },
     {
       "id": "2",
-      "filter": "outdoors"
+      "filter": "Outdoors"
     },
     {
       "id": "3",
@@ -22,15 +22,15 @@
     },
     {
       "id": "6",
-      "filter": "accessible"
+      "filter": "Accessible"
     },
     {
       "id": "7",
-      "filter": "suitable for children"
+      "filter": "Suitable for Children"
     },
     {
       "id": "8",
-      "filter": "standard physical effort"
+      "filter": "Standard Physical Effort"
     },
     {
       "id": "9",
