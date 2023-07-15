@@ -122,7 +122,7 @@ function HostInfo() {
                                                                 {formattedDateString}
                                                             </Typography>
                                                             {/*<DateCalendar*/}
-                                                            {/*    // defaultValue={dayjs(formattedDateString)}*/}
+                                                            {/*    defaultValue={dayjs('14/06/2023')}*/}
                                                             {/*    // onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler*/}
 
                                                             {/*    readOnly*/}
@@ -315,17 +315,6 @@ function HostInfo() {
                             )}
 
 
-                        {eventInfoData?.suitableForChildren ?
-                            <Typography variant="button" display="inline" gutterBottom color = "primary.light"
-                                        sx = {{ letterSpacing: '.1rem'}}
-
-
-                            > <EscalatorWarningIcon/> Children Friendly </Typography> :
-                            <div></div>
-                        }
-                            {eventInfoData?.suitableForChildren && (
-                                <Divider orientation="vertical" flexItem sx={{ mx: 2, color: "primary.light" }} />
-                            )}
 
                         {eventInfoData?.outdoors ?
                             <Typography variant="button" display="inline" gutterBottom color = "primary.light"
