@@ -18,10 +18,13 @@ import Topbar from "../Components/Topbar";
 import {useNavigate} from "react-router-dom";
 import {addDoc, collection} from "firebase/firestore";
 import {auth, db} from "../config/firebase";
+import SignInPage from "../Components/SignInPage"
+import Registration1Page from "../Components/Registration1Page"
+import Registration2Page from "../Components/Registration2Page"
 
 
 // An array that stores the labels for the steps of the checkout process
-const steps = ['Sign In', 'Registration1 - basic info' , 'Registration2 - 5 questions'];
+const steps = ['Sign In', 'Basic Info' , 'Let`s get to know you better!'];
 
 // The main functional component that renders the entire "add event" page and forms
 export default function CreateProfile() {
@@ -40,27 +43,28 @@ export default function CreateProfile() {
             superpowers: [],
         },[]);
 
+    let navigate = useNavigate();
 
-
-    // const dbRef = collection(db,"users");
-    // const onSubmit = async () => {
-    //     try {
-    //         await addDoc(dbRef, {
-    //             userID: auth?.currentUser?.uid,
-    //             userFirstName: userData.userFirstName,
-    //             userLastName: userData.userLastName,
-    //             userEmail: userData.userEmail,
-    //             userPhone: userData.userPhone,
-    //             favoriteFood: userData.favoriteFood,
-    //             pizzaToppings: userData.pizzaToppings,
-    //             hobbies: userData.hobbies,
-    //             skills: userData.skills,
-    //             superpowers: userData.superpowers,
-    //         });
-    //     } catch(err) {
-    //         console.error(err)
-    //     }
-    // }
+    const usersCollectionRef = collection(db, "users")
+    const onSubmit = async () => {
+        try {
+            await addDoc(usersCollectionRef, {
+                userID: auth?.currentUser?.uid,
+                userFirstName: userData.userFirstName,
+                userLastName: userData.userLastName,
+                userEmail: userData.userEmail,
+                userPhone: userData.userPhone,
+                favoriteFood: userData.favoriteFood,
+                pizzaToppings: userData.pizzaToppings,
+                hobbies: userData.hobbies,
+                skills: userData.skills,
+                superpowers: userData.superpowers,
+            });
+            navigate('/');
+        } catch(err) {
+            console.error(err)
+        }
+    }
 
 
 
@@ -69,24 +73,32 @@ export default function CreateProfile() {
     function getStepContent(step) {
         switch (step) {
             case 0:
-                return <SignInDialog/>;
+                // return <SignInDialog/>;
+                return <SignInPage/>;
             case 1:
-                return <Registration1 userData={userData} setUserData={setUserData}/>;
+                // return <Registration1 userData={userData} setUserData={setUserData}/>;
+                return <Registration1Page userData={userData} setUserData={setUserData}/>;
             case 2:
-                return <Registration2 userData={userData} setUserData={setUserData}/>;
+                // return <Registration2 userData={userData} setUserData={setUserData}/>;
+                return <Registration2Page userData={userData} setUserData={setUserData}/>;
             default:
                 throw new Error('Unknown step');
         }
     }
 
     //
-    let navigate = useNavigate();
+
     // A state hook that keeps track of the currently active step
     const [activeStep, setActiveStep] = React.useState(0);
     // A function that increments the activeStep state when called
     const handleNext = () => {
-        setActiveStep(activeStep + 1);
+        if (activeStep === steps.length - 1) {
+            onSubmit(); // Call the onSubmit function
+        } else {
+            setActiveStep(activeStep + 1);
+        }
     };
+
     // A function that decrements the activeStep state when called
     const handleBack = () => {
         setActiveStep(activeStep - 1);

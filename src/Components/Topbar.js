@@ -11,6 +11,7 @@ import Paper from "@mui/material/Paper";
 import Toolbar from '@mui/material/Toolbar';
 import {auth} from "../config/firebase";
 import {useEffect, useState} from "react";
+import logOut from "./SignInPage";
 
 
 import {cardData} from "../data/card-data";
@@ -165,13 +166,25 @@ export default function Topbar(props) {
                         </Button>
                     }
 
+                    <Avatar src={avatarSrc}
+                            sx={{ml: 1}}
+                            onClick={() => {
+                                navigate("/CreateProfile");
+                            }}
+                            style={{cursor:'pointer'}}
+                    />
                     {auth?.currentUser?.displayName ?
-                        <Button
-                            variant="text"
-                            disabled
-                        >
-                            {auth?.currentUser?.displayName}
-                        </Button>
+                        <Box>
+                            <Button
+                                variant="text"
+                                disabled
+                            >
+                                {auth?.currentUser?.displayName}
+                            </Button>
+                            <Button onClick={logOut}>
+                                Log Out
+                            </Button>
+                        </Box>
                         :
                         <Button
                             variant="text"
@@ -182,14 +195,6 @@ export default function Topbar(props) {
                             Log In!
                         </Button>
                     }
-
-                    <Avatar src={avatarSrc}
-                            sx={{ml: 1}}
-                            onClick={() => {
-                                navigate("/CreateProfile");
-                            }}
-                            style={{cursor:'pointer'}}
-                    />
                 </Box>
         </Box>
         <Divider />
