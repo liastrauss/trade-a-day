@@ -109,29 +109,29 @@ function HostInfo() {
                                     flexWrap: 'wrap',
                                 }}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        {eventInfoData.dates.map((date, index) => {
-                                            // const formattedDate = dayjs(date.seconds * 1000).toDate().toISOString();
-                                            // const formattedDateString = new Date(formattedDate).toLocaleDateString();
-                                            const formattedDateString = new Date(date.seconds * 1000).toLocaleDateString();
-                                            console.log("str:",formattedDateString);
-                                            return (
-                                                <div key={index}>
-                                                    {date && date.seconds && (
-                                                        <>
-                                                            <Typography>
-                                                                {formattedDateString}
-                                                            </Typography>
-                                                            {/*<DateCalendar*/}
-                                                            {/*    // defaultValue={dayjs(formattedDateString)}*/}
-                                                            {/*    // onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler*/}
+                                        {/*{eventInfoData.dates.map((date, index) => {*/}
+                                        {/*    // const formattedDate = dayjs(date.seconds * 1000).toDate().toISOString();*/}
+                                        {/*    // const formattedDateString = new Date(formattedDate).toLocaleDateString();*/}
+                                        {/*    const formattedDateString = new Date(date.seconds * 1000).toLocaleDateString();*/}
+                                        {/*    console.log("str:",formattedDateString);*/}
+                                        {/*    return (*/}
+                                        {/*        <div key={index}>*/}
+                                        {/*            {date && date.seconds && (*/}
+                                        {/*                <>*/}
+                                        {/*                    <Typography>*/}
+                                        {/*                        {formattedDateString}*/}
+                                        {/*                    </Typography>*/}
+                                        {/*                    /!*<DateCalendar*!/*/}
+                                        {/*                    /!*    defaultValue={dayjs('14/06/2023')}*!/*/}
+                                        {/*                    /!*    // onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler*!/*/}
 
-                                                            {/*    readOnly*/}
-                                                            {/*/>*/}
-                                                        </>
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
+                                        {/*                    /!*    readOnly*!/*/}
+                                        {/*                    />*/}
+                                        {/*                </>*/}
+                                        {/*            )}*/}
+                                        {/*        </div>*/}
+                                        {/*    );*/}
+                                        {/*})}*/}
                                     </LocalizationProvider>
 
                             {/*        <LocalizationProvider dateAdapter={AdapterDayjs}>*/}
@@ -315,17 +315,6 @@ function HostInfo() {
                             )}
 
 
-                        {eventInfoData?.suitableForChildren ?
-                            <Typography variant="button" display="inline" gutterBottom color = "primary.light"
-                                        sx = {{ letterSpacing: '.1rem'}}
-
-
-                            > <EscalatorWarningIcon/> Children Friendly </Typography> :
-                            <div></div>
-                        }
-                            {eventInfoData?.suitableForChildren && (
-                                <Divider orientation="vertical" flexItem sx={{ mx: 2, color: "primary.light" }} />
-                            )}
 
                         {eventInfoData?.outdoors ?
                             <Typography variant="button" display="inline" gutterBottom color = "primary.light"

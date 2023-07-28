@@ -31,11 +31,13 @@ const Hero = () => {
     }));
 
     return (
-        <Box sx={{ backgroundColor: "#e6ffc3", minHeight: "80vh" }}>
+        <Box sx={{
+            // backgroundColor: "#e6ffc3",
+            minHeight: "80vh" }}>
             {/*orig: "#E6F0FF"*/}
             <Container>
-                <Navbar />
-                {/*<Topbar/>*/}
+                {/*<Navbar />*/}
+                <Topbar/>
                 <CustomBox>
                     <Box sx={{ flex: "1" }}>
                         <Typography
@@ -48,7 +50,7 @@ const Hero = () => {
                                 mb: 4,
                             }}
                         >
-                            Welcome to Besnik Agency
+                            Welcome to Trade A Day
                         </Typography>
                         <Title variant="h1">
                             Discover a place where you'll love to live.
@@ -63,9 +65,16 @@ const Hero = () => {
                         <CustomButton
                             backgroundColor="#0F1B4C"
                             color="#fff"
-                            buttonText="More About Us"
+                            buttonText="Explore"
                             heroBtn={true}
                         />
+                        <CustomButton
+                            backgroundColor="#0F1B4C"
+                            color="#fff"
+                            buttonText="Sign Up"
+                            heroBtn={true}
+                        />
+
                     </Box>
 
                     <Box sx={{ flex: "1.25" }}>
