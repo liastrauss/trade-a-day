@@ -109,29 +109,29 @@ function HostInfo() {
                                     flexWrap: 'wrap',
                                 }}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        {eventInfoData.dates.map((date, index) => {
-                                            // const formattedDate = dayjs(date.seconds * 1000).toDate().toISOString();
-                                            // const formattedDateString = new Date(formattedDate).toLocaleDateString();
-                                            const formattedDateString = new Date(date.seconds * 1000).toLocaleDateString();
-                                            console.log("str:",formattedDateString);
-                                            return (
-                                                <div key={index}>
-                                                    {date && date.seconds && (
-                                                        <>
-                                                            <Typography>
-                                                                {formattedDateString}
-                                                            </Typography>
-                                                            {/*<DateCalendar*/}
-                                                            {/*    defaultValue={dayjs('14/06/2023')}*/}
-                                                            {/*    // onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler*/}
+                                        {/*{eventInfoData.dates.map((date, index) => {*/}
+                                        {/*    // const formattedDate = dayjs(date.seconds * 1000).toDate().toISOString();*/}
+                                        {/*    // const formattedDateString = new Date(formattedDate).toLocaleDateString();*/}
+                                        {/*    const formattedDateString = new Date(date.seconds * 1000).toLocaleDateString();*/}
+                                        {/*    console.log("str:",formattedDateString);*/}
+                                        {/*    return (*/}
+                                        {/*        <div key={index}>*/}
+                                        {/*            {date && date.seconds && (*/}
+                                        {/*                <>*/}
+                                        {/*                    <Typography>*/}
+                                        {/*                        {formattedDateString}*/}
+                                        {/*                    </Typography>*/}
+                                        {/*                    /!*<DateCalendar*!/*/}
+                                        {/*                    /!*    defaultValue={dayjs('14/06/2023')}*!/*/}
+                                        {/*                    /!*    // onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler*!/*/}
 
-                                                            {/*    readOnly*/}
-                                                            {/*/>*/}
-                                                        </>
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
+                                        {/*                    /!*    readOnly*!/*/}
+                                        {/*                    />*/}
+                                        {/*                </>*/}
+                                        {/*            )}*/}
+                                        {/*        </div>*/}
+                                        {/*    );*/}
+                                        {/*})}*/}
                                     </LocalizationProvider>
 
                             {/*        <LocalizationProvider dateAdapter={AdapterDayjs}>*/}
