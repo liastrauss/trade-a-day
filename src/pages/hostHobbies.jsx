@@ -10,6 +10,7 @@ import Stack from "@mui/material/Stack";
 import FastfoodRoundedIcon from '@mui/icons-material/FastfoodRounded';
 import SportsEsportsRoundedIcon from '@mui/icons-material/SportsEsportsRounded';
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
+import Link from '@mui/material/Link';
 
 export default function ViewHobbies({ hostID }) {
     const theme = useTheme();
@@ -138,8 +139,19 @@ export default function ViewHobbies({ hostID }) {
 
             <Typography my={2}>Feel free to contact me!</Typography>
             <Box sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+                {/*<Typography color="primary" my={1} sx={{display: 'flex', justifyContent: 'center'}}>*/}
+                {/*    {userData?.userPhone}*/}
+                {/*</Typography>*/}
+                {/*for whatsapp link*/}
                 <Typography color="primary" my={1} sx={{display: 'flex', justifyContent: 'center'}}>
-                    {userData?.userPhone}
+                    <Link href={"https://wa.me/972" + userData?.userPhone}
+                          underline="always"
+                          color="primary"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                    >
+                        {'+972 ' + userData?.userPhone}
+                    </Link>
                 </Typography>
                 <Typography color="primary" sx={{display: 'flex', justifyContent: 'center'}}>
                     {userData?.userEmail}

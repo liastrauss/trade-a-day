@@ -64,9 +64,6 @@ export default function SearchBox({cardData,activeSearch, setActiveSearch,setSea
 
 
 
-
-
-
     return (
         <div>
         <Paper

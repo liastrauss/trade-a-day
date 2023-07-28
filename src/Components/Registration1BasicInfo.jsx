@@ -5,7 +5,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
-import {Grid, TextField} from "@mui/material";
+import {FormControl, Grid, Input, InputAdornment, InputLabel, TextField} from "@mui/material";
 import Registration2 from './Registration2MoreDetails';
 import {db} from "../config/firebase";
 import { getDocs, collection, addDoc } from "firebase/firestore";
