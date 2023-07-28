@@ -26,6 +26,8 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import {DateCalendar, LocalizationProvider} from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
+import {TbSunglasses} from "react-icons/tb";
+import AddIcon from "@mui/icons-material/Add";
 
 
 
@@ -189,10 +191,14 @@ function HostInfo() {
                                             icon={
                                                 item === 'water' ? (
                                                     <WaterDropTwoToneIcon />
-                                                ) : item === 'comfortable clothes' ? (
+                                                ) : item === 'a change of clothes' ? (
                                                     <CheckroomIcon />
                                                 ) : item === 'closed shoes' ? (
                                                     <RollerSkatingIcon />
+                                                ) : item === 'sunglasses' ? (
+                                                    <TbSunglasses/>
+                                                ) : item === 'talk to me about additional items' ? (
+                                                    <AddIcon/>
                                                 ) : (
                                                     <LuggageTwoToneIcon />
                                                 )
