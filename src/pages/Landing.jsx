@@ -13,14 +13,15 @@ function Landing() {
     const theme = useTheme();
     return (
         <div>
-            <Topbar/>
+            <Topbar AddDay/>
             <Hero />
-            <Details />
-            <Companies />
-            <Guide />
-            {/*<Properties />*/}
-            <GetStarted />
-            {/*<Footer />*/}
+            {/*these could be relevant:*/}
+            {/*<Details />*/}
+            {/*<Companies />*/}
+            {/*<Guide />*/}
+            {/*this one is worse <Properties />*/}
+            {/*<GetStarted />*/}
+            {/* this one is worse <Footer />*/}
         </div>
     );
 }
