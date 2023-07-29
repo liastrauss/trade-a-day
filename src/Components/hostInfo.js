@@ -19,7 +19,7 @@ import ForestIcon from '@mui/icons-material/Forest';
 import HomeIcon from '@mui/icons-material/Home';
 import AccessibleIcon from '@mui/icons-material/Accessible';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import Card from "@mui/material/Card";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
@@ -97,7 +97,7 @@ function HostInfo() {
                         <Typography variant="subtitle2" color="primary">
                             Location
                         </Typography>
-                        <Chip icon={<LocationOnIcon />} label={eventInfoData?.location}  />
+                        <Chip icon={<LocationOnRoundedIcon />} label={eventInfoData?.location}  />
                     </Grid>
 
                     {isDatesArrayValid &&  eventInfoData?.dates?.length > 0 && (
@@ -124,10 +124,13 @@ function HostInfo() {
 
                                             console.log("date:",date,"str:",formattedDateString);
                                             return (
-                                                <div key={index}>
+                                                <div key={index} >
                                                     {date && date.seconds && (
                                                         <>
-                                                            <Chip icon={<CalendarMonthIcon />} label={formattedDateString} color="info" />
+                                                            <Chip icon={<CalendarMonthIcon />} label={formattedDateString}
+                                                                  // color="info"
+                                                                  sx={{ margin: 0.5, padding: 0.5 }}
+                                                            />
                                                             {/*<Typography> {formattedDateString </Typography>*/}
                                                             {/*<DateCalendar*/}
                                                             {/*    defaultValue={dayjs('14/06/2023')}*/}
