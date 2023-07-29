@@ -11,6 +11,9 @@ import FastfoodRoundedIcon from '@mui/icons-material/FastfoodRounded';
 import SportsEsportsRoundedIcon from '@mui/icons-material/SportsEsportsRounded';
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import Link from '@mui/material/Link';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import IconButton from "@mui/material/IconButton";
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 
 export default function ViewHobbies({ hostID }) {
     const theme = useTheme();
@@ -150,11 +153,24 @@ export default function ViewHobbies({ hostID }) {
                           target="_blank"
                           rel="noopener noreferrer"
                     >
+                        <IconButton>
+                            <WhatsAppIcon color="primary"/>
+                        </IconButton>
                         {'+972 ' + userData?.userPhone}
                     </Link>
                 </Typography>
                 <Typography color="primary" sx={{display: 'flex', justifyContent: 'center'}}>
-                    {userData?.userEmail}
+                    <Link href={`mailto:${userData?.userEmail}?subject=Reaching%20out%20from%20Trade%20a%20Day`}
+                          underline="always"
+                          color="primary"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                    >
+                        <IconButton>
+                            <EmailOutlinedIcon color='primary'/>
+                        </IconButton>
+                        {userData?.userEmail}
+                    </Link>
                 </Typography>
             </Box>
 
