@@ -18,7 +18,8 @@ import Box from "@mui/material/Box";
 import ForestIcon from '@mui/icons-material/Forest';
 import HomeIcon from '@mui/icons-material/Home';
 import AccessibleIcon from '@mui/icons-material/Accessible';
-import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import Card from "@mui/material/Card";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
@@ -38,6 +39,8 @@ function HostInfo() {
     const [eventInfoData, setEventInfoData] = useState("");
 
     const [event, setEvent] = useState();
+    // for showing dates
+    const isDatesArrayValid = eventInfoData?.dates?.every(date => date !== null);
 
     useEffect (() => {
         async function fetchEventInfoData(){
@@ -94,12 +97,11 @@ function HostInfo() {
                         <Typography variant="subtitle2" color="primary">
                             Location
                         </Typography>
-                        <Typography variant="subtitle1">
-                            {eventInfoData?.location}
-                        </Typography>
+                        <Chip icon={<LocationOnRoundedIcon />} label={eventInfoData?.location}  />
                     </Grid>
 
-                    <Grid item xs={6}>
+                    {isDatesArrayValid &&  eventInfoData?.dates?.length > 0 && (
+                        <Grid item xs={6}>
                         <Typography variant="subtitle2" color="primary">
                             Dates available:
                         </Typography>
@@ -111,67 +113,46 @@ function HostInfo() {
                                     flexWrap: 'wrap',
                                 }}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        {/*{eventInfoData.dates.map((date, index) => {*/}
-                                        {/*    // const formattedDate = dayjs(date.seconds * 1000).toDate().toISOString();*/}
-                                        {/*    // const formattedDateString = new Date(formattedDate).toLocaleDateString();*/}
-                                        {/*    const formattedDateString = new Date(date.seconds * 1000).toLocaleDateString();*/}
-                                        {/*    console.log("str:",formattedDateString);*/}
-                                        {/*    return (*/}
-                                        {/*        <div key={index}>*/}
-                                        {/*            {date && date.seconds && (*/}
-                                        {/*                <>*/}
-                                        {/*                    <Typography>*/}
-                                        {/*                        {formattedDateString}*/}
-                                        {/*                    </Typography>*/}
-                                        {/*                    /!*<DateCalendar*!/*/}
-                                        {/*                    /!*    defaultValue={dayjs('14/06/2023')}*!/*/}
-                                        {/*                    /!*    // onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler*!/*/}
+                                        {eventInfoData.dates.map((date, index) => {
+                                            // const formattedDate = dayjs(date?.seconds * 1000).toDate().toISOString();
+                                            // const formattedDateString = new Date(formattedDate).toLocaleDateString();
+                                            // const formattedDateString = new Date(date?.seconds * 1000).toLocaleDateString(); // works, but is full date format
+                                            const formattedDate = new Date(date?.seconds * 1000);
+                                            const formattedDateString = `${formattedDate.toLocaleString('default', {
+                                                month: 'long',
+                                            })} ${formattedDate.getFullYear()}`;
 
-                                        {/*                    /!*    readOnly*!/*/}
-                                        {/*                    />*/}
-                                        {/*                </>*/}
-                                        {/*            )}*/}
-                                        {/*        </div>*/}
-                                        {/*    );*/}
-                                        {/*})}*/}
+                                            console.log("date:",date,"str:",formattedDateString);
+                                            return (
+                                                <div key={index} >
+                                                    {date && date.seconds && (
+                                                        <>
+                                                            <Chip icon={<CalendarMonthIcon />} label={formattedDateString}
+                                                                  // color="info"
+                                                                  sx={{ margin: 0.5, padding: 0.5 }}
+                                                            />
+                                                            {/*<Typography> {formattedDateString </Typography>*/}
+                                                            {/*<DateCalendar*/}
+                                                            {/*    defaultValue={dayjs('14/06/2023')}*/}
+                                                            {/*    // onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler*/}
+
+                                                            {/*    readOnly*/}
+                                                            {/*/>*/}
+                                                        </>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
                                     </LocalizationProvider>
 
-                            {/*        <LocalizationProvider dateAdapter={AdapterDayjs}>*/}
-                            {/*        {eventInfoData.dates.map((date, index) => {*/}
-                            {/*            (*/}
-                            {/*            // <Typography key={index}>*/}
-                            {/*            //     {date && date.seconds && (*/}
-                            {/*            //         new Date(date.seconds * 1000).toLocaleDateString()*/}
-                            {/*            //     )}*/}
-                            {/*            // </Typography>*/}
-                            {/*            // <MonthCalendar readonly />*/}
-
-                            {/*            // <DateCalendar*/}
-                            {/*            //     views={['month', 'year']}*/}
-                            {/*            //     openTo="month"*/}
-                            {/*            //     defaultValue={date}*/}
-                            {/*            //*/}
-                            {/*            // />*/}
-                            {/*            <div>*/}
-                            {/*                /!*{date && date.seconds && (*!/*/}
-                            {/*                /!*            const newDate = new Date(date.seconds * 1000).toLocaleDateString()*!/*/}
-                            {/*                /!*        )}*!/*/}
-                            {/*            <DateCalendar*/}
-                            {/*            key={index}*/}
-                            {/*        value={ new Date(date.seconds * 1000)}*/}
-                            {/*        renderInput={() => <></>}*/}
-                            {/*        readOnly*/}
-                            {/*    />*/}
-                            {/*            </div>*/}
-
-                            {/*))}*/}
-                            {/*        </LocalizationProvider>*/}
                                 </Box>
                             )}
                         </Typography>
                     </Grid>
+                    )}
 
-                    <Grid item xs={6}>
+
+                    <Grid item xs={12}>
 
                         <Typography variant="subtitle2" color="primary">
                                  What to bring:

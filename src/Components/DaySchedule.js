@@ -3,7 +3,7 @@ import {ref, uploadBytes} from "firebase/storage";
 import {v4} from "uuid";
 import React, {useState} from 'react';
 import {DatePicker} from "@mui/x-date-pickers";
-import {Grid, IconButton, Rating, TextField, ToggleButton} from "@mui/material";
+import {Autocomplete, Grid, IconButton, InputAdornment, Rating, TextField, ToggleButton} from "@mui/material";
 import Button from "@mui/material/Button";
 import {PhotoCamera} from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
@@ -14,8 +14,6 @@ import Paper from "@mui/material/Paper";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import {useTheme} from "@mui/material/styles";
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import DatePickerList from "./DatePickerList";
-import {onAuthStateChanged} from "firebase/auth"
 
 
 
@@ -152,6 +150,20 @@ export default function DaySchedule({formData, setFormData}) {
     //         label: '20:00'
     //     }
     // ];
+    const contactOptions = ['Phone','Email'];
+
+    // Function to render the appropriate textbox based on the selected option
+    const renderContactBox = () => {
+        if (formData.contact === "Phone") {
+            return <TextField label="Phone" />;
+        } else if (formData.contact === "Email") {
+            return <TextField label="Email"  placeholder="automatic email"
+            />;
+        }
+        // Add more conditions if needed for other options
+        return null; // Render nothing if no option is selected
+    };
+
 
     console.log(formData.dates)
     // console.log(datePickerValues[0].$d);
@@ -369,6 +381,66 @@ export default function DaySchedule({formData, setFormData}) {
                 {/*    /!*    <PhotoCamera/>*!/*/}
                 {/*    /!*</IconButton>*!/*/}
                 {/*</Grid>*/}
+            </Grid>
+
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <Typography gutterBottom>How would you like us to contact you?</Typography>
+                </Grid>
+                <Grid xs={4}>
+                    <Autocomplete
+                        required
+                        disableClearable
+                        // disablePortal
+                        id="contact method"
+                        options = {contactOptions}
+                        // sx={{ width: 300 }}
+                        renderInput={(params) => <TextField {...params} label="Choose preffered contact method" />}
+                        onChange={(e, newValue) => {
+                            setFormData({ ...formData, contactMethod: newValue, });
+                        }}
+                        value={formData.contactMethod}
+
+                    />
+                </Grid>
+                <Grid  xs={7}>
+                {formData.contactMethod === "Phone" ? (
+                        <TextField
+                            fullWidth
+                            label="Phone Number"
+                            helperText="This is a helper text for Textbox 1"
+                            onChange={(e) => {
+                                setFormData({
+                                    ...formData,
+                                    contact: e.target.value,
+                                });
+                            }}
+                            value = {formData.contact}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">+972</InputAdornment>
+                                ),
+                            }}
+
+
+                                />
+                    ) : formData.contactMethod === "Email" ? (
+                        <TextField
+                            label="Email"
+                            defaultValue={auth?.currentUser?.email}
+                            onChange={(e) => {
+                                setFormData({
+                                    ...formData,
+                                    contact: e.target.value,
+                                });
+                            }}
+                            value = {formData.contact}
+                        />
+                    ) : null}
+                </Grid>
+
+
+
             </Grid>
         </div>
     )

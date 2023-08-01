@@ -110,7 +110,6 @@ export default function Topbar(props) {
     const AddDay = props.AddDay;
     const Search = props.Search;
     const Profile = props.Profile;
-    const BookedEvents = props.BookedEvents;
     let greeting = "Log in!"
 
     const [avatarSrc, setAvatarSrc] = useState("/broken-image.jpg");

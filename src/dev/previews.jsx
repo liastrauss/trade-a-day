@@ -4,6 +4,7 @@ import {PaletteTree} from './palette'
 import EventForm from "../Components/EventForm";
 import PickDates from "../Components/DaySchedule";
 import AddEvent from "../pages/AddEvent";
+import Landing from "../pages/Landing";
 
 const ComponentPreviews = () => {
     return (
@@ -16,6 +17,9 @@ const ComponentPreviews = () => {
             </ComponentPreview>
             <ComponentPreview path="/AddEvent">
                 <AddEvent/>
+            </ComponentPreview>
+            <ComponentPreview path="/Landing">
+                <Landing/>
             </ComponentPreview>
         </Previews>
     )

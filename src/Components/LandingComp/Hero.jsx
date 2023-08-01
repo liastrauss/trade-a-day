@@ -4,10 +4,15 @@ import React from "react";
 import Navbar from "./Navbar";
 
 // import heroImg from "../media/hero_illustration.png";
+import heroImg from "../../media/site_snap_filter.png";
+
 import CustomButton from "./CustomButton";
 import Topbar from "../Topbar";
+import {useTheme} from "@mui/material/styles";
+import {useNavigate} from "react-router-dom";
 
 const Hero = () => {
+    const theme = useTheme();
     const CustomBox = styled(Box)(({ theme }) => ({
         display: "flex",
         justifyContent: "center",
@@ -21,7 +26,7 @@ const Hero = () => {
     }));
 
     const Title = styled(Typography)(({ theme }) => ({
-        fontSize: "64px",
+        fontSize: "44px",
         color: "#000336",
         fontWeight: "bold",
         margin: theme.spacing(4, 0, 4, 0),
@@ -29,15 +34,44 @@ const Hero = () => {
             fontSize: "40px",
         },
     }));
+    let navigate = useNavigate();
+
+    const MyButton = styled(Button)(({ theme,size }) => ({
+        fontWeight: "700",
+        fontSize: size === "large" ? "16px" : "14px", // Conditional font size based on size prop
+        cursor: "pointer",
+        padding: size === "large" ? "1rem 2rem" : "0.5rem 1.25rem", // Conditional padding based on size prop
+
+        borderRadius: "7px",
+        display: "block",
+        border: "2px solid transparent",
+        "&:hover": {
+            backgroundColor: theme.palette.primary.contrastText, // Swap colors on hover for better visibility
+            color: theme.palette.primary.main,
+            borderColor: theme.palette.primary.main,
+        },
+    }));
+
+
+
+
+
 
     return (
         <Box sx={{
-            // backgroundColor: "#e6ffc3",
-            minHeight: "80vh" }}>
+                // backgroundColor: "#eefdf4",
+                // minHeight: "80vh"
+                backgroundImage: `url(${heroImg})`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                minHeight: "80vh",
+            }}>
+
             {/*orig: "#E6F0FF"*/}
             <Container>
                 {/*<Navbar />*/}
-                <Topbar/>
+                {/*<Topbar/>*/}
                 <CustomBox>
                     <Box sx={{ flex: "1" }}>
                         <Typography
@@ -53,37 +87,58 @@ const Hero = () => {
                             Welcome to Trade A Day
                         </Typography>
                         <Title variant="h1">
-                            Discover a place where you'll love to live.
+                            Explore lives beyond your own, one day at a time.
                         </Title>
                         <Typography
                             variant="body2"
                             sx={{ fontSize: "18px", color: "#5A6473", my: 4 }}
                         >
-                            Be the first to get the best real estate deals before they hit the
-                            mass market! Hot foreclosure deals with one simple search!
+                            Step into the lives of others, break free from the ordinary, and embrace the extraordinary with Trade a Day!
+                            Our revolutionary social app opens doors to new perspectives, allowing you to experience a day in the life of someone else.
+
                         </Typography>
-                        <CustomButton
-                            backgroundColor="#0F1B4C"
-                            color="#fff"
-                            buttonText="Explore"
-                            heroBtn={true}
-                        />
-                        <CustomButton
-                            backgroundColor="#0F1B4C"
-                            color="#fff"
-                            buttonText="Sign Up"
-                            heroBtn={true}
-                        />
+                        <CustomBox>
+
+
+                            <MyButton
+                                size="large"
+                                variant="contained"
+                                disableElevation
+                                onClick={()=>
+                                {
+                                    navigate("/");
+                                }}
+
+                            >
+                                Explore
+                            </MyButton>
+
+                            <MyButton
+                                size="large"
+                                variant="contained"
+                                disableElevation
+                                onClick={()=>
+                                {
+                                    navigate("/CreateProfile");
+                                    console.info('You clicked mine.');
+                                }}
+
+                            >
+                                Sign Up
+                            </MyButton>
+
+                        </CustomBox>
 
                     </Box>
 
-                    <Box sx={{ flex: "1.25" }}>
-                        {/*<img*/}
-                        {/*    src={heroImg}*/}
-                        {/*    alt="heroImg"*/}
-                        {/*    style={{ maxWidth: "100%", marginBottom: "2rem" }}*/}
-                        {/*/>*/}
-                    </Box>
+{/*                    <Box sx={{ flex: "1.25" }}>*/}
+{/*imgg*/}
+{/*                            /!*src={heroImg}*!/*/}
+{/*                            /!*alt="heroImg"*!/*/}
+{/*                            /!*style={{ maxWidth: "100%", marginBottom: "2rem" }}*!/*/}
+{/*                        />*/}
+{/*                    </Box>*/}
+
                 </CustomBox>
             </Container>
         </Box>

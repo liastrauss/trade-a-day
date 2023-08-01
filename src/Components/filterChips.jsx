@@ -55,7 +55,8 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
             const currentDate = new Date();
             const nextMonthStart = new Date(
                 currentDate.getFullYear(),
-                currentDate.getMonth() - 1,
+                currentDate.getMonth() +1,
+                // if we want it to include current month - change to +0
                 1
             );
             const nextMonthEnd = new Date(
@@ -63,10 +64,12 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
                 currentDate.getMonth() + 2,
                 0
             );
+            console.log("nextMonthStart",nextMonthStart);
 
             filtered = cardData.filter((item) => {
                 return item.dates.some((date) => {
-                    const dateObject = new Date(date);
+                    const dateObject = new Date(date?.seconds * 1000);
+                    console.log("dateObject",dateObject)
                     return (
                         dateObject >= nextMonthStart && dateObject <= nextMonthEnd
                     );

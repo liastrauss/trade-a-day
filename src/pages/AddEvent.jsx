@@ -48,6 +48,8 @@ export default function AddEvent() {
         physicalEffort: 1, // init the physical effort
         outdoors: true,
         picture: "none",
+        contactMethod: null,
+        contact:null,
     },[]);
 
     // extracting the dates to a convinent array format
@@ -72,7 +74,8 @@ export default function AddEvent() {
             physicalEffort: formData.physicalEffort,
             outdoors: formData.outdoors,
             picture: "none",
-
+            contactMethod: formData.contactMethod,
+            contact: formData.contact,
 
         });
             // advance to the final page:

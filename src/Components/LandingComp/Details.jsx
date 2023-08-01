@@ -91,9 +91,11 @@ const Details = () => {
                                 lineHeight: "27px",
                             }}
                         >
-                            When you own a home, you commit to living in one location for a
-                            period of time. We are here to ensure that this will be a
-                            memorable experience for you.
+                            Experience boundless empathy and break free from monotony with Trade a Day—an innovative social app that allows you to step into the shoes of others, promoting meaningful connections while immersing yourself in their daily lives. Discover a world of perspectives, one day at a time, fostering a deeper understanding of diverse realities and inspiring personal growth.
+
+
+
+
                         </Typography>
                     </Box>
                 </CustomBox>

@@ -2,15 +2,17 @@ import { Button, styled } from "@mui/material";
 import React from "react";
 
 const CustomButton = ({
+                          theme,
                           backgroundColor,
                           color,
                           buttonText,
                           heroBtn,
                           guideBtn,
                           getStartedBtn,
+                          onClick,
                       }) => {
     const CustomButton = styled(Button)(({ theme }) => ({
-        backgroundColor: backgroundColor,
+        backgroundColor: theme.palette.primary.main, // Access primary color from the theme
         color: color,
         fontWeight: "700",
         fontSize: "14px",
