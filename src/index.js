@@ -29,8 +29,6 @@ import Layout from "./pages/Layout";
 import AddEvent from "./pages/AddEvent";
 import Home from "./pages/Home";
 import CreateProfile from "./pages/CreateProfile"
-// import Blogs from "./pages/Blogs";
-// import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
 
 import './App.css';
@@ -41,6 +39,7 @@ import OverView from "./pages/OverView";
 import OverView2 from "./pages/OverView2";
 import Logo from "./Components/logo";
 import Chat from "./zevel/Chat";
+import Landing from "./pages/Landing";
 
 // configuring our theme
 const theme = createTheme({
@@ -87,7 +86,7 @@ export default function App() {
                                 <Route path="AddEvent" element={<AddEvent/>} />
                                 <Route path="OverView2/:index" element={<OverView2/>} />
                                 <Route path="CreateProfile" element={<CreateProfile/>} />
-                                <Route path="Chat" element={<Chat/>} />
+                                <Route path="Landing" element={<Landing/>} />
                                 {/*<Route path="Home" element={<Home />} />*/}
                                 <Route path="*" element={<NoPage />} />
                             </Route>

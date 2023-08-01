@@ -5,7 +5,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
-import {Grid, TextField, Typography} from "@mui/material";
+import {Grid, InputAdornment, TextField, Typography} from "@mui/material";
 import Registration2 from './Registration2MoreDetails';
 import {db} from "../config/firebase";
 import { getDocs, collection, addDoc } from "firebase/firestore";
@@ -85,7 +85,12 @@ export default function Registration1Page({ userData, setUserData }) {
                                     userPhone: e.target.value,
                                 });
                             }}
-                            value = {userData.userPhone}
+                            value={userData.userPhone}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">+972</InputAdornment>
+                                ),
+                            }}
                         />
                     </Grid>
                 </Grid>

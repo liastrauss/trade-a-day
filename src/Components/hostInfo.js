@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Grid, ToggleButton, Typography} from "@mui/material";
+import { MonthCalendar } from '@mui/x-date-pickers/MonthCalendar';
 import Divider from '@mui/material/Divider';
 import {styled, useTheme} from "@mui/material/styles";
 import {StandardImageList} from "./view2";
@@ -22,6 +23,12 @@ import Card from "@mui/material/Card";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ButtonGroup from '@mui/material/ButtonGroup';
+import {DateCalendar, LocalizationProvider} from "@mui/x-date-pickers";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
+import {TbSunglasses} from "react-icons/tb";
+import AddIcon from "@mui/icons-material/Add";
+
 
 
 function HostInfo() {
@@ -91,6 +98,79 @@ function HostInfo() {
                             {eventInfoData?.location}
                         </Typography>
                     </Grid>
+
+                    <Grid item xs={6}>
+                        <Typography variant="subtitle2" color="primary">
+                            Dates available:
+                        </Typography>
+                        <Typography variant="subtitle1">
+                            {eventInfoData?.dates && (
+                                <Box sx={{
+                                    flexDirection: 'row',
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                }}>
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                        {/*{eventInfoData.dates.map((date, index) => {*/}
+                                        {/*    // const formattedDate = dayjs(date.seconds * 1000).toDate().toISOString();*/}
+                                        {/*    // const formattedDateString = new Date(formattedDate).toLocaleDateString();*/}
+                                        {/*    const formattedDateString = new Date(date.seconds * 1000).toLocaleDateString();*/}
+                                        {/*    console.log("str:",formattedDateString);*/}
+                                        {/*    return (*/}
+                                        {/*        <div key={index}>*/}
+                                        {/*            {date && date.seconds && (*/}
+                                        {/*                <>*/}
+                                        {/*                    <Typography>*/}
+                                        {/*                        {formattedDateString}*/}
+                                        {/*                    </Typography>*/}
+                                        {/*                    /!*<DateCalendar*!/*/}
+                                        {/*                    /!*    defaultValue={dayjs('14/06/2023')}*!/*/}
+                                        {/*                    /!*    // onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler*!/*/}
+
+                                        {/*                    /!*    readOnly*!/*/}
+                                        {/*                    />*/}
+                                        {/*                </>*/}
+                                        {/*            )}*/}
+                                        {/*        </div>*/}
+                                        {/*    );*/}
+                                        {/*})}*/}
+                                    </LocalizationProvider>
+
+                            {/*        <LocalizationProvider dateAdapter={AdapterDayjs}>*/}
+                            {/*        {eventInfoData.dates.map((date, index) => {*/}
+                            {/*            (*/}
+                            {/*            // <Typography key={index}>*/}
+                            {/*            //     {date && date.seconds && (*/}
+                            {/*            //         new Date(date.seconds * 1000).toLocaleDateString()*/}
+                            {/*            //     )}*/}
+                            {/*            // </Typography>*/}
+                            {/*            // <MonthCalendar readonly />*/}
+
+                            {/*            // <DateCalendar*/}
+                            {/*            //     views={['month', 'year']}*/}
+                            {/*            //     openTo="month"*/}
+                            {/*            //     defaultValue={date}*/}
+                            {/*            //*/}
+                            {/*            // />*/}
+                            {/*            <div>*/}
+                            {/*                /!*{date && date.seconds && (*!/*/}
+                            {/*                /!*            const newDate = new Date(date.seconds * 1000).toLocaleDateString()*!/*/}
+                            {/*                /!*        )}*!/*/}
+                            {/*            <DateCalendar*/}
+                            {/*            key={index}*/}
+                            {/*        value={ new Date(date.seconds * 1000)}*/}
+                            {/*        renderInput={() => <></>}*/}
+                            {/*        readOnly*/}
+                            {/*    />*/}
+                            {/*            </div>*/}
+
+                            {/*))}*/}
+                            {/*        </LocalizationProvider>*/}
+                                </Box>
+                            )}
+                        </Typography>
+                    </Grid>
+
                     <Grid item xs={6}>
 
                         <Typography variant="subtitle2" color="primary">
@@ -111,10 +191,14 @@ function HostInfo() {
                                             icon={
                                                 item === 'water' ? (
                                                     <WaterDropTwoToneIcon />
-                                                ) : item === 'comfortable clothes' ? (
+                                                ) : item === 'a change of clothes' ? (
                                                     <CheckroomIcon />
                                                 ) : item === 'closed shoes' ? (
                                                     <RollerSkatingIcon />
+                                                ) : item === 'sunglasses' ? (
+                                                    <TbSunglasses/>
+                                                ) : item === 'talk to me about additional items' ? (
+                                                    <AddIcon/>
                                                 ) : (
                                                     <LuggageTwoToneIcon />
                                                 )
@@ -237,17 +321,6 @@ function HostInfo() {
                             )}
 
 
-                        {eventInfoData?.suitableForChildren ?
-                            <Typography variant="button" display="inline" gutterBottom color = "primary.light"
-                                        sx = {{ letterSpacing: '.1rem'}}
-
-
-                            > <EscalatorWarningIcon/> Children Friendly </Typography> :
-                            <div></div>
-                        }
-                            {eventInfoData?.suitableForChildren && (
-                                <Divider orientation="vertical" flexItem sx={{ mx: 2, color: "primary.light" }} />
-                            )}
 
                         {eventInfoData?.outdoors ?
                             <Typography variant="button" display="inline" gutterBottom color = "primary.light"

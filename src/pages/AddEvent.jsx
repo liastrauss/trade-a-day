@@ -13,6 +13,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import Logo from "../Components/logo"
+import { useNavigate } from "react-router-dom"
 
 // Importing three form components that will be rendered inside the  component
 import EventForm from "../Components/EventForm";
@@ -30,6 +31,8 @@ const steps = ['A bit about yourself', 'Technicalities', 'What to bring'];
 // The main functional component that renders the entire "add event" page and forms
 export default function AddEvent() {
 
+    let navigate = useNavigate();
+
     // initialize the data from the form parts
     const [formData, setFormData] =
         React.useState({
@@ -40,7 +43,6 @@ export default function AddEvent() {
         dates: [null],
         location: null,
         accessible: true,
-        suitableForChildren: true,
         toBring: [],
         gallery: [],
         physicalEffort: 1, // init the physical effort
@@ -65,7 +67,6 @@ export default function AddEvent() {
             dates: extractedDates,
             location: formData.location,
             accessible: formData.accessible,
-            suitableForChildren: formData.suitableForChildren,
             toBring: formData.toBring,
             gallery: [],//TODO: when the photo is ready
             physicalEffort: formData.physicalEffort,
@@ -142,7 +143,6 @@ export default function AddEvent() {
                         </Stepper>
                         {activeStep === steps.length ? (
                             <React.Fragment>
-                                <Button onClick = {onSubmit}> submit </Button>
                                 <Typography variant="h5" gutterBottom>
                                     Thank you for joining the Trade a Day community!
                                 </Typography>
@@ -151,6 +151,13 @@ export default function AddEvent() {
                                     Keep an eye on your preferred contact method as interested guests will be
                                     reaching out to you directly. Together, let's make Trade a Day a success!
                                 </Typography>
+                                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                    <Button align="center" onClick={()=>
+                                    {
+                                        navigate("/");
+                                    }}> Back to homepage
+                                    </Button>
+                                </Box>
                             </React.Fragment>
                         ) : (
                             <React.Fragment>
