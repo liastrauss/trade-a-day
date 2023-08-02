@@ -37,7 +37,7 @@ function valuetext(value) {
 }
 
 
-export default function DaySchedule({formData, setFormData}) {
+export default function DaySchedule({formData, setFormData, userContact, setUserContact}) {
     // old consts for hour range:
     // const [value, setRating] = useState();
     // const [hourRange, sethourRange] = useState([8, 17]);
@@ -387,7 +387,7 @@ export default function DaySchedule({formData, setFormData}) {
                 <Grid item xs={12}>
                     <Typography gutterBottom>How would you like us to contact you?</Typography>
                 </Grid>
-                <Grid xs={4}>
+                <Grid item xs={4}>
                     <Autocomplete
                         required
                         disableClearable
@@ -397,25 +397,25 @@ export default function DaySchedule({formData, setFormData}) {
                         // sx={{ width: 300 }}
                         renderInput={(params) => <TextField {...params} label="Choose preffered contact method" />}
                         onChange={(e, newValue) => {
-                            setFormData({ ...formData, contactMethod: newValue, });
+                            setUserContact({ ...formData, contactMethod: newValue, });
                         }}
-                        value={formData.contactMethod}
+                        value={userContact.contactMethod}
 
                     />
                 </Grid>
-                <Grid  xs={7}>
-                {formData.contactMethod === "Phone" ? (
+                <Grid item xs={7}>
+                {userContact.contactMethod === "Phone" ? (
                         <TextField
                             fullWidth
                             label="Phone Number"
                             helperText="This is a helper text for Textbox 1"
                             onChange={(e) => {
-                                setFormData({
-                                    ...formData,
-                                    contact: e.target.value,
+                                setUserContact({
+                                    ...userContact,
+                                    userPhone: e.target.value,
                                 });
                             }}
-                            value = {formData.contact}
+                            value={userContact.userPhone}
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">+972</InputAdornment>
@@ -424,17 +424,17 @@ export default function DaySchedule({formData, setFormData}) {
 
 
                                 />
-                    ) : formData.contactMethod === "Email" ? (
+                    ) : userContact.contactMethod === "Email" ? (
                         <TextField
                             label="Email"
-                            defaultValue={auth?.currentUser?.email}
+                            // defaultValue={auth?.currentUser?.email}
                             onChange={(e) => {
-                                setFormData({
-                                    ...formData,
-                                    contact: e.target.value,
+                                setUserContact({
+                                    ...userContact,
+                                    userEmail: e.target.value,
                                 });
                             }}
-                            value = {formData.contact}
+                            value={userContact.userEmail}
                         />
                     ) : null}
                 </Grid>
