@@ -13,7 +13,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import CloseIcon from '@mui/icons-material/Close';
 export default function SignInDialog() {
     const [open, setOpen] = React.useState(false);
-    const [exist, setExist] = React.useState(false);
+    // const [exist, setExist] = React.useState(false);
 
     // accountHandle is a placeholder function. In the future it should receive authentication method as prop,
     // call the authentication method, check if the user was already signed in. (credentials in dataset ? close dialog : call Register)
@@ -21,18 +21,18 @@ export default function SignInDialog() {
     //     exist ? setExist(true) : Register()
     // };
 
-    const [userData, setUserData] =
-        React.useState({
-            userID: '',
-            userFirstName: '',
-            userLastName: '',
-            userEmail: '',
-            userPhone: '',
-            PizzaToppings: [],
-            favoriteFood: [],
-            skills: [],
-            superpowers: [],
-        },[]);
+    // const [userData, setUserData] =
+    //     React.useState({
+    //         userID: '',
+    //         userFirstName: '',
+    //         userLastName: '',
+    //         userEmail: '',
+    //         userPhone: '',
+    //         PizzaToppings: [],
+    //         favoriteFood: [],
+    //         skills: [],
+    //         superpowers: [],
+    //     },[]);
 
     //handleClickOpen is the function that sets the dialog state to True, opening the popup
     const handleClickOpen = () => {
