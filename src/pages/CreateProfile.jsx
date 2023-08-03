@@ -21,13 +21,14 @@ import {auth, db} from "../config/firebase";
 import SignInPage from "../Components/SignInPage"
 import Registration1Page from "../Components/Registration1Page"
 import Registration2Page from "../Components/Registration2Page"
+import NewProfileCreation from ".//SignUpPage"
 
 
 // An array that stores the labels for the steps of the checkout process
 const steps = ['Sign In', 'Basic Info' , 'Let`s get to know you better!'];
 
 // The main functional component that renders the entire "add event" page and forms
-export default function CreateProfile() {
+export default function CreateProfile(target="/") {
     //Initialize user data
     const [userData, setUserData] =
         React.useState({
@@ -77,7 +78,8 @@ export default function CreateProfile() {
                 return <SignInPage/>;
             case 1:
                 // return <Registration1 userData={userData} setUserData={setUserData}/>;
-                return <Registration1Page userData={userData} setUserData={setUserData}/>;
+                // return <Registration1Page userData={userData} setUserData={setUserData}/>;
+                return <NewProfileCreation target={"/AddEvent"}/>;
             case 2:
                 // return <Registration2 userData={userData} setUserData={setUserData}/>;
                 return <Registration2Page userData={userData} setUserData={setUserData}/>;

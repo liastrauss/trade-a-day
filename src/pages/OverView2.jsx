@@ -33,8 +33,34 @@ import ListItemButton from "@mui/material/ListItemButton";
 import {doc, getDoc} from "firebase/firestore";
 import { db } from "../config/firebase";
 import HostHobbies from "./hostHobbies";
+import DialogContentText from "@mui/material/DialogContentText";
+import SignInPage from "../Components/SignInPage";
 
-
+// export function LoggedPopup() {
+//     const [openLogin, setOpenLogin] = useState(false);
+//     const handleOpenLogin = () => {setOpenLogin(true);};
+//     const handleCloseLogin = () => {setOpenLogin(false);};
+//     const navigate = useNavigate();
+//
+//     return (
+//         <div>
+//             <Dialog open={openLogin} onClose={handleCloseLogin}>
+//                 <DialogTitle>Login Required!</DialogTitle>
+//                 <DialogContent>
+//                     <DialogContentText>
+//                         You must be logged in to do that action!
+//                         Please log in or continue browsing
+//                     </DialogContentText>
+//                 </DialogContent>
+//                 <DialogActions>
+//                     <Button onClick={()=> {navigate("/AddEvent");}} variant="contained" autoFocus>Log In</Button>
+//                     <Button onClick={SignInPage("/AddEvent")} variant="contained" autoFocus>Call Log In Function</Button>
+//                     <Button onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
+//                 </DialogActions>
+//             </Dialog>
+//         </div>
+//     );
+// }
 
 export function DialogWithCard() {
     const [open, setOpen] = useState(false);
@@ -52,6 +78,13 @@ export function DialogWithCard() {
 
     const [eventInfoData, setEventInfoData] = useState();
 
+    //Ohad's Popup
+    const [openLogin, setOpenLogin] = useState(false);
+    const handleOpenLogin = () => {setOpenLogin(true);};
+    const handleCloseLogin = () => {setOpenLogin(false);};
+    const navigate = useNavigate();
+
+
     useEffect(() => {
         async function fetchEventInfoData() {
             try {
@@ -68,7 +101,7 @@ export function DialogWithCard() {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleOpen}>
+            <Button variant="outlined" onClick={auth?.currentUser ? handleOpen : handleOpenLogin}>
                 <MailOutlineIcon/>   Contact {eventInfoData?.hostName}
             </Button>
             <Dialog open={open} onClose={handleClose}>
@@ -83,6 +116,22 @@ export function DialogWithCard() {
                     </Button>
                 </DialogActions>
             </Dialog>
+
+            {/*Ohad's Popup*/}
+            <Dialog open={openLogin} onClose={handleCloseLogin}>
+                <DialogTitle>Login Required!</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        You must be logged in to do that action!
+                        Please log in or continue browsing
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={()=> {navigate("/CreateProfile");}} variant="contained" autoFocus>Log In</Button>
+                    <Button onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
+                </DialogActions>
+            </Dialog>
+
         </div>
     );
 }

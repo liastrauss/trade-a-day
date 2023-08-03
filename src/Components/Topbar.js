@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Logo from "./logo";
 import Button from "@mui/material/Button";
-import {Avatar, Divider, useScrollTrigger} from "@mui/material";
+import {Avatar, Dialog, DialogActions, DialogContent, DialogTitle, Divider, useScrollTrigger} from "@mui/material";
 import * as React from "react";
 import {useNavigate} from "react-router-dom";
 import {useTheme} from "@mui/material/styles";
@@ -15,6 +15,7 @@ import logOut from "./SignInPage";
 
 
 import {cardData} from "../data/card-data";
+import DialogContentText from "@mui/material/DialogContentText";
 
 // for the elevation when scorlled
 function ElevationScroll(props) {
@@ -111,6 +112,9 @@ export default function Topbar(props) {
     const Search = props.Search;
     const Profile = props.Profile;
     let greeting = "Log in!"
+    const [openLogin, setOpenLogin] = useState(false);
+    const handleOpenLogin = () => {setOpenLogin(true);};
+    const handleCloseLogin = () => {setOpenLogin(false);};
 
     const [avatarSrc, setAvatarSrc] = useState("/broken-image.jpg");
     useEffect(() => {
@@ -148,14 +152,29 @@ export default function Topbar(props) {
                 }}>
 
                     {AddDay ?
-                        <Button
-                            variant="text"
-                            onClick={() => {
-                                navigate("/AddEvent");
-                            }}
-                        >
-                            Trade your day
-                        </Button>
+                        <div>
+                            <Button
+                                variant="text"
+                                onClick={auth?.currentUser ? () => navigate("/AddEvent") : handleOpenLogin}
+                            >
+                                Trade your day
+
+                            </Button>
+                            <Dialog open={openLogin} onClose={handleCloseLogin}>
+                                <DialogTitle>Login Required!</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText>
+                                        You must be logged in to do that action!
+                                        Please log in or continue browsing
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={()=> {navigate("/CreateProfile");}} variant="contained" autoFocus>Log In</Button>
+                                    <Button variant="contained" autoFocus>Call Log In Function</Button>
+                                    <Button onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
+                                </DialogActions>
+                            </Dialog>
+                        </div>
                         :
                         <Button
                             variant="text"

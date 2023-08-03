@@ -4,29 +4,31 @@ import {signInWithPopup, signOut} from "firebase/auth";
 import {auth, googleProvider, facebookProvider} from "../config/firebase";
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import {Grid, Typography} from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import {Typography} from "@mui/material";
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import {useNavigate} from "react-router-dom";
+import "/firebase/firestore";
+import firebase from "firebase/compat";
+
 
 export const logOut = async () => {try {await signOut(auth)} catch (err) {console.error(err)}}
-export default function SignInPage(SignInPageTarget="/") {
 
-    // const [userData, setUserData] =
-    //     React.useState({
-    //         userID: '',
-    //         userFirstName: '',
-    //         userLastName: '',
-    //         userEmail: '',
-    //         userPhone: '',
-    //         PizzaToppings: [],
-    //         favoriteFood: [],
-    //         skills: [],
-    //         superpowers: [],
-    //     },[]);
+export async function ExistCheck(target = "/") {
+    const querySnapshot = await firebase.firestore.instance.collection('users').where('userEmail', '==', auth?.currentUser?.email).get();
+    const docs = querySnapshot.docs;
+    const navigate = useNavigate();
 
-    const signInWithGoogle = async () => {try {await signInWithPopup(auth, googleProvider);} catch (err) {console.error(err);}}
-    const signInWithFacebook = async () => {try {await signInWithPopup(auth, facebookProvider)} catch (err) {console.error(err)}}
+    if (docs.length === 0) {
+        navigate("/CreateProfile");
+    } else {
+        navigate(target);
+    }
+}
+
+export default function SignInPage(target = "/") {
+    // const signInWithGoogle = async () => {try {await signInWithPopup(auth, googleProvider);} catch (err) {console.error(err);}}
+    const signInWithGoogle = async () => {try {await signInWithPopup(auth, googleProvider); await ExistCheck(target); } catch (err) {console.error(err);}}
+    const signInWithFacebook = async () => {try {await signInWithPopup(auth, facebookProvider); await ExistCheck(target); } catch (err) {console.error(err)}}
     const navigate = useNavigate();
 
     return (
