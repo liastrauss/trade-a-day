@@ -4,7 +4,7 @@ import React from "react";
 import Navbar from "./Navbar";
 
 // import heroImg from "../media/hero_illustration.png";
-// import heroImg from "../../media/site_snap_filter.png";
+import heroImg from "../../media/site_snap_filter.png";
 
 import CustomButton from "./CustomButton";
 import Topbar from "../Topbar";
@@ -59,12 +59,12 @@ const Hero = () => {
 
     return (
         <Box sx={{
-                // backgroundColor: "#eefdf4",
-                // minHeight: "80vh"
+            // photo
+                backgroundColor: "#eefdf4",
                 // backgroundImage: `url(${heroImg})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
+                // backgroundSize: "cover",
+                // backgroundRepeat: "no-repeat",
+                // backgroundPosition: "center",
                 minHeight: "80vh",
             }}>
 
