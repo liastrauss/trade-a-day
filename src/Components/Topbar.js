@@ -12,6 +12,8 @@ import Toolbar from '@mui/material/Toolbar';
 import {auth} from "../config/firebase";
 import {useEffect, useState} from "react";
 import logOut from "./SignInPage";
+import NewProfileCreation from "../pages/SignUpPage";
+import LoginPage from "../pages/LoginPage";
 
 
 import {cardData} from "../data/card-data";
@@ -169,8 +171,8 @@ export default function Topbar(props) {
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button onClick={()=> {navigate("/CreateProfile");}} variant="contained" autoFocus>Log In</Button>
-                                    <Button variant="contained" autoFocus>Call Log In Function</Button>
+                                    <Button onClick={()=> {navigate("/Login");}} variant="contained" autoFocus>Log In</Button>
+                                    <Button variant="contained" onclick={() => <LoginPage target={"/AddEvent"}/>} autoFocus> Call Log In Function </Button>
                                     <Button onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
                                 </DialogActions>
                             </Dialog>
@@ -198,9 +200,6 @@ export default function Topbar(props) {
                                 disabled
                             >
                                 {auth?.currentUser?.displayName}
-                            </Button>
-                            <Button onClick={logOut}>
-                                Log Out
                             </Button>
                         </Box>
                         :
