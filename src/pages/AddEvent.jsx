@@ -1,18 +1,13 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
 import Paper from '@mui/material/Paper';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
-import Logo from "../Components/logo"
 import { useNavigate } from "react-router-dom"
 
 // Importing three form components that will be rendered inside the  component
@@ -20,9 +15,9 @@ import EventForm from "../Components/EventForm";
 import ItemsForm from "../Components/ItemsForm";
 import DaySchedule from "../Components/DaySchedule";
 import Topbar from "../Components/Topbar";
-
+// import things for backend
 import { db, auth } from "../config/firebase";
-import {addDoc, collection} from 'firebase/firestore';
+import {addDoc, collection, updateDoc} from 'firebase/firestore';
 
 // An array that stores the labels for the steps of the checkout process
 const steps = ['A bit about yourself', 'Technicalities', 'What to bring'];
@@ -32,6 +27,15 @@ const steps = ['A bit about yourself', 'Technicalities', 'What to bring'];
 export default function AddEvent() {
 
     let navigate = useNavigate();
+
+    // for contact info
+    const [userContact, setUserContact] =
+        React.useState({
+            contactMethod: 'Email',
+            userEmail: auth?.currentUser?.email,
+            userPhone: '',
+        },[]);
+
 
     // initialize the data from the form parts
     const [formData, setFormData] =
@@ -59,6 +63,8 @@ export default function AddEvent() {
 
 // update backend:
     const dbRef = collection(db,"DataBase1");
+    const userDataRef = collection(db,"users");
+
     const onSubmit = async () => {
         try {
         await addDoc(dbRef, {
@@ -78,15 +84,27 @@ export default function AddEvent() {
             contact: formData.contact,
 
         });
+
+            await updateDoc(userDataRef, {
+                userEmail: userContact.userEmail,
+                userPhone: userContact.userPhone,
+
+
+            });
+
             // advance to the final page:
             setActiveStep(activeStep + 1);
             console.log("added the doc successfully!")
+
 
         } catch(err) {
             console.error(err)
         }
     }
+
+
     console.log("formData is:",formData)
+    console.log("contact info:",userContact)
 
 
 
@@ -111,7 +129,7 @@ export default function AddEvent() {
             case 0:
                 return <EventForm formData={formData} setFormData={setFormData} />;
             case 1:
-                return < DaySchedule formData={formData} setFormData={setFormData}/>;
+                return < DaySchedule formData={formData} setFormData={setFormData} userContact={userContact} setUserContact={setUserContact}/>;
             case 2:
                 return <ItemsForm formData={formData} setFormData={setFormData}/>;
             default:
