@@ -134,11 +134,16 @@ function HostInfo() {
 
 
                     <Grid item xs={12}>
-                        <Typography variant="subtitle2" color="primary">
+                        <Typography variant="subtitle1" color="primary.light"
+                                    sx ={{
+                                        textTransform: 'uppercase',
+                                        letterSpacing: 1,
+                                        // color: '#8D9CAD',
+                                    }}
+                        >
                             Gallery
                         </Typography>
                     </Grid>
-
                     <StandardImageList/>
 
 
@@ -197,40 +202,6 @@ function HostInfo() {
                         </StyledBasicProfileInfo>
                     </StyledBasicProfile>
 
-                    {/*<Grid container spacing={3} justifyContent="space-evenly">*/}
-                    {/*    <Grid item>*/}
-                    {/*    {eventInfoData?.dates && (*/}
-                    {/*        <Box sx={{*/}
-                    {/*            flexDirection: 'row',*/}
-                    {/*            display: 'flex',*/}
-                    {/*            flexWrap: 'wrap',*/}
-                    {/*        }}>*/}
-                    {/*            <LocalizationProvider dateAdapter={AdapterDayjs}>*/}
-                    {/*                {eventInfoData.dates.map((date, index) => {*/}
-                    {/*                    const formattedDate = new Date(date?.seconds * 1000);*/}
-                    {/*                    const formattedDateString = `${formattedDate.toLocaleString('default', {*/}
-                    {/*                        month: 'long',*/}
-                    {/*                    })} ${formattedDate.getFullYear()}`;*/}
-
-                    {/*                    console.log("date:",date,"str:",formattedDateString);*/}
-                    {/*                    return (*/}
-                    {/*                        <div key={index} >*/}
-                    {/*                            {date && date.seconds && (*/}
-                    {/*                                <StyledBasicProfile>*/}
-                    {/*                                    <StyledBasicProfileAvatar><CalendarMonthIcon /></StyledBasicProfileAvatar>*/}
-                    {/*                                    <StyledBasicProfileInfo>*/}
-                    {/*                                        <StyledBasicProfileOverline>available date</StyledBasicProfileOverline>*/}
-                    {/*                                        <StyledBasicProfileName>{formattedDateString}</StyledBasicProfileName>*/}
-                    {/*                                    </StyledBasicProfileInfo>*/}
-                    {/*                                </StyledBasicProfile>*/}
-                    {/*                            )}*/}
-                    {/*                        </div>*/}
-                    {/*                    );*/}
-                    {/*                })}*/}
-                    {/*            </LocalizationProvider>*/}
-                    {/*        </Box>*/}
-                    {/*    )}*/}
-                    {/*</Grid>*/}
 
                         {eventInfoData?.dates && (
                             <Box sx={{
@@ -343,15 +314,16 @@ function HostInfo() {
                     {/*)}*/}
 
 
+                    {/*what to bring*/}
                     <Grid item xs={12}>
-                        <Typography variant="subtitle1" color="primary"
+                        <Typography variant="subtitle1" color="primary.light"
                         sx ={{
                             textTransform: 'uppercase',
                             letterSpacing: 1,
                             // color: '#8D9CAD',
                         }}
                         >
-                                 What to bring:
+                                 What to bring
                         </Typography>
 
                         <Typography variant="subtitle1">
@@ -363,6 +335,7 @@ function HostInfo() {
                                         <Chip
                                             key={index}
                                             variant="outlined"
+                                            color="primary"
                                             label={item.toUpperCase()}
                                             icon={
                                                 item === 'water' ? (

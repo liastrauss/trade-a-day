@@ -76,8 +76,23 @@ export function DialogWithCard() {
 
     return (
         <div>
-            <Button variant="outlined" onClick={auth?.currentUser ? handleOpen : handleOpenLogin}>
-                <MailOutlineIcon/>   Contact {eventInfoData?.hostName}
+            <Button
+                sx={{
+                    borderRadius: "10px",
+                    border: "2px solid transparent",
+                    // nice hover effect from landing, but maybe not needed
+                    "&:hover": {
+                        backgroundColor: (theme) => theme.palette.primary.contrastText,
+                        color: (theme) => theme.palette.primary.main,
+                        borderColor: (theme) => theme.palette.primary.main,
+                    },
+
+                }}
+                disableElevation
+                variant="contained"
+                onClick={auth?.currentUser ? handleOpen : handleOpenLogin}
+                    startIcon={ <MailOutlineIcon/>} >
+                  Contact {eventInfoData?.hostName}
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle> Get to know {eventInfoData?.hostName}!</DialogTitle>
@@ -121,6 +136,7 @@ export default function OverView2() {
     return (
         <div>
             {/* The top app bar of the checkout page*/}
+            {/*TODO: add profile*/}
             <Topbar AddDay/>
             {/*The entire page */}
             <Box
@@ -136,10 +152,11 @@ export default function OverView2() {
                     flexGrow: 1,
                     height: '100vh',
                     overflow: 'auto',
+                    display: 'flex', // Add this to use Flexbox layout
+                    flexDirection: 'column', // Stack the components vertically
+
                 }}
             >
-
-
 
             <Container component="main" maxWidth="md"
                        sx={{ mb: 4,}}
@@ -151,18 +168,21 @@ export default function OverView2() {
                     justifyContent="space-around"
                     alignItems="center"
                     spacing = {5}
-                    sx={{
+
+                sx={{
                         // backgroundColor: '#F1F1', // Replace with your desired color
                     }}
 
                 >
-                    <Paper sx={{ ml:4, mr:4, mt:10, p: 2, display: 'flex', flexDirection: 'column' }}>
+                    <Paper sx={{ ml:4, mr:4, mt:10, p: 2, display: 'flex', flexDirection: 'column', position: 'relative' }}>
                     {/*// TODO - scrollbar is weird because of the boxes and the papers. if topbar will be sticky this can be solved*/}
                     {/*The info itself */}
                     <Grid item xs={12}>
                         <HostInfo/>
                     </Grid>
-                    <Grid item xs={12}>
+                        <Box sx={{ flexGrow: 1 }} />
+                        <Grid item xs={12}
+                          sx={{ alignSelf: 'flex-end' }}>
                         <DialogWithCard/>
                     </Grid>
                     </Paper>
