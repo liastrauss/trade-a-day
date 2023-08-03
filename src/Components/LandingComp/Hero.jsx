@@ -119,7 +119,7 @@ const Hero = () => {
                                 disableElevation
                                 onClick={()=>
                                 {
-                                    navigate("/CreateProfile");
+                                    navigate("/Login");
                                     console.info('You clicked mine.');
                                 }}
 
