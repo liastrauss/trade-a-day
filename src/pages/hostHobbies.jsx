@@ -14,6 +14,7 @@ import Link from '@mui/material/Link';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import IconButton from "@mui/material/IconButton";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
 
 export default function ViewHobbies({hostID}) {
     const theme = useTheme();
@@ -25,8 +26,10 @@ export default function ViewHobbies({hostID}) {
     const [authData, setauthData] = useState(null);
 
     const [food, setfood] = useState(null);
-    const [hobbies, sethobbies] = useState(null);
+    const [pizzaToppings, setpizzaToppings] = useState(null);
     const [skills, setskills] = useState(null);
+
+
 
     useEffect(() => {
         async function fetchUserData() {
@@ -80,8 +83,8 @@ export default function ViewHobbies({hostID}) {
                     if (authData?.favoriteFood === userData?.favoriteFood) {
                         setfood(authData.favoriteFood);
                     }
-                    if (authData?.hobbies === userData?.hobbies) {
-                        sethobbies(authData.hobbies);
+                    if (authData?.pizzaToppings === userData?.pizzaToppings) {
+                        setpizzaToppings(authData.pizzaToppings);
                     }
                     if (authData?.skills === userData?.skills) {
                         setskills(authData.skills);
@@ -117,12 +120,12 @@ export default function ViewHobbies({hostID}) {
                     </Stack>
                 )}
 
-                {hobbies === null && (
+                {pizzaToppings === null && (
                     <Stack direction="row" spacing={1}>
-                        <Typography>hobbies:</Typography>
+                        <Typography>Pizza Topping:</Typography>
                         <Chip
-                            icon={<SportsEsportsRoundedIcon/>}
-                            label={userData?.hobbies}
+                            icon={<LocalPizzaIcon/>}
+                            label={userData?.pizzaToppings}
                             variant="outlined"
                             size="small"
                             color="primary"
@@ -145,14 +148,14 @@ export default function ViewHobbies({hostID}) {
             </Stack>
 
 
-            {!((food !== null && skills !== null && hobbies !== null) ||
-                (food === null && skills === null && hobbies === null))  &&  (
+            {!((food !== null && skills !== null && pizzaToppings !== null) ||
+                (food === null && skills === null && pizzaToppings === null))  &&  (
                 <Divider my={2}/>
             )}
 
             <Stack direction="column" spacing={0.5} my={1}/>
 
-            {(food !== null || skills !== null || hobbies !== null) && (
+            {(food !== null || skills !== null || pizzaToppings !== null) && (
                 <Typography style={{ fontWeight: 'bold' }}>
                     You both have things in common!
                 </Typography>
@@ -161,7 +164,7 @@ export default function ViewHobbies({hostID}) {
             <Stack direction="column" spacing={1} my={2}>
                 {food !== null && (
                     <Stack direction="row" spacing={1}>
-                        <Typography>You have the same Favorite Food:</Typography>
+                        <Typography>You have the same favorite food:</Typography>
                         <Chip
                             icon={<FastfoodRoundedIcon/>}
                             label={food}
@@ -171,12 +174,12 @@ export default function ViewHobbies({hostID}) {
                         />
                     </Stack>
                 )}
-                {hobbies !== null && (
+                {pizzaToppings !== null && (
                     <Stack direction="row" spacing={1}>
-                        <Typography>You have the same hobby:</Typography>
+                        <Typography>You have the same favorite pizza Topping:</Typography>
                         <Chip
-                            icon={<SportsEsportsRoundedIcon/>}
-                            label={hobbies}
+                            icon={<LocalPizzaIcon/>}
+                            label={pizzaToppings}
                             variant="outlined"
                             size="small"
                             color="primary"
