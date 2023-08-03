@@ -40,6 +40,8 @@ import OverView2 from "./pages/OverView2";
 import Logo from "./Components/logo";
 import Chat from "./zevel/Chat";
 import Landing from "./pages/Landing";
+import NewProfileCreation from "./pages/SignUpPage";
+import LoginPage from "./pages/LoginPage";
 
 // configuring our theme
 const theme = createTheme({
@@ -90,6 +92,8 @@ export default function App() {
                                 <Route path="OverView2/:index" element={<OverView2/>} />
                                 <Route path="CreateProfile" element={<CreateProfile/>} />
                                 <Route path="Landing" element={<Landing/>} />
+                                <Route path="SignUp" element={<NewProfileCreation/>} />
+                                <Route path="LogIn" element={<LoginPage/>} />
                                 {/*<Route path="Home" element={<Home />} />*/}
                                 <Route path="*" element={<NoPage />} />
                             </Route>

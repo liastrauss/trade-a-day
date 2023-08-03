@@ -22,6 +22,8 @@ import CardContent from "@mui/material/CardContent";
 import {useEffect, useState} from "react";
 import Topbar from "../Components/Topbar";
 import { auth, getAuth } from "../config/firebase"
+import NewProfileCreation from "../pages/SignUpPage";
+import LoginPage from "./LoginPage";
 
 // An array that stores the labels for the steps of the checkout process
 // for dialog:
@@ -34,33 +36,6 @@ import {doc, getDoc} from "firebase/firestore";
 import { db } from "../config/firebase";
 import HostHobbies from "./hostHobbies";
 import DialogContentText from "@mui/material/DialogContentText";
-import SignInPage from "../Components/SignInPage";
-
-// export function LoggedPopup() {
-//     const [openLogin, setOpenLogin] = useState(false);
-//     const handleOpenLogin = () => {setOpenLogin(true);};
-//     const handleCloseLogin = () => {setOpenLogin(false);};
-//     const navigate = useNavigate();
-//
-//     return (
-//         <div>
-//             <Dialog open={openLogin} onClose={handleCloseLogin}>
-//                 <DialogTitle>Login Required!</DialogTitle>
-//                 <DialogContent>
-//                     <DialogContentText>
-//                         You must be logged in to do that action!
-//                         Please log in or continue browsing
-//                     </DialogContentText>
-//                 </DialogContent>
-//                 <DialogActions>
-//                     <Button onClick={()=> {navigate("/AddEvent");}} variant="contained" autoFocus>Log In</Button>
-//                     <Button onClick={SignInPage("/AddEvent")} variant="contained" autoFocus>Call Log In Function</Button>
-//                     <Button onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
-//                 </DialogActions>
-//             </Dialog>
-//         </div>
-//     );
-// }
 
 export function DialogWithCard() {
     const [open, setOpen] = useState(false);
@@ -127,7 +102,7 @@ export function DialogWithCard() {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={()=> {navigate("/CreateProfile");}} variant="contained" autoFocus>Log In</Button>
+                    <Button onClick={()=> {navigate("/Login");}} variant="contained" autoFocus>Log In</Button>
                     <Button onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
                 </DialogActions>
             </Dialog>

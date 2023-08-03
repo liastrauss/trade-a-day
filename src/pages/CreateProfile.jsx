@@ -79,7 +79,7 @@ export default function CreateProfile(target="/") {
             case 1:
                 // return <Registration1 userData={userData} setUserData={setUserData}/>;
                 // return <Registration1Page userData={userData} setUserData={setUserData}/>;
-                return <NewProfileCreation target={"/AddEvent"}/>;
+                return <NewProfileCreation target={"/"}/>;
             case 2:
                 // return <Registration2 userData={userData} setUserData={setUserData}/>;
                 return <Registration2Page userData={userData} setUserData={setUserData}/>;

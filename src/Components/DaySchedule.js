@@ -96,7 +96,7 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
         //
         // console.log(user?.uid)
 
-        console.log(auth?.currentUser?.uid)
+        console.log("currend uid",auth?.currentUser?.uid);
 
         // // Map over each selected file and set the imageUpload state
         files.map((pic) => {
@@ -270,9 +270,6 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                             display: 'flex',
                             alignItems: 'center',
                             typography: 'subtitle1',
-                            // color: 'text.secondary'
-                            // borderRadius: 2,
-                            // p: 1,
 
 
                         }}
@@ -382,12 +379,13 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                 <Grid item xs={4}>
                     <Autocomplete
                         required
+                        openOnFocus
                         disableClearable
                         // disablePortal
                         id="contact method"
                         options = {contactOptions}
                         // sx={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Choose preffered contact method" />}
+                        renderInput={(params) => <TextField {...params} label="Contact Method" />}
                         onChange={(e, newValue) => {
                             setUserContact({ ...formData, contactMethod: newValue, });
                         }}
@@ -396,11 +394,11 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                     />
                 </Grid>
                 <Grid item xs={7}>
-                {userContact.contactMethod === "Phone" ? (
+                    {userContact.contactMethod === "Phone" && (
                         <TextField
                             fullWidth
                             label="Phone Number"
-                            helperText="This is a helper text for Textbox 1"
+                            helperText="We'll only show this number to people who want to go to your day"
                             onChange={(e) => {
                                 setUserContact({
                                     ...userContact,
@@ -413,13 +411,13 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                                     <InputAdornment position="start">+972</InputAdornment>
                                 ),
                             }}
+                        />
+                    )}
 
-
-                                />
-                    ) : userContact.contactMethod === "Email" ? (
+                    {userContact.contactMethod === "Email" && (
                         <TextField
+                            fullWidth
                             label="Email"
-                            // defaultValue={auth?.currentUser?.email}
                             onChange={(e) => {
                                 setUserContact({
                                     ...userContact,
@@ -428,7 +426,7 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                             }}
                             value={userContact.userEmail}
                         />
-                    ) : null}
+                    )}
                 </Grid>
 
 
