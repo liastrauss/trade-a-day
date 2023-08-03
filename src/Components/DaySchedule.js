@@ -68,6 +68,20 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
     }
 
     const [imageUpload, setImageUpload] = useState(null);
+
+    const [buttonText, setButtonText] = useState('choose Images');
+
+    const [selectedFiles, setSelectedFiles] = useState([]);
+
+    const handleFileInputChange = (event) => {
+        setImageUpload(event.target.files);
+        const files = event.target.files;
+        const selectedFileNames = Array.from(files).map((file) => file.name);
+        setSelectedFiles(selectedFileNames);
+    };
+
+
+
     const uploadImage = () => {
         if (imageUpload == null) return;
 
@@ -316,76 +330,54 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                     onChange={handleChange}
                     aria-label="setting choice -outdoors/indoors"
                 >
-                    <ToggleButton value="indoors">indoors</ToggleButton>
+                        <ToggleButton value="indoors">indoors</ToggleButton>
                     <ToggleButton value="outdoors">outdoors</ToggleButton>
                 </ToggleButtonGroup>
             </Grid>
 
 
             <Grid item sm={12}>
-                <Typography gutterBottom>Give us a glimpse of what your day will look like!</Typography>
+
                 < br/>
+                {/*<Typography variant="subtitle2" color="primary">*/}
+                <Typography variant="subtitle1" color="primary">
+                    Give us a glimpse of what your day will look like!
+                </Typography>
                 <Button variant="outlined" component="label">
                     <PhotoCamera sx={{mr: 1}}/>
-                    choose files
-                    <input hidden accept="image/*" multiple type="file" onChange={(event) => {
-                        setImageUpload(event.target.files);
-                    }}/>
+                    Choose Images
+                    {/*<input hidden accept="image/*" multiple type="file" onChange={(event) => {*/}
+                    {/*    setImageUpload(event.target.files);*/}
+                    {/*    console.log(event.target.files)*/}
+                    {/*}}/>*/}
+
+                    <input hidden accept="image/*" multiple type="file" onChange={handleFileInputChange} />
                 </Button>
-                <Button variant="contained" component="label" onClick={uploadImage}>Upload
-                {/*        <Slider*/}
-                {/*            sx={{ml: 2}}*/}
-                {/*            fullWidth*/}
-                {/*            getAriaLabel={() => 'Hour range'}*/}
-                {/*            valueLabelDisplay="auto"*/}
-                {/*            step={0.5}*/}
-                {/*            marks ={marks}*/}
-                {/*            min={6}*/}
-                {/*            max={20}*/}
-                {/*            value={hourRange}*/}
-                {/*            onChange={(event, newValue) => {*/}
-                {/*                sethourRange(newValue);*/}
-                {/*            }}*/}
-                {/*            getAriaValueText={valuetext}*/}
-                {/*            range*/}
-                {/*        />*/}
-                {/*    </Grid>*/}
-                {/*    <Grid item sm={5}>*/}
-                {/*        <TextField*/}
-                {/*            fullWidth*/}
-                {/*            required*/}
-                {/*            id="NumOfGuests"*/}
-                {/*            label="Number of Guests"*/}
-                {/*            type="number"*/}
-                {/*            InputLabelProps={{*/}
-                {/*                shrink: true,*/}
-                {/*            }}*/}
-                {/*            variant="standard"*/}
-                {/*        />*/}
-                {/*    </Grid>*/}
-            </Button>
 
 
-                {/*<Grid item sm={12}>*/}
-                {/*    <Typography gutterBottom>Give us a glimpse of what your day will look like!</Typography>*/}
-                {/*    < br/>*/}
-                {/*    <Button variant="contained" component="label" onClick={{uploadImage}}>*/}
-                {/*        <PhotoCamera sx={{mr: 1}}/>*/}
-                {/*        Upload*/}
-                {/*        <input hidden accept="image/*" multiple type="file" onChange={(event) => {*/}
-                {/*            setImageUpload(event.target.files)*/}
-                {/*        }}/>*/}
-                {/*    </Button>*/}
-                {/*    /!*<IconButton color="primary" aria-label="upload picture" component="label">*!/*/}
-                {/*    /!*    <input hidden accept="image/*" type="file" />*!/*/}
-                {/*    /!*    <PhotoCamera/>*!/*/}
-                {/*    /!*</IconButton>*!/*/}
-                {/*</Grid>*/}
+                {selectedFiles.length > 0 && (
+                    <Box>
+                        {/* Display the selected files */}
+                    <div style={{padding: '10px', borderRadius: '4px' }}>
+                        <Typography gutterBottom>Selected Files:</Typography>
+                        {selectedFiles.map((fileName, index) => (
+                            <div key={index}>{fileName}</div>
+                        ))}
+                    </div>
+                    <Button variant="contained" component="label" onClick={uploadImage}>confirm pictures</Button>
+
+                    </Box>
+            )}
             </Grid>
 
             <Grid container spacing={2}>
+
                 <Grid item xs={12}>
-                    <Typography gutterBottom>How would you like us to contact you?</Typography>
+                    < br/>
+                    <Typography variant="subtitle1" color="primary">
+                        How would you like us to contact you?
+                    </Typography>
+                    {/*<Typography gutterBottom>How would you like us to contact you?</Typography>*/}
                 </Grid>
                 <Grid item xs={4}>
                     <Autocomplete

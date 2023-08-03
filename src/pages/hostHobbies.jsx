@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import React, {useEffect, useState} from 'react';
+import {collection, query, where, getDocs} from 'firebase/firestore';
 import {auth, db} from '../config/firebase';
 import {Divider, ToggleButton} from "@mui/material";
-import { useTheme } from '@mui/material/styles';
+import {useTheme} from '@mui/material/styles';
 import Typography from "@mui/material/Typography";
 import Box from '@mui/material/Box';
 import Chip from "@mui/material/Chip";
@@ -15,11 +15,16 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import IconButton from "@mui/material/IconButton";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 
-export default function ViewHobbies({ hostID }) {
+export default function ViewHobbies({hostID}) {
     const theme = useTheme();
+
+    // loading process
+    const [loading, setLoading] = useState(true);
+
     const [userData, setUserData] = useState(null);
     const [authData, setauthData] = useState(null);
-    const [favoriteFood, setFavoriteFood] = useState(null);
+
+    const [food, setfood] = useState(null);
     const [hobbies, sethobbies] = useState(null);
     const [skills, setskills] = useState(null);
 
@@ -40,9 +45,9 @@ export default function ViewHobbies({ hostID }) {
                 console.log('Query snapshot size auth:', querySnapshot_auth.size);
 
                 querySnapshot.forEach((docSnap) => {
-                    setUserData(docSnap.data());
+                        setUserData(docSnap.data());
 
-                }
+                    }
                 );
 
                 querySnapshot_auth.forEach((docSnap) => {
@@ -50,35 +55,60 @@ export default function ViewHobbies({ hostID }) {
 
                 });
 
+            // Once data is fetched and processed, set loading to false
+            setLoading(false);
+
+
             } catch (error) {
                 console.error('Error retrieving user data:', error);
+                setLoading(false); // Set loading to false even if there's an error
+
             }
         }
 
         fetchUserData();
+
     }, [hostID]);
+
+    useEffect(() => {
+        // This useEffect will run whenever authData or userData changes
+        function checkProp() {
+            try {
+                // Check if authData and userData have been fetched
+
+                if (authData && userData) {
+                    if (authData?.favoriteFood === userData?.favoriteFood) {
+                        setfood(authData.favoriteFood);
+                    }
+                    if (authData?.hobbies === userData?.hobbies) {
+                        sethobbies(authData.hobbies);
+                    }
+                    if (authData?.skills === userData?.skills) {
+                        setskills(authData.skills);
+                    }
+                }
+            } catch (error) {
+                console.error("Error checking properties:", error);
+            }
+        }
+
+        checkProp();
+    }, [authData, userData]);
+
+    // Conditional rendering based on loading state
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
 
     return (
         <Box>
-
-            <Stack direction="column" spacing={1} my={2}>
-                {authData?.favoriteFood === userData?.favoriteFood && (
-                    <Stack direction="row" spacing={1}>
-                        <Typography>You have same Favorite Food:</Typography>
-                        <Chip
-                            icon={<FastfoodRoundedIcon />}
-                            label={userData?.favoriteFood}
-                            variant="outlined"
-                            size="small"
-                            color="primary"
-                        />
-                    </Stack>
-                )}
-                {authData?.favoriteFood !== userData?.favoriteFood && (
+            <Stack direction="column">
+                {food === null && (
                     <Stack direction="row" spacing={1}>
                         <Typography>Favorite Food:</Typography>
                         <Chip
-                            icon={<FastfoodRoundedIcon />}
+                            icon={<FastfoodRoundedIcon/>}
                             label={userData?.favoriteFood}
                             variant="outlined"
                             size="small"
@@ -87,23 +117,11 @@ export default function ViewHobbies({ hostID }) {
                     </Stack>
                 )}
 
-                {authData?.hobbies === userData?.hobbies  && (
-                    <Stack direction="row" spacing={1}>
-                        <Typography>You have same hobbies:</Typography>
-                        <Chip
-                            icon={<SportsEsportsRoundedIcon />}
-                            label={userData?.hobbies}
-                            variant="outlined"
-                            size="small"
-                            color="primary"
-                        />
-                    </Stack>
-                )}
-                {authData?.hobbies !== userData?.hobbies  && (
+                {hobbies === null && (
                     <Stack direction="row" spacing={1}>
                         <Typography>hobbies:</Typography>
                         <Chip
-                            icon={<SportsEsportsRoundedIcon />}
+                            icon={<SportsEsportsRoundedIcon/>}
                             label={userData?.hobbies}
                             variant="outlined"
                             size="small"
@@ -112,23 +130,11 @@ export default function ViewHobbies({ hostID }) {
                     </Stack>
                 )}
 
-                {authData?.skills === userData?.skills && (
-                    <Stack direction="row" spacing={1}>
-                        <Typography>You have same skills:</Typography>
-                        <Chip
-                            icon={<SchoolRoundedIcon />}
-                            label={userData?.skills}
-                            variant="outlined"
-                            size="small"
-                            color="primary"
-                        />
-                    </Stack>
-                )}
-                {authData?.skills !== userData?.skills && (
+                {skills === null && (
                     <Stack direction="row" spacing={1}>
                         <Typography>Skills:</Typography>
                         <Chip
-                            icon={<SchoolRoundedIcon />}
+                            icon={<SchoolRoundedIcon/>}
                             label={userData?.skills}
                             variant="outlined"
                             size="small"
@@ -137,6 +143,62 @@ export default function ViewHobbies({ hostID }) {
                     </Stack>
                 )}
             </Stack>
+
+
+            {!((food !== null && skills !== null && hobbies !== null) ||
+                (food === null && skills === null && hobbies === null))  &&  (
+                <Divider my={2}/>
+            )}
+
+            <Stack direction="column" spacing={0.5} my={1}/>
+
+            {(food !== null || skills !== null || hobbies !== null) && (
+                <Typography style={{ fontWeight: 'bold' }}>
+                    You both have things in common!
+                </Typography>
+            )}
+
+            <Stack direction="column" spacing={1} my={2}>
+                {food !== null && (
+                    <Stack direction="row" spacing={1}>
+                        <Typography>You have the same Favorite Food:</Typography>
+                        <Chip
+                            icon={<FastfoodRoundedIcon/>}
+                            label={food}
+                            variant="outlined"
+                            size="small"
+                            color="primary"
+                        />
+                    </Stack>
+                )}
+                {hobbies !== null && (
+                    <Stack direction="row" spacing={1}>
+                        <Typography>You have the same hobby:</Typography>
+                        <Chip
+                            icon={<SportsEsportsRoundedIcon/>}
+                            label={hobbies}
+                            variant="outlined"
+                            size="small"
+                            color="primary"
+                        />
+                    </Stack>
+                )}
+                {skills !== null && (
+                    <Stack direction="row" spacing={1}>
+                        <Typography>You have the same skill:</Typography>
+                        <Chip
+                            icon={<SchoolRoundedIcon/>}
+                            label={skills}
+                            variant="outlined"
+                            size="small"
+                            color="primary"
+                        />
+                    </Stack>
+                )}
+
+
+            </Stack>
+
 
             <Divider my={2}/>
 
