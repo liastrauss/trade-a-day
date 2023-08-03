@@ -43,7 +43,7 @@ function HostInfo() {
 
     const StyledBasicProfile = styled(Box)({
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
     });
     // const StyledBasicProfileInfo = styled(Box)({
     //     marginRight: 12,
@@ -156,41 +156,6 @@ function HostInfo() {
 
                     {/*dates*/}
 
-                    {eventInfoData?.dates && (
-                        <Box sx={{
-                            flexDirection: 'row',
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                        }}>
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                {eventInfoData.dates.map((date, index) => {
-                                    // const formattedDate = dayjs(date?.seconds * 1000).toDate().toISOString();
-                                    // const formattedDateString = new Date(formattedDate).toLocaleDateString();
-                                    // const formattedDateString = new Date(date?.seconds * 1000).toLocaleDateString(); // works, but is full date format
-                                    const formattedDate = new Date(date?.seconds * 1000);
-                                    const formattedDateString = `${formattedDate.toLocaleString('default', {
-                                        month: 'long',
-                                    })} ${formattedDate.getFullYear()}`;
-
-                                    console.log("date:",date,"str:",formattedDateString);
-                                    return (
-                                        <div key={index} >
-                                            {date && date.seconds && (
-                                                <StyledBasicProfile>
-                                                    <StyledBasicProfileAvatar><CalendarMonthIcon /></StyledBasicProfileAvatar>
-                                                    <StyledBasicProfileInfo>
-                                                        <StyledBasicProfileOverline>available date</StyledBasicProfileOverline>
-                                                        <StyledBasicProfileName>{formattedDateString}</StyledBasicProfileName>
-                                                    </StyledBasicProfileInfo>
-                                                </StyledBasicProfile>
-                                            )}
-                                        </div>
-                                    );
-                                })}
-                            </LocalizationProvider>
-                        </Box>
-                    )}
-
                     {/*accessible*/}
                     {eventInfoData?.accessible && (
                         <StyledBasicProfile>
@@ -232,6 +197,74 @@ function HostInfo() {
                         </StyledBasicProfileInfo>
                     </StyledBasicProfile>
 
+                    {/*<Grid container spacing={3} justifyContent="space-evenly">*/}
+                    {/*    <Grid item>*/}
+                    {/*    {eventInfoData?.dates && (*/}
+                    {/*        <Box sx={{*/}
+                    {/*            flexDirection: 'row',*/}
+                    {/*            display: 'flex',*/}
+                    {/*            flexWrap: 'wrap',*/}
+                    {/*        }}>*/}
+                    {/*            <LocalizationProvider dateAdapter={AdapterDayjs}>*/}
+                    {/*                {eventInfoData.dates.map((date, index) => {*/}
+                    {/*                    const formattedDate = new Date(date?.seconds * 1000);*/}
+                    {/*                    const formattedDateString = `${formattedDate.toLocaleString('default', {*/}
+                    {/*                        month: 'long',*/}
+                    {/*                    })} ${formattedDate.getFullYear()}`;*/}
+
+                    {/*                    console.log("date:",date,"str:",formattedDateString);*/}
+                    {/*                    return (*/}
+                    {/*                        <div key={index} >*/}
+                    {/*                            {date && date.seconds && (*/}
+                    {/*                                <StyledBasicProfile>*/}
+                    {/*                                    <StyledBasicProfileAvatar><CalendarMonthIcon /></StyledBasicProfileAvatar>*/}
+                    {/*                                    <StyledBasicProfileInfo>*/}
+                    {/*                                        <StyledBasicProfileOverline>available date</StyledBasicProfileOverline>*/}
+                    {/*                                        <StyledBasicProfileName>{formattedDateString}</StyledBasicProfileName>*/}
+                    {/*                                    </StyledBasicProfileInfo>*/}
+                    {/*                                </StyledBasicProfile>*/}
+                    {/*                            )}*/}
+                    {/*                        </div>*/}
+                    {/*                    );*/}
+                    {/*                })}*/}
+                    {/*            </LocalizationProvider>*/}
+                    {/*        </Box>*/}
+                    {/*    )}*/}
+                    {/*</Grid>*/}
+
+                        {eventInfoData?.dates && (
+                            <Box sx={{
+                                flexDirection: 'row',
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                            }}>
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <StyledBasicProfile>
+                                        <StyledBasicProfileAvatar><CalendarMonthIcon /></StyledBasicProfileAvatar>
+                                        <StyledBasicProfileInfo>
+                                            <StyledBasicProfileOverline>available dates</StyledBasicProfileOverline>
+
+                                            {eventInfoData.dates.map((date, index) => {
+                                        const formattedDate = new Date(date?.seconds * 1000);
+                                        const formattedDateString = `${formattedDate.toLocaleString('default', {
+                                            month: 'long',
+                                        })} ${formattedDate.getFullYear()}`;
+                                        console.log("date:",date,"str:",formattedDateString);
+                                        return (
+                                            <div key={index} >
+                                                {date && date.seconds && (
+                                                            <StyledBasicProfileName>{formattedDateString}</StyledBasicProfileName>
+                                                )}
+                                            </div>
+                                        );
+                                    })}
+                                        </StyledBasicProfileInfo>
+                                    </StyledBasicProfile>
+
+                                </LocalizationProvider>
+                            </Box>
+                        )}
+
 
 
 
@@ -259,69 +292,58 @@ function HostInfo() {
 
 
 
+                    {/*{isDatesArrayValid &&  eventInfoData?.dates?.length > 0 && (*/}
+                    {/*    <Grid item xs={6}>*/}
+                    {/*    <Typography variant="subtitle2" color="primary">*/}
+                    {/*        Dates available:*/}
+                    {/*    </Typography>*/}
+                    {/*    <Typography variant="subtitle1">*/}
+                    {/*        {eventInfoData?.dates && (*/}
+                    {/*            <Box sx={{*/}
+                    {/*                flexDirection: 'row',*/}
+                    {/*                display: 'flex',*/}
+                    {/*                flexWrap: 'wrap',*/}
+                    {/*            }}>*/}
+                    {/*                <LocalizationProvider dateAdapter={AdapterDayjs}>*/}
+                    {/*                    {eventInfoData.dates.map((date, index) => {*/}
+                    {/*                        // const formattedDate = dayjs(date?.seconds * 1000).toDate().toISOString();*/}
+                    {/*                        // const formattedDateString = new Date(formattedDate).toLocaleDateString();*/}
+                    {/*                        // const formattedDateString = new Date(date?.seconds * 1000).toLocaleDateString(); // works, but is full date format*/}
+                    {/*                        const formattedDate = new Date(date?.seconds * 1000);*/}
+                    {/*                        const formattedDateString = `${formattedDate.toLocaleString('default', {*/}
+                    {/*                            month: 'long',*/}
+                    {/*                        })} ${formattedDate.getFullYear()}`;*/}
 
-                    {/*old */}
-                    <Grid item xs={6}>
-                        <Typography variant="subtitle2" color="primary">
-                            Location
-                        </Typography>
-                        <Chip icon={<LocationOnRoundedIcon />} label={eventInfoData?.location}  />
-                    </Grid>
+                    {/*                        console.log("date:",date,"str:",formattedDateString);*/}
+                    {/*                        return (*/}
+                    {/*                            <div key={index} >*/}
+                    {/*                                {date && date.seconds && (*/}
+                    {/*                                    <>*/}
+                    {/*                                        <Chip icon={<CalendarMonthIcon />} label={formattedDateString}*/}
+                    {/*                                              // color="info"*/}
+                    {/*                                              sx={{ margin: 0.5, padding: 0.5 }}*/}
+                    {/*                                        />*/}
+                    {/*                                        /!*<Typography> {formattedDateString </Typography>*!/*/}
+                    {/*                                        /!*<DateCalendar*!/*/}
+                    {/*                                        /!*    defaultValue={dayjs('14/06/2023')}*!/*/}
+                    {/*                                        /!*    // onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler*!/*/}
 
-                    {isDatesArrayValid &&  eventInfoData?.dates?.length > 0 && (
-                        <Grid item xs={6}>
-                        <Typography variant="subtitle2" color="primary">
-                            Dates available:
-                        </Typography>
-                        <Typography variant="subtitle1">
-                            {eventInfoData?.dates && (
-                                <Box sx={{
-                                    flexDirection: 'row',
-                                    display: 'flex',
-                                    flexWrap: 'wrap',
-                                }}>
-                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        {eventInfoData.dates.map((date, index) => {
-                                            // const formattedDate = dayjs(date?.seconds * 1000).toDate().toISOString();
-                                            // const formattedDateString = new Date(formattedDate).toLocaleDateString();
-                                            // const formattedDateString = new Date(date?.seconds * 1000).toLocaleDateString(); // works, but is full date format
-                                            const formattedDate = new Date(date?.seconds * 1000);
-                                            const formattedDateString = `${formattedDate.toLocaleString('default', {
-                                                month: 'long',
-                                            })} ${formattedDate.getFullYear()}`;
+                    {/*                                        /!*    readOnly*!/*/}
+                    {/*                                    </>*/}
+                    {/*                                )}*/}
+                    {/*                            </div>*/}
+                    {/*                        );*/}
+                    {/*                    })}*/}
+                    {/*                </LocalizationProvider>*/}
 
-                                            console.log("date:",date,"str:",formattedDateString);
-                                            return (
-                                                <div key={index} >
-                                                    {date && date.seconds && (
-                                                        <>
-                                                            <Chip icon={<CalendarMonthIcon />} label={formattedDateString}
-                                                                  // color="info"
-                                                                  sx={{ margin: 0.5, padding: 0.5 }}
-                                                            />
-                                                            {/*<Typography> {formattedDateString </Typography>*/}
-                                                            {/*<DateCalendar*/}
-                                                            {/*    defaultValue={dayjs('14/06/2023')}*/}
-                                                            {/*    // onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler*/}
-
-                                                            {/*    readOnly*/}
-                                                            {/*/>*/}
-                                                        </>
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
-                                    </LocalizationProvider>
-
-                                </Box>
-                            )}
-                        </Typography>
-                    </Grid>
-                    )}
+                    {/*            </Box>*/}
+                    {/*        )}*/}
+                    {/*    </Typography>*/}
+                    {/*</Grid>*/}
+                    {/*)}*/}
 
 
                     <Grid item xs={12}>
-
                         <Typography variant="subtitle2" color="primary">
                                  What to bring:
                         </Typography>
@@ -368,7 +390,7 @@ function HostInfo() {
 
                     </Grid>
 
-                        {/*OTHER STYLING OPTIONS*/}
+                                            {/*OTHER STYLING OPTIONS*/}
                         {/*<ButtonGroup*/}
                         {/*    variant="outlined"*/}
                         {/*    sx = {{*/}
@@ -449,26 +471,27 @@ function HostInfo() {
                         {/*    }*/}
                         {/*</ToggleButtonGroup>*/}
 
-                    <Grid item xs={12}>
-                        <Typography variant="subtitle2" color="primary">
-                            This Day is:
-                        </Typography>
+                    {/*<Grid item xs={12}>*/}
+                    {/*    <Typography variant="subtitle2" color="primary">*/}
+                    {/*        This Day is:*/}
+                    {/*    </Typography>*/}
+                    {/*    */}
 
-                        <Box display="flex" alignItems="center" sx={{mb: 2}}>
-                            {eventInfoData?.accessible && (
-                                <Typography
-                                    variant="button"
-                                    display="inline"
-                                    gutterBottom
-                                    color="primary.light"
-                                    sx={{ letterSpacing: '.1rem' }}
-                                >
-                                    <AccessibleIcon /> Accessible
-                                </Typography>
-                            )}
-                            {eventInfoData?.accessible && (
-                                <Divider orientation="vertical" flexItem sx={{ mx: 2, color: "primary.light" }} />
-                            )}
+                    {/*    <Box display="flex" alignItems="center" sx={{mb: 2}}>*/}
+                    {/*        {eventInfoData?.accessible && (*/}
+                    {/*            <Typography*/}
+                    {/*                variant="button"*/}
+                    {/*                display="inline"*/}
+                    {/*                gutterBottom*/}
+                    {/*                color="primary.light"*/}
+                    {/*                sx={{ letterSpacing: '.1rem' }}*/}
+                    {/*            >*/}
+                    {/*                <AccessibleIcon /> Accessible*/}
+                    {/*            </Typography>*/}
+                    {/*        )}*/}
+                    {/*        {eventInfoData?.accessible && (*/}
+                    {/*            <Divider orientation="vertical" flexItem sx={{ mx: 2, color: "primary.light" }} />*/}
+                    {/*        )}*/}
 
                             {/*<Grid display="flex" alignItems="center" sx={{mb: 2}}>*/}
                             {/*    {eventInfoData?.accessible && (*/}
@@ -485,51 +508,48 @@ function HostInfo() {
                             {/*    {eventInfoData?.accessible && (*/}
                             {/*        <Divider orientation="vertical" flexItem sx={{ mx: 2, color: "primary.light" }} />*/}
                             {/*    )}*/}
+                            {/*with chips:*/}
 
-                                {eventInfoData?.outdoors ?
-                            <Typography variant="button" display="inline" gutterBottom color = "primary.light"
-                                        sx = {{ letterSpacing: '.1rem'}}
-                            > <ForestIcon/> Outdoors </Typography> :
-                            <Typography variant="button" display="inline" gutterBottom color = "primary.light"
-                                        sx = {{ letterSpacing: '.1rem'}}
-                            > <HomeIcon/> Indoors </Typography>
-                        }
+                        {/*        {eventInfoData?.outdoors ?*/}
+                        {/*    <Typography variant="button" display="inline" gutterBottom color = "primary.light"*/}
+                        {/*                sx = {{ letterSpacing: '.1rem'}}*/}
+                        {/*    > <ForestIcon/> Outdoors </Typography> :*/}
+                        {/*    <Typography variant="button" display="inline" gutterBottom color = "primary.light"*/}
+                        {/*                sx = {{ letterSpacing: '.1rem'}}*/}
+                        {/*    > <HomeIcon/> Indoors </Typography>*/}
+                        {/*}*/}
 
                             {/*new styling*/}
 
-                                {/*<Box display="flex" alignItems="center" sx={{mb: 2}}>*/}
+                                        {/*{eventInfoData?.accessible && (*/}
+                                        {/*    <Chip*/}
+                                        {/*        variant="outlined"*/}
+                                        {/*        label="Accessible"*/}
+                                        {/*        icon= {<AccessibleIcon />}*/}
+                                        {/*    />*/}
 
-                                    {/*<Grid display="flex" alignItems="center" sx={{mb: 2}}>*/}
-                                        {eventInfoData?.accessible && (
-                                            <Chip
-                                                variant="outlined"
-                                                label="Accessible"
-                                                icon= {<AccessibleIcon />}
-                                            />
+                                        {/*)}*/}
 
-                                        )}
-
-                                        {eventInfoData?.outdoors ?
-                                            <Chip
-                                                variant="outlined"
-                                                label="Outdoors"
-                                                icon= {<ForestIcon/>}
-                                            /> :
-                                            <Chip
-                                                variant="outlined"
-                                                label="Indoors"
-                                                icon= {<HomeIcon/>}
-                                            />
-                                        }
+                                        {/*{eventInfoData?.outdoors ?*/}
+                                        {/*    <Chip*/}
+                                        {/*        variant="outlined"*/}
+                                        {/*        label="Outdoors"*/}
+                                        {/*        icon= {<ForestIcon/>}*/}
+                                        {/*    /> :*/}
+                                        {/*    <Chip*/}
+                                        {/*        variant="outlined"*/}
+                                        {/*        label="Indoors"*/}
+                                        {/*        icon= {<HomeIcon/>}*/}
+                                        {/*    />*/}
+                                        {/*}*/}
 
 
 
 
-                            {/*TODO: add the physical effort*/}
 
 
-                        </Box>
-                    </Grid>
+                    {/*    </Box>*/}
+                    {/*</Grid>*/}
 
                 </Grid>
             </div>

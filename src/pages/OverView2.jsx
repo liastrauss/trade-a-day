@@ -167,8 +167,7 @@ export default function OverView2() {
 
 
             <Container component="main" maxWidth="md"
-                       sx={{ mb: 4,
-            }}
+                       sx={{ mb: 4,}}
             >
 
                 <Grid
@@ -188,9 +187,7 @@ export default function OverView2() {
                     <Grid item xs={12}>
                         <HostInfo/>
                     </Grid>
-                    {/*<ControlledRadioButtonsGroup></ControlledRadioButtonsGroup>*/}
                     <Grid item xs={12}>
-                        {/*<DatesPicker/>*/}
                         <DialogWithCard/>
                     </Grid>
                     </Paper>
