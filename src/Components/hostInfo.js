@@ -344,7 +344,13 @@ function HostInfo() {
 
 
                     <Grid item xs={12}>
-                        <Typography variant="subtitle2" color="primary">
+                        <Typography variant="subtitle1" color="primary"
+                        sx ={{
+                            textTransform: 'uppercase',
+                            letterSpacing: 1,
+                            // color: '#8D9CAD',
+                        }}
+                        >
                                  What to bring:
                         </Typography>
 

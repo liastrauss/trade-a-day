@@ -31,8 +31,8 @@ export default function AddEvent() {
     // for contact info
     const [userContact, setUserContact] =
         React.useState({
-            contactMethod: 'Email',
-            userEmail: auth?.currentUser?.email,
+            contactMethod: null,
+            userEmail: auth?.currentUser?.email  || 'no mail',
             userPhone: '',
         },[]);
 
@@ -84,14 +84,12 @@ export default function AddEvent() {
             contact: formData.contact,
 
         });
-
             await updateDoc(userDataRef, {
                 userEmail: userContact.userEmail,
                 userPhone: userContact.userPhone,
 
 
             });
-
             // advance to the final page:
             setActiveStep(activeStep + 1);
             console.log("added the doc successfully!")
@@ -102,16 +100,7 @@ export default function AddEvent() {
         }
     }
 
-
-    console.log("formData is:",formData)
-    console.log("contact info:",userContact)
-
-
-
-
-
-
-
+    console.log("formData is:",formData);
     // A state hook that keeps track of the currently active step:
     const [activeStep, setActiveStep] = React.useState(0);
     // A function that increments the activeStep state when called
