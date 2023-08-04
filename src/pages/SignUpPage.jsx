@@ -19,11 +19,20 @@ import Paper from "@mui/material/Paper";
 import {Container} from "@mui/system";
 
 export default function NewProfileCreation() {
+
+    const firstSpaceIndex = auth?.currentUser?.displayName.indexOf(" ");
+    const firstNamePart = firstSpaceIndex !== -1 ? auth?.currentUser?.displayName.substring(0, firstSpaceIndex) : auth?.currentUser?.displayName;
+    const lastNamePart = firstSpaceIndex !== -1 && firstSpaceIndex < auth?.currentUser?.displayName.length - 1
+        ? auth?.currentUser?.displayName.substring(firstSpaceIndex + 1).split(" ")[0]
+        : '';
+
+
+
     const [userData, setUserData] =
         React.useState({
             userID: '',
-            userFirstName: '',
-            userLastName: '',
+            userFirstName: firstNamePart,
+            userLastName: lastNamePart,
             userEmail: '',
             userPhone: '',
             favoriteFood: [],
@@ -80,7 +89,6 @@ export default function NewProfileCreation() {
                                     required
                                     fullWidth
                                     label="First Name"
-                                    defaultValue={auth?.currentUser?.displayName}
                                     autoFocus
                                     onChange={(e) => {
                                         // setNewFirstName(e.target.value);
