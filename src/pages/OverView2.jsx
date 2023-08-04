@@ -77,6 +77,9 @@ export function DialogWithCard() {
         fetchEventInfoData();
     }, [index]);
 
+
+
+
     return (
         <div>
             <Button
@@ -148,22 +151,20 @@ export default function OverView2() {
 
                 // color for the whole page:
                 sx={{
-                    backgroundColor: (theme) =>
-                        theme.palette.mode === 'light'
-                            ? theme.palette.grey[100]
-                            : theme.palette.grey[900],
                     flexGrow: 1,
                     height: '100vh',
                     overflow: 'auto',
                     display: 'flex', // Add this to use Flexbox layout
                     flexDirection: 'column', // Stack the components vertically
+                    alignItems: "center", // Center the content horizontally
+                    padding: '20px', // Add some space around the content
+
 
                 }}
             >
 
-            <Container component="main" maxWidth="md"
-                       sx={{ mb: 4,}}
-            >
+            <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
+                    {/* Use Grid container for responsive layout */}
 
                 <Grid
                     container
@@ -173,11 +174,24 @@ export default function OverView2() {
                     spacing = {5}
 
                 sx={{
-                        // backgroundColor: '#F1F1', // Replace with your desired color
+
+                    // Add styles for mobile view
+                    '@media screen and (max-width: 600px)': {
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    },
                     }}
 
                 >
-                    <Paper sx={{ ml:4, mr:4, mt:10, p: 2, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+
+                    <Paper sx={{ ml:4, mr:4, mt:10, p: 2, display: 'flex', flexDirection: 'column', position: 'relative',
+                        width: '100%', textAlign: 'center', // Center the text horizontally
+                        wordWrap: 'break-word', // Allow text to wrap within the container // Adjust the width for mobile view
+                        // Adjust the width for mobile view
+                        '@media screen and (max-width: 600px)': {
+                            width: '90%', // Example: reduce width to 90% on smaller screens
+                        },
+                    }}>
                     {/*// TODO - scrollbar is weird because of the boxes and the papers. if topbar will be sticky this can be solved*/}
                     {/*The info itself */}
                     <Grid item xs={12}>

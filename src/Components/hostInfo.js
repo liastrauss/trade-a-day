@@ -143,15 +143,40 @@ function HostInfo() {
                         >
                             Gallery
                         </Typography>
+
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                gap: '20px', // Adjust the gap between the items
+                                justifyContent: 'space-between', // Distribute items evenly along the main axis
+                                maxWidth: '90%', // Limit the width to the available space
+
+                            }}>
+                            <StandardImageList/>
+
+                        </Box>
                     </Grid>
-                    <StandardImageList/>
+
 
 
                     {/*New Design*/}
 
 
+
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: '20px', // Adjust the gap between the items
+                            justifyContent: 'space-between', // Distribute items evenly along the main axis
+                            alignItems: 'center', // Horizontally center the items
+                            maxWidth: '90%', // Limit the width to the available space
+
+                        }}
+                    >
                     {/*for location*/}
-                    <StyledBasicProfile>
+                        <StyledBasicProfile sx={{ flex: 1 }}>
                         <StyledBasicProfileAvatar> <LocationOnRoundedIcon /></StyledBasicProfileAvatar>
                             <StyledBasicProfileInfo>
                                 <StyledBasicProfileOverline>Location</StyledBasicProfileOverline>
@@ -163,7 +188,7 @@ function HostInfo() {
 
                     {/*accessible*/}
                     {eventInfoData?.accessible && (
-                        <StyledBasicProfile>
+                        <StyledBasicProfile sx={{ flex: 1 }}>
                             <StyledBasicProfileAvatar><AccessibleIcon /></StyledBasicProfileAvatar>
                             <StyledBasicProfileInfo>
                                 <StyledBasicProfileOverline>Suitability</StyledBasicProfileOverline>
@@ -173,7 +198,7 @@ function HostInfo() {
                     )}
 
                     {eventInfoData?.outdoors ?
-                        <StyledBasicProfile>
+                        <StyledBasicProfile sx={{ flex: '0 0 calc(50% - 10px)' }}>
                             <StyledBasicProfileAvatar><ForestIcon/> </StyledBasicProfileAvatar>
                             <StyledBasicProfileInfo>
                                 <StyledBasicProfileOverline>setting</StyledBasicProfileOverline>
@@ -181,7 +206,7 @@ function HostInfo() {
                             </StyledBasicProfileInfo>
                         </StyledBasicProfile>
                          :
-                        <StyledBasicProfile>
+                        <StyledBasicProfile sx={{ flex: 1}}>
                             <StyledBasicProfileAvatar><HomeIcon/> </StyledBasicProfileAvatar>
                             <StyledBasicProfileInfo>
                                 <StyledBasicProfileOverline>Setting</StyledBasicProfileOverline>
@@ -191,7 +216,7 @@ function HostInfo() {
                     }
 
                     {/*for physical efforr*/}
-                    <StyledBasicProfile>
+                        <StyledBasicProfile sx={{ flex: 1 }}>
                         <StyledBasicProfileAvatar>
                             {<DirectionsRunIcon />}
                         </StyledBasicProfileAvatar>
@@ -210,7 +235,7 @@ function HostInfo() {
                                 flexWrap: 'wrap',
                             }}>
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <StyledBasicProfile>
+                                    <StyledBasicProfile sx={{ flex: 1 }}>
                                         <StyledBasicProfileAvatar><CalendarMonthIcon /></StyledBasicProfileAvatar>
                                         <StyledBasicProfileInfo>
                                             <StyledBasicProfileOverline>available dates</StyledBasicProfileOverline>
@@ -235,84 +260,7 @@ function HostInfo() {
                                 </LocalizationProvider>
                             </Box>
                         )}
-
-
-
-
-
-
-
-
-
-
-
-                    {/*<div>*/}
-                    {/*    <Avatar >S</Avatar>*/}
-                    {/*    <div >*/}
-                    {/*        <Typography>*/}
-                    {/*            CREATOR*/}
-                    {/*        </Typography>*/}
-                    {/*        <Typography >*/}
-                    {/*            siriwatknp*/}
-                    {/*        </Typography>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-
-
-
-
-
-
-                    {/*{isDatesArrayValid &&  eventInfoData?.dates?.length > 0 && (*/}
-                    {/*    <Grid item xs={6}>*/}
-                    {/*    <Typography variant="subtitle2" color="primary">*/}
-                    {/*        Dates available:*/}
-                    {/*    </Typography>*/}
-                    {/*    <Typography variant="subtitle1">*/}
-                    {/*        {eventInfoData?.dates && (*/}
-                    {/*            <Box sx={{*/}
-                    {/*                flexDirection: 'row',*/}
-                    {/*                display: 'flex',*/}
-                    {/*                flexWrap: 'wrap',*/}
-                    {/*            }}>*/}
-                    {/*                <LocalizationProvider dateAdapter={AdapterDayjs}>*/}
-                    {/*                    {eventInfoData.dates.map((date, index) => {*/}
-                    {/*                        // const formattedDate = dayjs(date?.seconds * 1000).toDate().toISOString();*/}
-                    {/*                        // const formattedDateString = new Date(formattedDate).toLocaleDateString();*/}
-                    {/*                        // const formattedDateString = new Date(date?.seconds * 1000).toLocaleDateString(); // works, but is full date format*/}
-                    {/*                        const formattedDate = new Date(date?.seconds * 1000);*/}
-                    {/*                        const formattedDateString = `${formattedDate.toLocaleString('default', {*/}
-                    {/*                            month: 'long',*/}
-                    {/*                        })} ${formattedDate.getFullYear()}`;*/}
-
-                    {/*                        console.log("date:",date,"str:",formattedDateString);*/}
-                    {/*                        return (*/}
-                    {/*                            <div key={index} >*/}
-                    {/*                                {date && date.seconds && (*/}
-                    {/*                                    <>*/}
-                    {/*                                        <Chip icon={<CalendarMonthIcon />} label={formattedDateString}*/}
-                    {/*                                              // color="info"*/}
-                    {/*                                              sx={{ margin: 0.5, padding: 0.5 }}*/}
-                    {/*                                        />*/}
-                    {/*                                        /!*<Typography> {formattedDateString </Typography>*!/*/}
-                    {/*                                        /!*<DateCalendar*!/*/}
-                    {/*                                        /!*    defaultValue={dayjs('14/06/2023')}*!/*/}
-                    {/*                                        /!*    // onChange={(newValue) => console.log(newValue)} // Replace with your desired onChange handler*!/*/}
-
-                    {/*                                        /!*    readOnly*!/*/}
-                    {/*                                    </>*/}
-                    {/*                                )}*/}
-                    {/*                            </div>*/}
-                    {/*                        );*/}
-                    {/*                    })}*/}
-                    {/*                </LocalizationProvider>*/}
-
-                    {/*            </Box>*/}
-                    {/*        )}*/}
-                    {/*    </Typography>*/}
-                    {/*</Grid>*/}
-                    {/*)}*/}
-
+                    </Box>
 
                     {/*what to bring*/}
                     <Grid item xs={12}>
@@ -369,166 +317,6 @@ function HostInfo() {
 
                     </Grid>
 
-                                            {/*OTHER STYLING OPTIONS*/}
-                        {/*<ButtonGroup*/}
-                        {/*    variant="outlined"*/}
-                        {/*    sx = {{*/}
-                        {/*        display: 'flex',*/}
-                        {/*        flexWrap: 'wrap',*/}
-
-                        {/*    }}*/}
-                        {/*>*/}
-
-                        {/*    {eventInfoData?.accessible ?*/}
-
-                        {/*        <Button sx={{*/}
-                        {/*            pointerEvents: 'none', // Disable pointer events*/}
-                        {/*            // opacity: 0.5, // Reduce opacity to indicate disabled state*/}
-                        {/*            // Add any other custom styles here*/}
-                        {/*        }}>*/}
-                        {/*            <AccessibleIcon/> Accessible*/}
-                        {/*        </Button>*/}
-                        {/*        :*/}
-                        {/*        <div></div>*/}
-                        {/*    }*/}
-
-                        {/*    {eventInfoData?.suitableForChildren ?*/}
-                        {/*        <Button   sx={{*/}
-                        {/*            pointerEvents: 'none',*/}
-                        {/*            color: "secondary.main",// Disable pointer events*/}
-                        {/*            // opacity: 0.5, // Reduce opacity to indicate disabled state*/}
-                        {/*            // Add any other custom styles here*/}
-                        {/*        }}*/}
-                        {/*        >*/}
-                        {/*            <EscalatorWarningIcon/> Children Friendly </Button> :*/}
-                        {/*        <div></div>*/}
-                        {/*    }*/}
-
-                        {/*    {eventInfoData?.outdoors ?*/}
-                        {/*        <Button selected disabled> <ForestIcon/> Outdoors </Button> :*/}
-                        {/*        <Button selected disabled> <HomeIcon/> Indoors </Button>*/}
-                        {/*    }*/}
-
-
-
-
-                        {/*</ButtonGroup>*/}
-
-
-                        {/*<ToggleButtonGroup*/}
-                        {/*    sx = {{*/}
-                        {/*        display: 'flex',*/}
-                        {/*        flexWrap: 'wrap',*/}
-
-                        {/*    }}*/}
-                        {/*>*/}
-
-                        {/*    {eventInfoData?.accessible ?*/}
-
-                        {/*        <ToggleButton disabled selected>*/}
-                        {/*            <AccessibleIcon/> Accessible*/}
-                        {/*        </ToggleButton>*/}
-                        {/*        :*/}
-                        {/*        <div></div>*/}
-                        {/*    }*/}
-
-                        {/*    {eventInfoData?.suitableForChildren ?*/}
-                        {/*        <ToggleButton*/}
-                        {/*            sx={{*/}
-                        {/*            pointerEvents: 'none', // Disable pointer events*/}
-                        {/*            // opacity: 0.5, // Reduce opacity to indicate disabled state*/}
-                        {/*            // Add any other custom styles here*/}
-                        {/*        }}*/}
-                        {/*        >*/}
-                        {/*            <EscalatorWarningIcon/> Children Friendly </ToggleButton> :*/}
-                        {/*        <div></div>*/}
-                        {/*    }*/}
-
-                        {/*    {eventInfoData?.outdoors ?*/}
-                        {/*        <ToggleButton selected disabled> <ForestIcon/> Outdoors </ToggleButton> :*/}
-                        {/*        <ToggleButton selected disabled> <HomeIcon/> Indoors </ToggleButton>*/}
-                        {/*    }*/}
-                        {/*</ToggleButtonGroup>*/}
-
-                    {/*<Grid item xs={12}>*/}
-                    {/*    <Typography variant="subtitle2" color="primary">*/}
-                    {/*        This Day is:*/}
-                    {/*    </Typography>*/}
-                    {/*    */}
-
-                    {/*    <Box display="flex" alignItems="center" sx={{mb: 2}}>*/}
-                    {/*        {eventInfoData?.accessible && (*/}
-                    {/*            <Typography*/}
-                    {/*                variant="button"*/}
-                    {/*                display="inline"*/}
-                    {/*                gutterBottom*/}
-                    {/*                color="primary.light"*/}
-                    {/*                sx={{ letterSpacing: '.1rem' }}*/}
-                    {/*            >*/}
-                    {/*                <AccessibleIcon /> Accessible*/}
-                    {/*            </Typography>*/}
-                    {/*        )}*/}
-                    {/*        {eventInfoData?.accessible && (*/}
-                    {/*            <Divider orientation="vertical" flexItem sx={{ mx: 2, color: "primary.light" }} />*/}
-                    {/*        )}*/}
-
-                            {/*<Grid display="flex" alignItems="center" sx={{mb: 2}}>*/}
-                            {/*    {eventInfoData?.accessible && (*/}
-                            {/*        <Typography*/}
-                            {/*            variant="button"*/}
-                            {/*            display="inline"*/}
-                            {/*            gutterBottom*/}
-                            {/*            color="primary.light"*/}
-                            {/*            sx={{ letterSpacing: '.1rem' }}*/}
-                            {/*        >*/}
-                            {/*            <AccessibleIcon /> Accessible*/}
-                            {/*        </Typography>*/}
-                            {/*    )}*/}
-                            {/*    {eventInfoData?.accessible && (*/}
-                            {/*        <Divider orientation="vertical" flexItem sx={{ mx: 2, color: "primary.light" }} />*/}
-                            {/*    )}*/}
-                            {/*with chips:*/}
-
-                        {/*        {eventInfoData?.outdoors ?*/}
-                        {/*    <Typography variant="button" display="inline" gutterBottom color = "primary.light"*/}
-                        {/*                sx = {{ letterSpacing: '.1rem'}}*/}
-                        {/*    > <ForestIcon/> Outdoors </Typography> :*/}
-                        {/*    <Typography variant="button" display="inline" gutterBottom color = "primary.light"*/}
-                        {/*                sx = {{ letterSpacing: '.1rem'}}*/}
-                        {/*    > <HomeIcon/> Indoors </Typography>*/}
-                        {/*}*/}
-
-                            {/*new styling*/}
-
-                                        {/*{eventInfoData?.accessible && (*/}
-                                        {/*    <Chip*/}
-                                        {/*        variant="outlined"*/}
-                                        {/*        label="Accessible"*/}
-                                        {/*        icon= {<AccessibleIcon />}*/}
-                                        {/*    />*/}
-
-                                        {/*)}*/}
-
-                                        {/*{eventInfoData?.outdoors ?*/}
-                                        {/*    <Chip*/}
-                                        {/*        variant="outlined"*/}
-                                        {/*        label="Outdoors"*/}
-                                        {/*        icon= {<ForestIcon/>}*/}
-                                        {/*    /> :*/}
-                                        {/*    <Chip*/}
-                                        {/*        variant="outlined"*/}
-                                        {/*        label="Indoors"*/}
-                                        {/*        icon= {<HomeIcon/>}*/}
-                                        {/*    />*/}
-                                        {/*}*/}
-
-
-
-
-
-
-                    {/*    </Box>*/}
-                    {/*</Grid>*/}
 
                 </Grid>
             </div>
