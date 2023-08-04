@@ -35,7 +35,7 @@ export default function NewProfileCreation(props) {
 
     let navigate = useNavigate();
 
-    const usersCollectionRef = collection(db, "users2")
+    const usersCollectionRef = collection(db, "users")
     const onSubmit = async () => {
         try {
             await addDoc(usersCollectionRef, {

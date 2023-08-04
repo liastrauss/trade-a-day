@@ -95,7 +95,7 @@ function ElevationScroll(props) {
 //                         <Avatar src="/broken-image.jpg"
 //                                 sx={{ml: 1}}
 //                                 onClick={() => {
-//                                     navigate("/CreateProfile");
+//                                     navigate("/Login");
 //                                 }}
 //                                 style={{cursor:'pointer'}}
 //                         />
@@ -189,7 +189,7 @@ export default function Topbar(props) {
                     <Avatar src={avatarSrc}
                             sx={{ml: 1}}
                             onClick={() => {
-                                navigate("/CreateProfile");
+                                navigate("/Login");
                             }}
                             style={{cursor:'pointer'}}
                     />
@@ -206,7 +206,7 @@ export default function Topbar(props) {
                         <Button
                             variant="text"
                             onClick={() => {
-                                navigate("/CreateProfile");
+                                navigate("/Login");
                             }}
                         >
                             Log In!
