@@ -11,9 +11,6 @@ import Paper from "@mui/material/Paper";
 import Toolbar from '@mui/material/Toolbar';
 import {auth} from "../config/firebase";
 import {useEffect, useState} from "react";
-import logOut from "./SignInPage";
-import NewProfileCreation from "../pages/SignUpPage";
-import LoginPage from "../pages/LoginPage";
 
 
 import {cardData} from "../data/card-data";
@@ -152,40 +149,6 @@ export default function Topbar(props) {
                     display: 'flex',
                     justifyContent: 'space-around',
                 }}>
-
-                    {AddDay ?
-                        <div>
-                            <Button
-                                variant="text"
-                                onClick={auth?.currentUser ? () => navigate("/AddEvent") : handleOpenLogin}
-                            >
-                                Trade your day
-
-                            </Button>
-                            <Dialog open={openLogin} onClose={handleCloseLogin}>
-                                <DialogTitle>Login Required!</DialogTitle>
-                                <DialogContent>
-                                    <DialogContentText>
-                                        You must be logged in to do that action!
-                                        Please log in or continue browsing
-                                    </DialogContentText>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={()=> {navigate("/Login");}} variant="contained" autoFocus>Log In</Button>
-                                    <Button variant="contained" onclick={() => <LoginPage target={"/AddEvent"}/>} autoFocus> Call Log In Function </Button>
-                                    <Button onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
-                                </DialogActions>
-                            </Dialog>
-                        </div>
-                        :
-                        <Button
-                            variant="text"
-                            disabled
-                        >
-                            Trade your day
-                        </Button>
-                    }
-
                     <Avatar src={avatarSrc}
                             sx={{ml: 1}}
                             onClick={() => {
@@ -204,12 +167,61 @@ export default function Topbar(props) {
                         </Box>
                         :
                         <Button
-                            variant="text"
+                            sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
+                                    backgroundColor: (theme) => theme.palette.primary.contrastText,
+                                    color: (theme) => theme.palette.primary.main,
+                                    borderColor: (theme) => theme.palette.primary.main,
+                                },}} disableElevation
+                            variant = "contained"
                             onClick={() => {
                                 navigate("/Login");
                             }}
                         >
                             Log In!
+                        </Button>
+                    }
+                    {AddDay ?
+                        <div>
+                            <Button
+                                sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
+                                        backgroundColor: (theme) => theme.palette.primary.contrastText,
+                                        color: (theme) => theme.palette.primary.main,
+                                        borderColor: (theme) => theme.palette.primary.main,
+                                    },}} disableElevation
+                                variant="contained"
+                                onClick={auth?.currentUser ? () => navigate("/AddEvent") : handleOpenLogin}
+                            >
+                                Trade your day
+
+                            </Button>
+                            <Dialog open={openLogin} onClose={handleCloseLogin}>
+                                <DialogTitle>Login Required!</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText>
+                                        You must be logged in to do that action!
+                                        Please log in or continue browsing
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button                                     sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
+                                            backgroundColor: (theme) => theme.palette.primary.contrastText,
+                                            color: (theme) => theme.palette.primary.main,
+                                            borderColor: (theme) => theme.palette.primary.main,
+                                        },}} disableElevation onClick={()=> {navigate("/Login?redirect=/AddEvent");}} variant="contained" autoFocus>Log In</Button>
+                                    <Button                                     sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
+                                            backgroundColor: (theme) => theme.palette.primary.contrastText,
+                                            color: (theme) => theme.palette.primary.main,
+                                            borderColor: (theme) => theme.palette.primary.main,
+                                        },}} disableElevation onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
+                                </DialogActions>
+                            </Dialog>
+                        </div>
+                        :
+                        <Button
+                            variant="text"
+                            disabled
+                        >
+                            Trading your day
                         </Button>
                     }
                 </Box>

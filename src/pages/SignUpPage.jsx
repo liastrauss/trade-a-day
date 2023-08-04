@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {addDoc, collection} from "firebase/firestore";
 import {auth, db} from "../config/firebase";
 import {Grid, TextField, Typography } from "@mui/material";
@@ -18,7 +18,7 @@ import Topbar from "../Components/Topbar";
 import Paper from "@mui/material/Paper";
 import {Container} from "@mui/system";
 
-export default function NewProfileCreation(props) {
+export default function NewProfileCreation() {
     const [userData, setUserData] =
         React.useState({
             userID: '',
@@ -33,7 +33,10 @@ export default function NewProfileCreation(props) {
             superpowers: [],
         },[]);
 
-    let navigate = useNavigate();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const redirect = searchParams.get("redirect");
 
     const usersCollectionRef = collection(db, "users")
     const onSubmit = async () => {
@@ -138,17 +141,19 @@ export default function NewProfileCreation(props) {
                             </Box>
                             <Box sx={{ display: 'flex', justifyContent: 'Center'}}>
                                 <Button
-                                    sx={{ m: 1 }}
+                                    sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
+                                            backgroundColor: (theme) => theme.palette.primary.contrastText,
+                                            color: (theme) => theme.palette.primary.main,
+                                            borderColor: (theme) => theme.palette.primary.main,
+                                        },}} disableElevation
                                     variant="contained"
                                     onClick={() => {
-                                        onSubmit().then(() => navigate(props.target));
+                                        onSubmit().then(() => navigate(redirect));
                                     }}
                                     style={{ cursor: 'pointer' }}
                                 >
                                     Done
                                 </Button>
-                                <Button onClick={() => navigate(props.target)} > Try me </Button>
-                                <Button onClick={() => console.log(props.target)}> Log</Button>
                             </Box>
                         </Grid>
                     </Paper>

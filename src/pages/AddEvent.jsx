@@ -65,7 +65,7 @@ export default function AddEvent() {
     const userDataRef = collection(db,"users");
 
     // for contactuser:
-    const userDoc = doc(db,"users2",auth?.currentUser?.uid)
+    const userDoc = doc(db,"users",auth?.currentUser?.uid)
 
     const onSubmit = async () => {
         try {

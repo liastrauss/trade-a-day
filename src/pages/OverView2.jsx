@@ -123,8 +123,16 @@ export function DialogWithCard() {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={()=> {navigate("/Login?redirect="+currentURL);}} variant="contained" autoFocus>Log In</Button>
-                    <Button onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
+                    <Button                                     sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
+                            backgroundColor: (theme) => theme.palette.primary.contrastText,
+                            color: (theme) => theme.palette.primary.main,
+                            borderColor: (theme) => theme.palette.primary.main,
+                        },}} disableElevation onClick={()=> {navigate("/Login?redirect="+currentURL);}} variant="contained" autoFocus>Log In</Button>
+                    <Button                                     sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
+                            backgroundColor: (theme) => theme.palette.primary.contrastText,
+                            color: (theme) => theme.palette.primary.main,
+                            borderColor: (theme) => theme.palette.primary.main,
+                        },}} disableElevation onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
                 </DialogActions>
             </Dialog>
 

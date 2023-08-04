@@ -28,7 +28,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import AddEvent from "./pages/AddEvent";
 import Home from "./pages/Home";
-import CreateProfile from "./pages/CreateProfile"
 import NoPage from "./pages/NoPage";
 
 import './App.css';
@@ -90,7 +89,6 @@ export default function App() {
                                 <Route index element={<Home/>} />
                                 <Route path="AddEvent" element={<AddEvent/>} />
                                 <Route path="OverView2/:index" element={<OverView2/>} />
-                                <Route path="CreateProfile" element={<CreateProfile/>} />
                                 <Route path="Landing" element={<Landing/>} />
                                 <Route path="SignUp" element={<NewProfileCreation/>} />
                                 <Route path="LogIn" element={<LoginPage/>} />

@@ -14,9 +14,6 @@ function Navbar() {
                     <Link to="/AddEvent">Trade your day</Link>
                 </li>
                 <li><Link to="/OverView2">OverView2</Link></li>
-                <li>
-                    <Link to="/CreateProfile">CreateProfile</Link>
-                </li>
             </ul>
         </nav>
     );
