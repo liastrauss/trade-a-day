@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import { signInWithPopup, signOut } from "firebase/auth";
-import { auth, googleProvider, facebookProvider } from "../config/firebase";
+import {auth, googleProvider, facebookProvider} from "../config/firebase";
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { Typography } from "@mui/material";
@@ -13,6 +13,7 @@ import "firebase/compat/firestore";
 import Paper from "@mui/material/Paper";
 import { Container } from "@mui/system";
 import Topbar from "../Components/Topbar";
+import {collection, getDoc, getDocs, doc , query, where} from "firebase/firestore";
 
 export const logOut = async () => {
     try {
@@ -28,43 +29,70 @@ export const logOut = async () => {
  * @constructor
  */
 
+const db = firebase.firestore();
+// const db = firebase.firestore();
+// const collectionRef = db.collection('your_collection_name');
+// const query = collectionRef.where('some_field', '==', 'some_value');
+//
+// query.get().then((querySnapshot) => {
+
+
 export async function userExists() {
     try {
+        const usersCollectionRef = db.collection('users');
         console.log("function userExists is called")
-        const querySnapshot = await firebase.firestore().collection('users').where('userEmail', '==', auth?.currentUser?.email).get();
-        const docs = querySnapshot.docs;
+        const query = usersCollectionRef.where('userID', '==', auth?.currentUser?.uid);
+        // const u = query(collection(db, "users"), where("userID", "==", auth?.currentUser?.uid))
+        // const querySnapshot = await getDocs(u);
 
-        if (docs.length === 0) {
-            // Email doesn't exist in the database
-            console.log("userExists is false")
-        } else {
-            // Email exists in the database
-            console.log("userExists is true")
-        }
-        // Add a return statement to resolve the promise
-        return docs.length !== 0; // Return true if email exists, false otherwise
-    } catch (error) {
-        console.error("Error while checking user existence:", error);
-        throw error; // Rethrow the error to handle it in the calling code
+        query.get().then((querySnapshot) => {
+            if (querySnapshot.empty) {
+                // The query snapshot is empty, meaning no documents matched the query
+                console.log(`userExists is false ${auth?.currentUser?.uid}`)
+            } else {
+                console.log(`userExists is true ${auth?.currentUser?.uid}`)
+            }
+        })
+    }
+    catch(error) {
+        console.log(error)
     }
 }
+
 
 export async function ExistCheck() {
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const redirect = searchParams.get("redirect");
-    const navigate = useNavigate();
-    const querySnapshot = await firebase.firestore().collection('users').where('userEmail', '==', auth?.currentUser?.email).get();
-    const docs = querySnapshot.docs;
-
-    if (docs.length === 0) {
-        console.log("docs length = 0")
-        navigate(`/SignUp?redirect=${redirect}`);
-    } else {
-        console.log("docs length is different from 0")
-        navigate(redirect);
+    try {
+        db.collection("Users")
+            .where("userID", "==", auth?.currentUser?.uid).get()
+            .then(function (querySnapshot) {
+                if (!querySnapshot.empty) {
+                    console.log(`userExists is false ${auth?.currentUser?.uid}`)
+                } else {
+                    console.log(`userExists is true ${auth?.currentUser?.uid}`)
+                }
+            });
+    } catch (error) {
+        console.log(error)
     }
 }
+
+
+
+//     const location = useLocation();
+//     const searchParams = new URLSearchParams(location.search);
+//     const redirect = searchParams.get("redirect");
+//     const navigate = useNavigate();
+//     const querySnapshot = await firebase.firestore().collection('users').where('userID', '==', auth?.currentUser?.uid).get();
+//     const docs = querySnapshot.docs;
+//
+//     if (docs.length === 0) {
+//         console.log("docs length = 0")
+//         navigate(`/SignUp?redirect=${redirect}`);
+//     } else {
+//         console.log("docs length is different from 0")
+//         navigate(redirect);
+//     }
+// }
 
 
 export default function LoginPage(props) {
@@ -72,7 +100,7 @@ export default function LoginPage(props) {
         const authChanged = auth.onAuthStateChanged(async (user) => {
             if (user) {
                 try {
-                    const x = await userExists(); // Call the userExists function with await
+                    const x = await ExistCheck(); // Call the userExists function with await
                     console.log("fulfilled:", x); // Log the result
                 } catch (error) {
                     console.error("rejected:", error);
