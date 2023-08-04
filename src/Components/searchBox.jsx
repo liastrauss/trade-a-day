@@ -5,8 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import {useTheme} from "@mui/material/styles";
-import {collection, getDocs} from "firebase/firestore";
-import {db} from "../config/firebase";
+
 
 // export default function oldSearchBox() {
 //     const theme = useTheme();
@@ -112,7 +111,7 @@ export default function SearchBox({cardData,activeSearch, setActiveSearch,setSea
                         )
                     }
         </Paper>
-        {/*    this is will delete, dont want to show */}
+        {/*    this will delete, dont want to show */}
         <div className={"dataResult"}>
             {/*{searched.map((value, key) => {*/}
             {/*    return <a className="dataItem"> {value.title}</a>; // TODO: change to jobTitle*/}

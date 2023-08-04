@@ -24,6 +24,7 @@ import Topbar from "../Components/Topbar";
 import { auth, getAuth } from "../config/firebase"
 import NewProfileCreation from "../pages/SignUpPage";
 import LoginPage from "./LoginPage";
+import { useLocation } from 'react-router-dom';
 
 // An array that stores the labels for the steps of the checkout process
 // for dialog:
@@ -58,6 +59,8 @@ export function DialogWithCard() {
     const handleOpenLogin = () => {setOpenLogin(true);};
     const handleCloseLogin = () => {setOpenLogin(false);};
     const navigate = useNavigate();
+    const location = useLocation();
+    const currentURL = location.pathname;
 
 
     useEffect(() => {
@@ -117,7 +120,7 @@ export function DialogWithCard() {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={()=> {navigate("/Login");}} variant="contained" autoFocus>Log In</Button>
+                    <Button onClick={()=> {navigate("/Login?redirect="+currentURL);}} variant="contained" autoFocus>Log In</Button>
                     <Button onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
                 </DialogActions>
             </Dialog>
