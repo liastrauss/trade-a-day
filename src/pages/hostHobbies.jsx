@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {collection, query, where, getDocs} from 'firebase/firestore';
 import {auth, db} from '../config/firebase';
-import {Divider, ToggleButton} from "@mui/material";
+import {Divider} from "@mui/material";
 import {useTheme} from '@mui/material/styles';
 import Typography from "@mui/material/Typography";
 import Box from '@mui/material/Box';
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import FastfoodRoundedIcon from '@mui/icons-material/FastfoodRounded';
-import SportsEsportsRoundedIcon from '@mui/icons-material/SportsEsportsRounded';
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import Link from '@mui/material/Link';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
