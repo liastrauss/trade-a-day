@@ -59,12 +59,12 @@ const Hero = () => {
 
     return (
         <Box sx={{
-                // backgroundColor: "#eefdf4",
-                // minHeight: "80vh"
-                backgroundImage: `url(${heroImg})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
+            // photo
+                backgroundColor: "#eefdf4",
+                // backgroundImage: `url(${heroImg})`,
+                // backgroundSize: "cover",
+                // backgroundRepeat: "no-repeat",
+                // backgroundPosition: "center",
                 minHeight: "80vh",
             }}>
 
@@ -119,7 +119,7 @@ const Hero = () => {
                                 disableElevation
                                 onClick={()=>
                                 {
-                                    navigate("/CreateProfile");
+                                    navigate("/Login");
                                     console.info('You clicked mine.');
                                 }}
 

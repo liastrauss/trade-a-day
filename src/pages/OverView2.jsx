@@ -22,6 +22,8 @@ import CardContent from "@mui/material/CardContent";
 import {useEffect, useState} from "react";
 import Topbar from "../Components/Topbar";
 import { auth, getAuth } from "../config/firebase"
+import NewProfileCreation from "../pages/SignUpPage";
+import LoginPage from "./LoginPage";
 
 // An array that stores the labels for the steps of the checkout process
 // for dialog:
@@ -33,8 +35,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import {doc, getDoc} from "firebase/firestore";
 import { db } from "../config/firebase";
 import HostHobbies from "./hostHobbies";
-
-
+import DialogContentText from "@mui/material/DialogContentText";
 
 export function DialogWithCard() {
     const [open, setOpen] = useState(false);
@@ -52,6 +53,13 @@ export function DialogWithCard() {
 
     const [eventInfoData, setEventInfoData] = useState();
 
+    //Ohad's Popup
+    const [openLogin, setOpenLogin] = useState(false);
+    const handleOpenLogin = () => {setOpenLogin(true);};
+    const handleCloseLogin = () => {setOpenLogin(false);};
+    const navigate = useNavigate();
+
+
     useEffect(() => {
         async function fetchEventInfoData() {
             try {
@@ -68,7 +76,7 @@ export function DialogWithCard() {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleOpen}>
+            <Button variant="outlined" onClick={auth?.currentUser ? handleOpen : handleOpenLogin}>
                 <MailOutlineIcon/>   Contact {eventInfoData?.hostName}
             </Button>
             <Dialog open={open} onClose={handleClose}>
@@ -83,6 +91,22 @@ export function DialogWithCard() {
                     </Button>
                 </DialogActions>
             </Dialog>
+
+            {/*Ohad's Popup*/}
+            <Dialog open={openLogin} onClose={handleCloseLogin}>
+                <DialogTitle>Login Required!</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        You must be logged in to do that action!
+                        Please log in or continue browsing
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={()=> {navigate("/Login");}} variant="contained" autoFocus>Log In</Button>
+                    <Button onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
+                </DialogActions>
+            </Dialog>
+
         </div>
     );
 }
@@ -118,8 +142,7 @@ export default function OverView2() {
 
 
             <Container component="main" maxWidth="md"
-                       sx={{ mb: 4,
-            }}
+                       sx={{ mb: 4,}}
             >
 
                 <Grid
@@ -139,9 +162,7 @@ export default function OverView2() {
                     <Grid item xs={12}>
                         <HostInfo/>
                     </Grid>
-                    {/*<ControlledRadioButtonsGroup></ControlledRadioButtonsGroup>*/}
                     <Grid item xs={12}>
-                        {/*<DatesPicker/>*/}
                         <DialogWithCard/>
                     </Grid>
                     </Paper>

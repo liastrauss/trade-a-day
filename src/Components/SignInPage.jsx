@@ -1,101 +1,55 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import {signInWithPopup, signOut} from "firebase/auth";
 import {auth, googleProvider, facebookProvider} from "../config/firebase";
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import CloseIcon from '@mui/icons-material/Close';
-import {Grid, TextField, Typography} from "@mui/material";
+import {Grid, Typography} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 import Box from '@mui/material/Box';
-export const logOut = async () => {
-    try {
-        await signOut(auth)
-    }
-    catch (err) {
-        console.error(err)
-    }
-}
-export default function SignInPage() {
+import Container from '@mui/material/Container';
 
-    // accountHandle is a placeholder function. In the future it should receive authentication method as prop,
-    // call the authentication method, check if the user was already signed in. (credentials in dataset ? close dialog : call Register)
-    // const accountHandle = () => {
-    //     exist ? setExist(true) : Register()
-    // };
+export const logOut = async () => {try {await signOut(auth)} catch (err) {console.error(err)}}
+export default function SignInPage(SignInPageTarget="/") {
 
-    const [userData, setUserData] =
-        React.useState({
-            userID: '',
-            userFirstName: '',
-            userLastName: '',
-            userEmail: '',
-            userPhone: '',
-            PizzaToppings: [],
-            favoriteFood: [],
-            skills: [],
-            superpowers: [],
-        },[]);
+    // const [userData, setUserData] =
+    //     React.useState({
+    //         userID: '',
+    //         userFirstName: '',
+    //         userLastName: '',
+    //         userEmail: '',
+    //         userPhone: '',
+    //         PizzaToppings: [],
+    //         favoriteFood: [],
+    //         skills: [],
+    //         superpowers: [],
+    //     },[]);
 
-    //Google authentication
-    const signInWithGoogle = async () => {
-        try {
-            await signInWithPopup(auth, googleProvider);
-        }
-        catch (err) {
-            console.error(err);
-        }
-    }
-    //Facebook authentication
-    const signInWithFacebook = async () => {
-        try {
-            await signInWithPopup(auth, facebookProvider)
-        }
-        catch (err) {
-            console.error(err)
-        }
-    }
-
-
-
+    const signInWithGoogle = async () => {try {await signInWithPopup(auth, googleProvider);} catch (err) {console.error(err);}}
+    const signInWithFacebook = async () => {try {await signInWithPopup(auth, facebookProvider)} catch (err) {console.error(err)}}
+    const navigate = useNavigate();
 
     return (
-        <React.Fragment>
-            <div>
-                <Grid container spacing={1} justifyContent="flex-start" alignItems="stretch">
-                    <Box>
-                        {auth?.currentUser?.displayName ? (
-                            <React.Fragment>
-                                <Typography color='primary' variant="h6" gutterBottom> You are currently logged in as: {auth.currentUser.displayName}
-                                </Typography>
-                                <Button
-                                    variant="contained"
-                                    onClick={logOut}
-                                    sx={{ mt: 3, ml: 1 }}
-                                >
-                                    Log Out
-                                </Button>
-                            </React.Fragment>
-                        ) : (
-                            <React.Fragment>
-                                <Typography color='primary' variant="h6" gutterBottom> Sign in to your account!
-                                </Typography>
-                                <Button startIcon={<GoogleIcon color='primary' style={{ fontSize: 45 }}></GoogleIcon>} onClick={signInWithGoogle}>
-                                    Sign in with Google
-                                </Button>
-                                <Button startIcon={<FacebookIcon color='primary' style={{ fontSize: 45 }}></FacebookIcon>} onClick={signInWithFacebook}>
-                                    Sign in with Facebook
-                                </Button>
-                            </React.Fragment>
-                        )}
+        <Box>
+            {auth?.currentUser ? (
+                <React.Fragment>
+                    <Box sx={{flexDirection: 'column'}}>
+                        <Typography color='primary' variant="h6" gutterBottom> You are currently logged in as: {auth.currentUser.displayName} </Typography>
+                        <Typography color='primary' variant="body1" gutterBottom> You can log out or edit your profile! </Typography>
                     </Box>
-                </Grid>
-            </div>
-        </React.Fragment>
+                    <Box sx={{flexDirection: 'column'}}>
+                        <Button variant="contained" onClick={logOut} sx={{ mt: 3, ml: 1 }}> Log Out </Button>
+                        <Button variant="contained" sx={{ mt: 3, ml: 1 }}> Edit Profile </Button>
+                        <Button variant="contained" onClick={() => navigate("/")} sx={{ mt: 3, ml: 1 }}> Homepage </Button>
+                    </Box>
+                </React.Fragment>
+            ) : (
+                <Box>
+                    <Typography color='primary' variant="h6" gutterBottom> Sign in to your account! </Typography>
+                    <Button startIcon={<GoogleIcon color='primary' style={{ fontSize: 45 }}></GoogleIcon>} onClick={signInWithGoogle}> Sign in with Google </Button>
+                    <Button startIcon={<FacebookIcon color='primary' style={{ fontSize: 45 }}></FacebookIcon>} onClick={signInWithFacebook}> Sign in with Facebook </Button>
+                </Box>
+            )}
+        </Box>
     );
 }
