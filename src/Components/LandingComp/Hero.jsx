@@ -98,8 +98,6 @@ const Hero = () => {
 
                         </Typography>
                         <CustomBox>
-
-
                             <MyButton
                                 size="large"
                                 variant="contained"
