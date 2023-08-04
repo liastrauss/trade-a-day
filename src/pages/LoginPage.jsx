@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import Button from '@mui/material/Button';
-import { signInWithPopup, signOut } from "firebase/auth";
-import {auth, googleProvider, facebookProvider} from "../config/firebase";
+import { signInWithPopup, signOut, getAdditionalUserInfo } from "firebase/auth";
+import {auth, googleProvider, facebookProvider, db} from "../config/firebase";
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { Typography } from "@mui/material";
@@ -14,6 +14,7 @@ import Paper from "@mui/material/Paper";
 import { Container } from "@mui/system";
 import Topbar from "../Components/Topbar";
 import {collection, getDoc, getDocs, doc , query, where} from "firebase/firestore";
+
 
 export const logOut = async () => {
     try {
@@ -29,7 +30,6 @@ export const logOut = async () => {
  * @constructor
  */
 
-const db = firebase.firestore();
 // const db = firebase.firestore();
 // const collectionRef = db.collection('your_collection_name');
 // const query = collectionRef.where('some_field', '==', 'some_value');
@@ -39,6 +39,7 @@ const db = firebase.firestore();
 
 export async function userExists() {
     try {
+        const db = firebase.firestore();
         const usersCollectionRef = db.collection('users');
         console.log("function userExists is called")
         const query = usersCollectionRef.where('userID', '==', auth?.currentUser?.uid);
@@ -62,15 +63,27 @@ export async function userExists() {
 
 export async function ExistCheck() {
     try {
-        db.collection("Users")
-            .where("userID", "==", auth?.currentUser?.uid).get()
-            .then(function (querySnapshot) {
-                if (!querySnapshot.empty) {
-                    console.log(`userExists is false ${auth?.currentUser?.uid}`)
-                } else {
-                    console.log(`userExists is true ${auth?.currentUser?.uid}`)
-                }
-            });
+        // const db = firebase.firestore();
+        // db.collection("Users")
+        //     .where("userID", "==", auth?.currentUser?.uid).get()
+        //     .then(function (querySnapshot) {
+        //         if (!querySnapshot.empty) {
+        //             console.log(`userExists is false ${auth?.currentUser?.uid}`)
+        //         } else {
+        //             console.log(`userExists is true ${auth?.currentUser?.uid}`)
+        //         }
+        //     });
+        const u = query(collection(db, "users"), where("userID", "==", auth?.currentUser?.uid))
+        const querySnapshot = await getDocs(u);
+        if (querySnapshot.empty) {
+            // The query snapshot is empty, meaning no documents matched the query
+            console.log(`userExists is false ${auth?.currentUser?.uid}`)
+        } else {
+            console.log(`userExists is true ${auth?.currentUser?.uid}`)
+        }
+
+
+
     } catch (error) {
         console.log(error)
     }
@@ -118,6 +131,21 @@ export default function LoginPage(props) {
     const redirect = searchParams.get("redirect");
     const navigate = useNavigate();
 
+    // const signInWithGoogle = async () => {
+    //     try {
+    //         signInWithPopup(auth, googleProvider)
+    //         .then( async(result) => {
+    //                 const details = getAdditionalUserInfo(result)
+    //                 console.log("is this a new user that hasn't autheticated before?", details.isNewUser);
+    //         })
+    //
+    //
+    //         navigate(redirect);
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // }
+    // without checking new user:
     const signInWithGoogle = async () => {
         try {
             await signInWithPopup(auth, googleProvider);
@@ -126,6 +154,7 @@ export default function LoginPage(props) {
             console.error(err);
         }
     }
+
 
     const signInWithFacebook = async () => {
         try {

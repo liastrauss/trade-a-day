@@ -52,6 +52,8 @@ function HostInfo() {
     const StyledBasicProfileInfo = styled(Box)({
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'flex-start',
+
     });
 
 
