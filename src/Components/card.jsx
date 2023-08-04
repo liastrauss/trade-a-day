@@ -10,13 +10,8 @@ import {useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
 import {getDocs, collection} from "firebase/firestore";
 import Chips from "./filterChips";
-import { db, storage} from "../config/firebase";
-
-import MainImage from "./mainImage";
+import { db} from "../config/firebase";
 import Images from "./mainimage2";
-
-
-import { getDownloadURL, ref, getStorage } from "firebase/storage";
 import SearchBox from "./searchBox";
 
 
@@ -48,7 +43,6 @@ export default function EventCard({value = null}) {
 
                 setCardData(cardInfo);
                 setfiltered(cardInfo);
-                setfiltered(cardInfo);
                 // Images({cardInfo})
 
 
@@ -60,41 +54,46 @@ export default function EventCard({value = null}) {
         getCardData();
     }, []);
 
-
-
-
+    // Get the screen size using Material-UI useMediaQuery hook
+    const isXs = useTheme().breakpoints.down('xs');
+    const screenwidth = window.innerWidth;
 
     return (
         <div>
             <SearchBox cardData={cardData} activeSearch={activeSearch} setActiveSearch ={setActiveSearch} setSearched={setfiltered} />
             <Images events={cardData} />
 
-            <Chips cardData={cardData} activeFiler={activeFilter} setActiveFilter={setActiveFilter} setfiltered={setfiltered}/>
-
-
+            <Chips cardData={cardData}
+                   activeFiler={activeFilter}
+                   setActiveFilter={setActiveFilter}
+                   setfiltered={setfiltered}
+            sx={{ mb: 4, mt: -2}}/>
             <Box sx={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 flexWrap: 'wrap',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                mt: 4
             }}>
                 {filtered.map((item) => (
                     <Card
                         key={item.id} // Provide a unique key for each item
                         sx={{
                         width: {
-                            // sm: 200, //600
-                            md: 150, //900
+                            xs: screenwidth, // Set width to screen width in xs
+                            sm: 150, //600
+                            md: 190, //900
                             lg: 250, //1200
-
+                            // xl: 400, //1563
                         },
                         height: {
-                            // sm: 264, //600
-                            md: 198, //900
-                            lg: 330, //120
+                            xs: screenwidth * 0.65,
+                            sm: 220, //600
+                            md: 279, //900
+                            lg: 368, //120
                         },
                         boxShadow: 0,
-                        my: 2,
+                        my: 1,
                         mx: 2.5,
                     }}
                     >
@@ -111,14 +110,16 @@ export default function EventCard({value = null}) {
                                     backgroundSize: 'cover', // Equivalent to object-fit: cover
                                     backgroundPosition: 'center',
                                     width: {
-                                        // sm: 200, //600
-                                        md: 150, //900
+                                        xs: screenwidth, //0
+                                        sm: 150, //600
+                                        md: 190, //900
                                         lg: 250, //1200
                                         // xl: 400, //1563
                                     },
                                     height: {
-                                        // sm: 200, //600
-                                        md: 150, //900
+                                        xs: screenwidth * 0.5, //0
+                                        sm: 150, //600
+                                        md: 190, //900
                                         lg: 250, //1200
                                         // xl: 400, //1563
                                     },
@@ -129,7 +130,8 @@ export default function EventCard({value = null}) {
                                 fontSize: 13,
                                 fontFamily: theme.typography.fontFamily,
                                 fontWeight: theme.typography.fontWeightMedium,
-                                lineHeight: 0
+                                lineHeight: 1,
+                                mt: -1,
                             }}
                             >
                                 {item.hostName}, {item.jobTitle}
@@ -141,7 +143,7 @@ export default function EventCard({value = null}) {
                                     fontFamily: theme.typography.fontFamily,
                                     fontSize: 12,
                                     justifyContent: 'flex-start',
-                                    lineHeight: 0,
+                                    lineHeight: 1,
                                     mt: -2.5,
                                     ml: 1
                                 }}>
