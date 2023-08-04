@@ -26,7 +26,7 @@ export default function ViewHobbies({hostID}) {
 
     const [food, setfood] = useState(null);
     const [pizzaToppings, setpizzaToppings] = useState(null);
-    const [skills, setskills] = useState(null);
+    const [hobbies, sethobbies] = useState(null);
 
 
 
@@ -85,8 +85,8 @@ export default function ViewHobbies({hostID}) {
                     if (authData?.pizzaToppings === userData?.pizzaToppings) {
                         setpizzaToppings(authData.pizzaToppings);
                     }
-                    if (authData?.skills === userData?.skills) {
-                        setskills(authData.skills);
+                    if (authData?.hobbies === userData?.hobbies) {
+                        sethobbies(authData.hobbies);
                     }
                 }
             } catch (error) {
@@ -132,12 +132,12 @@ export default function ViewHobbies({hostID}) {
                     </Stack>
                 )}
 
-                {skills === null && (
+                {hobbies === null && (
                     <Stack direction="row" spacing={1}>
-                        <Typography>Skills:</Typography>
+                        <Typography>hobby:</Typography>
                         <Chip
                             icon={<SchoolRoundedIcon/>}
-                            label={userData?.skills}
+                            label={userData?.hobbies}
                             variant="outlined"
                             size="small"
                             color="primary"
@@ -147,14 +147,14 @@ export default function ViewHobbies({hostID}) {
             </Stack>
 
 
-            {!((food !== null && skills !== null && pizzaToppings !== null) ||
-                (food === null && skills === null && pizzaToppings === null))  &&  (
+            {!((food !== null && hobbies !== null && pizzaToppings !== null) ||
+                (food === null && hobbies === null && pizzaToppings === null))  &&  (
                 <Divider my={2}/>
             )}
 
             <Stack direction="column" spacing={0.5} my={1}/>
 
-            {(food !== null || skills !== null || pizzaToppings !== null) && (
+            {(food !== null || hobbies !== null || pizzaToppings !== null) && (
                 <Typography style={{ fontWeight: 'bold' }}>
                     You both have things in common!
                 </Typography>
@@ -185,12 +185,12 @@ export default function ViewHobbies({hostID}) {
                         />
                     </Stack>
                 )}
-                {skills !== null && (
+                {hobbies !== null && (
                     <Stack direction="row" spacing={1}>
-                        <Typography>You have the same skill:</Typography>
+                        <Typography>You have the same hobby:</Typography>
                         <Chip
                             icon={<SchoolRoundedIcon/>}
-                            label={skills}
+                            label={hobbies}
                             variant="outlined"
                             size="small"
                             color="primary"
