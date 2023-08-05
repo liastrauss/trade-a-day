@@ -107,8 +107,8 @@ export default function ViewHobbies({hostID}) {
         <Box>
             <Stack direction="column">
                 {food === null && (
-                    <Stack direction="row" spacing={1}>
-                        <Typography>Favorite Food:</Typography>
+                    <Stack direction="row" spacing={1} my={0.5}>
+                        <Typography>My favourite food is</Typography>
                         <Chip
                             icon={<FastfoodRoundedIcon/>}
                             label={userData?.favoriteFood}
@@ -120,8 +120,8 @@ export default function ViewHobbies({hostID}) {
                 )}
 
                 {pizzaToppings === null && (
-                    <Stack direction="row" spacing={1}>
-                        <Typography>Pizza Topping:</Typography>
+                    <Stack direction="row" spacing={1} my={0.5}>
+                        <Typography>My favourite pizza topping is</Typography>
                         <Chip
                             icon={<LocalPizzaIcon/>}
                             label={userData?.pizzaToppings}
@@ -133,8 +133,8 @@ export default function ViewHobbies({hostID}) {
                 )}
 
                 {hobbies === null && (
-                    <Stack direction="row" spacing={1}>
-                        <Typography>hobby:</Typography>
+                    <Stack direction="row" spacing={1} my={0.5}>
+                        <Typography>My hobbies include</Typography>
                         <Chip
                             icon={<SchoolRoundedIcon/>}
                             label={userData?.hobbies}
@@ -162,8 +162,8 @@ export default function ViewHobbies({hostID}) {
 
             <Stack direction="column" spacing={1} my={2}>
                 {food !== null && (
-                    <Stack direction="row" spacing={1}>
-                        <Typography>You have the same favorite food:</Typography>
+                    <Stack direction="row" spacing={1} my={0.5}>
+                        <Typography>You have the same favourite food</Typography>
                         <Chip
                             icon={<FastfoodRoundedIcon/>}
                             label={food}
@@ -174,8 +174,8 @@ export default function ViewHobbies({hostID}) {
                     </Stack>
                 )}
                 {pizzaToppings !== null && (
-                    <Stack direction="row" spacing={1}>
-                        <Typography>You have the same favorite pizza Topping:</Typography>
+                    <Stack direction="row" spacing={1} my={0.5}>
+                        <Typography>You have the same favourite pizza topping</Typography>
                         <Chip
                             icon={<LocalPizzaIcon/>}
                             label={pizzaToppings}
@@ -186,8 +186,8 @@ export default function ViewHobbies({hostID}) {
                     </Stack>
                 )}
                 {hobbies !== null && (
-                    <Stack direction="row" spacing={1}>
-                        <Typography>You have the same hobby:</Typography>
+                    <Stack direction="row" spacing={1} my={0.5}>
+                        <Typography>You share a hobby</Typography>
                         <Chip
                             icon={<SchoolRoundedIcon/>}
                             label={hobbies}
@@ -211,7 +211,7 @@ export default function ViewHobbies({hostID}) {
                 {/*</Typography>*/}
                 {/*for whatsapp link*/}
                 {(!userData?.contactMethod || userData?.contactMethod === 'Phone') && (
-                    <Typography color="primary" my={1} sx={{display: 'flex', justifyContent: 'center'}}>
+                    <Typography color="primary" sx={{display: 'flex', justifyContent: 'center'}}>
                     <Link href={"https://wa.me/972" + userData?.userPhone}
                           underline="always"
                           color="primary"
