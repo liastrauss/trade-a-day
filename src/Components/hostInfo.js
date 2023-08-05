@@ -200,7 +200,7 @@ function HostInfo() {
                     )}
 
                     {eventInfoData?.outdoors ?
-                        <StyledBasicProfile sx={{ flex: '0 0 calc(50% - 10px)' }}>
+                        <StyledBasicProfile sx={{ flex:1 }}>
                             <StyledBasicProfileAvatar><ForestIcon/> </StyledBasicProfileAvatar>
                             <StyledBasicProfileInfo>
                                 <StyledBasicProfileOverline>setting</StyledBasicProfileOverline>
@@ -218,7 +218,12 @@ function HostInfo() {
                     }
 
                     {/*for physical efforr*/}
-                        <StyledBasicProfile sx={{ flex: 1 }}>
+                        <Box sx={{
+                            flexDirection: 'row',
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                        }}>
+                        <StyledBasicProfile sx={{ flex: 1}}>
                         <StyledBasicProfileAvatar>
                             {<DirectionsRunIcon />}
                         </StyledBasicProfileAvatar>
@@ -227,8 +232,8 @@ function HostInfo() {
                             {/*maybe do the number of people*/}
                             <StyledBasicProfileName>{labelsPhysical[eventInfoData?.physicalEffort]}</StyledBasicProfileName>
                         </StyledBasicProfileInfo>
-                    </StyledBasicProfile>
-
+                        </StyledBasicProfile>
+                        </Box>
 
                         {eventInfoData?.dates && (
                             <Box sx={{
@@ -265,6 +270,7 @@ function HostInfo() {
                     </Box>
 
                     {/*what to bring*/}
+                    {eventInfoData?.toBring &&(
                     <Grid item xs={12}>
                         <Typography variant="subtitle1" color="primary.light"
                         sx ={{
@@ -317,7 +323,7 @@ function HostInfo() {
                             )}
                         </Typography>
 
-                    </Grid>
+                    </Grid>)}
 
 
                 </Grid>
