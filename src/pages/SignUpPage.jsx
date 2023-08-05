@@ -141,7 +141,7 @@ export default function NewProfileCreation() {
                             </Box>
                             <Box>
                                 <Typography variant="h6" gutterBottom> My favorite pizza toppings are...</Typography>
-                                <ToggleButtonGroup color='primary' value={userData.pizzaToppings} onChange={handleTopping} exclusive>
+                                <ToggleButtonGroup color='primary' value={userData.pizzaToppings} onChange={handleTopping}>
                                     <ToggleButton value="Mushroom"> <GiSlicedMushroom/> Mushroom </ToggleButton>
                                     <ToggleButton value="Cheese"> <GiCheeseWedge/> Cheese </ToggleButton>
                                     <ToggleButton value="Corn"> <GiCorn/> Corn </ToggleButton>
