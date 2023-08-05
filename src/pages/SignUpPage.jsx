@@ -85,6 +85,23 @@ export default function NewProfileCreation() {
 
 
     // Event Handlers
+    // const [food, setFood] = useState("");
+    // const [toppings, setToppings] = useState([]);
+    // const [hobbies, setHobbies] = useState("");
+    const checkFormCompletion = () => {
+        const { userFirstName, userLastName, favoriteFood, pizzaToppings, hobbies } = userData;
+
+        // Check if all the required fields are filled
+        const isComplete =
+            userFirstName?.trim() !== '' &&
+            userLastName?.trim() !== '' &&
+            favoriteFood !== '' &&
+            pizzaToppings?.length > 0 &&
+            hobbies !== '';
+
+        setIsFormComplete(isComplete);
+    };
+
     const handleFood = (event, newData) => {
         setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData }));
                 // setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData|| [], })); };
