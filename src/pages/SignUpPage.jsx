@@ -20,8 +20,8 @@ import {Container} from "@mui/system";
 
 export default function NewProfileCreation() {
 
-    const firstSpaceIndex = auth?.currentUser?.displayName.indexOf(" ");
-    const firstNamePart = firstSpaceIndex !== -1 ? auth?.currentUser?.displayName.substring(0, firstSpaceIndex) : auth?.currentUser?.displayName;
+    const firstSpaceIndex = auth?.currentUser?.displayName?.indexOf(" ") || '';
+    const firstNamePart = firstSpaceIndex !== -1 ? auth?.currentUser?.displayName.substring(0, firstSpaceIndex) : '';
     const lastNamePart = firstSpaceIndex !== -1 && firstSpaceIndex < auth?.currentUser?.displayName.length - 1
         ? auth?.currentUser?.displayName.substring(firstSpaceIndex + 1).split(" ")[0]
         : '';
@@ -33,7 +33,7 @@ export default function NewProfileCreation() {
             userID: '',
             userFirstName: firstNamePart,
             userLastName: lastNamePart,
-            userEmail: '',
+            userEmail: auth?.currentUser?.email,
             userPhone: '',
             favoriteFood: [],
             pizzaToppings: [],
@@ -54,7 +54,7 @@ export default function NewProfileCreation() {
                 userID: auth?.currentUser?.uid,
                 userFirstName: userData.userFirstName,
                 userLastName: userData.userLastName,
-                userEmail: auth?.currentUser?.email,
+                userEmail: userData.userEmail,
                 userPhone: userData.userPhone,
                 favoriteFood: userData.favoriteFood,
                 pizzaToppings: userData.pizzaToppings,

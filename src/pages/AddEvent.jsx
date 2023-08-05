@@ -17,7 +17,7 @@ import DaySchedule from "../Components/DaySchedule";
 import Topbar from "../Components/Topbar";
 // import things for backend
 import { db, auth } from "../config/firebase";
-import {addDoc, collection, updateDoc, doc} from 'firebase/firestore';
+import {addDoc, collection, updateDoc, doc, query, where, getDocs} from 'firebase/firestore';
 
 // An array that stores the labels for the steps of the checkout process
 const steps = ['A bit about yourself', 'Technicalities', 'What to bring'];
@@ -32,8 +32,8 @@ export default function AddEvent() {
     const [userContact, setUserContact] =
         React.useState({
             contactMethod: null,
-            userEmail: auth?.currentUser?.email  || 'no mail',
-            userPhone: 'no phone',
+            userEmail: auth?.currentUser?.email  || '',
+            userPhone: '',
         },[]);
 
     // initialize the data from the form parts
@@ -64,8 +64,6 @@ export default function AddEvent() {
     const dbRef = collection(db,"DataBase1");
     const userDataRef = collection(db,"users");
 
-    // for contactuser:
-    const userDoc = doc(db,"users",auth?.currentUser?.uid)
 
     const onSubmit = async () => {
         try {
@@ -83,9 +81,19 @@ export default function AddEvent() {
             outdoors: formData.outdoors,
             picture: "none",
             contactMethod: formData.contactMethod,
-            contact: formData.contact,
 
         });
+
+            // for contactuser:
+            const q = query(collection(db, "users"), where("userID", "==", auth?.currentUser?.uid))
+            const querySnapshot = await getDocs(q);
+
+            const DocID = querySnapshot.empty ? "0usertemplate" : querySnapshot.docs[0].id;
+            console.log("User Document ID:", DocID);
+
+            let userDoc = doc(db,"users",DocID);
+
+
             await updateDoc(userDoc, {
                 userEmail: userContact?.userEmail || '',
                 userPhone: userContact?.userPhone || '',
@@ -102,6 +110,7 @@ export default function AddEvent() {
     }
 
     console.log("formData is:",formData);
+    // console.log("userdata is:",userContact);
     // A state hook that keeps track of the currently active step:
     const [activeStep, setActiveStep] = React.useState(0);
     // A function that increments the activeStep state when called

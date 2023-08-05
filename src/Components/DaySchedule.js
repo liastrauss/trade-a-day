@@ -165,22 +165,18 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
     //     }
     // ];
     const contactOptions = ['Phone','Email'];
-
-    // Function to render the appropriate textbox based on the selected option
-    const renderContactBox = () => {
-        if (formData.contact === "Phone") {
-            return <TextField label="Phone" />;
-        } else if (formData.contact === "Email") {
-            return <TextField label="Email"  placeholder="automatic email"
-            />;
-        }
-        // Add more conditions if needed for other options
-        return null; // Render nothing if no option is selected
-    };
+    const isPhoneError = userContact.contactMethod === 'Phone' &&
+        (userContact.userPhone.length > 10
+        || !/^\d+$/.test(userContact.userPhone));
 
 
-    console.log(formData.dates)
+
+
+    console.log("dates:",formData.dates);
+    console.log("useremail is:",userContact.userEmail);
+
     // console.log(datePickerValues[0].$d);
+
 
 
 
@@ -381,16 +377,16 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                         required
                         openOnFocus
                         disableClearable
-                        // disablePortal
                         id="contact method"
-                        options = {contactOptions}
-                        // sx={{ width: 300 }}
+                        options={contactOptions}
                         renderInput={(params) => <TextField {...params} label="Contact Method" />}
                         onChange={(e, newValue) => {
-                            setUserContact({ ...formData, contactMethod: newValue, });
+                            setUserContact({
+                                ...userContact,
+                                contactMethod: newValue,
+                            });
                         }}
                         value={userContact.contactMethod}
-
                     />
                 </Grid>
                 <Grid item xs={7}>
@@ -398,7 +394,8 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                         <TextField
                             fullWidth
                             label="Phone Number"
-                            helperText="We'll only show this number to people who want to go to your day"
+                            error={isPhoneError}
+                            helperText={isPhoneError ? 'Phone number should be 10 digits or less' : "We\'ll only show this number to people who want to go to your day"}
                             onChange={(e) => {
                                 setUserContact({
                                     ...userContact,
@@ -407,9 +404,7 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                             }}
                             value={userContact.userPhone}
                             InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">+972</InputAdornment>
-                                ),
+                                startAdornment: <InputAdornment position="start">+972</InputAdornment>,
                             }}
                         />
                     )}
@@ -418,6 +413,7 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                         <TextField
                             fullWidth
                             label="Email"
+                            helperText="If you don't want people to contact you by the email you signed up with"
                             onChange={(e) => {
                                 setUserContact({
                                     ...userContact,
