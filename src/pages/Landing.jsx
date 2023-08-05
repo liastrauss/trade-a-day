@@ -7,6 +7,7 @@ import Properties from "../Components/LandingComp/Properties";
 import Details from "../Components/LandingComp/Details";
 import GetStarted from "../Components/LandingComp/GetStarted";
 import Topbar from "../Components/Topbar";
+import Box from '@mui/material/Box';
 
 
 function Landing() {
