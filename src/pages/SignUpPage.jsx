@@ -37,6 +37,8 @@ export default function NewProfileCreation() {
     const redirect = searchParams.get("redirect");
     const usersCollectionRef = collection(db, "users")
 
+    const [isFormComplete, setIsFormComplete] = useState(false);
+
 
     const [userData, setUserData] = React.useState({
             userID: '',
@@ -85,16 +87,35 @@ export default function NewProfileCreation() {
     // const [food, setFood] = useState("");
     // const [toppings, setToppings] = useState([]);
     // const [hobbies, setHobbies] = useState("");
+    const checkFormCompletion = () => {
+        const { userFirstName, userLastName, favoriteFood, pizzaToppings, hobbies } = userData;
+
+        // Check if all the required fields are filled
+        const isComplete =
+            userFirstName.trim() !== '' &&
+            userLastName.trim() !== '' &&
+            favoriteFood !== '' &&
+            pizzaToppings.length > 0 &&
+            hobbies !== '';
+
+        setIsFormComplete(isComplete);
+    };
+
     const handleFood = (event, newData) => {
         setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData }));
+        checkFormCompletion();
         // setFood(event.target.value);
     };
     const handleTopping = (event, newData) => {
         setUserData((prevUserData) => ({...prevUserData, pizzaToppings: newData }));
+        checkFormCompletion();
+
         // setToppings(event.target.value);
     };
     const handleHobby = (event, newData) => {
         setUserData((prevUserData) => ({...prevUserData, hobbies: newData }));
+        checkFormCompletion();
+
         // setHobbies(event.target.value);
     };
 
@@ -141,6 +162,7 @@ export default function NewProfileCreation() {
                                             ...userData,
                                             userFirstName: e.target.value,
                                         });
+                                        checkFormCompletion(); // Call the function to check form completion
                                     }}
                                     value = {userData.userFirstName}
                                 />
@@ -156,6 +178,7 @@ export default function NewProfileCreation() {
                                             ...userData,
                                             userLastName: e.target.value,
                                         });
+                                        checkFormCompletion(); // Call the function to check form completion
                                     }}
                                     value = {userData.userLastName}
                                 />
@@ -202,6 +225,7 @@ export default function NewProfileCreation() {
                                     variant="contained"
                                     onClick={onSubmit}
                                     style={{ cursor: 'pointer' }}
+                                    disabled={!isFormComplete} // Disable the button if the form is not complete
                                 >
                                     Done
                                 </Button>
