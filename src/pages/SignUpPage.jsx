@@ -35,6 +35,7 @@ export default function NewProfileCreation() {
             userLastName: lastNamePart,
             userEmail: auth?.currentUser?.email,
             userPhone: '',
+            contactMethod: null,
             favoriteFood: [],
             pizzaToppings: [],
             hobbies: [],
