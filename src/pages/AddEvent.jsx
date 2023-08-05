@@ -97,6 +97,7 @@ export default function AddEvent() {
             await updateDoc(userDoc, {
                 userEmail: userContact?.userEmail || '',
                 userPhone: userContact?.userPhone || '',
+                contactMethod: userContact?.contactMethod || 'Email',
 
             });
             // advance to the final page:

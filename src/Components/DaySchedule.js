@@ -174,6 +174,8 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
 
     console.log("dates:",formData.dates);
     console.log("useremail is:",userContact.userEmail);
+    console.log("choice is:",userContact.contactMethod);
+
 
     // console.log(datePickerValues[0].$d);
 
