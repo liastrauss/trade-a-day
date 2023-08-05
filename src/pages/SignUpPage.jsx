@@ -103,32 +103,32 @@ export default function NewProfileCreation() {
     };
 
     const handleFood = (event, newData) => {
-        setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData }));
-                // setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData|| [], })); };
+        // setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData }));
+                setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData|| [], }));
         checkFormCompletion();
         // setFood(event.target.value);
     };
     const handleTopping = (event, newData) => {
-        setUserData((prevUserData) => ({...prevUserData, pizzaToppings: newData }));
-        //        setUserData((prevUserData) => ({...prevUserData, pizzaToppings: newData|| [], })); };
+        // setUserData((prevUserData) => ({...prevUserData, pizzaToppings: newData }));
+               setUserData((prevUserData) => ({...prevUserData, pizzaToppings: newData|| [], }));
         checkFormCompletion();
         // setToppings(event.target.value);
     };
     const handleHobby = (event, newData) => {
-        setUserData((prevUserData) => ({...prevUserData, hobbies: newData}));
+        // setUserData((prevUserData) => ({...prevUserData, hobbies: newData}));
+        setUserData((prevUserData) => ({...prevUserData, hobbies: newData|| [], }));
         checkFormCompletion();
     };
 
-        // setUserData((prevUserData) => ({...prevUserData, hobbies: newData|| [], })); };
 
     // Update the function to check if the button should be disabled or not
     const isButtonDisabled = React.useMemo(() => {
         return (
-            userData.favoriteFood.length === 0 ||
-            userData.hobbies.length === 0 ||
-            userData.pizzaToppings.length === 0 ||
-            userData.userFirstName === '' ||
-            userData.userLastName === ''
+            userData?.favoriteFood.length === 0 ||
+            userData?.hobbies.length === 0 ||
+            userData?.pizzaToppings.length === 0 ||
+            userData?.userFirstName === '' ||
+            userData?.userLastName === ''
         );
     }, [userData]);
 
@@ -162,9 +162,9 @@ export default function NewProfileCreation() {
         <React.Fragment>
             <Topbar AddDay Profile BookedEvents/>
             <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-                    <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+                    <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, wordWrap: 'break-word'}}>
                         <Typography component="h1" variant="h4" align="center" gutterBottom>Sign Up</Typography>
-                        <Grid container spacing={1} justifyContent="flex-start" alignContent="flex-start" alignItems="stretch">
+                        <Grid container spacing={1} justifyContent="flex-start" alignContent="flex-start" >
                             <Typography color='primary' variant="h6" gutterBottom> Let's finish setting up your account!
                             </Typography>
                             <Grid item xs={12} sm={6}>
@@ -200,12 +200,11 @@ export default function NewProfileCreation() {
                                     value = {userData.userLastName}
                                 />
                             </Grid>
+
                             <Typography color='primary' variant="h6" gutterBottom> Here are 3 ice-breaking questions to get to know you better!</Typography>
-                                <Typography variant="h6" gutterBottom> My favorite food is...</Typography>
-                            <Grid container spacing={1} justifyContent="flex-start" alignContent="flex-start" alignItems="stretch"
-                                  // sx={{ overflowX: 'auto', whiteSpace: 'nowrap' }}
-                            >
-                                <Grid item xs={12} md={6} sx={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
+                            <Grid container spacing={1} justifyContent="flex-start" alignContent="flex-start" alignItems="stretch" sx={{ marginLeft: '1px' }}>
+                            <Typography variant="h6" > My favorite food is...</Typography>
+                                <Grid item xs={12} sx={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
                                 <ToggleButtonGroup color='primary' value={userData.favoriteFood} onChange={handleFood} exclusive>
                                     <ToggleButton value="Pizza"> <LuPizza/> Pizza </ToggleButton>
                                     <ToggleButton value="Salad"> <LuSalad/> Salad </ToggleButton>
@@ -214,8 +213,8 @@ export default function NewProfileCreation() {
                                     <ToggleButton value="Mexican"> <GiTacos/> Mexican </ToggleButton>
                                 </ToggleButtonGroup>
                                 </Grid>
-                                <Typography variant="h6" gutterBottom> My favorite pizza toppings are...</Typography>
-                                <Grid item xs={12} md={6} sx={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
+                                <Typography variant="h6" > My favorite pizza toppings are...</Typography>
+                                <Grid item xs={12} sx={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
                                     <ToggleButtonGroup color='primary' value={userData.pizzaToppings} onChange={handleTopping}>
                                     <ToggleButton value="Mushroom"> <GiSlicedMushroom/> Mushroom </ToggleButton>
                                     <ToggleButton value="Cheese"> <GiCheeseWedge/> Cheese </ToggleButton>
@@ -225,8 +224,8 @@ export default function NewProfileCreation() {
                                     <ToggleButton value="Anti"> <AiOutlineStop/> None </ToggleButton>
                                 </ToggleButtonGroup>
                                     </Grid>
-                                <Typography variant="h6" gutterBottom> When I'm bored on Friday you'll find me...</Typography>
-                                <Grid item xs={12} md={6} sx={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
+                                <Typography variant="h6" > When I'm bored on Friday you'll find me...</Typography>
+                                <Grid item xs={12} sx={{ overflowX: 'auto', whiteSpace: 'nowrap', }}>
                                     <ToggleButtonGroup color='primary' value={userData.hobbies} onChange={handleHobby} exclusive>
                                     <ToggleButton value="Netflix"> <SiNetflix/> Netflix </ToggleButton>
                                     <ToggleButton value="Cooking"> <GiChefToque/> Cooking </ToggleButton>
@@ -236,7 +235,7 @@ export default function NewProfileCreation() {
                                 </ToggleButtonGroup>
                                 </Grid>
                             </Grid>
-                            <Box sx={{ display: 'flex', justifyContent: 'Center'}}>
+                            <Grid item sx={{ display: 'flex', justifyContent: 'Center'}}>
                                 <Button
                                     sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
                                             backgroundColor: (theme) => theme.palette.primary.contrastText,
@@ -246,8 +245,8 @@ export default function NewProfileCreation() {
                                     variant="contained"
                                     onClick={onSubmit}
                                     style={{ cursor: 'pointer' }}
-                                    disabled={!isFormComplete} // Disable the button if the form is not complete
-                                    // disabled={isButtonDisabled} // Use the isButtonDisabled variable to control the disabled state
+                                    // disabled={!isFormComplete} // Disable the button if the form is not complete
+                                    disabled={isButtonDisabled} // Use the isButtonDisabled variable to control the disabled state
 
                                 >
                                     Done
@@ -265,7 +264,7 @@ export default function NewProfileCreation() {
                                 {/*        </Button>*/}
                                 {/*    </DialogActions>*/}
                                 {/*</Dialog>*/}
-                            </Box>
+                            </Grid>
                         </Grid>
                     </Paper>
             </Container>

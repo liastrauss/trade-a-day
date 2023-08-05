@@ -65,7 +65,7 @@ const Hero = () => {
                 // backgroundSize: "cover",
                 // backgroundRepeat: "no-repeat",
                 // backgroundPosition: "center",
-                minHeight: "80vh",
+                minHeight: "85vh",
             }}>
 
             {/*orig: "#E6F0FF"*/}
