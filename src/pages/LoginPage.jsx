@@ -20,6 +20,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 export const logOut = async () => {
     try {
         await signOut(auth)
+        window.location.reload();
     } catch (err) {
         console.error(err)
     }

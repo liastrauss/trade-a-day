@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import {useLocation, useNavigate} from "react-router-dom";
 import {addDoc, collection} from "firebase/firestore";
 import {auth, db} from "../config/firebase";
-import {Grid, TextField, Typography } from "@mui/material";
+import {Dialog, DialogActions, DialogContent, DialogTitle, Grid, TextField, Typography} from "@mui/material";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import {LuPizza, LuSalad} from "react-icons/lu";
@@ -17,6 +17,11 @@ import Button from "@mui/material/Button";
 import Topbar from "../Components/Topbar";
 import Paper from "@mui/material/Paper";
 import {Container} from "@mui/system";
+import HostHobbies from "./hostHobbies";
+import {useState} from "react";
+
+
+
 
 export default function NewProfileCreation() {
 
@@ -26,10 +31,14 @@ export default function NewProfileCreation() {
         ? auth?.currentUser?.displayName.substring(firstSpaceIndex + 1).split(" ")[0]
         : '';
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const redirect = searchParams.get("redirect");
+    const usersCollectionRef = collection(db, "users")
 
 
-    const [userData, setUserData] =
-        React.useState({
+    const [userData, setUserData] = React.useState({
             userID: '',
             userFirstName: firstNamePart,
             userLastName: lastNamePart,
@@ -43,38 +52,73 @@ export default function NewProfileCreation() {
             superpowers: [],
         },[]);
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const redirect = searchParams.get("redirect");
-
-    const usersCollectionRef = collection(db, "users")
     const onSubmit = async () => {
-        try {
-            await addDoc(usersCollectionRef, {
-                userID: auth?.currentUser?.uid,
-                userFirstName: userData.userFirstName,
-                userLastName: userData.userLastName,
-                userEmail: userData.userEmail,
-                userPhone: userData.userPhone,
-                favoriteFood: userData.favoriteFood,
-                pizzaToppings: userData.pizzaToppings,
-                hobbies: userData.hobbies,
-                skills: userData.skills,
-                superpowers: userData.superpowers,
-            });
-        } catch(err) {
-            console.error(err)
+        await addDoc(usersCollectionRef, {
+            userID: auth?.currentUser?.uid,
+            userFirstName: userData.userFirstName,
+            userLastName: userData.userLastName,
+            userEmail: userData.userEmail,
+            userPhone: userData.userPhone,
+            favoriteFood: userData.favoriteFood,
+            pizzaToppings: userData.pizzaToppings,
+            hobbies: userData.hobbies,
+            skills: userData.skills,
+            superpowers: userData.superpowers,
+        });
+        if (redirect) {
+            navigate(redirect);
+        }
+        else {
+            navigate(`/`);
         }
     }
 
+
+    // popup handlers
+    // const [open, setOpen] = useState(false);
+    // const handleOpen = () => {setOpen(true);};
+    // const handleClose = () => {setOpen(false);};
+
+
+
     // Event Handlers
+    // const [food, setFood] = useState("");
+    // const [toppings, setToppings] = useState([]);
+    // const [hobbies, setHobbies] = useState("");
     const handleFood = (event, newData) => {
-        setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData })); };
+        setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData }));
+        // setFood(event.target.value);
+    };
     const handleTopping = (event, newData) => {
-        setUserData((prevUserData) => ({...prevUserData, pizzaToppings: newData })); };
+        setUserData((prevUserData) => ({...prevUserData, pizzaToppings: newData }));
+        // setToppings(event.target.value);
+    };
     const handleHobby = (event, newData) => {
-        setUserData((prevUserData) => ({...prevUserData, hobbies: newData })); };
+        setUserData((prevUserData) => ({...prevUserData, hobbies: newData }));
+        // setHobbies(event.target.value);
+    };
+
+    // const [firstValue, setFirstValue] = useState(firstNamePart);
+    // const [lastValue, setLastValue] = useState(lastNamePart);
+    // const handleFirstChange = (event) => {
+    //     setFirstValue(event.target.value);
+    // };
+    // const handleLastChange = (event) => {
+    //     setLastValue(event.target.value);
+    // };
+    //
+    // let completed = false;
+    // if (
+    //     firstValue !== "" &&
+    //     lastValue !== "" &&
+    //     food !== "" &&
+    //     toppings.length > 0 &&
+    //     hobbies !== ""
+    // ) {
+    //     // there's a value in all of them
+    //    completed = true;
+    // }
+
 
     return (
         <React.Fragment>
@@ -116,7 +160,7 @@ export default function NewProfileCreation() {
                                     value = {userData.userLastName}
                                 />
                             </Grid>
-                            <Typography color='primary' variant="h6" gutterBottom> Here are 5 ice-breaking questions to get to know you better!</Typography>
+                            <Typography color='primary' variant="h6" gutterBottom> Here are 3 ice-breaking questions to get to know you better!</Typography>
                             <Box>
                                 <Typography variant="h6" gutterBottom> My favorite food is...</Typography>
                                 <ToggleButtonGroup color='primary' value={userData.favoriteFood} onChange={handleFood} exclusive>
@@ -156,13 +200,24 @@ export default function NewProfileCreation() {
                                             borderColor: (theme) => theme.palette.primary.main,
                                         },}} disableElevation
                                     variant="contained"
-                                    onClick={() => {
-                                        onSubmit().then(() => navigate(redirect));
-                                    }}
+                                    onClick={onSubmit}
                                     style={{ cursor: 'pointer' }}
                                 >
                                     Done
                                 </Button>
+                                {/*<Button onClick={console.log(completed)}>Log</Button>*/}
+                                {/*<Dialog open={open} onClose={handleClose}>*/}
+                                {/*    <DialogTitle> Get to know {eventInfoData?.hostName}!</DialogTitle>*/}
+                                {/*    <DialogContent>*/}
+                                {/*        <HostHobbies hostID={eventInfoData?.hostID} />*/}
+                                {/*    </DialogContent>*/}
+                                {/*    <DialogActions>*/}
+                                {/*        /!*<Button onClick={handleClose}>Cancel</Button>*!/*/}
+                                {/*        <Button onClick={handleClose} variant="contained" autoFocus>*/}
+                                {/*            Done*/}
+                                {/*        </Button>*/}
+                                {/*    </DialogActions>*/}
+                                {/*</Dialog>*/}
                             </Box>
                         </Grid>
                     </Paper>
