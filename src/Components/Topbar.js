@@ -167,12 +167,7 @@ export default function Topbar(props) {
                         </Box>
                         :
                         <Button
-                            sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
-                                    backgroundColor: (theme) => theme.palette.primary.contrastText,
-                                    color: (theme) => theme.palette.primary.main,
-                                    borderColor: (theme) => theme.palette.primary.main,
-                                },}} disableElevation
-                            variant = "contained"
+                            variant = "text"
                             onClick={() => {
                                 navigate("/Login");
                             }}
@@ -183,12 +178,7 @@ export default function Topbar(props) {
                     {AddDay ?
                         <div>
                             <Button
-                                sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
-                                        backgroundColor: (theme) => theme.palette.primary.contrastText,
-                                        color: (theme) => theme.palette.primary.main,
-                                        borderColor: (theme) => theme.palette.primary.main,
-                                    },}} disableElevation
-                                variant="contained"
+                                variant="text"
                                 onClick={auth?.currentUser ? () => navigate("/AddEvent") : handleOpenLogin}
                             >
                                 Trade your day

@@ -53,11 +53,16 @@ export default function LoginPage() {
         const authChanged = auth.onAuthStateChanged(async (user) => {
             if (user) {
                 try {
-                    const x = await ExistCheck();
-                    if (x) {
+                    const exists = await ExistCheck();
+                    if (exists) {
                         navigate(redirect);
                     } else {
-                        navigate(`/SignUp?redirect=${redirect}`);
+                        if (redirect) {
+                            navigate(`/SignUp?redirect=${redirect}`);
+                        }
+                        else {
+                            navigate(`/SignUp`);
+                        }
                     }
                 } catch (error) {
                     console.log(error)
