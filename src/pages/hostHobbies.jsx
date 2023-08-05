@@ -210,7 +210,8 @@ export default function ViewHobbies({hostID}) {
                 {/*    {userData?.userPhone}*/}
                 {/*</Typography>*/}
                 {/*for whatsapp link*/}
-                <Typography color="primary" my={1} sx={{display: 'flex', justifyContent: 'center'}}>
+                {(!userData?.contactMethod || userData?.contactMethod === 'Phone') && (
+                    <Typography color="primary" my={1} sx={{display: 'flex', justifyContent: 'center'}}>
                     <Link href={"https://wa.me/972" + userData?.userPhone}
                           underline="always"
                           color="primary"
@@ -223,7 +224,10 @@ export default function ViewHobbies({hostID}) {
                         {'+972 ' + userData?.userPhone}
                     </Link>
                 </Typography>
-                <Typography color="primary" sx={{display: 'flex', justifyContent: 'center'}}>
+                )}
+
+                {(!userData?.contactMethod || userData?.contactMethod === 'Email') && (
+                    <Typography color="primary" sx={{display: 'flex', justifyContent: 'center'}}>
                     <Link href={`mailto:${userData?.userEmail}?subject=Reaching%20out%20from%20Trade%20a%20Day`}
                           underline="always"
                           color="primary"
@@ -236,6 +240,8 @@ export default function ViewHobbies({hostID}) {
                         {userData?.userEmail}
                     </Link>
                 </Typography>
+                )}
+
             </Box>
 
             {/*TODO: Not sure how to add pizza topping if they said they don't like pizza*/}

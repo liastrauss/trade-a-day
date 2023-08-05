@@ -35,6 +35,7 @@ export default function NewProfileCreation() {
             userLastName: lastNamePart,
             userEmail: auth?.currentUser?.email,
             userPhone: '',
+            contactMethod: null,
             favoriteFood: [],
             pizzaToppings: [],
             hobbies: [],
@@ -67,13 +68,25 @@ export default function NewProfileCreation() {
         }
     }
 
+
     // Event Handlers
     const handleFood = (event, newData) => {
-        setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData })); };
+        setUserData((prevUserData) => ({...prevUserData, favoriteFood: newData|| [], })); };
     const handleTopping = (event, newData) => {
-        setUserData((prevUserData) => ({...prevUserData, pizzaToppings: newData })); };
+        setUserData((prevUserData) => ({...prevUserData, pizzaToppings: newData|| [], })); };
     const handleHobby = (event, newData) => {
-        setUserData((prevUserData) => ({...prevUserData, hobbies: newData })); };
+        setUserData((prevUserData) => ({...prevUserData, hobbies: newData|| [], })); };
+
+    // Update the function to check if the button should be disabled or not
+    const isButtonDisabled = React.useMemo(() => {
+        return (
+            userData.favoriteFood.length === 0 ||
+            userData.hobbies.length === 0 ||
+            userData.pizzaToppings.length === 0 ||
+            userData.userFirstName === '' ||
+            userData.userLastName === ''
+        );
+    }, [userData]);
 
     return (
         <React.Fragment>
@@ -128,7 +141,7 @@ export default function NewProfileCreation() {
                             </Box>
                             <Box>
                                 <Typography variant="h6" gutterBottom> My favorite pizza toppings are...</Typography>
-                                <ToggleButtonGroup color='primary' value={userData.pizzaToppings} onChange={handleTopping}>
+                                <ToggleButtonGroup color='primary' value={userData.pizzaToppings} onChange={handleTopping} exclusive>
                                     <ToggleButton value="Mushroom"> <GiSlicedMushroom/> Mushroom </ToggleButton>
                                     <ToggleButton value="Cheese"> <GiCheeseWedge/> Cheese </ToggleButton>
                                     <ToggleButton value="Corn"> <GiCorn/> Corn </ToggleButton>
@@ -159,6 +172,8 @@ export default function NewProfileCreation() {
                                         onSubmit().then(() => navigate(redirect));
                                     }}
                                     style={{ cursor: 'pointer' }}
+                                    disabled={isButtonDisabled} // Use the isButtonDisabled variable to control the disabled state
+
                                 >
                                     Done
                                 </Button>
