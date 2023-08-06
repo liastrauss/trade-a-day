@@ -5,15 +5,8 @@ import {Avatar, Dialog, DialogActions, DialogContent, DialogTitle, Divider, useS
 import * as React from "react";
 import {useNavigate} from "react-router-dom";
 import {useTheme} from "@mui/material/styles";
-import SearchBox from "./searchBox";
-import AppBar from '@mui/material/AppBar';
-import Paper from "@mui/material/Paper";
-import Toolbar from '@mui/material/Toolbar';
 import {auth} from "../config/firebase";
 import {useEffect, useState} from "react";
-
-
-import {cardData} from "../data/card-data";
 import DialogContentText from "@mui/material/DialogContentText";
 
 // for the elevation when scorlled
@@ -148,19 +141,23 @@ export default function Topbar(props) {
 
                 <Box sx={{
                     display: 'flex',
-                    justifyContent: 'space-around',
+                    // justifyContent: 'space-around',
+                    justifyContent: 'center',
                 }}>
                     <Avatar src={avatarSrc}
-                            sx={{ml: 1}}
+                            sx={{ml: 1,
+                                width: { xs: '35px', sm: '40px',},
+                                height: { xs: '35px', sm: '40px',},
+                                }}
                             onClick={() => {
                                 navigate("/Login");
                             }}
                             style={{cursor:'pointer'}}
                     />
                     {displayNameAvailable ? ( // Check if display name is available
-                        <Box>
+                        <Box sx={{display: 'flex', justifyContent: 'center',}}>
                             {/* Set a smaller font size if display name is available */}
-                            <Button variant="text" disabled size="small" sx={{ maxWidth: '75px', fontSize: 10, paddingTop: 1.5 }}>
+                            <Button variant="text" disabled size="small" sx={{ maxWidth: '75px', fontSize: 10 }}>
                                 {auth?.currentUser?.displayName}
                             </Button>
                         </Box>
@@ -177,6 +174,11 @@ export default function Topbar(props) {
                             <Button
                                 variant="text"
                                 onClick={auth?.currentUser ? () => navigate("/AddEvent") : handleOpenLogin}
+                                sx={{
+                                    maxWidth: { xs: '150px', sm: 'auto' },
+                                    fontSize: { xs: '10px', sm: '14px' },
+                                    padding: { xs: 1.5, sm: 1 },
+                                }}
                             >
                                 Trade your day
 
