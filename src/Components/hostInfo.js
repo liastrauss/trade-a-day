@@ -172,8 +172,8 @@ function HostInfo() {
                             flexWrap: 'wrap',
                             gap: '20px', // Adjust the gap between the items
                             justifyContent: 'space-between', // Distribute items evenly along the main axis
-                            alignItems: 'center', // Horizontally center the items
                             maxWidth: '90%', // Limit the width to the available space
+                            alignItems: 'stretch',
 
                         }}
                     >
