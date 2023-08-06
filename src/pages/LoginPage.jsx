@@ -1,20 +1,18 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import Button from '@mui/material/Button';
-import { signInWithPopup, signOut, getAdditionalUserInfo } from "firebase/auth";
+import { signInWithPopup, signOut} from "firebase/auth";
 import {auth, googleProvider, facebookProvider, db} from "../config/firebase";
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { Typography } from "@mui/material";
 import Box from '@mui/material/Box';
 import { useLocation, useNavigate } from "react-router-dom";
-import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import Paper from "@mui/material/Paper";
 import { Container } from "@mui/system";
 import Topbar from "../Components/Topbar";
-import {collection, getDoc, getDocs, doc , query, where} from "firebase/firestore";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import {collection, getDocs, query, where} from "firebase/firestore";
 import {useTheme} from "@mui/material/styles";
 
 
@@ -101,17 +99,16 @@ export default function LoginPage() {
                         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                             {/*<Typography component="h1" variant="h4" align="center">Profile</Typography>*/}
                             <Box sx={{ flexDirection: 'column' }}>
-                                <Typography color='primary' variant="h6" gutterBottom> You are currently logged in as: {auth.currentUser.displayName} </Typography>
+                                <Typography color='primary' variant="h6" gutterBottom> You are currently logged in as {auth.currentUser.displayName} </Typography>
                                 <Typography variant="body1" gutterBottom
                                 sx={{color: theme.palette.text.secondary}}> You can continue browsing or log out </Typography>
                             </Box>
-                            <Box sx={{ display: "flex", justifyContent: 'space-evenly', m: 3}}>
-                                <Button disableElevation variant="outlined"
+                            <Box sx={{ display: "flex", justifyContent: 'flex-end', mt: 2}}>
+                                <Button disableElevation variant="outlined" size="small"
                                         onClick={() => navigate("/")}>
                                     Homepage
                                 </Button>
-                                <Button sx={{borderRadius: "10px",border: "2px solid transparent", }}
-                                        disableElevation variant="text"
+                                <Button disableElevation variant="text" size="small" sx={{ml: 2}}
                                         onClick={logOut}>
                                     Log Out
                                 </Button>
