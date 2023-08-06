@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "./logo.svg";
-// making the logo clickable:
 import { useNavigate } from "react-router-dom"
 import {useMediaQuery} from "@mui/material";
 

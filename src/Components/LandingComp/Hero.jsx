@@ -10,6 +10,7 @@ import CustomButton from "./CustomButton";
 import Topbar from "../Topbar";
 import {useTheme} from "@mui/material/styles";
 import {useNavigate} from "react-router-dom";
+import AboutUs from "./aboutUs"
 
 const Hero = () => {
     const theme = useTheme();
@@ -84,7 +85,7 @@ const Hero = () => {
                                 mb: 4,
                             }}
                         >
-                            Welcome to Trade A Day
+                            Welcome to Trade A Day!
                         </Typography>
                         <Title variant="h1">
                             Explore lives beyond your own, one day at a time.
@@ -139,6 +140,7 @@ const Hero = () => {
 
                 </CustomBox>
             </Container>
+            <AboutUs/>
         </Box>
     );
 };
