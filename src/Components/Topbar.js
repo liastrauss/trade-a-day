@@ -126,7 +126,8 @@ export default function Topbar(props) {
         }
     }, [auth]);
 
-
+    // Determine if the display name is available, for responsiveness
+    const displayNameAvailable = Boolean(auth?.currentUser?.displayName);
 
     return (
             <Box position='static'
@@ -156,25 +157,21 @@ export default function Topbar(props) {
                             }}
                             style={{cursor:'pointer'}}
                     />
-                    {auth?.currentUser?.displayName ?
+                    {displayNameAvailable ? ( // Check if display name is available
                         <Box>
-                            <Button
-                                variant="text"
-                                disabled
-                            >
+                            {/* Set a smaller font size if display name is available */}
+                            <Button variant="text" disabled size="small" sx={{ maxWidth: '75px', fontSize: 10, paddingTop: 1.5 }}>
                                 {auth?.currentUser?.displayName}
                             </Button>
                         </Box>
-                        :
+                    ) : (
                         <Button
-                            variant = "text"
-                            onClick={() => {
-                                navigate("/Login");
-                            }}
+                            variant="text"
+                            onClick={() => { navigate("/Login"); }}
                         >
                             Log In!
                         </Button>
-                    }
+                    )} {/* If the user is logged in, display their display name with smaller font size. If not, display "Log In!" button */}
                     {AddDay ?
                         <div>
                             <Button
@@ -188,7 +185,7 @@ export default function Topbar(props) {
                                 <DialogTitle>Login Required!</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText>
-                                        You must be logged in to do that action!
+                                        You must be logged in to Trade Your Day!
                                         Please log in or continue browsing
                                     </DialogContentText>
                                 </DialogContent>
