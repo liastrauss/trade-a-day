@@ -1,9 +1,8 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import {useLocation, useNavigate} from "react-router-dom";
 import {addDoc, collection} from "firebase/firestore";
 import {auth, db} from "../config/firebase";
-import {Dialog, DialogActions, DialogContent, DialogTitle, Grid, TextField, Typography} from "@mui/material";
+import { Grid, TextField, Typography} from "@mui/material";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import {LuPizza, LuSalad} from "react-icons/lu";
@@ -17,7 +16,6 @@ import Button from "@mui/material/Button";
 import Topbar from "../Components/Topbar";
 import Paper from "@mui/material/Paper";
 import {Container} from "@mui/system";
-import HostHobbies from "./hostHobbies";
 import {useState} from "react";
 
 
@@ -50,8 +48,6 @@ export default function NewProfileCreation() {
             favoriteFood: [],
             pizzaToppings: [],
             hobbies: [],
-            skills: [],
-            superpowers: [],
         },[]);
 
     const onSubmit = async () => {
@@ -64,8 +60,6 @@ export default function NewProfileCreation() {
             favoriteFood: userData.favoriteFood,
             pizzaToppings: userData.pizzaToppings,
             hobbies: userData.hobbies,
-            skills: userData.skills,
-            superpowers: userData.superpowers,
         });
         if (redirect) {
             navigate(redirect);
@@ -213,9 +207,9 @@ export default function NewProfileCreation() {
                                     <ToggleButton value="Mexican"> <GiTacos/> Mexican </ToggleButton>
                                 </ToggleButtonGroup>
                                 </Grid>
-                                <Typography variant="h6" > My favorite pizza toppings are...</Typography>
+                                <Typography variant="h6" > My favorite pizza topping is...</Typography>
                                 <Grid item xs={12} sx={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
-                                    <ToggleButtonGroup color='primary' value={userData.pizzaToppings} onChange={handleTopping}>
+                                    <ToggleButtonGroup color='primary' value={userData.pizzaToppings} onChange={handleTopping} exclusive>
                                     <ToggleButton value="Mushroom"> <GiSlicedMushroom/> Mushroom </ToggleButton>
                                     <ToggleButton value="Cheese"> <GiCheeseWedge/> Cheese </ToggleButton>
                                     <ToggleButton value="Corn"> <GiCorn/> Corn </ToggleButton>
