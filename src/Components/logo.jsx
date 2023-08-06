@@ -6,7 +6,7 @@ import {useMediaQuery} from "@mui/material";
 
 function Logo() {
     let navigate = useNavigate();
-    const isXsScreen = useMediaQuery((theme) => theme.breakpoints.down("xs"));
+    const isXsScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
     return (
         <div className="logo">
             <img

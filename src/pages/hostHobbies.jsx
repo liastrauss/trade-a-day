@@ -163,7 +163,7 @@ export default function ViewHobbies({hostID}) {
             <Stack direction="column" spacing={1} my={2}>
                 {food !== null && (
                     <Stack direction="row" spacing={1} my={0.5}>
-                        <Typography>You have the same favourite food</Typography>
+                        <Typography>You both love the same food</Typography>
                         <Chip
                             icon={<FastfoodRoundedIcon/>}
                             label={food}
@@ -175,7 +175,7 @@ export default function ViewHobbies({hostID}) {
                 )}
                 {pizzaToppings !== null && (
                     <Stack direction="row" spacing={1} my={0.5}>
-                        <Typography>You have the same favourite pizza topping</Typography>
+                        <Typography>You both love the same pizza topping</Typography>
                         <Chip
                             icon={<LocalPizzaIcon/>}
                             label={pizzaToppings}
