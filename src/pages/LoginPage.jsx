@@ -15,6 +15,7 @@ import { Container } from "@mui/system";
 import Topbar from "../Components/Topbar";
 import {collection, getDoc, getDocs, doc , query, where} from "firebase/firestore";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import {useTheme} from "@mui/material/styles";
 
 
 export const logOut = async () => {
@@ -49,6 +50,7 @@ export default function LoginPage() {
     const searchParams = new URLSearchParams(location.search);
     const redirect = searchParams.get("redirect");
     const navigate = useNavigate();
+    const theme = useTheme();
 
     useEffect(() => {
         const authChanged = auth.onAuthStateChanged(async (user) => {
@@ -97,23 +99,22 @@ export default function LoginPage() {
                     <Topbar AddDay Profile BookedEvents />
                     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
                         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-                            <Typography component="h1" variant="h4" align="center">Profile</Typography>
+                            {/*<Typography component="h1" variant="h4" align="center">Profile</Typography>*/}
                             <Box sx={{ flexDirection: 'column' }}>
                                 <Typography color='primary' variant="h6" gutterBottom> You are currently logged in as: {auth.currentUser.displayName} </Typography>
-                                <Typography color='primary' variant="body1" gutterBottom> You can continue browsing or log out from your profile! </Typography>
+                                <Typography variant="body1" gutterBottom
+                                sx={{color: theme.palette.text.secondary}}> You can continue browsing or log out </Typography>
                             </Box>
-                            <Box sx={{ flexDirection: 'column' }}>
-                                <Button sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
-                                        backgroundColor: (theme) => theme.palette.primary.contrastText,
-                                        color: (theme) => theme.palette.primary.main,
-                                        borderColor: (theme) => theme.palette.primary.main,
-                                    },}} disableElevation variant="contained" onClick={() => navigate("/")}> Homepage </Button>
-                                <Button sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
-                                        backgroundColor: (theme) => theme.palette.primary.contrastText,
-                                        color: (theme) => theme.palette.primary.main,
-                                        borderColor: (theme) => theme.palette.primary.main,
-                                    },}} disableElevation variant="contained" onClick={logOut}> Log Out </Button>
-
+                            <Box sx={{ display: "flex", justifyContent: 'space-evenly', m: 3}}>
+                                <Button disableElevation variant="outlined"
+                                        onClick={() => navigate("/")}>
+                                    Homepage
+                                </Button>
+                                <Button sx={{borderRadius: "10px",border: "2px solid transparent", }}
+                                        disableElevation variant="text"
+                                        onClick={logOut}>
+                                    Log Out
+                                </Button>
 
                             </Box>
                         </Paper>
