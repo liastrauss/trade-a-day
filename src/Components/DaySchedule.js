@@ -16,6 +16,8 @@ import {useTheme} from "@mui/material/styles";
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 
+import CloseIcon from '@mui/icons-material/Close';
+import Snackbar from '@mui/material/Snackbar';
 
 
 const labels = {
@@ -81,6 +83,34 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
     };
 
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+    const action = (
+        <React.Fragment>
+            <Button color="secondary" size="small" onClick={handleClose}>
+            </Button>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </React.Fragment>
+    );
+
 
     const uploadImage = () => {
         if (imageUpload == null) return;
@@ -113,6 +143,8 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                 // alert("image uploaded")
             })
         });
+
+        handleClick()
 
     };
 
@@ -360,7 +392,14 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                         ))}
                     </div>
                     <Button variant="contained" component="label" onClick={uploadImage}>confirm pictures</Button>
+                        <Snackbar
+                            open={open}
+                            autoHideDuration={6000}
+                            onClose={handleClose}
+                            message="Images uploaded successfully"
+                            action={action}
 
+                        />
                     </Box>
             )}
             </Grid>
