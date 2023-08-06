@@ -115,15 +115,14 @@ export function DialogWithCard() {
 
             {/*Ohad's Popup*/}
             <Dialog open={openLogin} onClose={handleCloseLogin}>
-                <DialogTitle>Login Required!</DialogTitle>
+                <DialogTitle>Log In for More</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        You must be logged in to do that action!
-                        Please log in or continue browsing
+                        Hi there! At Trade a Day, we prioritize the privacy and trust of our community. Join us by signing in!
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button                                     sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
+                    <Button sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
                             backgroundColor: (theme) => theme.palette.primary.contrastText,
                             color: (theme) => theme.palette.primary.main,
                             borderColor: (theme) => theme.palette.primary.main,
