@@ -5,15 +5,8 @@ import {Avatar, Dialog, DialogActions, DialogContent, DialogTitle, Divider, useS
 import * as React from "react";
 import {useNavigate} from "react-router-dom";
 import {useTheme} from "@mui/material/styles";
-import SearchBox from "./searchBox";
-import AppBar from '@mui/material/AppBar';
-import Paper from "@mui/material/Paper";
-import Toolbar from '@mui/material/Toolbar';
 import {auth} from "../config/firebase";
 import {useEffect, useState} from "react";
-
-
-import {cardData} from "../data/card-data";
 import DialogContentText from "@mui/material/DialogContentText";
 
 // for the elevation when scorlled
@@ -126,7 +119,8 @@ export default function Topbar(props) {
         }
     }, [auth]);
 
-
+    // Determine if the display name is available, for responsiveness
+    const displayNameAvailable = Boolean(auth?.currentUser?.displayName);
 
     return (
             <Box position='static'
@@ -147,39 +141,44 @@ export default function Topbar(props) {
 
                 <Box sx={{
                     display: 'flex',
-                    justifyContent: 'space-around',
+                    // justifyContent: 'space-around',
+                    justifyContent: 'center',
                 }}>
                     <Avatar src={avatarSrc}
-                            sx={{ml: 1}}
+                            sx={{ml: 1,
+                                width: { xs: '35px', sm: '40px',},
+                                height: { xs: '35px', sm: '40px',},
+                                }}
                             onClick={() => {
                                 navigate("/Login");
                             }}
                             style={{cursor:'pointer'}}
                     />
-                    {auth?.currentUser?.displayName ?
-                        <Box>
-                            <Button
-                                variant="text"
-                                disabled
-                            >
+                    {displayNameAvailable ? ( // Check if display name is available
+                        <Box sx={{display: 'flex', justifyContent: 'center',}}>
+                            {/* Set a smaller font size if display name is available */}
+                            <Button variant="text" disabled size="small" sx={{ maxWidth: '75px', fontSize: 10 }}>
                                 {auth?.currentUser?.displayName}
                             </Button>
                         </Box>
-                        :
+                    ) : (
                         <Button
-                            variant = "text"
-                            onClick={() => {
-                                navigate("/Login");
-                            }}
+                            variant="text"
+                            onClick={() => { navigate("/Login"); }}
                         >
                             Log In!
                         </Button>
-                    }
+                    )} {/* If the user is logged in, display their display name with smaller font size. If not, display "Log In!" button */}
                     {AddDay ?
                         <div>
                             <Button
                                 variant="text"
                                 onClick={auth?.currentUser ? () => navigate("/AddEvent") : handleOpenLogin}
+                                sx={{
+                                    maxWidth: { xs: '150px', sm: 'auto' },
+                                    fontSize: { xs: '10px', sm: '14px' },
+                                    padding: { xs: 1.5, sm: 1 },
+                                }}
                             >
                                 Trade your day
 
@@ -188,7 +187,7 @@ export default function Topbar(props) {
                                 <DialogTitle>Login Required!</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText>
-                                        You must be logged in to do that action!
+                                        You must be logged in to Trade Your Day!
                                         Please log in or continue browsing
                                     </DialogContentText>
                                 </DialogContent>

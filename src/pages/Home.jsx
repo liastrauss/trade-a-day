@@ -9,7 +9,7 @@ function Home() {
     const theme = useTheme();
     return (
         <div>
-            <Topbar Search AddDay Profile/>
+            <Topbar sx={{display: 'flex', justifyContent: 'center',}} Search AddDay Profile/>
             {/*<SearchSection/>*/}
             <EventCard/>
         </div>
