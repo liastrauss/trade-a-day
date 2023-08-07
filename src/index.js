@@ -34,11 +34,8 @@ import './App.css';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import OverView from "./pages/OverView";
 import OverView2 from "./pages/OverView2";
-import Logo from "./Components/logo";
-import Chat from "./zevel/Chat";
-import Landing from "./pages/Landing";
+import Landing from "C:/Users/Yuval/WebstormProjects/trade-a-day/src/pages/Landing";
 import NewProfileCreation from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 
@@ -92,7 +89,6 @@ export default function App() {
                                 <Route path="Landing" element={<Landing/>} />
                                 <Route path="SignUp" element={<NewProfileCreation/>} />
                                 <Route path="LogIn" element={<LoginPage/>} />
-                                {/*<Route path="Home" element={<Home />} />*/}
                                 <Route path="*" element={<NoPage />} />
                             </Route>
                         </Routes>
