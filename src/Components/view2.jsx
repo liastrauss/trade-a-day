@@ -61,38 +61,29 @@ export function StandardImageList() {
     }
 
     return (
-        // <ImageList
-        //         //     className="pictures"
-        //         //     sx={{ width: 800, height: 250, my: 3, mx: 1 ,gap: 10 }}
-        //         //     cols={2}
-        //         //     rowHeight={164}
-        //         // >
-        //         //     {imageListGallery.map((url) => (
-        //         //         <ImageListItem key={url}>
-        //         //             <img
-        //         //                 src={`${url}?w=164&h=164&fit=crop&auto=format`}
-        //         //                 srcSet={`${url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-        //         //                 alt="gallery"
-        //         //                 loading="lazy"
-        //         //             />
-        //         //         </ImageListItem>
-        //         //     ))}
-        //         // </ImageList>
+        <Box
+            sx={{
+                width: '100%', // Set the width to 100% or an appropriate value based on your layout
+                my: 3,
+                mx: 1,
+                display: "grid",
+                gap: "16px", // Adjust the gap between images as needed
+                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", // Adjust the minimum column width as needed
+
+            }}
+        >
 
         <ImageList
             className="pictures"
-            sx={{ width: 800, height: 250, my: 3, mx: 1 }} //TODO - the width shouln't be absoulute
-            // sx={{
-            //     width: 800,
-            //     height: 250,
-            //     my: 3,
-            //     mx: 1,
-            //     "& .MuiImageListItem-root": {
-            //         marginBottom: "20px" // Adjust the marginBottom value as per your preference
-            //     }
-            // }}
-            cols={2}
-            rowHeight={164}
+            sx={{
+                width: '100%', // Take full width of the container
+                height: 300, // Automatically adjust height based on content
+                my: 3, mx: 1
+            }}
+            cols={2} // Default: 2 columns
+            rowHeight="auto"
+            gap={8} // Adjust the gap between images as needed
+
         >
             {imageListGallery.map((url) => (
                 <ImageListItem key={url}>
@@ -101,29 +92,11 @@ export function StandardImageList() {
                         srcSet={`${url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                         alt="gallery"
                         loading="lazy"
+
                     />
                 </ImageListItem>
             ))}
         </ImageList>
-
-
-        // <ImageList
-        //     className="pictures"
-        //     sx={{ width: 800, height: 'auto', my: 3, mx: 1 }}
-        //     cols={3} // Adjust the number of columns as needed
-        //     rowHeight={250} // Adjust the row height as needed
-        // >
-        //     {imageListGallery.map((url) => (
-        //         <ImageListItem key={url}>
-        //             <img
-        //                 src={`${url}?w=164&h=164&fit=crop&auto=format`}
-        //                 srcSet={`${url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-        //                 alt="gallery"
-        //                 loading="lazy"
-        //             />
-        //         </ImageListItem>
-        //     ))}
-        // </ImageList>
-
+        </Box>
     );
 }

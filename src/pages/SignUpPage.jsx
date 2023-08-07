@@ -207,7 +207,7 @@ export default function NewProfileCreation() {
                                     <ToggleButton value="Mexican"> <GiTacos/> Mexican </ToggleButton>
                                 </ToggleButtonGroup>
                                 </Grid>
-                                <Typography variant="h6" > My favorite pizza toppings are...</Typography>
+                                <Typography variant="h6" > My favorite pizza topping is...</Typography>
                                 <Grid item xs={12} sx={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
                                     <ToggleButtonGroup color='primary' value={userData.pizzaToppings} onChange={handleTopping} exclusive>
                                     <ToggleButton value="Mushroom"> <GiSlicedMushroom/> Mushroom </ToggleButton>
