@@ -411,7 +411,9 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                     <Typography variant="subtitle1" color="primary">
                         How would you like us to contact you?
                     </Typography>
-                    {/*<Typography gutterBottom>How would you like us to contact you?</Typography>*/}
+                    <Typography variant="body2" sx={{color: theme.palette.text.secondary}}>
+                        Don't worry, only registered users will be able to view your contact information
+                    </Typography>
                 </Grid>
                 <Grid item xs={4}>
                     <Autocomplete
@@ -436,7 +438,7 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                             fullWidth
                             label="Phone Number"
                             error={isPhoneError}
-                            helperText={isPhoneError ? 'Phone number should be 10 digits or less' : "We\'ll only show this number to people who want to go to your day"}
+                            helperText={isPhoneError ? 'Phone number should be 10 digits or less' : ""}
                             onChange={(e) => {
                                 setUserContact({
                                     ...userContact,
@@ -454,7 +456,6 @@ export default function DaySchedule({formData, setFormData, userContact, setUser
                         <TextField
                             fullWidth
                             label="Email"
-                            helperText="If you don't want people to contact you by the email you signed up with"
                             onChange={(e) => {
                                 setUserContact({
                                     ...userContact,
