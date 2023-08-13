@@ -82,13 +82,13 @@ export default function LoginPage() {
         }
     }
 
-    const signInWithFacebook = async () => {
-        try {
-            await signInWithPopup(auth, facebookProvider);
-        } catch (err) {
-            console.error(err)
-        }
-    }
+    // const signInWithFacebook = async () => {
+    //     try {
+    //         await signInWithPopup(auth, facebookProvider);
+    //     } catch (err) {
+    //         console.error(err)
+    //     }
+    // }
 
     return (
         <Box>
@@ -123,10 +123,9 @@ export default function LoginPage() {
                     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
                         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                             <Typography component="h1" variant="h4" align="center">Log In</Typography>
-                            <Box>
-                                <Typography color='primary' variant="h6" gutterBottom> Sign in to your account! </Typography>
-                                <Button startIcon={<GoogleIcon color='primary' style={{ fontSize: 45 }}></GoogleIcon>} onClick={signInWithGoogle}> Sign in with Google </Button>
-                                <Button startIcon={<FacebookIcon color='primary' style={{ fontSize: 45 }}></FacebookIcon>} onClick={signInWithFacebook}> Sign in with Facebook </Button>
+                            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                <Typography color="primary" variant="h6" gutterBottom> Sign in or sign up to your account! </Typography>
+                                <Button startIcon={<GoogleIcon color="primary" style={{ fontSize: 45 }}></GoogleIcon>} onClick={signInWithGoogle}> Sign in with Google </Button>
                             </Box>
                         </Paper>
                     </Container>
