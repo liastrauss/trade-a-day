@@ -2,14 +2,9 @@ import React, {useEffect, useState} from 'react';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import DoneIcon from '@mui/icons-material/Done';
-import DeleteIcon from '@mui/icons-material/Delete';
 import {useTheme} from "@mui/material/styles";
-import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
 import TuneRoundedIcon from '@mui/icons-material/TuneRounded';
-import {Tabs, TabScrollButton} from "@mui/material";
-import Filtered from "./filtered_data";
 import filterData from "../data/filter-data.json";
-import EventCard from "./card";
 
 
 function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
@@ -18,44 +13,38 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
     const [selectedChip, setSelectedChip] = useState(null);
 
 
-
-    useEffect(()=>{
+    useEffect(() => {
         let filtered;
 
 
-        if (activeFiler==="Filters"){
+        if (activeFiler === "Filters") {
             setfiltered(cardData);
             return;
         }
 
-        if (activeFiler==="Outdoors"){
-        // const filtered = cardData.filter((item) => item.location===(activeFiler)
-            filtered = cardData.filter((item) => item.outdoors===true);
+        if (activeFiler === "Outdoors") {
+            filtered = cardData.filter((item) => item.outdoors === true);
             setfiltered(filtered);
             return;
         }
 
-        if (activeFiler==="Indoors"){
-            // const filtered = cardData.filter((item) => item.location===(activeFiler)
-            filtered = cardData.filter((item) => item.outdoors===false);
+        if (activeFiler === "Indoors") {
+            filtered = cardData.filter((item) => item.outdoors === false);
             setfiltered(filtered);
             return;
         }
 
-        if (activeFiler==="Accessible"){
-            // const filtered = cardData.filter((item) => item.location===(activeFiler)
-            filtered = cardData.filter((item) => item.accessible===true);
+        if (activeFiler === "Accessible") {
+            filtered = cardData.filter((item) => item.accessible === true);
             setfiltered(filtered);
             return;
         }
 
-        if (activeFiler==="Available Next Month"){
-            // filtered = cardData.filter((item) => item.dates===true);
-            // setfiltered(filtered);
+        if (activeFiler === "Available Next Month") {
             const currentDate = new Date();
             const nextMonthStart = new Date(
                 currentDate.getFullYear(),
-                currentDate.getMonth() +1,
+                currentDate.getMonth() + 1,
                 // if we want it to include current month - change to +0
                 1
             );
@@ -64,12 +53,12 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
                 currentDate.getMonth() + 2,
                 0
             );
-            console.log("nextMonthStart",nextMonthStart);
+            console.log("nextMonthStart", nextMonthStart);
 
             filtered = cardData.filter((item) => {
                 return item.dates.some((date) => {
                     const dateObject = new Date(date?.seconds * 1000);
-                    console.log("dateObject",dateObject)
+                    console.log("dateObject", dateObject)
                     return (
                         dateObject >= nextMonthStart && dateObject <= nextMonthEnd
                     );
@@ -80,21 +69,19 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
             return;
 
 
+        }
 
-    }
-
-        if (activeFiler==="Standard Physical Effort"){
-            filtered = cardData.filter((item) => item.physicalEffort===2 ||  item.physicalEffort===1);
+        if (activeFiler === "Standard Physical Effort") {
+            filtered = cardData.filter((item) => item.physicalEffort === 2 || item.physicalEffort === 1);
             setfiltered(filtered);
             return;
         }
 
 
-        filtered = cardData.filter((item) => item.location===(activeFiler));
+        filtered = cardData.filter((item) => item.location === (activeFiler));
 
 
-
-    setfiltered(filtered);
+        setfiltered(filtered);
     }, [activeFiler]);
 
     const handleClick = (filter) => {
@@ -102,16 +89,6 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
         console.info(filter);
 
         setSelectedChip(filter);
-
-
-        //
-        // if (selectedChip === filter) {
-        //     // If the same chip is clicked again, clear the selection
-        //     setSelectedChip(null);
-        // } else {
-        //     // If a different chip is clicked, update the selection
-        //     setSelectedChip(filter);
-        // }
 
         setActiveFilter(filter)
     };
@@ -131,7 +108,7 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
                    maxWidth: '100%',
                    overflow: 'auto',
                    ml: 3,
-        }}>
+               }}>
             <Chip icon={<TuneRoundedIcon/>}
                   label={"Filters"}
                   size="small"
@@ -143,9 +120,9 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
                 <Chip key={item.id}
                       label={item.filter}
                       onClick={() => handleClick(item.filter)}
-                      // onDelete={handleDelete}
-                      deleteIcon={<DoneIcon />}
-                      // variant="outlined"
+                    // onDelete={handleDelete}
+                      deleteIcon={<DoneIcon/>}
+                    // variant="outlined"
                       variant={selectedChip === item.filter ? 'contained' : 'outlined'} // Check if the chip is selected
 
                       size="small"
@@ -153,10 +130,8 @@ function Chips({setActiveFilter, activeFiler, setfiltered, cardData}) {
                       sx={{fontWeight: theme.typography.fontWeightRegular}}>
 
 
-
                 </Chip>
-            )) }
-
+            ))}
 
 
         </Stack>

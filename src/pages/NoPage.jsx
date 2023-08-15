@@ -5,7 +5,7 @@ function NoPage() {
     const theme = useTheme();
     return (
         <div>
-        <typography variant="h1">404 ERROR,we're trying:(</typography>
+            <typography variant="h1">404 ERROR,we're trying:(</typography>
         </div>
     );
 }

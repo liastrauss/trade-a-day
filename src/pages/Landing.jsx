@@ -9,14 +9,7 @@ function Landing() {
     return (
         <div>
             <Topbar AddDay/>
-            <Hero />
-            {/*these could be relevant:*/}
-            {/*<Details />*/}
-            {/*<Companies />*/}
-            {/*<Guide />*/}
-            {/*this one is worse <Properties />*/}
-            {/*<GetStarted />*/}
-            {/* this one is worse <Footer />*/}
+            <Hero/>
         </div>
     );
 }

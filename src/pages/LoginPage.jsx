@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 import Button from '@mui/material/Button';
-import { signInWithPopup, signOut} from "firebase/auth";
+import {signInWithPopup, signOut} from "firebase/auth";
 import {auth, googleProvider, facebookProvider, db} from "../config/firebase";
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import { Typography } from "@mui/material";
+import {Typography} from "@mui/material";
 import Box from '@mui/material/Box';
-import { useLocation, useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import "firebase/compat/firestore";
 import Paper from "@mui/material/Paper";
-import { Container } from "@mui/system";
+import {Container} from "@mui/system";
 import Topbar from "../Components/Topbar";
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {useTheme} from "@mui/material/styles";
@@ -60,8 +60,7 @@ export default function LoginPage() {
                     } else {
                         if (redirect) {
                             navigate(`/SignUp?redirect=${redirect}`);
-                        }
-                        else {
+                        } else {
                             navigate(`/SignUp`);
                         }
                     }
@@ -94,16 +93,18 @@ export default function LoginPage() {
         <Box>
             {auth?.currentUser ? (
                 <React.Fragment>
-                    <Topbar AddDay Profile BookedEvents />
-                    <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-                        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+                    <Topbar AddDay Profile BookedEvents/>
+                    <Container component="main" maxWidth="sm" sx={{mb: 4}}>
+                        <Paper variant="outlined" sx={{my: {xs: 3, md: 6}, p: {xs: 2, md: 3}}}>
                             {/*<Typography component="h1" variant="h4" align="center">Profile</Typography>*/}
-                            <Box sx={{ flexDirection: 'column' }}>
-                                <Typography color='primary' variant="h6" gutterBottom> You are currently logged in as {auth.currentUser.displayName} </Typography>
+                            <Box sx={{flexDirection: 'column'}}>
+                                <Typography color='primary' variant="h6" gutterBottom> You are currently logged in
+                                    as {auth.currentUser.displayName} </Typography>
                                 <Typography variant="body1" gutterBottom
-                                sx={{color: theme.palette.text.secondary}}> You can continue browsing or log out </Typography>
+                                            sx={{color: theme.palette.text.secondary}}> You can continue browsing or log
+                                    out </Typography>
                             </Box>
-                            <Box sx={{ display: "flex", justifyContent: 'flex-end', mt: 2}}>
+                            <Box sx={{display: "flex", justifyContent: 'flex-end', mt: 2}}>
                                 <Button disableElevation variant="outlined" size="small"
                                         onClick={() => navigate("/")}>
                                     Homepage
@@ -119,14 +120,17 @@ export default function LoginPage() {
                 </React.Fragment>
             ) : (
                 <React.Fragment>
-                    <Topbar AddDay Profile BookedEvents />
-                    <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-                        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+                    <Topbar AddDay Profile BookedEvents/>
+                    <Container component="main" maxWidth="sm" sx={{mb: 4}}>
+                        <Paper variant="outlined" sx={{my: {xs: 3, md: 6}, p: {xs: 2, md: 3}}}>
                             <Typography component="h1" variant="h4" align="center">Log In</Typography>
                             <Box>
-                                <Typography color='primary' variant="h6" gutterBottom> Sign in to your account! </Typography>
-                                <Button startIcon={<GoogleIcon color='primary' style={{ fontSize: 45 }}></GoogleIcon>} onClick={signInWithGoogle}> Sign in with Google </Button>
-                                <Button startIcon={<FacebookIcon color='primary' style={{ fontSize: 45 }}></FacebookIcon>} onClick={signInWithFacebook}> Sign in with Facebook </Button>
+                                <Typography color='primary' variant="h6" gutterBottom> Sign in to your
+                                    account! </Typography>
+                                <Button startIcon={<GoogleIcon color='primary' style={{fontSize: 45}}></GoogleIcon>}
+                                        onClick={signInWithGoogle}> Sign in with Google </Button>
+                                <Button startIcon={<FacebookIcon color='primary' style={{fontSize: 45}}></FacebookIcon>}
+                                        onClick={signInWithFacebook}> Sign in with Facebook </Button>
                             </Box>
                         </Paper>
                     </Container>

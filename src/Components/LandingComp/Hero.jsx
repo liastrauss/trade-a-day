@@ -1,20 +1,13 @@
-import { Box, Button, styled, Typography } from "@mui/material";
-import { Container } from "@mui/system";
+import {Box, Button, styled, Typography} from "@mui/material";
+import {Container} from "@mui/system";
 import React from "react";
-import Navbar from "./Navbar";
-
-// import heroImg from "../media/hero_illustration.png";
-import heroImg from "../../media/site_snap_filter.png";
-
-import CustomButton from "./CustomButton";
-import Topbar from "../Topbar";
 import {useTheme} from "@mui/material/styles";
 import {useNavigate} from "react-router-dom";
 import AboutUs from "./aboutUs"
 
 const Hero = () => {
     const theme = useTheme();
-    const CustomBox = styled(Box)(({ theme }) => ({
+    const CustomBox = styled(Box)(({theme}) => ({
         display: "flex",
         justifyContent: "center",
         gap: theme.spacing(5),
@@ -26,7 +19,7 @@ const Hero = () => {
         },
     }));
 
-    const Title = styled(Typography)(({ theme }) => ({
+    const Title = styled(Typography)(({theme}) => ({
         fontSize: "44px",
         color: "#000336",
         fontWeight: "bold",
@@ -37,7 +30,7 @@ const Hero = () => {
     }));
     let navigate = useNavigate();
 
-    const MyButton = styled(Button)(({ theme,size }) => ({
+    const MyButton = styled(Button)(({theme, size}) => ({
         fontWeight: "700",
         fontSize: size === "large" ? "16px" : "14px", // Conditional font size based on size prop
         cursor: "pointer",
@@ -54,27 +47,15 @@ const Hero = () => {
     }));
 
 
-
-
-
-
     return (
         <Box sx={{
             // photo
-                backgroundColor: "#eefdf4",
-                // backgroundImage: `url(${heroImg})`,
-                // backgroundSize: "cover",
-                // backgroundRepeat: "no-repeat",
-                // backgroundPosition: "center",
-                minHeight: "85vh",
-            }}>
-
-            {/*orig: "#E6F0FF"*/}
+            backgroundColor: "#eefdf4",
+            minHeight: "85vh",
+        }}>
             <Container>
-                {/*<Navbar />*/}
-                {/*<Topbar/>*/}
                 <CustomBox>
-                    <Box sx={{ flex: "1" }}>
+                    <Box sx={{flex: "1"}}>
                         <Typography
                             variant="body2"
                             sx={{
@@ -92,10 +73,12 @@ const Hero = () => {
                         </Title>
                         <Typography
                             variant="body2"
-                            sx={{ fontSize: "18px", color: "#5A6473", my: 4 }}
+                            sx={{fontSize: "18px", color: "#5A6473", my: 4}}
                         >
-                            Step into the lives of others, break free from the ordinary, and embrace the extraordinary with Trade a Day!
-                            Our revolutionary social app opens doors to new perspectives, allowing you to experience a day in the life of someone else.
+                            Step into the lives of others, break free from the ordinary, and embrace the extraordinary
+                            with Trade a Day!
+                            Our revolutionary social app opens doors to new perspectives, allowing you to experience a
+                            day in the life of someone else.
 
                         </Typography>
                         <CustomBox>
@@ -103,8 +86,7 @@ const Hero = () => {
                                 size="large"
                                 variant="contained"
                                 disableElevation
-                                onClick={()=>
-                                {
+                                onClick={() => {
                                     navigate("/");
                                 }}
 
@@ -116,8 +98,7 @@ const Hero = () => {
                                 size="large"
                                 variant="contained"
                                 disableElevation
-                                onClick={()=>
-                                {
+                                onClick={() => {
                                     navigate("/Login");
                                     console.info('You clicked mine.');
                                 }}
@@ -129,15 +110,6 @@ const Hero = () => {
                         </CustomBox>
 
                     </Box>
-
-{/*                    <Box sx={{ flex: "1.25" }}>*/}
-{/*imgg*/}
-{/*                            /!*src={heroImg}*!/*/}
-{/*                            /!*alt="heroImg"*!/*/}
-{/*                            /!*style={{ maxWidth: "100%", marginBottom: "2rem" }}*!/*/}
-{/*                        />*/}
-{/*                    </Box>*/}
-
                 </CustomBox>
             </Container>
             <AboutUs/>

@@ -11,7 +11,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 
 // for the elevation when scorlled
 function ElevationScroll(props) {
-    const { children, window } = props;
+    const {children, window} = props;
     // Note that you normally won't need to set the window ref as useScrollTrigger
     // will default to window.
     // This is only being set here because the demo is in an iframe.
@@ -27,75 +27,7 @@ function ElevationScroll(props) {
 }
 
 
-// export function newTopbar(props) {
-//     let navigate = useNavigate();
-//     const theme = useTheme();
-//     const AddDay = props.AddDay;
-//     const Search = props.Search;
-//     const Profile = props.Profile;
-//
-//     return (
-//         <ElevationScroll {...props}>
-//             <AppBar
-//                 sx={{
-//                 bgcolor: 'background.paper',
-//                 width: 1,
-//                 flexDirection: 'row',
-//
-//             }}>
-//             <Toolbar
-//
-//             sx = {{
-//                 mt: 2,
-//             }}>
-//                 <Box> <Logo/> </Box>
-//
-//                 <Box sx={{  mx: 'auto' }}>
-//                 {Search ?
-//
-//                         <SearchBox data={cardData}/>
-//                         //     placeholder with empty space so it will look the same
-//                         :  <Box sx={{width: 350, height: 32}} />
-//                     }
-//                 </Box>
-//                     <Box sx={{
-//                         display: 'flex',
-//                         justifyContent: 'space-around',
-//                         ml: 'auto',
-//                     }}>
-//
-//                         {AddDay ?
-//                             <Button
-//                                 variant="text"
-//                                 onClick={() => {
-//                                     navigate("/AddEvent");
-//                                 }}
-//                             >
-//                                 Trade your day
-//                             </Button>
-//                             :
-//                             <Button
-//                                 variant="text"
-//                                 disabled
-//                             >
-//                                 Trade your day
-//                             </Button>
-//                         }
-//
-//                         <Avatar src="/broken-image.jpg"
-//                                 sx={{ml: 1}}
-//                                 onClick={() => {
-//                                     navigate("/Login");
-//                                 }}
-//                                 style={{cursor:'pointer'}}
-//                         />
-//                     </Box>
-//             </Toolbar>
-//             </AppBar>
-//         </ElevationScroll>
-//     );
-// }
-
+/
 // not a toolbar
 export default function Topbar(props) {
     let navigate = useNavigate();
@@ -105,12 +37,18 @@ export default function Topbar(props) {
     const Profile = props.Profile;
     let greeting = "Log in!"
     const [openLogin, setOpenLogin] = useState(false);
-    const handleOpenLogin = () => {setOpenLogin(true);};
-    const handleCloseLogin = () => {setOpenLogin(false);};
+    const handleOpenLogin = () => {
+        setOpenLogin(true);
+    };
+    const handleCloseLogin = () => {
+        setOpenLogin(false);
+    };
 
     const [avatarSrc, setAvatarSrc] = useState("/broken-image.jpg");
     useEffect(() => {
-        {auth?.currentUser?.displayName ? greeting="Hello {auth.currentUser.displayName}!" : greeting="Log in!"}
+        {
+            auth?.currentUser?.displayName ? greeting = "Hello {auth.currentUser.displayName}!" : greeting = "Log in!"
+        }
     }, [auth]);
     useEffect(() => {
         // Update the avatar source when the auth object changes
@@ -123,7 +61,7 @@ export default function Topbar(props) {
     const displayNameAvailable = Boolean(auth?.currentUser?.displayName);
 
     return (
-            <Box position='static'
+        <Box position='static'
              sx={{mt: 2}}>
             <Box sx={{
                 display: 'flex',
@@ -134,37 +72,39 @@ export default function Topbar(props) {
                 <Logo/>
                 {Search ?
                     <div></div>
-                // <SearchBox />
-                //     placeholder with empty space so it will look the same:
-                :  <Box sx={{width: 350, height: 32}} />
-                        }
+                    // <SearchBox />
+                    //     placeholder with empty space so it will look the same:
+                    : <Box sx={{width: 350, height: 32}}/>
+                }
 
                 <Box sx={{
                     display: 'flex',
-                    // justifyContent: 'space-around',
                     justifyContent: 'center',
                 }}>
                     <Avatar src={avatarSrc}
-                            sx={{ml: 1,
-                                width: { xs: '35px', sm: '40px',},
-                                height: { xs: '35px', sm: '40px',},
-                                }}
+                            sx={{
+                                ml: 1,
+                                width: {xs: '35px', sm: '40px',},
+                                height: {xs: '35px', sm: '40px',},
+                            }}
                             onClick={() => {
                                 navigate("/Login");
                             }}
-                            style={{cursor:'pointer'}}
+                            style={{cursor: 'pointer'}}
                     />
                     {displayNameAvailable ? ( // Check if display name is available
                         <Box sx={{display: 'flex', justifyContent: 'center',}}>
                             {/* Set a smaller font size if display name is available */}
-                            <Button variant="text" disabled size="small" sx={{ maxWidth: '75px', fontSize: 10 }}>
+                            <Button variant="text" disabled size="small" sx={{maxWidth: '75px', fontSize: 10}}>
                                 {auth?.currentUser?.displayName}
                             </Button>
                         </Box>
                     ) : (
                         <Button
                             variant="text"
-                            onClick={() => { navigate("/Login"); }}
+                            onClick={() => {
+                                navigate("/Login");
+                            }}
                         >
                             Log In!
                         </Button>
@@ -175,9 +115,9 @@ export default function Topbar(props) {
                                 variant="text"
                                 onClick={auth?.currentUser ? () => navigate("/AddEvent") : handleOpenLogin}
                                 sx={{
-                                    maxWidth: { xs: '150px', sm: 'auto' },
-                                    fontSize: { xs: '10px', sm: '14px' },
-                                    padding: { xs: 1.5, sm: 1 },
+                                    maxWidth: {xs: '150px', sm: 'auto'},
+                                    fontSize: {xs: '10px', sm: '14px'},
+                                    padding: {xs: 1.5, sm: 1},
                                 }}
                             >
                                 Trade your day
@@ -192,16 +132,23 @@ export default function Topbar(props) {
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button                                     sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
+                                    <Button sx={{
+                                        borderRadius: "10px", border: "2px solid transparent", "&:hover": {
                                             backgroundColor: (theme) => theme.palette.primary.contrastText,
                                             color: (theme) => theme.palette.primary.main,
                                             borderColor: (theme) => theme.palette.primary.main,
-                                        },}} disableElevation onClick={()=> {navigate("/Login?redirect=/AddEvent");}} variant="contained" autoFocus>Log In</Button>
-                                    <Button                                     sx={{borderRadius: "10px",border: "2px solid transparent", "&:hover": {
+                                        },
+                                    }} disableElevation onClick={() => {
+                                        navigate("/Login?redirect=/AddEvent");
+                                    }} variant="contained" autoFocus>Log In</Button>
+                                    <Button sx={{
+                                        borderRadius: "10px", border: "2px solid transparent", "&:hover": {
                                             backgroundColor: (theme) => theme.palette.primary.contrastText,
                                             color: (theme) => theme.palette.primary.main,
                                             borderColor: (theme) => theme.palette.primary.main,
-                                        },}} disableElevation onClick={handleCloseLogin} variant="contained">Continue Browsing</Button>
+                                        },
+                                    }} disableElevation onClick={handleCloseLogin} variant="contained">Continue
+                                        Browsing</Button>
                                 </DialogActions>
                             </Dialog>
                         </div>
@@ -214,8 +161,8 @@ export default function Topbar(props) {
                         </Button>
                     }
                 </Box>
-        </Box>
-        <Divider />
+            </Box>
+            <Divider/>
         </Box>
     );
 }

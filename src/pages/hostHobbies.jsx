@@ -29,7 +29,6 @@ export default function ViewHobbies({hostID}) {
     const [hobbies, sethobbies] = useState(null);
 
 
-
     useEffect(() => {
         async function fetchUserData() {
             try {
@@ -57,8 +56,8 @@ export default function ViewHobbies({hostID}) {
 
                 });
 
-            // Once data is fetched and processed, set loading to false
-            setLoading(false);
+                // Once data is fetched and processed, set loading to false
+                setLoading(false);
 
 
             } catch (error) {
@@ -148,14 +147,14 @@ export default function ViewHobbies({hostID}) {
 
 
             {!((food !== null && hobbies !== null && pizzaToppings !== null) ||
-                (food === null && hobbies === null && pizzaToppings === null))  &&  (
+                (food === null && hobbies === null && pizzaToppings === null)) && (
                 <Divider my={2}/>
             )}
 
             <Stack direction="column" spacing={0.5} my={1}/>
 
             {(food !== null || hobbies !== null || pizzaToppings !== null) && (
-                <Typography style={{ fontWeight: 'bold' }}>
+                <Typography style={{fontWeight: 'bold'}}>
                     You both have things in common!
                 </Typography>
             )}
@@ -206,82 +205,43 @@ export default function ViewHobbies({hostID}) {
 
             <Typography my={2}>Feel free to contact me!</Typography>
             <Box sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-                {/*<Typography color="primary" my={1} sx={{display: 'flex', justifyContent: 'center'}}>*/}
-                {/*    {userData?.userPhone}*/}
-                {/*</Typography>*/}
-                {/*for whatsapp link*/}
 
                 {(!userData?.contactMethod || userData?.contactMethod === 'Phone') && (
                     <Typography color="primary" my={1} sx={{display: 'flex', justifyContent: 'center'}}>
 
-                    <Link href={"https://wa.me/972" + userData?.userPhone}
-                          underline="always"
-                          color="primary"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                    >
-                        <IconButton>
-                            <WhatsAppIcon color="primary"/>
-                        </IconButton>
-                        {'+972 ' + userData?.userPhone}
-                    </Link>
-                </Typography>
+                        <Link href={"https://wa.me/972" + userData?.userPhone}
+                              underline="always"
+                              color="primary"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                        >
+                            <IconButton>
+                                <WhatsAppIcon color="primary"/>
+                            </IconButton>
+                            {'+972 ' + userData?.userPhone}
+                        </Link>
+                    </Typography>
                 )}
 
                 {userData?.userEmail && (!userData?.contactMethod || userData?.contactMethod === 'Email') && (
                     <Typography color="primary" sx={{display: 'flex', justifyContent: 'center'}}>
-                    <Link href={`mailto:${userData?.userEmail}?subject=Reaching%20out%20from%20Trade%20a%20Day`}
-                          underline="always"
-                          color="primary"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                    >
-                        <IconButton>
-                            <EmailOutlinedIcon color='primary'/>
-                        </IconButton>
-                        {userData?.userEmail}
-                    </Link>
-                </Typography>
+                        <Link href={`mailto:${userData?.userEmail}?subject=Reaching%20out%20from%20Trade%20a%20Day`}
+                              underline="always"
+                              color="primary"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                        >
+                            <IconButton>
+                                <EmailOutlinedIcon color='primary'/>
+                            </IconButton>
+                            {userData?.userEmail}
+                        </Link>
+                    </Typography>
                 )}
 
             </Box>
 
-            {/*TODO: Not sure how to add pizza topping if they said they don't like pizza*/}
-            {/*TODO: Can't put superpowers the way they're shown in collection atm*/}
         </Box>
     );
 }
 
-
-//
-//     return (
-//         <Box>
-//             <Stack direction="row" spacing={1} my={2}>
-//                 <Typography>My favourite food is</Typography>
-//                 <Chip icon={<FastfoodRoundedIcon/>} label={userData?.favoriteFood} variant="outlined" size="small" color="primary"/>
-//             </Stack>
-//             <Stack direction="row" spacing={1} my={2}>
-//                 <Typography>My hobbies include</Typography>
-//                 <Chip icon={<SportsEsportsRoundedIcon/>} label={userData?.hobbies} variant="outlined" size="small" color="primary"/>
-//             </Stack>
-//             <Stack direction="row" spacing={1} my={2}>
-//                 <Typography>My skills include</Typography>
-//                 <Chip icon={<SchoolRoundedIcon/>} label={userData?.skills} variant="outlined" size="small" color="primary"/>
-//             </Stack>
-//             <Divider my={2}/>
-//
-//             <Typography my={2}>Feel free to contact me!</Typography>
-//             <Box sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-//                 <Typography color="primary" my={1} sx={{display: 'flex', justifyContent: 'center'}}>
-//                     {userData?.userPhone}
-//                 </Typography>
-//                 <Typography color="primary" sx={{display: 'flex', justifyContent: 'center'}}>
-//                     {userData?.userEmail}
-//                 </Typography>
-//             </Box>
-//
-//             {/*TODO: Not sure how to add pizza topping if they said they don't like pizza*/}
-//             {/*TODO: Can't put superpowers the way they're shown in collection atm*/}
-//         </Box>
-//     );
-// }

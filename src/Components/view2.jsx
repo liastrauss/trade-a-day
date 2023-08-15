@@ -1,20 +1,16 @@
 import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import {Albume, Albume2} from "../pages/OverView-elements/Albume";
 import Box from "@mui/material/Box";
-import {cardData} from "../data/card-data";
 import {useParams} from "react-router-dom";
-import {ref, listAll,getDownloadURL} from "firebase/storage"
+import {ref, listAll, getDownloadURL} from "firebase/storage"
 import {useEffect, useState} from "react";
 import {auth, db, storage} from "../config/firebase";
-import {v4} from "uuid";
-import {useTheme} from "@mui/material/styles";
 import {doc, getDoc} from "firebase/firestore";
 
 export function StandardImageList() {
     const [imageListGallery, setImageListGallery] = useState([]);
-    const { index } = useParams();
+    const {index} = useParams();
     const [eventInfoData, setEventInfoData] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
@@ -73,30 +69,30 @@ export function StandardImageList() {
             }}
         >
 
-        <ImageList
-            className="pictures"
-            sx={{
-                width: '100%', // Take full width of the container
-                height: 300, // Automatically adjust height based on content
-                my: 3, mx: 1
-            }}
-            cols={2} // Default: 2 columns
-            rowHeight="auto"
-            gap={8} // Adjust the gap between images as needed
+            <ImageList
+                className="pictures"
+                sx={{
+                    width: '100%', // Take full width of the container
+                    height: 300, // Automatically adjust height based on content
+                    my: 3, mx: 1
+                }}
+                cols={2} // Default: 2 columns
+                rowHeight="auto"
+                gap={8} // Adjust the gap between images as needed
 
-        >
-            {imageListGallery.map((url) => (
-                <ImageListItem key={url}>
-                    <img
-                        src={`${url}?w=164&h=164&fit=crop&auto=format`}
-                        srcSet={`${url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                        alt="gallery"
-                        loading="lazy"
+            >
+                {imageListGallery.map((url) => (
+                    <ImageListItem key={url}>
+                        <img
+                            src={`${url}?w=164&h=164&fit=crop&auto=format`}
+                            srcSet={`${url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                            alt="gallery"
+                            loading="lazy"
 
-                    />
-                </ImageListItem>
-            ))}
-        </ImageList>
+                        />
+                    </ImageListItem>
+                ))}
+            </ImageList>
         </Box>
     );
 }

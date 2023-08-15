@@ -14,8 +14,6 @@ import Paper from "@mui/material/Paper";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import {useTheme} from "@mui/material/styles";
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-
-
 import CloseIcon from '@mui/icons-material/Close';
 import Snackbar from '@mui/material/Snackbar';
 

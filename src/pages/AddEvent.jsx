@@ -7,8 +7,8 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
-import { useNavigate } from "react-router-dom"
+import {useTheme} from '@mui/material/styles';
+import {useNavigate} from "react-router-dom"
 
 // Importing three form components that will be rendered inside the  component
 import EventForm from "../Components/EventForm";
@@ -16,7 +16,7 @@ import ItemsForm from "../Components/ItemsForm";
 import DaySchedule from "../Components/DaySchedule";
 import Topbar from "../Components/Topbar";
 // import things for backend
-import { db, auth } from "../config/firebase";
+import {db, auth} from "../config/firebase";
 import {addDoc, collection, updateDoc, doc, query, where, getDocs} from 'firebase/firestore';
 
 // An array that stores the labels for the steps of the checkout process
@@ -32,28 +32,28 @@ export default function AddEvent() {
     const [userContact, setUserContact] =
         React.useState({
             contactMethod: null,
-            userEmail: auth?.currentUser?.email  || '',
+            userEmail: auth?.currentUser?.email || '',
             userPhone: '',
-        },[]);
+        }, []);
 
     // initialize the data from the form parts
     const [formData, setFormData] =
         React.useState({
-        hostID: '',
-        hostName: '',
-        jobTitle: '',
-        dayDescription: '',
-        dates: [null],
-        location: null,
-        accessible: true,
-        toBring: [],
-        gallery: [],
-        physicalEffort: 1, // init the physical effort
-        outdoors: true,
-        picture: "none",
-        contactMethod: null,
-        contact:null,
-    },[]);
+            hostID: '',
+            hostName: '',
+            jobTitle: '',
+            dayDescription: '',
+            dates: [null],
+            location: null,
+            accessible: true,
+            toBring: [],
+            gallery: [],
+            physicalEffort: 1, // init the physical effort
+            outdoors: true,
+            picture: "none",
+            contactMethod: null,
+            contact: null,
+        }, []);
 
     // extracting the dates to a convinent array format
     const datesArray = formData.dates; //  formData.dates is the array of dates you want to extract
@@ -61,28 +61,28 @@ export default function AddEvent() {
 
 
 // update backend:
-    const dbRef = collection(db,"DataBase1");
-    const userDataRef = collection(db,"users");
+    const dbRef = collection(db, "DataBase1");
+    const userDataRef = collection(db, "users");
 
 
     const onSubmit = async () => {
         try {
-        await addDoc(dbRef, {
-            hostID: auth?.currentUser?.uid,
-            hostName: auth?.currentUser?.displayName, // the full name from the auth. maybe we want to change it to somth from profile
-            jobTitle: formData.jobTitle,
-            dayDescription: formData.dayDescription,
-            dates: extractedDates,
-            location: formData.location,
-            accessible: formData.accessible,
-            toBring: formData.toBring,
-            gallery: [],//TODO: when the photo is ready
-            physicalEffort: formData.physicalEffort,
-            outdoors: formData.outdoors,
-            picture: "none",
-            contactMethod: formData.contactMethod,
+            await addDoc(dbRef, {
+                hostID: auth?.currentUser?.uid,
+                hostName: auth?.currentUser?.displayName, // the full name from the auth. maybe we want to change it to somth from profile
+                jobTitle: formData.jobTitle,
+                dayDescription: formData.dayDescription,
+                dates: extractedDates,
+                location: formData.location,
+                accessible: formData.accessible,
+                toBring: formData.toBring,
+                gallery: [],//TODO: when the photo is ready
+                physicalEffort: formData.physicalEffort,
+                outdoors: formData.outdoors,
+                picture: "none",
+                contactMethod: formData.contactMethod,
 
-        });
+            });
 
             // for contactuser:
             const q = query(collection(db, "users"), where("userID", "==", auth?.currentUser?.uid))
@@ -91,7 +91,7 @@ export default function AddEvent() {
             const DocID = querySnapshot.empty ? "0usertemplate" : querySnapshot.docs[0].id;
             console.log("User Document ID:", DocID);
 
-            let userDoc = doc(db,"users",DocID);
+            let userDoc = doc(db, "users", DocID);
 
 
             await updateDoc(userDoc, {
@@ -105,12 +105,12 @@ export default function AddEvent() {
             console.log("added the doc successfully!")
 
 
-        } catch(err) {
+        } catch (err) {
             console.error(err)
         }
     }
 
-    console.log("formData is:",formData);
+    console.log("formData is:", formData);
     // console.log("userdata is:",userContact);
     // A state hook that keeps track of the currently active step:
     const [activeStep, setActiveStep] = React.useState(0);
@@ -127,9 +127,10 @@ export default function AddEvent() {
     function getStepContent(step) {
         switch (step) {
             case 0:
-                return <EventForm formData={formData} setFormData={setFormData} />;
+                return <EventForm formData={formData} setFormData={setFormData}/>;
             case 1:
-                return < DaySchedule formData={formData} setFormData={setFormData} userContact={userContact} setUserContact={setUserContact}/>;
+                return < DaySchedule formData={formData} setFormData={setFormData} userContact={userContact}
+                                     setUserContact={setUserContact}/>;
             case 2:
                 return <ItemsForm formData={formData} setFormData={setFormData}/>;
             default:
@@ -137,7 +138,7 @@ export default function AddEvent() {
         }
     }
 
-    const theme=useTheme()
+    const theme = useTheme()
 
 
     // The component's JSX code that gets returned
@@ -145,17 +146,17 @@ export default function AddEvent() {
         <div>
             <Topbar BookedEvents/>
 
-             {/*// The container that holds the main content of the page*/}
-            <Container component="main" maxWidth="sm" sx={{ mb: 4 }} >
+            {/*// The container that holds the main content of the page*/}
+            <Container component="main" maxWidth="sm" sx={{mb: 4}}>
                 <Paper>
-                    <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+                    <Paper variant="outlined" sx={{my: {xs: 3, md: 6}, p: {xs: 2, md: 3}}}>
                         {/* The title of the checkout page */}
                         <Typography component="h1" variant="h4" align="center">
                             Trade Your Day
                         </Typography>
 
                         {/* The stepper component that displays the current step of the checkout process */}
-                        <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+                        <Stepper activeStep={activeStep} sx={{pt: 3, pb: 5}}>
                             {steps.map((label) => (
                                 <Step key={label}>
                                     <StepLabel>{label}</StepLabel>
@@ -172,9 +173,8 @@ export default function AddEvent() {
                                     Keep an eye on your preferred contact method as interested guests will be
                                     reaching out to you directly. Together, let's make Trade a Day a success!
                                 </Typography>
-                                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                    <Button align="center" onClick={()=>
-                                    {
+                                <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
+                                    <Button align="center" onClick={() => {
                                         navigate("/");
                                     }}> Back to homepage
                                     </Button>
@@ -183,9 +183,9 @@ export default function AddEvent() {
                         ) : (
                             <React.Fragment>
                                 {getStepContent(activeStep)}
-                                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
                                     {activeStep !== 0 && (
-                                        <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                                        <Button onClick={handleBack} sx={{mt: 3, ml: 1}}>
                                             Back
                                         </Button>
                                     )}
@@ -194,7 +194,7 @@ export default function AddEvent() {
                                         variant="contained"
                                         // onClick={handleNext}
                                         onClick={activeStep === steps.length - 1 ? onSubmit : handleNext} // Call onSubmit only when all steps are finished
-                                        sx={{ mt: 3, ml: 1 }}
+                                        sx={{mt: 3, ml: 1}}
                                     >
                                         {activeStep === steps.length - 1 ? 'Add your day' : 'Next'}
                                     </Button>

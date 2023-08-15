@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
 import {getDocs, collection} from "firebase/firestore";
 import Chips from "./filterChips";
-import { db} from "../config/firebase";
+import {db} from "../config/firebase";
 import Images from "./mainimage2";
 import SearchBox from "./searchBox";
 
@@ -43,8 +43,6 @@ export default function EventCard({value = null}) {
 
                 setCardData(cardInfo);
                 setfiltered(cardInfo);
-                // Images({cardInfo})
-
 
             } catch (err) {
                 console.error(err)
@@ -60,14 +58,15 @@ export default function EventCard({value = null}) {
 
     return (
         <div>
-            <SearchBox cardData={cardData} activeSearch={activeSearch} setActiveSearch ={setActiveSearch} setSearched={setfiltered} />
-            <Images events={cardData} />
+            <SearchBox cardData={cardData} activeSearch={activeSearch} setActiveSearch={setActiveSearch}
+                       setSearched={setfiltered}/>
+            <Images events={cardData}/>
 
             <Chips cardData={cardData}
                    activeFiler={activeFilter}
                    setActiveFilter={setActiveFilter}
                    setfiltered={setfiltered}
-            sx={{ mb: 4, mt: -2}}/>
+                   sx={{mb: 4, mt: -2}}/>
             <Box sx={{
                 display: 'flex',
                 alignItems: 'flex-start',
@@ -79,23 +78,23 @@ export default function EventCard({value = null}) {
                     <Card
                         key={item.id} // Provide a unique key for each item
                         sx={{
-                        width: {
-                            xs: screenwidth, // Set width to screen width in xs
-                            sm: 150, //600
-                            md: 190, //900
-                            lg: 250, //1200
-                            // xl: 400, //1563
-                        },
-                        height: {
-                            xs: screenwidth * 0.65,
-                            sm: 220, //600
-                            md: 279, //900
-                            lg: 368, //120
-                        },
-                        boxShadow: 0,
-                        my: 1,
-                        mx: 2.5,
-                    }}
+                            width: {
+                                xs: screenwidth, // Set width to screen width in xs
+                                sm: 150, //600
+                                md: 190, //900
+                                lg: 250, //1200
+                                // xl: 400, //1563
+                            },
+                            height: {
+                                xs: screenwidth * 0.65,
+                                sm: 220, //600
+                                md: 279, //900
+                                lg: 368, //120
+                            },
+                            boxShadow: 0,
+                            my: 1,
+                            mx: 2.5,
+                        }}
                     >
                         <CardActionArea onClick={() => {
                             navigate(`/OverView2/${item.id}`);
